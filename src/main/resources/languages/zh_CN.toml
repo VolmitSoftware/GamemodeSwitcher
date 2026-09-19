@@ -1,0 +1,517 @@
+# GamemodeSwitcher — zh_CN
+#
+# === 编辑文件 ===
+# plugins/GamemodeSwitcher/languages/zh_CN.toml
+# 可直接编辑此文件。本地修改会保留；缺失或无效条目使用内置英语文本。
+# /gsw language server edit zh_CN
+#
+# === 前缀 ===
+# {prefix}  全局 runtime.prefix 值。从某条消息中删除 {prefix}，即可只在该消息中隐藏前缀
+#
+# === 格式 ===
+# 颜色：&0-&f、&k-&r、&#RRGGBB、&xRRGGBB、&x&R&R&G&G&B&B 和 [RRGGBB]。自定义格式仍可使用 MiniMessage。
+# 在 & 或 [ 前添加反斜杠可按原样显示该字符。
+#
+# === 变量 ===
+# 请勿更改变量名，仅使用各消息中原有的变量。
+#   {after}  更改后的数值
+#   {argument}  意外参数
+#   {before}  变化前的价值
+#   {command}  命令路径
+#   {count}  匹配条目数
+#   {enabled}  游戏模式切换的启用状态
+#   {group}  语言编辑器分类
+#   {hot_reload}  热重载状态
+#   {key}  参数键
+#   {language}  当前语言
+#   {line}  源行或行号
+#   {locale}  区域设置
+#   {maximum}  允许的最大值
+#   {mode}  游戏模式名称
+#   {new}  新值
+#   {number}  条目编号
+#   {old}  旧值
+#   {page}  当前页码
+#   {pages}  总页数
+#   {parameter}  参数名称
+#   {path}  本地报告路径
+#   {permission}  所需权限
+#   {personal}  个人区域设置
+#   {plugin}  插件名称
+#   {prefix}  全局 runtime.prefix 值。从某条消息中删除 {prefix}，即可只在该消息中隐藏前缀
+#   {reason}  失败原因
+#   {scheduler}  调度器
+#   {seconds}  剩余冷却或确认时间（秒）
+#   {section}  语言编辑器分区
+#   {setting}  设置名称
+#   {step}  一次普通点击所改变的数值
+#   {state}  个人手势或通知状态
+#   {target}  目标玩家、实体或值
+#   {type}  类型
+#   {url}  公开报告网址
+#   {value}  当前值、默认值或原始值
+#   {variables}  可用占位符
+#   {version}  插件版本
+#   {world}  世界
+
+[command.description]
+version = "显示 GamemodeSwitcher 版本"
+config = "配置"
+debug = "GamemodeSwitcher诊断工具"
+debug_dump = "创建完整的GamemodeSwitcher诊断报告"
+language = "语言"
+menu = "游戏模式"
+root = "游戏模式"
+set = "游戏模式"
+status = "游戏模式"
+toggle = "手势"
+
+[command.feedback]
+failed = "{prefix}&c命令无法完成。请查看控制台以获取详细信息。&r"
+
+[command.feedback.config]
+opened = "{prefix}&a已打开完整的游戏内配置编辑器。&r"
+save_failed = "{prefix}&c无法应用&f{setting}&r&c：{reason}&r"
+saved = "{prefix}&a{setting}&r &7已从 &f{old}&r &7更改为 &f{new}&r&7。&r"
+
+[command.parameter]
+enabled = "已启用 / 已禁用"
+mode = "生存, 创造, 冒险, 旁观"
+upload = "启用公开上传时上传报告"
+
+[command.status]
+compatibility = "&7工件:&r&fJava 17 / Bukkit 1.20.1+&r&8|&r&7调度程序:&r&f{scheduler}&r"
+config = "&7游戏模式:&r {enabled} &8|&r &7语言:&r {language} &8|&r &7重新加载配置和语言:&r {hot_reload}"
+header = "&6&lGamemodeSwitcher&r"
+player = "&7手势:&r {state} &8|&r &7游戏模式:&r {mode}"
+
+[config.editor]
+adjust = "左键 +{step}，右键 -{step}，Shift 乘以 10，Q 输入精确值。"
+back = "返回"
+close = "关闭"
+current = "当前值：{value}"
+edit = "点击在聊天中输入新值。"
+empty = "此分区没有设置项。"
+entry = "条目 {number}"
+expired = "配置输入已超时。"
+failed = "无法编辑配置：{reason}"
+loading = "正在加载配置..."
+next = "下一页"
+no-permission = "你没有编辑此配置的权限。"
+open = "点击打开此分区。"
+page = "第 {page} 页，共 {pages} 页"
+player-only = "请在游戏中打开配置编辑器。"
+previous = "上一页"
+prompt = "请输入 {path} 的新值。输入 cancel 返回。"
+refresh = "刷新"
+saved = "已保存 {path}。更改会自动生效。"
+saving = "正在保存配置..."
+section = "分区：{path}"
+title = "{plugin} / 配置"
+toggle = "点击在 true 和 false 之间切换。"
+too-long = "最多输入 {maximum} 个字符。"
+
+[config.editor.type]
+decimal = "请输入数字，例如 0.25。"
+integer = "请输入整数。"
+list = "请使用 TOML 列表，例如 [\"stone\", \"deepslate\"]。"
+text = "文本无需在两侧加引号。"
+
+[debug]
+preparing = "正在准备 {plugin} 诊断报告..."
+saved = "已将 {plugin} 诊断报告保存到 {path}。"
+
+[debug.action]
+copy-path = "复制本地路径"
+copy-path-description = "复制本地报告的路径。"
+open = "打开：{url}"
+open-description = "打开已上传的诊断报告。"
+
+[debug.error]
+already-preparing = "正在为 {plugin} 生成诊断报告。"
+already-preparing-short = "已有诊断报告正在生成。"
+capture-failed = "无法收集诊断报告数据，请检查服务器控制台。"
+closed-before-capture = "诊断数据提供程序在收集报告数据前已关闭。"
+closed-before-write = "诊断数据提供程序在写入报告前已关闭。"
+missing-permission = "缺少权限：{permission}"
+provider-closed = "诊断数据提供程序已关闭。"
+schedule-failed = "无法调度诊断报告生成任务。"
+write-failed = "无法写入诊断报告，请检查服务器控制台。"
+writer-schedule-failed = "无法调度诊断报告写入任务。"
+
+[debug.upload]
+completed = "已上传为 VolmitSoftware - {plugin} - v{version}。"
+failed = "诊断报告上传失败，本地报告已保存。"
+interrupted = "诊断报告上传已中断，本地报告已保存。"
+
+[director.help]
+category = "命令类别"
+command_group = "命令组。点击打开。"
+no_description = "未提供说明"
+no_parameters = "无参数。点击预填命令。"
+no_subcommands = "此页面没有子命令。"
+parameters_hover = "将鼠标悬停在参数上以了解更多。"
+
+[director.help.navigation]
+back = "返回"
+page = "页"
+
+[director.help.navigation.next]
+hover = "下一页"
+
+[director.help.navigation.parent]
+hover = "返回上级命令组"
+
+[director.help.navigation.previous]
+hover = "上一页"
+
+[director.help.parameter]
+default = "未指定时默认为 \"{value}\"。"
+optional = "此参数为可选项。"
+required = "此参数为必填项。"
+type = "此参数的类型为 {type}。"
+
+[director.runtime.error]
+conversion_failed = "无法将 \"{value}\" 转换为 {parameter} 所需的 {type}"
+default_parse_failed = "无法解析参数 {parameter} 的默认值"
+execution_failed = "执行命令 {command} 失败: {reason}"
+invalid_origin = "无法从此来源运行该命令。"
+missing_argument = "缺少参数 \"{parameter}\" ({type})"
+unclosed_group = "参数 {key} 缺少闭合的 \"]\""
+unexpected_argument = "意外参数 \"{argument}\"。可选参数必须使用键指定，例如 seed=123"
+unknown_parameter = "未知参数键: {key}"
+
+[gesture]
+normal = "&7连按两次交换副手物品键：{mode}&r"
+sneaking = "&7按住潜行并连按两次交换副手物品键：{mode}&r"
+spectator = "&7分别按下潜行键三次：{mode}&r"
+rebind = "&7在选项 > 控制 > 按键绑定中修改交换副手物品（默认 F）和潜行（默认左 Shift）。&r"
+personal_disabled = "&e你的手势已关闭。在此菜单或通过 /gsw toggle true 开启。&r"
+empty_hands = "&7使用手势时双手必须为空。&r"
+help = "&7双击交换双手键（默认为F）切换模式。同时潜行可触发另一种操作；连续按三次潜行键可退出旁观模式。目标模式由服务器设置决定。&r"
+
+[gui.title]
+root = "<gradient:#634514:#2f523f>GSW</gradient> <color:#404040>配置</color>"
+
+[language.editor]
+title = "{plugin} › {section}"
+loading = "正在加载 {locale} 的消息..."
+
+[language.editor.category]
+message-count = "&7{count} 条消息&r"
+open = "&8点击打开此分类。&r"
+
+[language.editor.error]
+no-permission = "你没有权限编辑 {plugin} 的语言。"
+unable-to-edit = "无法编辑：{reason}"
+
+[language.editor.input]
+expired = "语言编辑器的输入时间已到期。"
+too-long = "输入最多可包含 {maximum} 个字符。"
+unable-to-save = "无法保存：{reason}"
+
+[language.editor.locale]
+open = "&8点击打开此语言。&r"
+
+[language.editor.message]
+current-value = "&7当前值:&r"
+edit-chat = "&7点击在聊天中编辑。&r"
+edit-lines = "&7点击逐行编辑。&r"
+edit-plural = "&7点击编辑复数形式。&r"
+variables = "&8{variables}&r"
+
+[language.editor.navigation]
+back = "&e返回&r"
+close = "&c关闭&r"
+next-page = "&e下一页&r"
+previous-page = "&e上一页&r"
+
+[language.editor.part]
+line = "第 {line} 行"
+
+[language.editor.prompt]
+current = "当前值： {value}"
+guidance = "使用 \\n 表示换行，\\\\ 表示反斜杠，或输入 cancel 返回。"
+search = "搜索消息键或内容。输入 cancel 返回。"
+value = "请在聊天中输入 {key} 的新值。"
+variables = "变量: {variables}"
+
+[language.editor.saved]
+change = "{key}：已将“{before}”改为“{after}”。"
+summary = "已保存 {locale}。语言选择保持不变。"
+
+[language.editor.search]
+clear = "清除搜索"
+messages = "搜索消息"
+messages-lore = "点击搜索所有消息。"
+
+[language.editor.section]
+group-title = "{locale} / {group}"
+languages = "语言"
+search = "搜索"
+search-title = "{locale} / 搜索"
+
+[language.editor.value]
+empty = "(空)"
+none = "无"
+
+[language.error]
+editor-player-only = "请在游戏中打开语言编辑器。"
+no-providers = "没有可用的 Volmit 语言提供程序。"
+numeric-page = "请输入数字页码。"
+personal-permission = "你没有权限选择个人语言。"
+personal-player-only = "玩家必须在游戏中选择个人语言。"
+plugin-personal-permission = "你没有权限为 {plugin} 选择个人语言。"
+plugin-server-permission = "你没有权限更改 {plugin} 的服务器语言。"
+server-locale-required = "请选择 en_US 等语言代码作为服务器默认语言。"
+stopping = "插件停止期间无法选择语言。"
+unavailable-for-all = "语言 {locale} 并非适用于所有选中的插件。"
+
+[language.menu]
+all-volmit-plugins = "所有 Volmit 插件"
+command = "命令: {command}"
+current = "当前：{locale}"
+current_with_personal = "当前：{locale}（你的：{personal}）"
+edit_description = "打开各语言的消息编辑器。"
+edit_messages = "编辑语言消息"
+no_controls = "你无权使用语言设置。"
+remove_personal_description = "移除你的个人语言选择。"
+reset_description = "使用服务器默认语言。"
+reset_your_language = "重置你的语言"
+select_description = "点击以选择此语言。"
+selected = "选中"
+server_default = "服务器默认语言"
+server_description = "更改服务器默认语言。"
+use_server_default = "使用服务器默认语言"
+your_description = "仅更改你看到的消息。"
+your_language = "你的语言"
+
+[language.selection]
+english-fallback = "{plugin}：{locale} 不可用；将使用英语（en_US）。"
+personal-selected = "{plugin}：你的语言现在是 {locale}。"
+preparing = "正在为 {target} 准备语言 {locale}..."
+save-failed = "{plugin}：无法保存语言选择；请检查服务器控制台。"
+server-default-selected = "{plugin}：你的语言现在跟随服务器默认语言。"
+server-selected = "{plugin}：服务器语言现在是 {locale}。"
+
+[language.usage]
+editor = "用法: /{command} language server edit [locale]"
+selection = "用法: /{command} language self [locale|reset] or server [locale]"
+volmit-selection = "用法: /volmit plugins languages [locale]"
+
+[menu]
+feedback = "&6个人通知&r"
+feedback_help = "&7为自己关闭切换消息、标题或声音。&r"
+back = "&7返回游戏模式&r"
+selected = "&a已选择&r"
+survival_help = "&7收集资源，管理生命值和饥饿值。&r"
+creative_help = "&7使用无限资源和创造模式飞行进行建造。&r"
+adventure_help = "&7探索限制破坏和放置方块的地图。&r"
+spectator_help = "&7观察世界并穿过方块。&r"
+config_help = "&7编辑服务器设置。更改立即生效。&r"
+language_help = "&7选择消息和菜单使用的语言。&r"
+close = "关闭"
+config = "&6配置&r"
+current = "&7游戏模式: &f{mode}&r"
+gestures = "&6手势&r"
+language = "&a语言&r"
+select = "&7点击选择。&r"
+title = "<gradient:#634514:#2f523f>游戏模式</gradient>"
+toggle_disabled = "&7手势: &c已禁用&r"
+toggle_enabled = "&7手势: &a已启用&r"
+toggle_help = "&7点击启用或禁用手势。&r"
+unavailable = "&c你无法选择此游戏模式。&r"
+
+[mode]
+adventure = "冒险"
+creative = "创造"
+spectator = "旁观"
+survival = "生存"
+
+[preferences]
+title = "<gradient:#634514:#2f523f>个人通知</gradient>"
+chat = "&6聊天消息&r"
+action_bar = "&6快捷栏提示&r"
+screen_title = "&6屏幕标题&r"
+sound = "&6切换声音&r"
+muted = "&c已为你关闭&r"
+inherit = "&7跟随服务器设置：{state}&r"
+toggle = "&7点击切换关闭或跟随服务器设置。&r"
+silence = "&6全部关闭&r"
+silence_help = "&7关闭成功切换时的消息、标题和声音。&r"
+reset = "&a使用服务器设置&r"
+reset_help = "&7清除所有个人静音设置。&r"
+failures = "&7关闭聊天消息后，切换被阻止的原因仍会显示在快捷栏上方。&r"
+failed = "{prefix}&c无法保存你的偏好设置。请查看控制台。&r"
+
+[runtime]
+player_only = "{prefix}&c此命令只能由玩家使用。&r"
+prefix = "<gradient:#e9bd68:#85d6b0><bold>GamemodeSwitcher</bold></gradient> &8â€º&r "
+
+[runtime.hot_reload]
+failed = "{prefix}&c文件更改被拒绝；最后已知的良好设置仍然有效。&r"
+success = "{prefix}&a已应用配置和语言文件更改。&r"
+
+[runtime.permission]
+denied = "{prefix}&c你没有权限执行该操作。&r"
+
+[state]
+disabled = "&c已禁用&r"
+enabled = "&a已启用&r"
+
+[switch]
+title = "<gradient:#e9bd68:#85d6b0>{mode}</gradient>"
+subtitle = "&7游戏模式已切换。&r"
+overlay = "&7游戏模式：&f{mode}&r"
+spectator_overlay_hint = "&7按三次潜行键即可退出旁观者模式。&r"
+already = "{prefix}&e你已经处于{mode}模式。&r"
+cancelled = "{prefix}&e另一个插件阻止了游戏模式切换。&r"
+changed = "{prefix}&a游戏模式已切换为{mode}。&r"
+cooldown = "{prefix}&e请等待{seconds}秒后再切换。&r"
+disabled = "{prefix}&e游戏模式切换已禁用。&r"
+empty_hands = "{prefix}&e请清空双手后使用游戏模式手势。&r"
+no_permission = "{prefix}&e你没有使用此游戏模式的权限。&r"
+spectator_hint = "{prefix}&e使用 /gsw menu 或 /gsw set survival 退出旁观模式。&r"
+world_blocked = "{prefix}&e在{world}中无法切换游戏模式。&r"
+
+[toggle]
+disabled = "{prefix}&e手势已禁用。命令和菜单仍可使用。&r"
+enabled = "{prefix}&a游戏模式手势已启用。&r"
+
+[gui.config.general]
+name = "常规"
+description = "启用游戏模式切换并选择服务器语言。"
+
+[gui.config.metrics]
+name = "统计"
+description = "管理 bStats 匿名统计上报。"
+
+[gui.config.gestures]
+name = "手势控制"
+description = "设置按键间隔、冷却时间和手势切换目标。"
+
+[gui.config.gestures.normal]
+name = "双击切换目标"
+description = "选择各游戏模式下双击交换双手键时的切换目标。"
+
+[gui.config.gestures.sneaking]
+name = "潜行切换目标"
+description = "选择各游戏模式下潜行并双击交换双手键时的切换目标。"
+
+[gui.config.restrictions]
+name = "世界限制"
+description = "选择无法切换游戏模式的世界。"
+
+[gui.config.feedback]
+name = "切换反馈"
+description = "选择切换消息、弹出提示、声音和创造模式飞行行为。"
+
+[gui.config.diagnostics]
+name = "诊断"
+description = "管理诊断报告的公开上传。"
+
+[gui.config.languages]
+name = "语言"
+description = "编辑服务器翻译及其格式。"
+
+[gui.config.general.enabled]
+name = "游戏模式切换"
+description = "允许通过手势、命令和菜单切换模式。"
+
+[gui.config.general.language]
+name = "服务器语言"
+description = "未选择个人语言的玩家使用的默认语言。缺失的翻译使用英语。"
+
+[gui.config.metrics.enabled]
+name = "匿名统计"
+description = "向 bStats 发送匿名统计。bStats 的全局停用设置同样有效。"
+
+[gui.config.gestures.double-tap-millis]
+name = "双击时间窗口"
+description = "交换双手按键之间的最长间隔，单位为毫秒。范围：100 至 3000。"
+
+[gui.config.gestures.sneak-tap-millis]
+name = "旁观者按键时间窗口"
+description = "旁观者模式下潜行按键之间的最长间隔，单位为毫秒。范围：100 至 3000。"
+
+[gui.config.gestures.cooldown-millis]
+name = "切换冷却时间"
+description = "切换成功后的等待时间，单位为毫秒。范围：0 至 60000；0 表示无需等待。"
+
+[gui.config.gestures.require-empty-hands]
+name = "要求双手为空"
+description = "通过手势切换模式前，要求双手均为空。"
+
+[gui.config.gestures.spectator-exit]
+name = "退出旁观者模式"
+description = "旁观者模式下分别按下三次潜行键后的目标模式。"
+
+[gui.config.gestures.normal.survival]
+name = "从生存模式"
+description = "在生存下双击交换双手键时的目标模式。"
+
+[gui.config.gestures.normal.creative]
+name = "从创造模式"
+description = "在创造下双击交换双手键时的目标模式。"
+
+[gui.config.gestures.normal.adventure]
+name = "从冒险模式"
+description = "在冒险下双击交换双手键时的目标模式。"
+
+[gui.config.gestures.sneaking.survival]
+name = "从生存模式"
+description = "在生存下潜行并双击交换双手键时的目标模式。"
+
+[gui.config.gestures.sneaking.creative]
+name = "从创造模式"
+description = "在创造下潜行并双击交换双手键时的目标模式。"
+
+[gui.config.gestures.sneaking.adventure]
+name = "从冒险模式"
+description = "在冒险下潜行并双击交换双手键时的目标模式。"
+
+[gui.config.restrictions.disabled-worlds]
+name = "禁用的世界"
+description = "手势、命令和菜单均无法切换模式的世界名称。不区分大小写。"
+input = "输入世界名称列表，例如 [\"world_nether\", \"world_the_end\"]。使用 [] 表示没有世界限制。"
+
+[gui.config.feedback.auto-fly-creative]
+name = "进入创造模式时飞行"
+description = "进入创造模式后，如果玩家可以飞行，则开始飞行。"
+
+[gui.config.feedback.sound-enabled]
+name = "切换声音"
+description = "游戏模式切换成功后播放确认音。"
+
+[gui.config.diagnostics.upload-enabled]
+name = "公开诊断报告"
+description = "允许公开上传诊断报告。使用 upload=false 将报告保存到本地。"
+
+[gui.config.feedback.chat-enabled]
+name = "聊天消息"
+description = "在聊天中显示切换成功消息和旁观者提示。关闭后，失败原因显示在动作栏中。"
+
+[gui.config.feedback.action-bar-enabled]
+name = "动作栏提示"
+description = "在快捷栏上方显示新模式，旁观者模式下附带退出提示。"
+
+[gui.config.feedback.title-enabled]
+name = "标题提示"
+description = "在屏幕中央显示新模式，旁观者模式下附带退出提示。"
+
+[gui.config.feedback.popup-duration-ticks]
+name = "提示时长"
+description = "标题和动作栏的显示时长，以刻为单位；20 刻等于 1 秒。范围：1 至 200。"
+
+[gui.config.feedback.sound]
+name = "声音标识"
+description = "游戏模式切换成功后播放的声音。"
+input = "输入带命名空间的声音标识，例如 minecraft:ui.button.click 或 minecraft:entity.experience_orb.pickup。允许使用自定义资源包的标识。"
+
+[gui.config.feedback.sound-volume]
+name = "音量"
+description = "切换声音的音量。范围：0 至 1；0 为静音。"
+
+[gui.config.feedback.sound-pitch]
+name = "音调"
+description = "切换声音的音调。范围：0.5 至 2；1 使用原始音调。"

@@ -1,0 +1,517 @@
+# GamemodeSwitcher — pl_PL
+#
+# === Edycja pliku ===
+# plugins/GamemodeSwitcher/languages/pl_PL.toml
+# Ten plik można edytować bezpośrednio. Lokalne zmiany są zachowywane; brakujące lub nieprawidłowe wpisy korzystają z wbudowanego angielskiego tekstu.
+# /gsw language server edit pl_PL
+#
+# === Prefiks ===
+# {prefix}  globalna wartość runtime.prefix. Usuń {prefix} z pojedynczej wiadomości, aby ukryć go tylko tam
+#
+# === Formatowanie ===
+# Kolory: &0-&f, &k-&r, &#RRGGBB, &xRRGGBB, &x&R&R&G&G&B&B i [RRGGBB]. MiniMessage pozostaje dostępny dla własnego formatowania.
+# Dodaj ukośnik odwrotny przed & lub [, aby wyświetlić znak dosłownie.
+#
+# === Zmienne ===
+# Zachowaj nazwy zmiennych i używaj tylko tych, które występują w danej wiadomości.
+#   {after}  Wartość po zmianie
+#   {argument}  nieoczekiwany argument
+#   {before}  Wartość przed zmianą
+#   {command}  ścieżka polecenia
+#   {count}  Liczba pasujących wpisów
+#   {enabled}  Stan przełączania trybu gry
+#   {group}  Kategoria edytora języka
+#   {hot_reload}  stan przeładowania
+#   {key}  klucz parametru
+#   {language}  aktywny język
+#   {line}  Numer linii źródłowej lub linii
+#   {locale}  ustawienia regionalne
+#   {maximum}  Maksymalna dopuszczalna wartość
+#   {mode}  Nazwa trybu gry
+#   {new}  nowa wartość
+#   {number}  Numer wpisu
+#   {old}  poprzednia wartość
+#   {page}  Bieżąca strona
+#   {pages}  Łączna liczba stron
+#   {parameter}  nazwa parametru
+#   {path}  lokalna ścieżka raportu
+#   {permission}  wymagane uprawnienie
+#   {personal}  osobiste ustawienie regionalne
+#   {plugin}  Nazwa wtyczki
+#   {prefix}  globalna wartość runtime.prefix. Usuń {prefix} z pojedynczej wiadomości, aby ukryć go tylko tam
+#   {reason}  powód błędu
+#   {scheduler}  planista
+#   {seconds}  Pozostały czas oczekiwania lub potwierdzenia w sekundach
+#   {section}  Sekcja edytora języków
+#   {setting}  nazwa ustawienia
+#   {step}  Zmiana ustawienia liczbowego jednym zwykłym kliknięciem
+#   {state}  Osobisty stan gestów lub powiadomień
+#   {target}  Gracz docelowy, podmiot lub wartość
+#   {type}  typ
+#   {url}  publiczny URL
+#   {value}  wartość bieżąca, domyślna lub surowa
+#   {variables}  dozwolone symbole zastępcze
+#   {version}  wersja wtyczki
+#   {world}  świat
+
+[command.description]
+version = "Pokaż wersję GamemodeSwitcher"
+config = "Konfiguracja"
+debug = "Narzędzia diagnostyczne GamemodeSwitcher"
+debug_dump = "Utwórz pełny raport diagnostyczny GamemodeSwitcher"
+language = "Język"
+menu = "Tryby gry"
+root = "Tryby gry"
+set = "Tryb gry"
+status = "Tryb gry"
+toggle = "Gesty"
+
+[command.feedback]
+failed = "{prefix}&cNie udało się wykonać komendy. Szczegóły znajdziesz w konsoli.&r"
+
+[command.feedback.config]
+opened = "{prefix}&aOtwarto pełny edytor konfiguracji w grze.&r"
+save_failed = "{prefix}&cNie udało się zastosować ustawienia &f{setting}&r&c: {reason}&r"
+saved = "{prefix}&a{setting}&r &7zmieniono z &f{old}&r &7na &f{new}&r&7.&r"
+
+[command.parameter]
+enabled = "Włączone / Wyłączone"
+mode = "Przetrwanie, Kreatywny, Przygoda, Widz"
+upload = "Prześlij raport, gdy publiczne przesyłanie jest włączone"
+
+[command.status]
+compatibility = "&7Artefakt:&r &fJava 17 / Bukkit 1.20.1+&r &8|&r &7Harmonogram:&r &f{scheduler}&r"
+config = "&7Tryb gry:&r {enabled} &8|&r &7Język:&r {language} &8|&r &7Wczytaj ponownie konfigurację i języki:&r {hot_reload}"
+header = "&6&lGamemodeSwitcher&r"
+player = "&7Gesty:&r {state} &8|&r &7Tryb gry:&r {mode}"
+
+[config.editor]
+adjust = "Lewy +{step}, prawy -{step}, Shift x10, Q do wpisania dokładnej wartości."
+back = "Wstecz"
+close = "Zamknij"
+current = "Bieżąca wartość: {value}"
+edit = "Kliknij, aby wpisać nową wartość na czacie."
+empty = "Ta sekcja nie zawiera ustawień."
+entry = "Wpis {number}"
+expired = "Upłynął czas na wprowadzenie konfiguracji."
+failed = "Nie można edytować konfiguracji: {reason}"
+loading = "Wczytywanie konfiguracji..."
+next = "Następna strona"
+no-permission = "Nie masz uprawnień do edycji tej konfiguracji."
+open = "Kliknij, aby otworzyć tę sekcję."
+page = "Strona {page} z {pages}"
+player-only = "Otwórz edytor konfiguracji w grze."
+previous = "Poprzednia strona"
+prompt = "Wpisz nową wartość dla {path}. Wpisz cancel, aby wrócić."
+refresh = "Odśwież"
+saved = "Zapisano {path}. Zmiany są stosowane automatycznie."
+saving = "Zapisywanie konfiguracji..."
+section = "Sekcja: {path}"
+title = "{plugin} / Konfiguracja"
+toggle = "Kliknij, aby przełączyć między true i false."
+too-long = "Wpisz maksymalnie {maximum} znaków."
+
+[config.editor.type]
+decimal = "Wpisz liczbę, na przykład 0.25."
+integer = "Wpisz liczbę całkowitą."
+list = "Użyj listy TOML, na przykład [\"stone\", \"deepslate\"]."
+text = "Tekst; cudzysłowy nie są potrzebne."
+
+[debug]
+preparing = "Przygotowywanie raportu diagnostycznego dla {plugin}..."
+saved = "Zapisano raport diagnostyczny dla {plugin} w {path}."
+
+[debug.action]
+copy-path = "Kopiuj lokalną ścieżkę"
+copy-path-description = "Skopiuj ścieżkę raportu lokalnego."
+open = "Otwórz: {url}"
+open-description = "Otwórz przesłany raport diagnostyczny."
+
+[debug.error]
+already-preparing = "Raport diagnostyczny dla {plugin} jest już przygotowywany."
+already-preparing-short = "Raport diagnostyczny jest już przygotowywany."
+capture-failed = "Nie można zebrać danych do raportu diagnostycznego. Sprawdź konsolę serwera."
+closed-before-capture = "Dostawca danych diagnostycznych został zamknięty przed zebraniem danych do raportu."
+closed-before-write = "Dostawca danych diagnostycznych został zamknięty przed zapisaniem raportu."
+missing-permission = "Brak uprawnienia: {permission}"
+provider-closed = "Dostawca danych diagnostycznych został zamknięty."
+schedule-failed = "Nie można zaplanować utworzenia raportu diagnostycznego."
+write-failed = "Nie można zapisać raportu diagnostycznego. Sprawdź konsolę serwera."
+writer-schedule-failed = "Nie można zaplanować zapisania raportu diagnostycznego."
+
+[debug.upload]
+completed = "Przesłano jako VolmitSoftware - {plugin} - v{version}."
+failed = "Przesyłanie raportu diagnostycznego nie powiodło się. Raport lokalny został zapisany."
+interrupted = "Przesyłanie raportu diagnostycznego zostało przerwane. Raport lokalny został zapisany."
+
+[director.help]
+category = "Kategoria poleceń"
+command_group = "Grupa poleceń. Kliknij, aby otworzyć."
+no_description = "Nie podano opisu"
+no_parameters = "Brak parametrów. Kliknij, aby wstępnie uzupełnić polecenie."
+no_subcommands = "Na tej stronie nie ma podpoleceń."
+parameters_hover = "Najedź kursorem na parametry, aby dowiedzieć się więcej."
+
+[director.help.navigation]
+back = "Wstecz"
+page = "Strona"
+
+[director.help.navigation.next]
+hover = "Następna strona"
+
+[director.help.navigation.parent]
+hover = "Wróć do nadrzędnej grupy poleceń"
+
+[director.help.navigation.previous]
+hover = "Poprzednia strona"
+
+[director.help.parameter]
+default = "Domyślnie \"{value}\", jeśli nie określono."
+optional = "Ten parametr jest opcjonalny."
+required = "Ten parametr jest wymagany."
+type = "Ten parametr jest typu {type}."
+
+[director.runtime.error]
+conversion_failed = "Nie można przekonwertować \"{value}\" na {type} dla {parameter}"
+default_parse_failed = "Nie można odczytać wartości domyślnej parametru {parameter}"
+execution_failed = "Nie udało się wykonać polecenia {command}: {reason}"
+invalid_origin = "Tego polecenia nie można wykonać z tego źródła."
+missing_argument = "Brak argumentu \"{parameter}\" ({type})"
+unclosed_group = "Brak zamykającego \"]\" dla parametru {key}"
+unexpected_argument = "Nieoczekiwany argument \"{argument}\". Parametry opcjonalne muszą mieć klucz, np. seed=123"
+unknown_parameter = "Nieznany klucz parametru: {key}"
+
+[gesture]
+normal = "&7Naciśnij dwukrotnie zamianę przedmiotów w rękach: {mode}&r"
+sneaking = "&7Przytrzymaj skradanie i dwukrotnie naciśnij zamianę rąk: {mode}&r"
+spectator = "&7Naciśnij skradanie trzy razy oddzielnie: {mode}&r"
+rebind = "&7Zmień zamianę rąk (F) i skradanie (lewy Shift) w Opcje > Sterowanie > Przypisanie klawiszy.&r"
+personal_disabled = "&eTwoje gesty są wyłączone. Włącz je tutaj lub przez /gsw toggle true.&r"
+empty_hands = "&7Obie ręce muszą być puste, aby używać gestów.&r"
+help = "&7Naciśnij dwukrotnie klawisz zamiany rąk (domyślnie F), aby zmienić tryb. Kucnij podczas tej czynności dla innej akcji; naciśnij kucanie trzykrotnie, aby opuścić tryb widza. Tryby docelowe zależą od ustawień serwera.&r"
+
+[gui.title]
+root = "<gradient:#634514:#2f523f>GSW</gradient> <color:#404040>Konfiguracja</color>"
+
+[language.editor]
+title = "{plugin} › {section}"
+loading = "Wczytywanie wiadomości w języku {locale}..."
+
+[language.editor.category]
+message-count = "&7{count} wiadomości&r"
+open = "&8Kliknij, aby otworzyć tę kategorię.&r"
+
+[language.editor.error]
+no-permission = "Nie masz uprawnienia do edycji języków wtyczki {plugin}."
+unable-to-edit = "Nie udało się edytować: {reason}"
+
+[language.editor.input]
+expired = "Czas na wpisanie tekstu w edytorze języka minął."
+too-long = "Wpisany tekst może mieć najwyżej {maximum} znaków."
+unable-to-save = "Nie udało się zapisać: {reason}"
+
+[language.editor.locale]
+open = "&8Kliknij, aby otworzyć ten język.&r"
+
+[language.editor.message]
+current-value = "&7Bieżąca wartość:&r"
+edit-chat = "&7Kliknij, aby edytować na czacie.&r"
+edit-lines = "&7Kliknij, aby edytować poszczególne linie.&r"
+edit-plural = "&7Kliknij, aby edytować formę liczby mnogiej.&r"
+variables = "&8{variables}&r"
+
+[language.editor.navigation]
+back = "&eWstecz&r"
+close = "&cZamknij&r"
+next-page = "&eNastępna strona&r"
+previous-page = "&ePoprzednia strona&r"
+
+[language.editor.part]
+line = "Linia {line}"
+
+[language.editor.prompt]
+current = "Bieżąca wartość: {value}"
+guidance = "Użyj \\n dla nowej linii, \\\\ dla odwrotnego ukośnika lub wpisz cancel, aby wrócić."
+search = "Wyszukaj klucz lub tekst wiadomości. Wpisz cancel, aby wrócić."
+value = "Wpisz na czacie nową wartość dla {key}."
+variables = "Zmienne: {variables}"
+
+[language.editor.saved]
+change = "{key}: „{before}” zmieniono na „{after}”."
+summary = "Zapisano {locale}. Wybory języka pozostały bez zmian."
+
+[language.editor.search]
+clear = "Wyczyść wyszukiwanie"
+messages = "Wyszukaj wiadomości"
+messages-lore = "Kliknij, aby przeszukać wszystkie wiadomości."
+
+[language.editor.section]
+group-title = "{locale} / {group}"
+languages = "Języki"
+search = "Szukaj"
+search-title = "{locale} / Szukaj"
+
+[language.editor.value]
+empty = "(pusty)"
+none = "Brak"
+
+[language.error]
+editor-player-only = "Otwórz edytor języka w grze."
+no-providers = "Brak dostępnych dostawców języków Volmit."
+numeric-page = "Podaj numer strony."
+personal-permission = "Nie masz pozwolenia na wybranie języka."
+personal-player-only = "Preferencje językowe gracza muszą być wybrane w grze."
+plugin-personal-permission = "Nie masz uprawnienia do wyboru swojego języka we wtyczce {plugin}."
+plugin-server-permission = "Nie masz uprawnienia do zmiany języka serwera we wtyczce {plugin}."
+server-locale-required = "Wybierz kod języka, np. en_US, jako domyślny język serwera."
+stopping = "Wybór języka jest niedostępny podczas zatrzymywania wtyczki."
+unavailable-for-all = "Język {locale} nie jest dostępny we wszystkich wybranych wtyczkach."
+
+[language.menu]
+all-volmit-plugins = "Wszystkie wtyczki Volmit"
+command = "Polecenie: {command}"
+current = "Bieżący: {locale}"
+current_with_personal = "Bieżący: {locale} (Twój: {personal})"
+edit_description = "Otwórz edytor komunikatów dla każdego języka."
+edit_messages = "Edytuj komunikaty językowe"
+no_controls = "Nie masz dostępu do ustawień języka."
+remove_personal_description = "Usuń swój osobisty wybór języka."
+reset_description = "Użyj domyślnego języka serwera."
+reset_your_language = "Zresetuj swój język"
+select_description = "Kliknij, aby wybrać ten język."
+selected = "wybrany"
+server_default = "Domyślny język serwera"
+server_description = "Zmień domyślny język serwera."
+use_server_default = "Użyj domyślnego języka serwera"
+your_description = "Zmień tylko komunikaty, które widzisz."
+your_language = "Twój język"
+
+[language.selection]
+english-fallback = "{plugin}: {locale} jest niedostępny; używany będzie angielski (en_US)."
+personal-selected = "{plugin}: Twój język jest teraz {locale}."
+preparing = "Przygotowywanie języka {locale} dla {target}..."
+save-failed = "{plugin}: nie udało się zapisać wyboru języka; sprawdź konsolę serwera."
+server-default-selected = "{plugin}: twój język jest teraz zgodny z domyślnym językiem serwera."
+server-selected = "{plugin}: język serwera jest teraz {locale}."
+
+[language.usage]
+editor = "Użycie: /{command} language server edit [locale]"
+selection = "Użycie: /{command} language self [locale|reset] or server [locale]"
+volmit-selection = "Użycie: /volmit plugins languages [locale]"
+
+[menu]
+feedback = "&6Własne powiadomienia&r"
+feedback_help = "&7Wycisz dla siebie wiadomości, tytuły lub dźwięki zmiany.&r"
+back = "&7Powrót do trybów gry&r"
+selected = "&aWybrano&r"
+survival_help = "&7Zbieraj zasoby i dbaj o zdrowie oraz głód.&r"
+creative_help = "&7Buduj z nieograniczonymi zasobami i lotem kreatywnym.&r"
+adventure_help = "&7Zwiedzaj mapy z ograniczonym niszczeniem i stawianiem bloków.&r"
+spectator_help = "&7Obserwuj świat i przenikaj przez bloki.&r"
+config_help = "&7Edytuj ustawienia serwera. Zmiany działają natychmiast.&r"
+language_help = "&7Wybierz język swoich wiadomości i menu.&r"
+close = "Zamknij"
+config = "&6Konfiguracja&r"
+current = "&7Tryb gry: &f{mode}&r"
+gestures = "&6Gesty&r"
+language = "&aJęzyk&r"
+select = "&7Kliknij, aby wybrać.&r"
+title = "<gradient:#634514:#2f523f>Tryby gry</gradient>"
+toggle_disabled = "&7Gesty: &cWyłączone&r"
+toggle_enabled = "&7Gesty: &aWłączone&r"
+toggle_help = "&7Kliknij, aby włączyć lub wyłączyć gesty.&r"
+unavailable = "&cNie możesz wybrać tego trybu gry.&r"
+
+[mode]
+adventure = "Przygoda"
+creative = "Kreatywny"
+spectator = "Widz"
+survival = "Przetrwanie"
+
+[preferences]
+title = "<gradient:#634514:#2f523f>Własne powiadomienia</gradient>"
+chat = "&6Wiadomości czatu&r"
+action_bar = "&6Pasek akcji&r"
+screen_title = "&6Tytuły na ekranie&r"
+sound = "&6Dźwięki zmiany&r"
+muted = "&cWyciszone dla ciebie&r"
+inherit = "&7Ustawienia serwera: {state}&r"
+toggle = "&7Kliknij, aby przełączyć wyciszenie i ustawienia serwera.&r"
+silence = "&6Wycisz wszystko&r"
+silence_help = "&7Wycisz wiadomości, tytuły i dźwięki udanych zmian.&r"
+reset = "&aUżyj ustawień serwera&r"
+reset_help = "&7Usuń wszystkie własne wyciszenia.&r"
+failures = "&7Gdy czat jest wyciszony, przyczyna zablokowanej zmiany nadal pojawia się na pasku akcji.&r"
+failed = "{prefix}&cNie udało się zapisać preferencji. Sprawdź konsolę.&r"
+
+[runtime]
+player_only = "{prefix}&cTej komendy może użyć tylko gracz.&r"
+prefix = "<gradient:#e9bd68:#85d6b0><bold>GamemodeSwitcher</bold></gradient> &8â€º&r "
+
+[runtime.hot_reload]
+failed = "{prefix}&cZmiany plików zostały odrzucone; ostatnie prawidłowe ustawienia pozostają aktywne.&r"
+success = "{prefix}&aZastosowano zmiany konfiguracji i plików językowych.&r"
+
+[runtime.permission]
+denied = "{prefix}&cNie masz uprawnień, aby to zrobić.&r"
+
+[state]
+disabled = "&cWyłączone&r"
+enabled = "&aWłączone&r"
+
+[switch]
+title = "<gradient:#e9bd68:#85d6b0>{mode}</gradient>"
+subtitle = "&7Zmieniono tryb gry.&r"
+overlay = "&7Tryb gry: &f{mode}&r"
+spectator_overlay_hint = "&7Naciśnij skradanie trzy razy, aby wyjść z Obserwatora.&r"
+already = "{prefix}&eTwój tryb gry to już {mode}.&r"
+cancelled = "{prefix}&eInna wtyczka zablokowała zmianę trybu gry.&r"
+changed = "{prefix}&aZmieniono tryb gry na {mode}.&r"
+cooldown = "{prefix}&ePoczekaj {seconds} sekund przed kolejną zmianą.&r"
+disabled = "{prefix}&eZmiana trybu gry jest wyłączona.&r"
+empty_hands = "{prefix}&eOpróżnij obie ręce, aby korzystać z gestów.&r"
+no_permission = "{prefix}&eNie masz uprawnień do tego trybu gry.&r"
+spectator_hint = "{prefix}&eUżyj /gsw menu lub /gsw set survival, aby opuścić tryb widza.&r"
+world_blocked = "{prefix}&eNie można zmienić trybu gry w świecie {world}.&r"
+
+[toggle]
+disabled = "{prefix}&eGesty wyłączone. Komendy i menu pozostają dostępne.&r"
+enabled = "{prefix}&aGesty zmiany trybu gry włączone.&r"
+
+[gui.config.general]
+name = "Ogólne"
+description = "Włącz zmianę trybu gry i wybierz język serwera."
+
+[gui.config.metrics]
+name = "Statystyki"
+description = "Zarządzaj anonimowymi statystykami bStats."
+
+[gui.config.gestures]
+name = "Sterowanie gestami"
+description = "Ustaw czas naciśnięć, przerwy i cele gestów."
+
+[gui.config.gestures.normal]
+name = "Cele podwójnego naciśnięcia"
+description = "Wybierz cel każdego trybu po dwukrotnym naciśnięciu klawisza zamiany rąk."
+
+[gui.config.gestures.sneaking]
+name = "Cele podczas skradania"
+description = "Wybierz cel każdego trybu po dwukrotnym naciśnięciu klawisza zamiany rąk podczas skradania."
+
+[gui.config.restrictions]
+name = "Ograniczenia światów"
+description = "Wybierz światy, w których zmiana trybu jest niedostępna."
+
+[gui.config.feedback]
+name = "Powiadomienia o zmianie"
+description = "Wybierz wiadomości, powiadomienia, dźwięki i lot kreatywny przy zmianach."
+
+[gui.config.diagnostics]
+name = "Diagnostyka"
+description = "Zarządzaj publikowaniem raportów diagnostycznych."
+
+[gui.config.languages]
+name = "Języki"
+description = "Edytuj tłumaczenia serwera i ich formatowanie."
+
+[gui.config.general.enabled]
+name = "Zmiana trybu gry"
+description = "Zezwalaj na zmianę gestami, poleceniami i w menu."
+
+[gui.config.general.language]
+name = "Język serwera"
+description = "Domyślny język graczy bez własnego wyboru. Brakujące tłumaczenia korzystają z angielskiego."
+
+[gui.config.metrics.enabled]
+name = "Anonimowe statystyki"
+description = "Wysyłaj anonimowe statystyki bStats. Globalne wyłączenie bStats także obowiązuje."
+
+[gui.config.gestures.double-tap-millis]
+name = "Czas podwójnego naciśnięcia"
+description = "Maksymalny odstęp między naciśnięciami zamiany rąk w milisekundach. Zakres: od 100 do 3000."
+
+[gui.config.gestures.sneak-tap-millis]
+name = "Czas naciśnięć w Obserwatorze"
+description = "Maksymalny odstęp między naciśnięciami skradania w Obserwatorze w milisekundach. Zakres: od 100 do 3000."
+
+[gui.config.gestures.cooldown-millis]
+name = "Przerwa między zmianami"
+description = "Czas oczekiwania po udanej zmianie w milisekundach. Zakres: od 0 do 60000; 0 usuwa oczekiwanie."
+
+[gui.config.gestures.require-empty-hands]
+name = "Wymagaj pustych rąk"
+description = "Wymagaj obu pustych rąk, aby gest mógł zmienić tryb gry."
+
+[gui.config.gestures.spectator-exit]
+name = "Wyjście z Obserwatora"
+description = "Cel po trzech oddzielnych naciśnięciach skradania w Obserwatorze."
+
+[gui.config.gestures.normal.survival]
+name = "Z Przetrwania"
+description = "Cel po dwukrotnym naciśnięciu klawisza zamiany rąk w trybie Przetrwanie."
+
+[gui.config.gestures.normal.creative]
+name = "Z Kreatywnego"
+description = "Cel po dwukrotnym naciśnięciu klawisza zamiany rąk w trybie Kreatywny."
+
+[gui.config.gestures.normal.adventure]
+name = "Z Przygody"
+description = "Cel po dwukrotnym naciśnięciu klawisza zamiany rąk w trybie Przygoda."
+
+[gui.config.gestures.sneaking.survival]
+name = "Z Przetrwania"
+description = "Cel po dwukrotnym naciśnięciu klawisza zamiany rąk podczas skradania w trybie Przetrwanie."
+
+[gui.config.gestures.sneaking.creative]
+name = "Z Kreatywnego"
+description = "Cel po dwukrotnym naciśnięciu klawisza zamiany rąk podczas skradania w trybie Kreatywny."
+
+[gui.config.gestures.sneaking.adventure]
+name = "Z Przygody"
+description = "Cel po dwukrotnym naciśnięciu klawisza zamiany rąk podczas skradania w trybie Przygoda."
+
+[gui.config.restrictions.disabled-worlds]
+name = "Wyłączone światy"
+description = "Nazwy światów, w których gesty, polecenia i menu nie mogą zmieniać trybu. Wielkość liter nie ma znaczenia."
+input = "Podaj listę nazw światów, na przykład [\"world_nether\", \"world_the_end\"]. Użyj [], aby nie ograniczać światów."
+
+[gui.config.feedback.auto-fly-creative]
+name = "Lot po wejściu w Kreatywny"
+description = "Rozpocznij lot po wejściu w Kreatywny, jeśli gracz może latać."
+
+[gui.config.feedback.sound-enabled]
+name = "Dźwięk zmiany"
+description = "Odtwarzaj dźwięk potwierdzenia po udanej zmianie trybu."
+
+[gui.config.diagnostics.upload-enabled]
+name = "Publiczne raporty"
+description = "Zezwalaj na publiczne raporty diagnostyczne. Użyj upload=false, aby zapisać raport lokalnie."
+
+[gui.config.feedback.chat-enabled]
+name = "Wiadomości na czacie"
+description = "Pokazuj udane zmiany i wskazówki Obserwatora na czacie. Po wyłączeniu przyczyny błędów pojawią się na pasku akcji."
+
+[gui.config.feedback.action-bar-enabled]
+name = "Powiadomienie na pasku akcji"
+description = "Pokazuj nowy tryb nad paskiem przedmiotów oraz wskazówkę wyjścia z Obserwatora."
+
+[gui.config.feedback.title-enabled]
+name = "Powiadomienie tytułowe"
+description = "Pokazuj nowy tryb na środku ekranu oraz wskazówkę wyjścia z Obserwatora."
+
+[gui.config.feedback.popup-duration-ticks]
+name = "Czas powiadomień"
+description = "Czas tytułu i paska akcji w tickach; 20 ticków = 1 sekunda. Zakres: od 1 do 200."
+
+[gui.config.feedback.sound]
+name = "Klucz dźwięku"
+description = "Dźwięk po udanej zmianie trybu."
+input = "Wpisz klucz dźwięku z przestrzenią nazw, np. minecraft:ui.button.click lub minecraft:entity.experience_orb.pickup. Dozwolone są klucze własnych paczek zasobów."
+
+[gui.config.feedback.sound-volume]
+name = "Głośność"
+description = "Głośność dźwięku zmiany. Zakres: od 0 do 1; 0 oznacza ciszę."
+
+[gui.config.feedback.sound-pitch]
+name = "Wysokość dźwięku"
+description = "Wysokość dźwięku zmiany. Zakres: od 0.5 do 2; 1 oznacza oryginalną wysokość."

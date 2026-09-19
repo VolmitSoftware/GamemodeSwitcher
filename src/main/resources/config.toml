@@ -1,0 +1,76 @@
+# Settings apply automatically after saving. Invalid edits keep the last working settings.
+# Use true to enable a setting and false to disable it. 1000 milliseconds = 1 second.
+# Rebind gesture keys in Minecraft: Options > Controls > Key Binds.
+# "Swap Item With Offhand" defaults to F; "Sneak" defaults to Left Shift.
+
+[general]
+# Allow gestures, commands, and the menu to change game modes.
+enabled = true
+# Default message language for players without a personal choice. Missing messages use English.
+# Other languages download from GitHub when selected, then remain available locally.
+language = "en_US"
+
+[metrics]
+# Send anonymous usage statistics to bStats. The global bStats opt-out also applies.
+enabled = true
+
+[gestures]
+# Maximum gap between the two swap-hands presses, in milliseconds (100 to 3000).
+double-tap-millis = 600
+# Maximum gap between each of the three spectator sneak presses (100 to 3000 milliseconds).
+sneak-tap-millis = 600
+# Wait after a successful mode change (0 to 60000 milliseconds). Use 0 for no cooldown.
+cooldown-millis = 500
+# Require both hands to be empty for gestures. Commands and the menu do not require empty hands.
+require-empty-hands = false
+# Mode reached after three separate sneak presses in Spectator.
+# Destinations can be SURVIVAL, CREATIVE, ADVENTURE, or SPECTATOR.
+spectator-exit = "CREATIVE"
+
+# Double-tap the swap-hands key without sneaking.
+# The starting mode is on the left; the destination is on the right.
+[gestures.normal]
+survival = "CREATIVE"
+creative = "SURVIVAL"
+adventure = "CREATIVE"
+
+# Hold sneak and double-tap the swap-hands key.
+# For example, starting in Survival with the default bindings: hold Shift and tap F twice.
+[gestures.sneaking]
+survival = "ADVENTURE"
+creative = "SPECTATOR"
+adventure = "SURVIVAL"
+
+[restrictions]
+# World names where gestures, commands, and the menu cannot change game modes.
+# Use your server's world names, for example ["world_nether", "world_the_end"].
+# Letter case does not matter. Use [] for no world restrictions.
+disabled-worlds = []
+
+[feedback]
+# Start flying after entering Creative when the server allows the player to fly.
+auto-fly-creative = true
+# Show successful switches and the Spectator exit hint in chat.
+# When false, blocked switches and other failure reasons appear above the hotbar instead.
+chat-enabled = true
+# Show the new mode above the hotbar. Can be combined with titles.
+action-bar-enabled = true
+# Show the new mode as a large title in the middle of the screen.
+title-enabled = true
+# How long action bars and titles stay visible (1 to 200 ticks; 20 ticks = 1 second).
+# Titles also have a short fade in and fade out.
+popup-duration-ticks = 50
+# Play a short confirmation sound after a successful mode change.
+sound-enabled = true
+# Sound key, for example "minecraft:entity.experience_orb.pickup" or "minecraft:block.note_block.pling".
+# Custom resource-pack sounds also work when the player has the matching pack.
+sound = "minecraft:ui.button.click"
+# Sound volume from 0.0 (silent) to 1.0 (full volume).
+sound-volume = 0.7
+# Sound pitch from 0.5 (lower) to 2.0 (higher). Use 1.0 for the sound's normal pitch.
+sound-pitch = 1.2
+
+[diagnostics]
+# Allow debug reports to upload publicly to mclo.gs when requested.
+# /gsw debug dump requests an upload by default; add upload=false to keep a report local.
+upload-enabled = true

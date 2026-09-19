@@ -1,214 +1,325 @@
 package com.volmit.gsw;
 
+import art.arcane.volmlib.util.config.BukkitConfigEditor;
+import art.arcane.volmlib.util.config.ConfigEditorDocument;
+import art.arcane.volmlib.util.config.TomlDocumentEditor;
+import art.arcane.volmlib.util.diagnostics.BukkitDebugDump;
+import art.arcane.volmlib.util.localization.BukkitLanguageSwitcher;
+import art.arcane.volmlib.util.localization.LocalizationSnapshot;
+import art.arcane.volmlib.util.localization.MessageArgs;
+import art.arcane.volmlib.util.localization.RemoteLanguageCatalog;
+import art.arcane.volmlib.util.plugin.ComponentText;
+import art.arcane.volmlib.util.scheduling.FoliaScheduler;
+import com.google.gson.JsonPrimitive;
+import com.volmit.gsw.command.CommandService;
+import com.volmit.gsw.config.ConfigReloader;
+import com.volmit.gsw.config.ConfigService;
+import com.volmit.gsw.config.RuntimeConfig;
+import com.volmit.gsw.debug.SwitcherDebugContributor;
+import com.volmit.gsw.gameplay.SwitchService;
+import com.volmit.gsw.gui.ConfigMenu;
+import com.volmit.gsw.gui.ModeSelector;
+import com.volmit.gsw.localization.LanguageService;
+import com.volmit.gsw.localization.SwitcherMessages;
+import com.volmit.gsw.metrics.MetricsService;
+import com.volmit.gsw.presentation.ChatMenuStyle;
+import com.volmit.gsw.presentation.SplashScreen;
+import com.volmit.gsw.presentation.SwitchFeedback;
 import org.bukkit.GameMode;
-import org.bukkit.Sound;
+import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
-import org.bukkit.event.EventHandler;
-import org.bukkit.event.Listener;
-import org.bukkit.event.player.PlayerSwapHandItemsEvent;
-import org.bukkit.event.player.PlayerToggleSneakEvent;
+import org.bukkit.plugin.java.JavaPlugin;
 
-import primal.bukkit.command.PrimalCommand;
-import primal.bukkit.command.PrimalSender;
-import primal.bukkit.plugin.PrimalPlugin;
-import primal.lang.collection.GMap;
-import primal.logic.format.F;
-import primal.logic.queue.ChronoLatch;
-import primal.util.text.C;
+import java.io.IOException;
+import java.util.List;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.RejectedExecutionException;
+import java.util.concurrent.TimeUnit;
+import java.util.logging.Level;
 
-public class GamemodeSwitcher extends PrimalPlugin implements Listener
-{
-	private GMap<Player, ChronoLatch> doubleTaps;
-	private GMap<Player, Integer> doublecounts;
+public final class GamemodeSwitcher extends JavaPlugin {
+    private final Object configurationLock = new Object();
 
-	@Override
-	public void start()
-	{
-		registerListener(this);
-		doubleTaps = new GMap<Player, ChronoLatch>();
-		doublecounts = new GMap<Player, Integer>();
-		registerCommand(new PrimalCommand("gsw")
-		{
-			public boolean handle(PrimalSender sender, String[] args)
-			{
-				if(!sender.hasPermission("gsw.use"))
-				{
-					sender.sendMessage("Insufficient Permission");
-					return true;
-				}
+    private ConfigService configService;
+    private LanguageService languageService;
+    private SwitchService switchService;
+    private BukkitLanguageSwitcher languageSwitcher;
+    private BukkitConfigEditor configEditor;
+    private BukkitDebugDump debugDump;
+    private ModeSelector selector;
+    private ConfigReloader reloader;
+    private MetricsService metricsService;
+    private ExecutorService reloadWorker;
+    private volatile boolean closing;
 
-				if(sender.player().getGameMode().equals(GameMode.SPECTATOR))
-				{
-					sender.sendMessage(C.WHITE + "SHIFT, SHIFT, SHIFT " + C.GRAY + " -> " + C.GREEN + GameMode.SURVIVAL);
-				}
+    @Override
+    public void onEnable() {
+        closing = false;
+        try {
+            configService = new ConfigService(getDataFolder());
+            configService.initialize();
+            languageService = new LanguageService(getDataFolder(), getLogger());
+            languageService.remoteCatalogFailure().ifPresent(failure -> getLogger().log(Level.WARNING,
+                    "Could not load GamemodeSwitcher language download sources", failure));
+            languageService.initialize(configService.runtime().language());
+            languageService.initializeSelections(() -> configService.runtime().language(), this::selectDefaultLanguage);
+            reloadWorker = Executors.newSingleThreadExecutor(task -> {
+                Thread thread = new Thread(task, "GamemodeSwitcher-Reload");
+                thread.setDaemon(true);
+                return thread;
+            });
+            selector = new ModeSelector(this);
+            SwitchFeedback feedback = new SwitchFeedback(new SwitchFeedback.Dependencies(
+                    this, configService, languageService));
+            switchService = new SwitchService(new SwitchService.Dependencies(this, configService, languageService, feedback));
+            getServer().getPluginManager().registerEvents(switchService, this);
+            languageSwitcher = BukkitLanguageSwitcher.register(this, languageService.selections(),
+                    new BukkitLanguageSwitcher.Options("gsw", "gamemodeswitcher.config", ChatMenuStyle.theme(),
+                            languageService.directorResolver(), languageService.editorOptions(),
+                            (sender, change) -> ComponentText.markup(languageService.render(sender,
+                                    SwitcherMessages.CONFIG_SAVED, MessageArgs.builder()
+                                            .untrusted("setting", change.key())
+                                            .untrusted("old", compact(change.before()))
+                                            .untrusted("new", compact(change.after())).build()))));
+            configEditor = BukkitConfigEditor.register(this, new BukkitConfigEditor.Options(
+                    this::loadConfigurationDocument, this::saveConfiguration,
+                    new BukkitConfigEditor.Presentation("gamemodeswitcher.config", ChatMenuStyle.theme(),
+                            languageService.directorResolver())));
+            ConfigMenu.configure(this);
+            debugDump = BukkitDebugDump.create(this, new BukkitDebugDump.Options(
+                    () -> configService.runtime().debugUpload(), new SwitcherDebugContributor(this),
+                    new BukkitDebugDump.Presentation("/gsw debug dump", "/gsw debug", ChatMenuStyle.theme(),
+                            (key, arguments) -> ComponentText.literal(languageService.directorResolver().resolve(key, arguments)))));
+            new CommandService(this).register();
+            metricsService = new MetricsService(this);
+            metricsService.reload(configService.runtime().metricsEnabled());
+            reloader = new ConfigReloader(new ConfigReloader.Dependencies(this, configService,
+                    this::hotReload, metricsService.configFile()));
+            languageService.setSelfWriteListener(reloader::noteSelfWrite);
+            reloader.start();
+            requestConfiguredLanguage();
+            SplashScreen.print(this);
+            getLogger().info("GamemodeSwitcher enabled with " + schedulerName() + " scheduling.");
+        } catch (Exception | LinkageError failure) {
+            getLogger().log(Level.SEVERE, "GamemodeSwitcher could not initialize", failure);
+            getServer().getPluginManager().disablePlugin(this);
+        }
+    }
 
-				else
-				{
-					sender.sendMessage(C.WHITE + "F, F " + C.GRAY + " -> " + C.GREEN + getGameMode(sender.player().getGameMode(), false));
-					sender.sendMessage(C.WHITE + "SHIFT + (F, F) " + C.GRAY + " -> " + C.GREEN + getGameMode(sender.player().getGameMode(), true));
-				}
+    @Override
+    public void onDisable() {
+        closing = true;
+        if (languageService != null) {
+            languageService.setSelfWriteListener(null);
+        }
+        closeService("configuration watcher", reloader);
+        stopReloadWorker();
+        closeService("bStats metrics", metricsService);
+        closeService("game mode selector", selector);
+        closeService("configuration editor", configEditor);
+        closeService("language editor", languageSwitcher);
+        closeService("diagnostics", debugDump);
+        closeService("gesture preferences", switchService);
+        if (languageService != null) {
+            try {
+                languageService.close();
+            } catch (RuntimeException | LinkageError failure) {
+                getLogger().log(Level.SEVERE, "Could not close GamemodeSwitcher languages", failure);
+            }
+        }
+    }
 
-				return true;
-			}
-		});
-	}
+    public String modeName(CommandSender sender, GameMode mode) {
+        return ComponentText.markup(languageService.renderWithoutPrefix(sender, SwitcherMessages.mode(mode),
+                MessageArgs.empty())).plain();
+    }
 
-	@Override
-	public void stop()
-	{
+    public String schedulerName() {
+        return FoliaScheduler.isFolia(this) ? "Folia region/entity" : "Bukkit main thread";
+    }
 
-	}
+    public ConfigService getConfigService() {
+        return configService;
+    }
 
-	@EventHandler
-	public void on(PlayerSwapHandItemsEvent e)
-	{
-		if(!e.getPlayer().hasPermission("gsw.use"))
-		{
-			return;
-		}
+    public LanguageService getLanguageService() {
+        return languageService;
+    }
 
-		if(!doubleTaps.containsKey(e.getPlayer()))
-		{
-			doubleTaps.put(e.getPlayer(), new ChronoLatch(600, false));
-			return;
-		}
+    public SwitchService getSwitchService() {
+        return switchService;
+    }
 
-		else
-		{
-			if(!doubleTaps.get(e.getPlayer()).flip())
-			{
-				doubleTapped(e.getPlayer());
-			}
+    public BukkitLanguageSwitcher getLanguageSwitcher() {
+        return languageSwitcher;
+    }
 
-			doubleTaps.remove(e.getPlayer());
-		}
-	}
+    public BukkitConfigEditor getConfigEditor() {
+        return configEditor;
+    }
 
-	@EventHandler
-	public void on(PlayerToggleSneakEvent e)
-	{
-		if(!e.getPlayer().hasPermission("gsw.use"))
-		{
-			return;
-		}
+    public ModeSelector getSelector() {
+        return selector;
+    }
 
-		if(!e.getPlayer().getGameMode().equals(GameMode.SPECTATOR))
-		{
-			return;
-		}
+    public BukkitDebugDump getDebugDump() {
+        return debugDump;
+    }
 
-		if(!doubleTaps.containsKey(e.getPlayer()))
-		{
-			doubleTaps.put(e.getPlayer(), new ChronoLatch(600, false));
-			return;
-		}
+    public MetricsService getMetricsService() {
+        return metricsService;
+    }
 
-		else
-		{
-			if(!doubleTaps.get(e.getPlayer()).flip())
-			{
-				if(!doublecounts.containsKey(e.getPlayer()))
-				{
-					doublecounts.put(e.getPlayer(), 2);
-				}
+    private boolean reloadConfiguration() {
+        try {
+            boolean applied = languageService.selections().commitUpdate(this::reloadConfigurationLocked);
+            if (applied) {
+                requestConfiguredLanguage();
+            }
+            return applied;
+        } catch (IOException | RuntimeException failure) {
+            getLogger().log(Level.SEVERE, "Could not reload GamemodeSwitcher; previous settings remain active", failure);
+            return false;
+        }
+    }
 
-				doublecounts.put(e.getPlayer(), doublecounts.get(e.getPlayer()) - 1);
+    private boolean reloadConfigurationLocked() throws IOException {
+        synchronized (configurationLock) {
+            if (closing) {
+                return false;
+            }
+            metricsService.reload(configService.runtime().metricsEnabled());
+            ConfigService.PreparedConfig configuration = configService.prepare();
+            LanguageService.PreparedLanguage language = languageService.prepare(configuration.runtime().language());
+            if (closing) {
+                return false;
+            }
+            configService.install(configuration);
+            languageService.install(language);
+            languageService.reloadInstalledLocales();
+            metricsService.reload(configuration.runtime().metricsEnabled());
+            switchService.clear();
+            return true;
+        }
+    }
 
-				if(doublecounts.get(e.getPlayer()) <= 0)
-				{
-					doublecounts.remove(e.getPlayer());
-					doubleTapped(e.getPlayer());
-				}
-			}
+    private ConfigEditorDocument loadConfigurationDocument() throws IOException {
+        synchronized (configurationLock) {
+            requireActive();
+            return configService.editorDocument(configService.prepare().source());
+        }
+    }
 
-			else
-			{
-				doublecounts.remove(e.getPlayer());
-			}
+    private ConfigEditorDocument saveConfiguration(ConfigEditorDocument.Edit edit) throws IOException {
+        ConfigEditorDocument saved = languageService.selections().commitUpdate(() -> saveConfigurationLocked(edit));
+        requestConfiguredLanguage();
+        return saved;
+    }
 
-			doubleTaps.remove(e.getPlayer());
-		}
-	}
+    private ConfigEditorDocument saveConfigurationLocked(ConfigEditorDocument.Edit edit) throws IOException {
+        synchronized (configurationLock) {
+            requireActive();
+            String replacement = TomlDocumentEditor.set(edit.original().source(), edit.path(), edit.value());
+            RuntimeConfig configuration = ConfigService.parse(replacement);
+            LanguageService.PreparedLanguage language = languageService.prepare(configuration.language());
+            requireActive();
+            configService.save(edit.original().source(), replacement);
+            languageService.install(language);
+            metricsService.reload(configuration.metricsEnabled());
+            switchService.clear();
+            return configService.editorDocument(configService.source());
+        }
+    }
 
-	private GameMode getGameMode(GameMode current, boolean shift)
-	{
-		GameMode g = current;
-		GameMode out = null;
-		switch(g)
-		{
-			case ADVENTURE:
-				out = shift ? GameMode.SURVIVAL : GameMode.CREATIVE;
-				break;
-			case CREATIVE:
-				out = shift ? GameMode.SPECTATOR : GameMode.SURVIVAL;
-				break;
-			case SPECTATOR:
-				out = GameMode.CREATIVE;
-				break;
-			case SURVIVAL:
-				out = shift ? GameMode.ADVENTURE : GameMode.CREATIVE;
-				break;
-			default:
-				break;
-		}
+    private void selectDefaultLanguage(String locale, LocalizationSnapshot snapshot) throws IOException {
+        synchronized (configurationLock) {
+            requireActive();
+            String original = configService.source();
+            String replacement = TomlDocumentEditor.set(original, List.of("general", "language"), new JsonPrimitive(locale));
+            configService.save(original, replacement);
+            languageService.install(new LanguageService.PreparedLanguage(locale, languageService.languageFile(locale), snapshot, true));
+        }
+    }
 
-		return out;
-	}
+    private void hotReload() {
+        boolean success = reloadConfiguration();
+        if (closing) {
+            return;
+        }
+        if (success) {
+            getLogger().info("Applied GamemodeSwitcher configuration and language file changes.");
+        }
+        FoliaScheduler.runGlobal(this, () -> {
+            for (Player player : getServer().getOnlinePlayers()) {
+                FoliaScheduler.runEntity(this, player, () -> {
+                    if (player.hasPermission("gamemodeswitcher.config")) {
+                        languageService.sendPrefixed(player, success
+                                ? SwitcherMessages.HOT_RELOAD_SUCCESS : SwitcherMessages.HOT_RELOAD_FAILED);
+                    }
+                });
+            }
+        });
+    }
 
-	private void doubleTapped(Player p)
-	{
-		GameMode g = p.getGameMode();
-		GameMode out = null;
-		switch(g)
-		{
-			case ADVENTURE:
-				out = p.isSneaking() ? GameMode.SURVIVAL : GameMode.CREATIVE;
-				break;
-			case CREATIVE:
-				out = p.isSneaking() ? GameMode.SPECTATOR : GameMode.SURVIVAL;
-				break;
-			case SPECTATOR:
-				out = GameMode.CREATIVE;
-				break;
-			case SURVIVAL:
-				out = p.isSneaking() ? GameMode.ADVENTURE : GameMode.CREATIVE;
-				break;
-			default:
-				break;
-		}
+    private void requestConfiguredLanguage() {
+        if (!closing) {
+            languageService.requestRemote(configService.runtime().language(), this::scheduleLanguageReload);
+        }
+    }
 
-		p.setGameMode(out);
-		p.sendMessage(getTag() + "Switched to " + C.DARK_GREEN + F.capitalize(out.name().toLowerCase()));
-		p.playSound(p.getLocation(), Sound.ITEM_ARMOR_EQUIP_DIAMOND, 1f, 1f);
-		p.playSound(p.getLocation(), Sound.ITEM_ARMOR_EQUIP_LEATHER, 1f, 0.25f);
-		p.playSound(p.getLocation(), Sound.ITEM_ARMOR_EQUIP_ELYTRA, 1f, 1.75f);
+    private void scheduleLanguageReload(RemoteLanguageCatalog.DownloadResult result) {
+        if (closing || reloadWorker == null) {
+            return;
+        }
+        if (!result.successful()) {
+            getLogger().log(Level.WARNING, "Could not download GamemodeSwitcher language " + result.locale()
+                    + " from " + result.source() + "; English remains available", result.failure());
+            return;
+        }
+        try {
+            reloadWorker.execute(this::hotReload);
+        } catch (RejectedExecutionException failure) {
+            if (!closing) {
+                getLogger().log(Level.WARNING, "Could not apply downloaded GamemodeSwitcher language", failure);
+            }
+        }
+    }
 
-		if(out.equals(GameMode.CREATIVE))
-		{
-			p.setAllowFlight(true);
-			p.setFlying(true);
-		}
+    private void requireActive() throws IOException {
+        if (closing || Thread.currentThread().isInterrupted()) {
+            throw new IOException("GamemodeSwitcher is stopping");
+        }
+    }
 
-		else if(out.equals(GameMode.SPECTATOR))
-		{
-			p.sendMessage(getTag() + "Triple tap shift/sneak to exit spectator.");
-		}
+    private void stopReloadWorker() {
+        if (reloadWorker == null) {
+            return;
+        }
+        reloadWorker.shutdownNow();
+        try {
+            if (!reloadWorker.awaitTermination(5, TimeUnit.SECONDS)) {
+                getLogger().warning("GamemodeSwitcher configuration work did not stop within five seconds.");
+            }
+        } catch (InterruptedException failure) {
+            Thread.currentThread().interrupt();
+            getLogger().log(Level.WARNING, "Interrupted while stopping GamemodeSwitcher configuration work", failure);
+        }
+    }
 
-		else
-		{
-			p.setFlying(false);
-			p.setAllowFlight(false);
-		}
-	}
+    private void closeService(String name, AutoCloseable service) {
+        if (service == null) {
+            return;
+        }
+        try {
+            service.close();
+        } catch (Exception | LinkageError failure) {
+            getLogger().log(Level.SEVERE, "Could not close GamemodeSwitcher " + name, failure);
+        }
+    }
 
-	@Override
-	public String getTag(String subTag)
-	{
-		if(subTag == null || subTag.trim().isEmpty())
-		{
-			return C.DARK_GREEN + "[" + C.DARK_GRAY + "GSW" + C.DARK_GREEN + "]" + C.GRAY + ": ";
-		}
-
-		return C.DARK_GREEN + "[" + C.DARK_GRAY + "GSW" + C.GRAY + " - " + C.WHITE + subTag.trim() + C.DARK_GREEN + "]" + C.GRAY + ": ";
-	}
+    private static String compact(String value) {
+        String singleLine = value.replace('\n', ' ').replace('\r', ' ');
+        return singleLine.length() > 100 ? singleLine.substring(0, 97) + "..." : singleLine;
+    }
 }

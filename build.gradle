@@ -1,0 +1,205 @@
+import org.gradle.api.attributes.Usage
+import org.gradle.api.attributes.java.TargetJvmVersion
+import org.gradle.api.tasks.compile.JavaCompile
+import org.gradle.jvm.toolchain.JavaLanguageVersion
+
+plugins {
+    id 'java-library'
+    id 'maven-publish'
+    id 'com.gradleup.shadow' version '9.0.0-rc3'
+}
+
+group = 'com.volmit'
+version = '2.0.0'
+
+String languageSourceReference = 'main'
+List<File> languageSourceFiles = fileTree('src/main/resources/languages') {
+    include('*.toml')
+}.files.toList().sort { File left, File right -> left.name <=> right.name }
+List<String> languageSourceLocales = languageSourceFiles.collect { File file ->
+    file.name.substring(0, file.name.length() - '.toml'.length())
+}
+TaskProvider<WriteProperties> languageSourceManifestTask = tasks.register('generateLanguageSourceManifest', WriteProperties) {
+    destinationFile.set(layout.buildDirectory.file('generated/language-source/gamemodeswitcher-language-source.properties'))
+    property('revision', languageSourceReference)
+    property('locales', languageSourceLocales.join(','))
+}
+
+java {
+    toolchain.languageVersion = JavaLanguageVersion.of(25)
+    withSourcesJar()
+}
+
+tasks.withType(JavaCompile).configureEach {
+    options.compilerArgs.add('-parameters')
+    options.encoding = 'UTF-8'
+    options.release.set(17)
+}
+
+repositories {
+    mavenCentral()
+    maven { url = uri('https://hub.spigotmc.org/nexus/content/repositories/snapshots/') }
+    maven { url = uri('https://repo.papermc.io/repository/maven-public/') }
+    maven {
+        url = uri('https://jitpack.io')
+        content { includeGroupByRegex('com\\.github\\.VolmitSoftware.*') }
+    }
+}
+
+configurations {
+    currentPaperCompatibility {
+        canBeConsumed = false
+        canBeResolved = true
+        attributes {
+            attribute(Usage.USAGE_ATTRIBUTE, objects.named(Usage, Usage.JAVA_API))
+            attribute(TargetJvmVersion.TARGET_JVM_VERSION_ATTRIBUTE, 25)
+        }
+    }
+    currentSpigotCompatibility {
+        canBeConsumed = false
+        canBeResolved = true
+        attributes {
+            attribute(Usage.USAGE_ATTRIBUTE, objects.named(Usage, Usage.JAVA_API))
+            attribute(TargetJvmVersion.TARGET_JVM_VERSION_ATTRIBUTE, 25)
+        }
+    }
+}
+
+dependencies {
+    compileOnly('org.spigotmc:spigot-api:1.20.1-R0.1-SNAPSHOT')
+    implementation(providers.gradleProperty('volmLibCoordinate').orElse('com.github.VolmitSoftware:VolmLib:master-SNAPSHOT').get()) {
+        changing = true
+        transitive = false
+    }
+    implementation('com.google.code.gson:gson:2.10.1')
+    implementation('com.moandjiezana.toml:toml4j:0.7.2')
+    implementation('net.kyori:adventure-api:4.26.1')
+    implementation('net.kyori:adventure-text-minimessage:4.26.1')
+    implementation('net.kyori:adventure-text-serializer-legacy:4.26.1')
+    implementation('net.kyori:adventure-text-serializer-plain:4.26.1')
+    currentPaperCompatibility('io.papermc.paper:paper-api:26.1.2.build.74-stable')
+    currentSpigotCompatibility('org.spigotmc:spigot-api:26.2-R0.1-SNAPSHOT')
+    testImplementation(platform('org.junit:junit-bom:5.13.4'))
+    testImplementation('org.junit.jupiter:junit-jupiter')
+    testImplementation('org.assertj:assertj-core:3.27.4')
+    testImplementation('org.mockito:mockito-core:5.20.0')
+    testImplementation('org.spigotmc:spigot-api:1.20.1-R0.1-SNAPSHOT')
+    testRuntimeOnly('org.junit.platform:junit-platform-launcher')
+}
+
+['Paper', 'Spigot'].each { String platform ->
+    tasks.register("compileCurrent${platform}Compatibility", JavaCompile) {
+        source = sourceSets.main.java
+        classpath = configurations.getByName("current${platform}Compatibility") + files(sourceSets.main.compileClasspath.filter { File dependency ->
+            !dependency.name.startsWith('spigot-api-')
+        })
+        destinationDirectory.set(layout.buildDirectory.dir("classes/java/current${platform}Compatibility"))
+        options.release.set(25)
+    }
+}
+
+tasks.named('processResources').configure {
+    dependsOn(languageSourceManifestTask)
+    exclude('languages/*.toml')
+    from(languageSourceManifestTask)
+    Map<String, String> pluginProperties = [name: rootProject.name, version: project.version.toString()]
+    inputs.properties(pluginProperties)
+    filesMatching('plugin.yml') { expand(pluginProperties) }
+}
+
+tasks.named('jar').configure { archiveClassifier.set('thin') }
+tasks.named('shadowJar').configure {
+    archiveClassifier.set('')
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+    relocate('art.arcane.volmlib', 'com.volmit.gsw.libs.volmlib')
+    relocate('com.google.gson', 'com.volmit.gsw.libs.gson')
+    relocate('com.moandjiezana.toml', 'com.volmit.gsw.libs.toml')
+    relocate('net.kyori', 'com.volmit.gsw.libs.kyori') { skipStringConstants = true }
+}
+
+tasks.named('test').configure {
+    useJUnitPlatform()
+    systemProperty('gamemodeswitcher.projectDir', layout.projectDirectory.asFile.absolutePath)
+}
+
+tasks.register('verifyJava17Artifact') {
+    dependsOn(tasks.named('shadowJar'))
+    inputs.file(tasks.named('shadowJar').flatMap { it.archiveFile })
+    doLast {
+        File artifact = tasks.named('shadowJar').get().archiveFile.get().asFile
+        int metadataCount = 0
+        int localeCount = 0
+        boolean metricsPresent = false
+        Properties languageManifest = null
+        new java.util.zip.ZipFile(artifact).withCloseable { java.util.zip.ZipFile archive ->
+            archive.entries().each { java.util.zip.ZipEntry entry ->
+                String path = entry.name
+                if (path == 'plugin.yml') { metadataCount++ }
+                if (path.startsWith('languages/') && path.endsWith('.toml')) { localeCount++ }
+                if (path == 'com/volmit/gsw/metrics/Metrics.class') { metricsPresent = true }
+                if (path == 'gamemodeswitcher-language-source.properties') {
+                    languageManifest = new Properties()
+                    archive.getInputStream(entry).withCloseable { InputStream input -> languageManifest.load(input) }
+                }
+                if (path.startsWith('org/bstats/')) {
+                    throw new GradleException("Unpackaged bStats class: ${path}")
+                }
+                if (path.startsWith('art/arcane/volmlib/')) {
+                    throw new GradleException("Unrelocated VolmLib class: ${path}")
+                }
+                if (!entry.directory && path.endsWith('.class')) {
+                    new DataInputStream(archive.getInputStream(entry)).withCloseable { DataInputStream input ->
+                        int magic = input.readInt()
+                        input.readUnsignedShort()
+                        int major = input.readUnsignedShort()
+                        if (Integer.toUnsignedLong(magic) != 0xCAFEBABEL || major > 61) {
+                            throw new GradleException("Invalid Java 17 class in artifact: ${path} (major ${major})")
+                        }
+                    }
+                }
+            }
+        }
+        if (metadataCount != 1 || localeCount != 0 || !metricsPresent) {
+            throw new GradleException("Expected one plugin.yml, no bundled translations, and packaged bStats; found ${metadataCount}, ${localeCount}, ${metricsPresent}")
+        }
+        if (languageManifest == null || languageManifest.getProperty('revision') != languageSourceReference
+                || languageManifest.getProperty('locales') != languageSourceLocales.join(',')) {
+            throw new GradleException('Runtime language source manifest does not match the repository catalogs')
+        }
+    }
+}
+
+tasks.named('check').configure {
+    dependsOn('compileCurrentPaperCompatibility', 'compileCurrentSpigotCompatibility', 'verifyJava17Artifact')
+}
+
+tasks.register('buildSwiftSwamp', Copy) {
+    group = 'development'
+    description = 'Builds, verifies, and stages GamemodeSwitcher in the workspace BUILDS directory.'
+    dependsOn('check', 'shadowJar')
+    outputs.upToDateWhen { false }
+    from(tasks.named('shadowJar').flatMap { it.archiveFile })
+    into(providers.gradleProperty('buildsDirectory').orElse('../BUILDS'))
+    rename { String ignored -> 'GamemodeSwitcher.jar' }
+}
+
+tasks.named('build').configure { dependsOn('buildSwiftSwamp') }
+publishing {
+    publications {
+        gamemodeSwitcher(MavenPublication) {
+            artifactId = 'gamemodeswitcher'
+            artifact(tasks.named('shadowJar'))
+            artifact(tasks.named('sourcesJar'))
+            pom {
+                name = 'GamemodeSwitcher'
+                description = 'Permission-aware gamemode gestures and menus for Spigot, Paper, and Folia.'
+                url = 'https://github.com/VolmitSoftware/GamemodeSwitcher'
+            }
+        }
+    }
+}
+tasks.named('publishToMavenLocal').configure { dependsOn('check', 'buildSwiftSwamp') }
+configurations.configureEach {
+    resolutionStrategy.cacheChangingModulesFor(0, 'seconds')
+    resolutionStrategy.cacheDynamicVersionsFor(0, 'seconds')
+}

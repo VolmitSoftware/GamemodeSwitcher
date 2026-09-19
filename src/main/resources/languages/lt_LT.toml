@@ -1,0 +1,517 @@
+# GamemodeSwitcher — lt_LT
+#
+# === Failo redagavimas ===
+# plugins/GamemodeSwitcher/languages/lt_LT.toml
+# Šį failą galima redaguoti tiesiogiai. Vietiniai pakeitimai išsaugomi; trūkstamiems ar netinkamiems įrašams naudojama integruota anglų kalba.
+# /gsw language server edit lt_LT
+#
+# === Priešdėlis ===
+# {prefix}  visuotinė runtime.prefix reikšmė. Pašalinkite {prefix} iš atskiro pranešimo, kad jame jo nerodytų
+#
+# === Formatavimas ===
+# Spalvos: &0-&f, &k-&r, &#RRGGBB, &xRRGGBB, &x&R&R&G&G&B&B ir [RRGGBB]. Pasirinktiniam formatavimui galima naudoti MiniMessage.
+# Norėdami & arba [ rodyti tiesiogiai, prieš juos rašykite pasvirąjį brūkšnį atgal.
+#
+# === Kintamieji ===
+# Nekeiskite kintamųjų pavadinimų ir naudokite tik konkrečiame pranešime esančius kintamuosius.
+#   {after}  Vertė po pakeitimo
+#   {argument}  netikėtas argumentas
+#   {before}  Vertė prieš pakeitimą
+#   {command}  komandos kelias
+#   {count}  Atitinkamų įrašų skaičius
+#   {enabled}  Žaidimo režimo keitimo būsena
+#   {group}  Kalbos rengyklės kategorija
+#   {hot_reload}  karštojo įkėlimo būsena
+#   {key}  parametro raktas
+#   {language}  aktyvi kalba
+#   {line}  Pradinės eilutės arba eilutės numeris
+#   {locale}  lokalė
+#   {maximum}  Didžiausia leidžiama vertė
+#   {mode}  Žaidimo režimo pavadinimas
+#   {new}  nauja reikšmė
+#   {number}  Įrašo numeris
+#   {old}  ankstesnė reikšmė
+#   {page}  Dabartinis puslapis
+#   {pages}  Bendras puslapių skaičius
+#   {parameter}  parametro vardas
+#   {path}  vietinio pranešimo kelias
+#   {permission}  reikalingas leidimas
+#   {personal}  asmeninė lokalė
+#   {plugin}  Įskiepio pavadinimas
+#   {prefix}  visuotinė runtime.prefix reikšmė. Pašalinkite {prefix} iš atskiro pranešimo, kad jame jo nerodytų
+#   {reason}  klaidos priežastis
+#   {scheduler}  planavimo sistema
+#   {seconds}  Likęs laukimo arba patvirtinimo laikas sekundėmis
+#   {section}  Kalbų redaktoriaus skiltis
+#   {setting}  nuostatos vardas
+#   {step}  Skaitinio nustatymo pokytis vienu įprastu spustelėjimu
+#   {state}  Asmeninė gestų arba pranešimų būsena
+#   {target}  Tikslinis žaidėjas, subjektas arba vertė
+#   {type}  tipas
+#   {url}  viešas URL
+#   {value}  dabartinė, numatytoji arba neapdorota reikšmė
+#   {variables}  galimi vietos žymekliai
+#   {version}  įskiepio versija
+#   {world}  pasaulis
+
+[command.description]
+version = "Rodyti GamemodeSwitcher versiją"
+config = "Konfigūracija"
+debug = "GamemodeSwitcher diagnostikos įrankiai"
+debug_dump = "Sukurti išsamią GamemodeSwitcher diagnostikos ataskaitą"
+language = "Kalba"
+menu = "Žaidimo režimai"
+root = "Žaidimo režimai"
+set = "Žaidimo režimas"
+status = "Žaidimo režimas"
+toggle = "Gestai"
+
+[command.feedback]
+failed = "{prefix}&cKomandos įvykdyti nepavyko. Išsamesnę informaciją rasite konsolėje.&r"
+
+[command.feedback.config]
+opened = "{prefix}&aAtidarytas visas žaidimo konfigūracijos redaktorius.&r"
+save_failed = "{prefix}&cNepavyko pritaikyti &f{setting}&r&c: {reason}&r"
+saved = "{prefix}&a{setting}&r &7pakeistas iš &f{old}&r &7į &f{new}&r&7.&r"
+
+[command.parameter]
+enabled = "Įjungta / Išjungta"
+mode = "Išlikimas, Kūryba, Nuotykiai, Stebėtojas"
+upload = "Įkelti ataskaitą, kai viešas įkėlimas įjungtas"
+
+[command.status]
+compatibility = "&7Artefaktas:&r &fJava 17 / Bukkit 1.20.1+&r &8|&r &7Planuoklis:&r &f{scheduler}&r"
+config = "&7Žaidimo režimas:&r {enabled} &8|&r &7Kalba:&r {language} &8|&r &7Iš naujo įkelti konfigūraciją ir kalbas:&r {hot_reload}"
+header = "&6&lGamemodeSwitcher&r"
+player = "&7Gestai:&r {state} &8|&r &7Žaidimo režimas:&r {mode}"
+
+[config.editor]
+adjust = "Kairysis +{step}, dešinysis -{step}, Shift x10, Q tiksliam skaičiui įvesti."
+back = "Atgal"
+close = "Uždaryti"
+current = "Dabartinė reikšmė: {value}"
+edit = "Spustelėkite, kad įvestumėte naują reikšmę pokalbyje."
+empty = "Šiame skyriuje nėra nustatymų."
+entry = "Įrašas {number}"
+expired = "Konfigūracijos įvedimo laikas baigėsi."
+failed = "Nepavyko redaguoti konfigūracijos: {reason}"
+loading = "Įkeliama konfigūracija..."
+next = "Kitas puslapis"
+no-permission = "Neturite leidimo redaguoti šios konfigūracijos."
+open = "Spustelėkite, kad atidarytumėte šį skyrių."
+page = "Puslapis {page} iš {pages}"
+player-only = "Atidarykite konfigūracijos rengyklę žaidime."
+previous = "Ankstesnis puslapis"
+prompt = "Įveskite naują {path} reikšmę. Norėdami grįžti, įrašykite cancel."
+refresh = "Atnaujinti"
+saved = "{path} išsaugota. Pakeitimai pritaikomi automatiškai."
+saving = "Išsaugoma konfigūracija..."
+section = "Skyrius: {path}"
+title = "{plugin} / Konfigūracija"
+toggle = "Spustelėkite, kad perjungtumėte tarp true ir false."
+too-long = "Įveskite ne daugiau kaip {maximum} simbolių."
+
+[config.editor.type]
+decimal = "Įveskite skaičių, pavyzdžiui, 0.25."
+integer = "Įveskite sveikąjį skaičių."
+list = "Naudokite TOML sąrašą, pavyzdžiui, [\"stone\", \"deepslate\"]."
+text = "Tekstas; kabučių nereikia."
+
+[debug]
+preparing = "Rengiama įskiepio {plugin} diagnostikos ataskaita..."
+saved = "Įskiepio {plugin} diagnostikos ataskaita išsaugota: {path}."
+
+[debug.action]
+copy-path = "Kopijuoti vietinį kelią"
+copy-path-description = "Kopijuoti vietinės ataskaitos kelią."
+open = "Atidaryti: {url}"
+open-description = "Atidaryti įkeltą diagnostikos ataskaitą."
+
+[debug.error]
+already-preparing = "Įskiepio {plugin} diagnostikos ataskaita jau rengiama."
+already-preparing-short = "Diagnostikos ataskaita jau rengiama."
+capture-failed = "Nepavyko surinkti diagnostikos ataskaitos duomenų; patikrinkite serverio konsolę."
+closed-before-capture = "Diagnostikos duomenų teikėjas buvo uždarytas prieš surenkant ataskaitos duomenis."
+closed-before-write = "Diagnostikos duomenų teikėjas buvo uždarytas prieš įrašant ataskaitą."
+missing-permission = "Trūksta leidimo: {permission}"
+provider-closed = "Diagnostikos duomenų teikėjas uždarytas."
+schedule-failed = "Nepavyko suplanuoti diagnostikos ataskaitos rengimo."
+write-failed = "Nepavyko įrašyti diagnostikos ataskaitos; patikrinkite serverio konsolę."
+writer-schedule-failed = "Nepavyko suplanuoti diagnostikos ataskaitos rašymo."
+
+[debug.upload]
+completed = "Įkelta pavadinimu VolmitSoftware - {plugin} - v{version}."
+failed = "Nepavyko įkelti diagnostikos ataskaitos; vietinė ataskaita išsaugota."
+interrupted = "Diagnostikos ataskaitos įkėlimas nutrauktas; vietinė ataskaita išsaugota."
+
+[director.help]
+category = "Komandų kategorija"
+command_group = "Komandų grupė. Spustelėkite, kad atidarytumėte."
+no_description = "Aprašymas nepateiktas"
+no_parameters = "Parametrų nėra. Spustelėkite, kad iš anksto užpildytumėte komandą."
+no_subcommands = "Šiame puslapyje nėra antrinių komandų."
+parameters_hover = "Užveskite pelės žymeklį ant parametrų, kad sužinotumėte daugiau."
+
+[director.help.navigation]
+back = "Atgal"
+page = "Puslapis"
+
+[director.help.navigation.next]
+hover = "Kitas puslapis"
+
+[director.help.navigation.parent]
+hover = "Grįžti į pirminę komandų grupę"
+
+[director.help.navigation.previous]
+hover = "Ankstesnis puslapis"
+
+[director.help.parameter]
+default = "Jei nenurodyta, numatytoji reikšmė yra \"{value}\"."
+optional = "Šis parametras yra neprivalomas."
+required = "Šis parametras yra privalomas."
+type = "Šio parametro tipas yra {type}."
+
+[director.runtime.error]
+conversion_failed = "Reikšmės \"{value}\" nepavyko konvertuoti į {type} parametrui {parameter}"
+default_parse_failed = "Nepavyko nuskaityti parametro {parameter} numatytosios reikšmės"
+execution_failed = "Nepavyko įvykdyti komandos {command}: {reason}"
+invalid_origin = "Šios komandos negalima vykdyti iš šio šaltinio."
+missing_argument = "Trūksta argumento \"{parameter}\" ({type})"
+unclosed_group = "Trūksta uždarančio \"]\" parametrui {key}"
+unexpected_argument = "Netikėtas argumentas \"{argument}\". Pasirenkami parametrai turi būti nurodyti su raktu, pvz. seed=123"
+unknown_parameter = "Nežinomas parametro raktas: {key}"
+
+[gesture]
+normal = "&7Du kartus paspauskite daikto keitimo į kitą ranką klavišą: {mode}&r"
+sneaking = "&7Laikykite sėlinimą ir dukart paspauskite rankų keitimo klavišą: {mode}&r"
+spectator = "&7Tris kartus atskirai paspauskite sėlinimo klavišą: {mode}&r"
+rebind = "&7Rankų keitimo (F) ir sėlinimo (kairysis Shift) klavišus keiskite Parinktys > Valdymas > Klavišai.&r"
+personal_disabled = "&eJūsų gestai išjungti. Įjunkite čia arba su /gsw toggle true.&r"
+empty_hands = "&7Gestams abi rankos turi būti tuščios.&r"
+help = "&7Dukart paspauskite rankų sukeitimo klavišą (pagal nutylėjimą F), kad pakeistumėte režimą. Tuo pat metu sėlinkite, kad atliktumėte kitą veiksmą; triskart paspauskite sėlinimą, kad išeitumėte iš stebėtojo režimo. Tikslinius režimus nustato serveris.&r"
+
+[gui.title]
+root = "<gradient:#634514:#2f523f>GSW</gradient> <color:#404040>Konfigūracija</color>"
+
+[language.editor]
+title = "{plugin} › {section}"
+loading = "Įkeliami kalbos {locale} pranešimai..."
+
+[language.editor.category]
+message-count = "&7{count} pranešimai&r"
+open = "&8Spustelėkite norėdami atverti šią kategoriją.&r"
+
+[language.editor.error]
+no-permission = "Neturite leidimo redaguoti papildinio {plugin} kalbų."
+unable-to-edit = "Nepavyko redaguoti: {reason}"
+
+[language.editor.input]
+expired = "Baigėsi kalbos rengyklės įvesties laikas."
+too-long = "Įvestyje gali būti ne daugiau kaip {maximum} simbolių."
+unable-to-save = "Nepavyko išsaugoti: {reason}"
+
+[language.editor.locale]
+open = "&8Spauskite norėdami atverti šią kalbą.&r"
+
+[language.editor.message]
+current-value = "&7Dabartinė reikšmė:&r"
+edit-chat = "&7Spustelėkite norėdami redaguoti pokalbyje.&r"
+edit-lines = "&7Spustelėkite norėdami redaguoti atskiras eilutes.&r"
+edit-plural = "&7Spustelėkite norėdami redaguoti daugiskaitos formą.&r"
+variables = "&8{variables}&r"
+
+[language.editor.navigation]
+back = "&eAtgal&r"
+close = "&cUždaryti&r"
+next-page = "&eKitas puslapis&r"
+previous-page = "&eAnkstesnis puslapis&r"
+
+[language.editor.part]
+line = "Eilutė {line}"
+
+[language.editor.prompt]
+current = "Dabartinė reikšmė: {value}"
+guidance = "Naudokite \\n naujai eilutei, \\\\ atvirkštiniam pasvirajam brūkšniui arba įveskite cancel, kad grįžtumėte."
+search = "Ieškokite pranešimo rakto arba teksto. Norėdami grįžti, įveskite cancel."
+value = "Pokalbyje įveskite naują rakto {key} reikšmę."
+variables = "Kintamieji: {variables}"
+
+[language.editor.saved]
+change = "{key}: „{before}“ pakeista į „{after}“."
+summary = "{locale} išsaugota. Kalbų pasirinkimai nepakeisti."
+
+[language.editor.search]
+clear = "Išvalyti paiešką"
+messages = "Ieškoti pranešimų"
+messages-lore = "Spustelėkite norėdami ieškoti visuose pranešimuose."
+
+[language.editor.section]
+group-title = "{locale} / {group}"
+languages = "Kalbos"
+search = "Ieškoti"
+search-title = "{locale} / Ieškoti"
+
+[language.editor.value]
+empty = "(tuščia)"
+none = "Nėra"
+
+[language.error]
+editor-player-only = "Atverti kalbos rengyklę žaidime."
+no-providers = "Nėra prieinamų Volmit kalbų teikėjų."
+numeric-page = "Įveskite puslapio numerį."
+personal-permission = "Jūs neturite leidimo pasirinkti savo kalbą."
+personal-player-only = "Žaidžiant turi būti pasirinkti žaidėjų kalbos nustatymai."
+plugin-personal-permission = "Neturite leidimo pasirinkti savo kalbos papildiniui {plugin}."
+plugin-server-permission = "Neturite leidimo keisti papildinio {plugin} serverio kalbos."
+server-locale-required = "Pasirinkite numatytosios serverio kalbos kodą, pavyzdžiui, en_US."
+stopping = "Stabdant papildinį kalbos pasirinkimas nepasiekiamas."
+unavailable-for-all = "Kalba {locale} prieinama ne visiems pasirinktiems papildiniams."
+
+[language.menu]
+all-volmit-plugins = "Visi Volmit papildiniai"
+command = "Komanda: {command}"
+current = "Dabartinė: {locale}"
+current_with_personal = "Dabartinė: {locale} (Jūsų: {personal})"
+edit_description = "Atverkite kiekvienos kalbos pranešimų redaktorių."
+edit_messages = "Redaguoti kalbos pranešimus"
+no_controls = "Jums nepasiekiami kalbos nustatymai."
+remove_personal_description = "Pašalinkite asmeninį kalbos pasirinkimą."
+reset_description = "Naudokite numatytąją serverio kalbą."
+reset_your_language = "Atkurti jūsų kalbą"
+select_description = "Spustelėkite, kad pasirinktumėte šią kalbą."
+selected = "pasirinkta"
+server_default = "Numatytoji serverio kalba"
+server_description = "Keiskite numatytąją serverio kalbą."
+use_server_default = "Naudoti numatytąją serverio kalbą"
+your_description = "Keiskite tik jums rodomus pranešimus."
+your_language = "Jūsų kalba"
+
+[language.selection]
+english-fallback = "{plugin}: {locale} neprieinama; naudojama anglų kalba (en_US)."
+personal-selected = "{plugin}: dabar jūsų kalba {locale}."
+preparing = "Ruošiama kalba {locale} papildiniui {target}..."
+save-failed = "{plugin}: nepavyko išsaugoti kalbos pasirinkimo; patikrinkite serverio konsolę."
+server-default-selected = "{plugin}: jūsų kalba dabar atitinka numatytąją serverio kalbą."
+server-selected = "{plugin}: serverio kalba yra dabar {locale}."
+
+[language.usage]
+editor = "Naudojimas: /{command} language server edit [locale]"
+selection = "Naudojimas: /{command} language self [locale|reset] or server [locale]"
+volmit-selection = "Naudojimas: /volmit plugins languages [locale]"
+
+[menu]
+feedback = "&6Asmeniniai pranešimai&r"
+feedback_help = "&7Išjunkite keitimo žinutes, antraštes ar garsus sau.&r"
+back = "&7Grįžti į žaidimo režimus&r"
+selected = "&aPasirinkta&r"
+survival_help = "&7Rinkite išteklius ir rūpinkitės sveikata bei alkiu.&r"
+creative_help = "&7Statykite su neribotais ištekliais ir Kūrybinio režimo skrydžiu.&r"
+adventure_help = "&7Tyrinėkite žemėlapius, kuriuose ribojamas blokų griovimas ir dėjimas.&r"
+spectator_help = "&7Stebėkite pasaulį ir pereikite kiaurai blokus.&r"
+config_help = "&7Redaguokite serverio nustatymus. Pakeitimai taikomi iškart.&r"
+language_help = "&7Pasirinkite pranešimų ir meniu kalbą.&r"
+close = "Uždaryti"
+config = "&6Konfigūracija&r"
+current = "&7Žaidimo režimas: &f{mode}&r"
+gestures = "&6Gestai&r"
+language = "&aKalba&r"
+select = "&7Spustelėkite norėdami pasirinkti.&r"
+title = "<gradient:#634514:#2f523f>Žaidimo režimai</gradient>"
+toggle_disabled = "&7Gestai: &cIšjungta&r"
+toggle_enabled = "&7Gestai: &aĮjungta&r"
+toggle_help = "&7Spustelėkite, kad įjungtumėte arba išjungtumėte gestus.&r"
+unavailable = "&cNegalite pasirinkti šio žaidimo režimo.&r"
+
+[mode]
+adventure = "Nuotykiai"
+creative = "Kūryba"
+spectator = "Stebėtojas"
+survival = "Išlikimas"
+
+[preferences]
+title = "<gradient:#634514:#2f523f>Asmeniniai pranešimai</gradient>"
+chat = "&6Pokalbio žinutės&r"
+action_bar = "&6Veiksmų juosta&r"
+screen_title = "&6Ekrano antraštės&r"
+sound = "&6Keitimo garsai&r"
+muted = "&cJums išjungta&r"
+inherit = "&7Serverio nustatymai: {state}&r"
+toggle = "&7Spustelėkite, kad pasirinktumėte išjungimą arba serverio nustatymus.&r"
+silence = "&6Išjungti viską&r"
+silence_help = "&7Išjunkite sėkmingų keitimų žinutes, antraštes ir garsus.&r"
+reset = "&aNaudoti serverio nustatymus&r"
+reset_help = "&7Pašalinkite visus asmeninius nutildymus.&r"
+failures = "&7Kai pokalbis nutildytas, užblokuoto keitimo priežastis rodoma veiksmų juostoje.&r"
+failed = "{prefix}&cNepavyko išsaugoti nuostatos. Daugiau informacijos konsolėje.&r"
+
+[runtime]
+player_only = "{prefix}&cŠią komandą gali naudoti tik žaidėjas.&r"
+prefix = "<gradient:#e9bd68:#85d6b0><bold>GamemodeSwitcher</bold></gradient> &8â€º&r "
+
+[runtime.hot_reload]
+failed = "{prefix}&cFailų pakeitimai atmesti; lieka aktyvūs paskutiniai tinkami nustatymai.&r"
+success = "{prefix}&aKonfigūracijos ir kalbos failų pakeitimai pritaikyti.&r"
+
+[runtime.permission]
+denied = "{prefix}&cNeturite leidimo to daryti.&r"
+
+[state]
+disabled = "&cIšjungta&r"
+enabled = "&aĮjungta&r"
+
+[switch]
+title = "<gradient:#e9bd68:#85d6b0>{mode}</gradient>"
+subtitle = "&7Žaidimo režimas pakeistas.&r"
+overlay = "&7Žaidimo režimas: &f{mode}&r"
+spectator_overlay_hint = "&7Tris kartus paspauskite sėlinimą, kad išeitumėte iš Stebėtojo.&r"
+already = "{prefix}&eJūsų žaidimo režimas jau yra {mode}.&r"
+cancelled = "{prefix}&eKitas papildinys neleido pakeisti žaidimo režimo.&r"
+changed = "{prefix}&aŽaidimo režimas pakeistas į {mode}.&r"
+cooldown = "{prefix}&ePrieš keisdami dar kartą palaukite {seconds} sek.&r"
+disabled = "{prefix}&eŽaidimo režimo keitimas išjungtas.&r"
+empty_hands = "{prefix}&eNorėdami naudoti gestus, atlaisvinkite abi rankas.&r"
+no_permission = "{prefix}&eNeturite leidimo naudoti šį žaidimo režimą.&r"
+spectator_hint = "{prefix}&eNorėdami išeiti iš stebėtojo režimo, naudokite /gsw menu arba /gsw set survival.&r"
+world_blocked = "{prefix}&ePasaulyje {world} žaidimo režimo keisti negalima.&r"
+
+[toggle]
+disabled = "{prefix}&eGestai išjungti. Komandos ir meniu lieka pasiekiami.&r"
+enabled = "{prefix}&aŽaidimo režimo gestai įjungti.&r"
+
+[gui.config.general]
+name = "Bendrieji"
+description = "Įjungti režimų keitimą ir pasirinkti serverio kalbą."
+
+[gui.config.metrics]
+name = "Statistika"
+description = "Valdyti anoniminę bStats statistiką."
+
+[gui.config.gestures]
+name = "Gestų valdymas"
+description = "Nustatyti paspaudimų laiką, laukimą ir gestų tikslus."
+
+[gui.config.gestures.normal]
+name = "Dvigubo paspaudimo tikslai"
+description = "Pasirinkti kiekvieno režimo tikslą dukart paspaudus rankų sukeitimo klavišą."
+
+[gui.config.gestures.sneaking]
+name = "Sėlinimo tikslai"
+description = "Pasirinkti kiekvieno režimo tikslą sėlinant ir dukart paspaudus rankų sukeitimo klavišą."
+
+[gui.config.restrictions]
+name = "Pasaulių apribojimai"
+description = "Pasirinkti pasaulius, kuriuose negalima keisti režimo."
+
+[gui.config.feedback]
+name = "Keitimo pranešimai"
+description = "Pasirinkti keitimo pranešimus, langus, garsus ir Kūrybinio režimo skrydį."
+
+[gui.config.diagnostics]
+name = "Diagnostika"
+description = "Valdyti diagnostikos ataskaitų viešą įkėlimą."
+
+[gui.config.languages]
+name = "Kalbos"
+description = "Redaguoti serverio vertimus ir jų formatavimą."
+
+[gui.config.general.enabled]
+name = "Žaidimo režimo keitimas"
+description = "Leisti keisti režimą gestais, komandomis ir meniu."
+
+[gui.config.general.language]
+name = "Serverio kalba"
+description = "Numatytoji kalba žaidėjams be asmeninio pasirinkimo. Trūkstami vertimai pateikiami anglų kalba."
+
+[gui.config.metrics.enabled]
+name = "Anoniminė statistika"
+description = "Siųsti anoniminę bStats statistiką. Taip pat galioja bendras bStats išjungimas."
+
+[gui.config.gestures.double-tap-millis]
+name = "Dvigubo paspaudimo laikas"
+description = "Didžiausias laikas tarp rankų sukeitimo paspaudimų milisekundėmis. Ribos: nuo 100 iki 3000."
+
+[gui.config.gestures.sneak-tap-millis]
+name = "Stebėtojo paspaudimų laikas"
+description = "Didžiausias laikas tarp sėlinimo paspaudimų Stebėtojo režime milisekundėmis. Ribos: nuo 100 iki 3000."
+
+[gui.config.gestures.cooldown-millis]
+name = "Keitimo laukimo laikas"
+description = "Laukimas po sėkmingo režimo keitimo milisekundėmis. Ribos: nuo 0 iki 60000; 0 pašalina laukimą."
+
+[gui.config.gestures.require-empty-hands]
+name = "Reikalauti tuščių rankų"
+description = "Reikalauti, kad abi rankos būtų tuščios prieš keičiant režimą gestu."
+
+[gui.config.gestures.spectator-exit]
+name = "Išėjimas iš Stebėtojo"
+description = "Tikslas po trijų atskirų sėlinimo paspaudimų Stebėtojo režime."
+
+[gui.config.gestures.normal.survival]
+name = "Iš Išlikimo"
+description = "Tikslas dukart paspaudus rankų sukeitimo klavišą režime Išlikimas."
+
+[gui.config.gestures.normal.creative]
+name = "Iš Kūrybinio"
+description = "Tikslas dukart paspaudus rankų sukeitimo klavišą režime Kūryba."
+
+[gui.config.gestures.normal.adventure]
+name = "Iš Nuotykių"
+description = "Tikslas dukart paspaudus rankų sukeitimo klavišą režime Nuotykiai."
+
+[gui.config.gestures.sneaking.survival]
+name = "Iš Išlikimo"
+description = "Tikslas sėlinant ir dukart paspaudus rankų sukeitimo klavišą režime Išlikimas."
+
+[gui.config.gestures.sneaking.creative]
+name = "Iš Kūrybinio"
+description = "Tikslas sėlinant ir dukart paspaudus rankų sukeitimo klavišą režime Kūryba."
+
+[gui.config.gestures.sneaking.adventure]
+name = "Iš Nuotykių"
+description = "Tikslas sėlinant ir dukart paspaudus rankų sukeitimo klavišą režime Nuotykiai."
+
+[gui.config.restrictions.disabled-worlds]
+name = "Išjungti pasauliai"
+description = "Pasaulių pavadinimai, kuriuose gestai, komandos ir meniu negali keisti režimo. Didžiosios ir mažosios raidės nesvarbios."
+input = "Įveskite pasaulių pavadinimų sąrašą, pavyzdžiui, [\"world_nether\", \"world_the_end\"]. [] pašalina pasaulių apribojimus."
+
+[gui.config.feedback.auto-fly-creative]
+name = "Skristi įjungus Kūrybinį"
+description = "Pradėti skristi įjungus Kūrybinį režimą, jei žaidėjui leidžiama skristi."
+
+[gui.config.feedback.sound-enabled]
+name = "Keitimo garsas"
+description = "Leisti patvirtinimo garsą po sėkmingo režimo keitimo."
+
+[gui.config.diagnostics.upload-enabled]
+name = "Viešos diagnostikos ataskaitos"
+description = "Leisti viešai įkelti diagnostikos ataskaitas. upload=false išsaugo ataskaitą vietoje."
+
+[gui.config.feedback.chat-enabled]
+name = "Pokalbio pranešimai"
+description = "Rodyti sėkmingus keitimus ir Stebėtojo patarimus pokalbyje. Išjungus klaidų priežastys rodomos veiksmų juostoje."
+
+[gui.config.feedback.action-bar-enabled]
+name = "Veiksmų juostos pranešimas"
+description = "Rodyti naują režimą virš greitosios juostos ir išėjimo patarimą Stebėtojui."
+
+[gui.config.feedback.title-enabled]
+name = "Antraštės pranešimas"
+description = "Rodyti naują režimą ekrano centre ir išėjimo patarimą Stebėtojui."
+
+[gui.config.feedback.popup-duration-ticks]
+name = "Pranešimų trukmė"
+description = "Antraštės ir veiksmų juostos trukmė taktais; 20 taktų = 1 sekundė. Ribos: nuo 1 iki 200."
+
+[gui.config.feedback.sound]
+name = "Garso raktas"
+description = "Garsas po sėkmingo režimo keitimo."
+input = "Įveskite garso raktą su vardų sritimi, pavyzdžiui, minecraft:ui.button.click arba minecraft:entity.experience_orb.pickup. Leidžiami pasirinktinių išteklių paketų raktai."
+
+[gui.config.feedback.sound-volume]
+name = "Garsumas"
+description = "Keitimo garso garsumas. Ribos: nuo 0 iki 1; 0 yra tyla."
+
+[gui.config.feedback.sound-pitch]
+name = "Garso aukštis"
+description = "Keitimo garso aukštis. Ribos: nuo 0.5 iki 2; 1 naudoja pradinį aukštį."

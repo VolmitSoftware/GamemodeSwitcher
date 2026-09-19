@@ -1,3 +1,49 @@
-name: ${project.name}
-version: ${project.version}
+name: ${name}
+version: ${version}
 main: com.volmit.gsw.GamemodeSwitcher
+api-version: '1.20'
+folia-supported: true
+authors: [Volmit Software]
+website: https://volmit.com
+description: Permission-aware gamemode switching with configurable gestures and in-game menus.
+commands:
+  gamemodeswitcher:
+    aliases: [gsw]
+    description: GamemodeSwitcher help and controls
+    usage: /gsw
+permissions:
+  gamemodeswitcher.command:
+    description: View help and status
+    default: true
+  gamemodeswitcher.use:
+    description: Use gestures, the selector, and personal switching commands
+    default: op
+  gamemodeswitcher.mode.survival:
+    description: Switch to survival
+    default: op
+  gamemodeswitcher.mode.creative:
+    description: Switch to creative
+    default: op
+  gamemodeswitcher.mode.adventure:
+    description: Switch to adventure
+    default: op
+  gamemodeswitcher.mode.spectator:
+    description: Switch to spectator
+    default: op
+  gamemodeswitcher.mode.*:
+    description: Switch to every gamemode
+    default: op
+    children:
+      gamemodeswitcher.mode.survival: true
+      gamemodeswitcher.mode.creative: true
+      gamemodeswitcher.mode.adventure: true
+      gamemodeswitcher.mode.spectator: true
+  gamemodeswitcher.config:
+    description: Edit server configuration and translations
+    default: op
+  gamemodeswitcher.language.self:
+    description: Select a personal language
+    default: true
+  gamemodeswitcher.debug:
+    description: Create diagnostic reports and request configured public uploads
+    default: op

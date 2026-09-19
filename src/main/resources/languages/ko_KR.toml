@@ -1,0 +1,517 @@
+# GamemodeSwitcher — ko_KR
+#
+# === 파일 편집 ===
+# plugins/GamemodeSwitcher/languages/ko_KR.toml
+# 이 파일을 직접 편집할 수 있습니다. 로컬 변경은 유지되며, 누락되거나 잘못된 항목에는 내장 영어를 사용합니다.
+# /gsw language server edit ko_KR
+#
+# === 접두사 ===
+# {prefix}  전역 runtime.prefix 값입니다. 개별 메시지에서 {prefix}를 제거하면 그 메시지에서만 숨겨집니다
+#
+# === 서식 ===
+# 색상: &0-&f, &k-&r, &#RRGGBB, &xRRGGBB, &x&R&R&G&G&B&B, [RRGGBB]. 사용자 지정 서식에는 MiniMessage도 사용할 수 있습니다.
+# & 또는 [ 앞에 백슬래시를 붙이면 문자를 그대로 표시합니다.
+#
+# === 변수 ===
+# 변수 이름을 변경하지 말고 각 메시지에 원래 있는 변수만 사용하세요.
+#   {after}  변경 후 가치
+#   {argument}  예상하지 못한 인수
+#   {before}  변경 전의 값
+#   {command}  명령 경로
+#   {count}  일치하는 항목의 수
+#   {enabled}  게임 모드 전환 활성화 상태
+#   {group}  언어 편집기 분류
+#   {hot_reload}  핫 리로드 상태
+#   {key}  매개변수 키
+#   {language}  활성 언어
+#   {line}  소스 라인 또는 라인 번호
+#   {locale}  로케일
+#   {maximum}  최대 허용 값
+#   {mode}  게임 모드 이름
+#   {new}  새 값
+#   {number}  항목 번호
+#   {old}  이전 값
+#   {page}  현재 페이지 번호
+#   {pages}  전체 페이지 수
+#   {parameter}  매개변수 이름
+#   {path}  로컬 보고서 경로
+#   {permission}  필요한 권한
+#   {personal}  개인 로케일
+#   {plugin}  Plugin 이름
+#   {prefix}  전역 runtime.prefix 값입니다. 개별 메시지에서 {prefix}를 제거하면 그 메시지에서만 숨겨집니다
+#   {reason}  실패 이유
+#   {scheduler}  스케줄러
+#   {seconds}  남은 재사용 대기 또는 확인 시간(초)
+#   {section}  언어 편집기 섹션
+#   {setting}  설정 이름
+#   {step}  일반 클릭 한 번으로 변경되는 수치
+#   {state}  개인 동작 또는 알림 상태
+#   {target}  대상 플레이어, 단체, 또는 가치
+#   {type}  형식
+#   {url}  공개 URL
+#   {value}  현재값, 기본값 또는 원시값
+#   {variables}  사용 가능한 자리표시자
+#   {version}  플러그인 버전
+#   {world}  월드
+
+[command.description]
+version = "GamemodeSwitcher 버전 표시"
+config = "설정"
+debug = "GamemodeSwitcher 진단 도구"
+debug_dump = "포괄적인GamemodeSwitcher진단 보고서 생성"
+language = "언어"
+menu = "게임 모드"
+root = "게임 모드"
+set = "게임 모드"
+status = "게임 모드"
+toggle = "동작"
+
+[command.feedback]
+failed = "{prefix}&c명령을 완료할 수 없습니다. 자세한 내용은 콘솔을 참조하십시오.&r"
+
+[command.feedback.config]
+opened = "{prefix}&a게임 내 전체 구성 편집기를 열었습니다.&r"
+save_failed = "{prefix}&c&f{setting}&r&c적용할 수 없습니다:{reason}&r"
+saved = "{prefix}&a{setting}&r&7을(를) &f{old}&r&7에서 &f{new}&r&7(으)로 변경했습니다.&r"
+
+[command.parameter]
+enabled = "활성화 / 비활성화"
+mode = "서바이벌, 크리에이티브, 모험, 관전자"
+upload = "공개 업로드가 활성화된 경우 보고서 업로드"
+
+[command.status]
+compatibility = "&7아티팩트:&r&fJava 17 / Bukkit 1.20.1+&r&8|&r&7스케줄러:&r&f{scheduler}&r"
+config = "&7게임 모드:&r {enabled} &8|&r &7언어:&r {language} &8|&r &7설정 및 언어 다시 불러오기:&r {hot_reload}"
+header = "&6&lGamemodeSwitcher&r"
+player = "&7동작:&r {state} &8|&r &7게임 모드:&r {mode}"
+
+[config.editor]
+adjust = "좌클릭 +{step}, 우클릭 -{step}, Shift x10, Q로 정확한 값 입력."
+back = "뒤로"
+close = "닫기"
+current = "현재 값: {value}"
+edit = "클릭하여 채팅에 새 값을 입력합니다."
+empty = "이 섹션에는 설정이 없습니다."
+entry = "항목 {number}"
+expired = "설정 입력 시간이 만료되었습니다."
+failed = "설정을 편집할 수 없습니다: {reason}"
+loading = "설정을 불러오는 중..."
+next = "다음 페이지"
+no-permission = "이 설정을 편집할 권한이 없습니다."
+open = "클릭하여 이 섹션을 엽니다."
+page = "{page} / {pages} 페이지"
+player-only = "게임 안에서 설정 편집기를 여세요."
+previous = "이전 페이지"
+prompt = "{path}의 새 값을 입력하세요. 돌아가려면 cancel을 입력하세요."
+refresh = "새로 고침"
+saved = "{path}을(를) 저장했습니다. 변경 사항은 자동으로 적용됩니다."
+saving = "설정을 저장하는 중..."
+section = "섹션: {path}"
+title = "{plugin} / 설정"
+toggle = "클릭하여 true와 false를 전환합니다."
+too-long = "최대 {maximum}자까지 입력하세요."
+
+[config.editor.type]
+decimal = "0.25와 같은 숫자를 입력하세요."
+integer = "정수를 입력하세요."
+list = "[\"stone\", \"deepslate\"]와 같은 TOML 목록을 사용하세요."
+text = "텍스트 양쪽에 따옴표를 붙이지 마세요."
+
+[debug]
+preparing = "{plugin}의 진단 보고서를 준비하는 중..."
+saved = "{plugin}의 진단 보고서를 {path}에 저장했습니다."
+
+[debug.action]
+copy-path = "로컬 경로 복사"
+copy-path-description = "로컬 보고서 경로를 복사합니다."
+open = "열기: {url}"
+open-description = "업로드한 진단 보고서를 엽니다."
+
+[debug.error]
+already-preparing = "{plugin}의 진단 보고서를 이미 준비 중입니다."
+already-preparing-short = "진단 보고서를 이미 준비 중입니다."
+capture-failed = "진단 보고서 데이터를 수집할 수 없습니다. 서버 콘솔을 확인하세요."
+closed-before-capture = "보고서 데이터를 수집하기 전에 진단 제공자가 종료되었습니다."
+closed-before-write = "보고서를 쓰기 전에 진단 제공자가 종료되었습니다."
+missing-permission = "권한이 없습니다: {permission}"
+provider-closed = "진단 제공자가 종료되었습니다."
+schedule-failed = "진단 보고서 생성 작업을 예약할 수 없습니다."
+write-failed = "진단 보고서를 쓸 수 없습니다. 서버 콘솔을 확인하세요."
+writer-schedule-failed = "진단 보고서 쓰기 작업을 예약할 수 없습니다."
+
+[debug.upload]
+completed = "VolmitSoftware - {plugin} - v{version} 이름으로 업로드했습니다."
+failed = "진단 보고서 업로드에 실패했습니다. 로컬 보고서는 저장되어 있습니다."
+interrupted = "진단 보고서 업로드가 중단되었습니다. 로컬 보고서는 저장되어 있습니다."
+
+[director.help]
+category = "명령어 카테고리"
+command_group = "명령어 그룹입니다. 클릭하여 엽니다."
+no_description = "설명이 없습니다"
+no_parameters = "매개변수가 없습니다. 클릭하여 명령어를 미리 입력합니다."
+no_subcommands = "이 페이지에는 하위 명령어가 없습니다."
+parameters_hover = "매개변수 위에 마우스를 올리면 자세한 내용을 볼 수 있습니다."
+
+[director.help.navigation]
+back = "뒤로"
+page = "페이지"
+
+[director.help.navigation.next]
+hover = "다음 페이지"
+
+[director.help.navigation.parent]
+hover = "상위 명령어 그룹으로 돌아가기"
+
+[director.help.navigation.previous]
+hover = "이전 페이지"
+
+[director.help.parameter]
+default = "지정하지 않으면 기본값은 \"{value}\"입니다."
+optional = "이 매개변수는 선택 사항입니다."
+required = "이 매개변수는 필수입니다."
+type = "이 매개변수의 유형은 {type}입니다."
+
+[director.runtime.error]
+conversion_failed = "\"{value}\" 값을 {parameter}용 {type} 형식으로 변환할 수 없습니다"
+default_parse_failed = "매개변수 {parameter}의 기본값을 분석할 수 없습니다"
+execution_failed = "명령어 {command} 실행에 실패했습니다: {reason}"
+invalid_origin = "이 실행 위치에서는 이 명령어를 실행할 수 없습니다."
+missing_argument = "인수 \"{parameter}\" ({type})가 필요합니다"
+unclosed_group = "매개변수 {key}의 닫는 \"]\"가 누락되었습니다"
+unexpected_argument = "예상하지 못한 인수 \"{argument}\". 선택적 매개변수는 키와 함께 지정해야 합니다. 예: seed=123"
+unknown_parameter = "알 수 없는 매개변수 키: {key}"
+
+[gesture]
+normal = "&7보조 손 교체 키 두 번 누르기: {mode}&r"
+sneaking = "&7웅크리기를 누른 채 보조 손 교체 키 두 번 누르기: {mode}&r"
+spectator = "&7웅크리기 키를 따로 세 번 누르기: {mode}&r"
+rebind = "&7설정 > 조작 > 키 설정에서 보조 손 교체(기본 F)와 웅크리기(왼쪽 Shift)를 바꿀 수 있습니다.&r"
+personal_disabled = "&e개인 동작이 꺼져 있습니다. 여기 또는 /gsw toggle true 로 켜세요.&r"
+empty_hands = "&7동작을 사용하려면 양손이 비어 있어야 합니다.&r"
+help = "&7손 바꾸기 키(기본 F)를 두 번 눌러 모드를 바꾸세요. 웅크린 상태에서는 다른 동작을 수행하며, 웅크리기를 세 번 누르면 관전자 모드를 나갑니다. 전환 대상은 서버 설정에 따릅니다.&r"
+
+[gui.title]
+root = "<gradient:#634514:#2f523f>GSW</gradient> <color:#404040>설정</color>"
+
+[language.editor]
+title = "{plugin} › {section}"
+loading = "{locale} 메시지를 불러오는 중..."
+
+[language.editor.category]
+message-count = "&7메시지 {count}개&r"
+open = "&8클릭하여 이 그룹을 엽니다.&r"
+
+[language.editor.error]
+no-permission = "{plugin}의 언어를 편집할 권한이 없습니다."
+unable-to-edit = "편집하지 못했습니다: {reason}"
+
+[language.editor.input]
+expired = "언어 편집기의 입력 시간이 만료되었습니다."
+too-long = "입력은 최대 {maximum}자까지 가능합니다."
+unable-to-save = "저장하지 못했습니다: {reason}"
+
+[language.editor.locale]
+open = "&8클릭하여 이 언어를 엽니다.&r"
+
+[language.editor.message]
+current-value = "&7현재 값:&r"
+edit-chat = "&7클릭하여 채팅에서 편집합니다.&r"
+edit-lines = "&7클릭하여 개별 줄을 편집합니다.&r"
+edit-plural = "&7클릭하여 복수형을 편집합니다.&r"
+variables = "&8{variables}&r"
+
+[language.editor.navigation]
+back = "&e뒤로&r"
+close = "&c닫기&r"
+next-page = "&e다음 페이지&r"
+previous-page = "&e이전 페이지&r"
+
+[language.editor.part]
+line = "{line}번째 줄"
+
+[language.editor.prompt]
+current = "현재 값: {value}"
+guidance = "줄바꿈에는 \\n, 역슬래시에는 \\\\를 사용하세요. 돌아가려면 cancel을 입력하세요."
+search = "메시지 키 또는 내용을 검색하세요. 돌아가려면 cancel을 입력하세요."
+value = "채팅에 {key}의 새 값을 입력하세요."
+variables = "변수: {variables}"
+
+[language.editor.saved]
+change = "{key}: “{before}”에서 “{after}”로 변경했습니다."
+summary = "{locale}을 저장했습니다. 언어 선택은 변경되지 않았습니다."
+
+[language.editor.search]
+clear = "검색 지우기"
+messages = "메시지 검색"
+messages-lore = "클릭하여 모든 메시지를 검색합니다."
+
+[language.editor.section]
+group-title = "{locale} / {group}"
+languages = "언어"
+search = "검색"
+search-title = "{locale} / 검색"
+
+[language.editor.value]
+empty = "(비어 있음)"
+none = "없음"
+
+[language.error]
+editor-player-only = "게임 안에서 언어 편집기를 여세요."
+no-providers = "사용 가능한 Volmit 언어 제공자가 없습니다."
+numeric-page = "페이지 번호를 숫자로 입력하세요."
+personal-permission = "개인 언어를 선택할 권한이 없습니다."
+personal-player-only = "개인 언어는 게임 안에서 선택해야 합니다."
+plugin-personal-permission = "{plugin}의 개인 언어를 선택할 권한이 없습니다."
+plugin-server-permission = "{plugin}의 서버 언어를 변경할 권한이 없습니다."
+server-locale-required = "서버 기본 언어로 en_US 같은 언어 코드를 선택하세요."
+stopping = "플러그인이 중지되는 동안에는 언어를 선택할 수 없습니다."
+unavailable-for-all = "{locale} 언어는 선택한 모든 플러그인에서 지원되는 것은 아닙니다."
+
+[language.menu]
+all-volmit-plugins = "모든 Volmit 플러그인"
+command = "명령어: {command}"
+current = "현재: {locale}"
+current_with_personal = "현재: {locale} (내 언어: {personal})"
+edit_description = "언어별 메시지 편집기를 엽니다."
+edit_messages = "언어 메시지 편집"
+no_controls = "사용할 수 있는 언어 설정이 없습니다."
+remove_personal_description = "개인 언어 선택을 제거합니다."
+reset_description = "서버 기본 언어를 사용합니다."
+reset_your_language = "내 언어 재설정"
+select_description = "클릭하여 이 언어를 선택합니다."
+selected = "선택됨"
+server_default = "서버 기본값"
+server_description = "서버 기본 언어를 변경합니다."
+use_server_default = "서버 기본값 사용"
+your_description = "나에게 표시되는 메시지만 변경합니다."
+your_language = "내 언어"
+
+[language.selection]
+english-fallback = "{plugin}: {locale}을 사용할 수 없어 영어(en_US)를 사용합니다."
+personal-selected = "{plugin}: 개인 언어를 {locale}으로 변경했습니다."
+preparing = "{target}의 {locale} 언어를 준비하는 중..."
+save-failed = "{plugin}: 언어 선택을 저장하지 못했습니다. 서버 콘솔을 확인하세요."
+server-default-selected = "{plugin}: 개인 언어가 이제 서버 기본 언어를 따릅니다."
+server-selected = "{plugin}: 서버 언어를 {locale}으로 변경했습니다."
+
+[language.usage]
+editor = "사용법: /{command} language server edit [locale]"
+selection = "사용법: /{command} language self [locale|reset] or server [locale]"
+volmit-selection = "사용법: /volmit plugins languages [locale]"
+
+[menu]
+feedback = "&6개인 알림&r"
+feedback_help = "&7자신에게 표시되는 전환 메시지, 제목, 소리를 끕니다.&r"
+back = "&7게임 모드로 돌아가기&r"
+selected = "&a선택됨&r"
+survival_help = "&7자원을 모으고 체력과 배고픔을 관리합니다.&r"
+creative_help = "&7무제한 자원과 크리에이티브 비행으로 건축합니다.&r"
+adventure_help = "&7블록 파괴와 설치가 제한된 맵을 탐험합니다.&r"
+spectator_help = "&7월드를 관찰하고 블록을 통과합니다.&r"
+config_help = "&7서버 설정을 편집합니다. 변경 사항은 즉시 적용됩니다.&r"
+language_help = "&7메시지와 메뉴에 사용할 언어를 선택합니다.&r"
+close = "닫기"
+config = "&6설정&r"
+current = "&7게임 모드: &f{mode}&r"
+gestures = "&6동작&r"
+language = "&a언어&r"
+select = "&7클릭하여 선택하세요.&r"
+title = "<gradient:#634514:#2f523f>게임 모드</gradient>"
+toggle_disabled = "&7동작: &c비활성화&r"
+toggle_enabled = "&7동작: &a활성화&r"
+toggle_help = "&7클릭하여 동작을 켜거나 끄세요.&r"
+unavailable = "&c이 게임 모드는 선택할 수 없습니다.&r"
+
+[mode]
+adventure = "모험"
+creative = "크리에이티브"
+spectator = "관전자"
+survival = "서바이벌"
+
+[preferences]
+title = "<gradient:#634514:#2f523f>개인 알림</gradient>"
+chat = "&6채팅 메시지&r"
+action_bar = "&6액션 바&r"
+screen_title = "&6화면 제목&r"
+sound = "&6전환 소리&r"
+muted = "&c개인 알림 꺼짐&r"
+inherit = "&7서버 설정 사용: {state}&r"
+toggle = "&7클릭하여 끄기와 서버 설정 사이를 전환합니다.&r"
+silence = "&6모두 끄기&r"
+silence_help = "&7성공한 전환의 메시지, 제목, 소리를 모두 끕니다.&r"
+reset = "&a서버 설정 사용&r"
+reset_help = "&7모든 개인 알림 끄기 설정을 해제합니다.&r"
+failures = "&7채팅을 꺼도 차단된 전환의 이유는 액션 바에 표시됩니다.&r"
+failed = "{prefix}&c설정을 저장하지 못했습니다. 콘솔을 확인하세요.&r"
+
+[runtime]
+player_only = "{prefix}&c이 명령은 플레이어만 사용할 수 있습니다.&r"
+prefix = "<gradient:#e9bd68:#85d6b0><bold>GamemodeSwitcher</bold></gradient> &8â€º&r "
+
+[runtime.hot_reload]
+failed = "{prefix}&c파일 변경이 거부되었습니다; 마지막 정상 설정이 유지됩니다.&r"
+success = "{prefix}&a적용된 구성 및 언어 파일 변경사항.&r"
+
+[runtime.permission]
+denied = "{prefix}&c당신은 그것을 수행할 권한이 없습니다.&r"
+
+[state]
+disabled = "&c비활성화&r"
+enabled = "&a활성화&r"
+
+[switch]
+title = "<gradient:#e9bd68:#85d6b0>{mode}</gradient>"
+subtitle = "&7게임 모드를 변경했습니다.&r"
+overlay = "&7게임 모드: &f{mode}&r"
+spectator_overlay_hint = "&7관전자에서 나가려면 웅크리기 키를 세 번 누르세요.&r"
+already = "{prefix}&e이미 {mode} 모드입니다.&r"
+cancelled = "{prefix}&e다른 플러그인이 게임 모드 변경을 막았습니다.&r"
+changed = "{prefix}&a게임 모드를 {mode}(으)로 변경했습니다.&r"
+cooldown = "{prefix}&e다시 전환하기 전에 {seconds}초 기다려 주세요.&r"
+disabled = "{prefix}&e게임 모드 전환이 비활성화되어 있습니다.&r"
+empty_hands = "{prefix}&e동작을 사용하려면 양손을 비우세요.&r"
+no_permission = "{prefix}&e이 게임 모드를 사용할 권한이 없습니다.&r"
+spectator_hint = "{prefix}&e관전자 모드를 나가려면 /gsw menu 또는 /gsw set survival 명령어를 사용하세요.&r"
+world_blocked = "{prefix}&e{world}에서는 게임 모드를 바꿀 수 없습니다.&r"
+
+[toggle]
+disabled = "{prefix}&e동작을 비활성화했습니다. 명령어와 메뉴는 계속 사용할 수 있습니다.&r"
+enabled = "{prefix}&a게임 모드 동작을 활성화했습니다.&r"
+
+[gui.config.general]
+name = "일반"
+description = "게임 모드 전환을 켜고 서버 언어를 선택합니다."
+
+[gui.config.metrics]
+name = "통계"
+description = "bStats 익명 통계 전송을 설정합니다."
+
+[gui.config.gestures]
+name = "제스처 조작"
+description = "누르기 제한 시간, 대기 시간과 제스처 전환 대상을 설정합니다."
+
+[gui.config.gestures.normal]
+name = "두 번 누르기 전환 대상"
+description = "손 바꾸기 키를 두 번 눌렀을 때 각 게임 모드의 전환 대상을 선택합니다."
+
+[gui.config.gestures.sneaking]
+name = "웅크리기 전환 대상"
+description = "웅크린 상태에서 손 바꾸기 키를 두 번 눌렀을 때 각 게임 모드의 전환 대상을 선택합니다."
+
+[gui.config.restrictions]
+name = "월드 제한"
+description = "게임 모드를 전환할 수 없는 월드를 선택합니다."
+
+[gui.config.feedback]
+name = "전환 알림"
+description = "전환 메시지, 알림, 소리와 크리에이티브 비행을 선택합니다."
+
+[gui.config.diagnostics]
+name = "진단"
+description = "진단 보고서의 공개 업로드를 설정합니다."
+
+[gui.config.languages]
+name = "언어"
+description = "서버 번역과 서식을 편집합니다."
+
+[gui.config.general.enabled]
+name = "게임 모드 전환"
+description = "제스처, 명령어와 메뉴를 통한 전환을 허용합니다."
+
+[gui.config.general.language]
+name = "서버 언어"
+description = "개인 언어를 선택하지 않은 플레이어의 기본 언어입니다. 없는 번역은 영어를 사용합니다."
+
+[gui.config.metrics.enabled]
+name = "익명 통계"
+description = "bStats에 익명 통계를 전송합니다. bStats 전체 비활성화 설정도 적용됩니다."
+
+[gui.config.gestures.double-tap-millis]
+name = "두 번 누르기 제한 시간"
+description = "손 바꾸기 키 입력 사이의 최대 시간입니다. 단위는 밀리초이며 범위는 100부터 3000입니다."
+
+[gui.config.gestures.sneak-tap-millis]
+name = "관전자 누르기 제한 시간"
+description = "관전자 모드에서 웅크리기 입력 사이의 최대 시간입니다. 단위는 밀리초이며 범위는 100부터 3000입니다."
+
+[gui.config.gestures.cooldown-millis]
+name = "전환 대기 시간"
+description = "전환 성공 후 대기 시간입니다. 단위는 밀리초이고 범위는 0부터 60000이며 0은 대기 없음입니다."
+
+[gui.config.gestures.require-empty-hands]
+name = "빈손 필수"
+description = "제스처로 모드를 바꾸려면 양손이 비어 있어야 합니다."
+
+[gui.config.gestures.spectator-exit]
+name = "관전자 종료 모드"
+description = "관전자에서 웅크리기 키를 세 번 따로 눌렀을 때 전환할 모드입니다."
+
+[gui.config.gestures.normal.survival]
+name = "서바이벌에서"
+description = "서바이벌에서 손 바꾸기 키를 두 번 눌렀을 때의 전환 대상입니다."
+
+[gui.config.gestures.normal.creative]
+name = "크리에이티브에서"
+description = "크리에이티브에서 손 바꾸기 키를 두 번 눌렀을 때의 전환 대상입니다."
+
+[gui.config.gestures.normal.adventure]
+name = "모험에서"
+description = "모험에서 손 바꾸기 키를 두 번 눌렀을 때의 전환 대상입니다."
+
+[gui.config.gestures.sneaking.survival]
+name = "서바이벌에서"
+description = "서바이벌에서 웅크린 채 손 바꾸기 키를 두 번 눌렀을 때의 전환 대상입니다."
+
+[gui.config.gestures.sneaking.creative]
+name = "크리에이티브에서"
+description = "크리에이티브에서 웅크린 채 손 바꾸기 키를 두 번 눌렀을 때의 전환 대상입니다."
+
+[gui.config.gestures.sneaking.adventure]
+name = "모험에서"
+description = "모험에서 웅크린 채 손 바꾸기 키를 두 번 눌렀을 때의 전환 대상입니다."
+
+[gui.config.restrictions.disabled-worlds]
+name = "차단된 월드"
+description = "제스처, 명령어와 메뉴로 게임 모드를 바꿀 수 없는 월드 이름입니다. 대소문자를 구분하지 않습니다."
+input = "[\"world_nether\", \"world_the_end\"]처럼 월드 이름 목록을 입력하세요. []는 월드 제한이 없음을 뜻합니다."
+
+[gui.config.feedback.auto-fly-creative]
+name = "크리에이티브 진입 시 비행"
+description = "크리에이티브에 진입한 뒤 비행이 허용된 플레이어는 비행을 시작합니다."
+
+[gui.config.feedback.sound-enabled]
+name = "전환 소리"
+description = "게임 모드 전환에 성공하면 확인음을 재생합니다."
+
+[gui.config.diagnostics.upload-enabled]
+name = "진단 보고서 공개"
+description = "진단 보고서의 공개 업로드를 허용합니다. 로컬 저장은 upload=false를 사용하세요."
+
+[gui.config.feedback.chat-enabled]
+name = "채팅 메시지"
+description = "전환 성공과 관전자 안내를 채팅에 표시합니다. 끄면 실패 이유는 액션바에 표시됩니다."
+
+[gui.config.feedback.action-bar-enabled]
+name = "액션바 알림"
+description = "새 모드를 핫바 위에 표시하며 관전자에서는 종료 방법도 안내합니다."
+
+[gui.config.feedback.title-enabled]
+name = "제목 알림"
+description = "새 모드를 화면 중앙에 표시하며 관전자에서는 종료 방법도 안내합니다."
+
+[gui.config.feedback.popup-duration-ticks]
+name = "알림 표시 시간"
+description = "제목과 액션바 표시 시간은 틱 단위입니다. 20틱은 1초이며 범위는 1부터 200입니다."
+
+[gui.config.feedback.sound]
+name = "소리 키"
+description = "게임 모드 전환 성공 후 재생할 소리입니다."
+input = "minecraft:ui.button.click 또는 minecraft:entity.experience_orb.pickup 같은 네임스페이스 소리 키를 입력하세요. 사용자 리소스 팩의 키도 사용할 수 있습니다."
+
+[gui.config.feedback.sound-volume]
+name = "음량"
+description = "전환 소리의 음량입니다. 범위는 0부터 1이며 0은 무음입니다."
+
+[gui.config.feedback.sound-pitch]
+name = "음높이"
+description = "전환 소리의 음높이입니다. 범위는 0.5부터 2이며 1은 원래 높이입니다."

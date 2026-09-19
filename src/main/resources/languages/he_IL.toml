@@ -1,0 +1,517 @@
+# GamemodeSwitcher — he_IL
+#
+# === עריכת הקובץ ===
+# plugins/GamemodeSwitcher/languages/he_IL.toml
+# אפשר לערוך קובץ זה ישירות. שינויים מקומיים נשמרים; ערכים חסרים או לא תקינים משתמשים באנגלית המובנית.
+# /gsw language server edit he_IL
+#
+# === קידומת ===
+# {prefix}  הערך הגלובלי runtime.prefix. הסירו את {prefix} מהודעה מסוימת כדי להסתיר אותה רק שם
+#
+# === עיצוב ===
+# צבעים: &0-&f, &k-&r, &#RRGGBB, &xRRGGBB, &x&R&R&G&G&B&B וגם [RRGGBB]. ניתן להשתמש גם ב-MiniMessage לעיצוב מותאם.
+# כדי להציג & או [ כלשונם, יש להוסיף לפניהם לוכסן הפוך.
+#
+# === משתנים ===
+# יש לשמור על שמות המשתנים ולהשתמש רק במשתנים הקיימים בכל הודעה.
+#   {after}  ערך לאחר השינוי
+#   {argument}  ארגומנט לא צפוי
+#   {before}  ערך לפני השינוי
+#   {command}  נתיב פקודה
+#   {count}  מספר הערכים
+#   {enabled}  מצב החלפת מצבי המשחק
+#   {group}  קטגוריה בעורך השפה
+#   {hot_reload}  מצב טעינה חמה
+#   {key}  מפתח פרמטר
+#   {language}  שפה פעילה
+#   {line}  מקור או קו מספר
+#   {locale}  אזור שפה
+#   {maximum}  ערך מותר מקסימלי
+#   {mode}  שם מצב המשחק
+#   {new}  הערך החדש
+#   {number}  מספר הרשומה
+#   {old}  הערך הקודם
+#   {page}  מספר העמוד הנוכחי
+#   {pages}  מספר העמודים הכולל
+#   {parameter}  שם פרמטר
+#   {path}  נתיב דוח מקומי
+#   {permission}  ההרשאה הנדרשת
+#   {personal}  אזור השפה האישי
+#   {plugin}  שם Plugin
+#   {prefix}  הערך הגלובלי runtime.prefix. הסירו את {prefix} מהודעה מסוימת כדי להסתיר אותה רק שם
+#   {reason}  סיבת כשל
+#   {scheduler}  מתזמן
+#   {seconds}  זמן ההמתנה או האישור שנותר בשניות
+#   {section}  מקטע בעורך השפות
+#   {setting}  שם הגדרה
+#   {step}  שינוי בהגדרה מספרית בלחיצה רגילה אחת
+#   {state}  מצב אישי של מחוות או התראות
+#   {target}  שחקן היעד, הישות או הערך
+#   {type}  סוג
+#   {url}  כתובת דוח ציבורית
+#   {value}  ערך נוכחי, ברירת מחדל או גולמי
+#   {variables}  מצייני מקום תקינים
+#   {version}  גרסת התוסף
+#   {world}  עולם
+
+[command.description]
+version = "הצגת הגרסה של GamemodeSwitcher"
+config = "הגדרות"
+debug = "כלי האבחון של GamemodeSwitcher"
+debug_dump = "יצירת דוח אבחון מקיף של GamemodeSwitcher"
+language = "שפה"
+menu = "מצבי משחק"
+root = "מצבי משחק"
+set = "מצב משחק"
+status = "מצב משחק"
+toggle = "מחוות"
+
+[command.feedback]
+failed = "{prefix}&cלא ניתן להשלים את הפקודה. פרטים נוספים מופיעים במסוף.&r"
+
+[command.feedback.config]
+opened = "{prefix}&aעורך התצורה המלא בתוך המשחק נפתח.&r"
+save_failed = "{prefix}&cלא ניתן להחיל את &f{setting}&r&c: {reason}&r"
+saved = "{prefix}&a{setting}&r &7שונה מ-&f{old}&r &7ל-&f{new}&r&7.&r"
+
+[command.parameter]
+enabled = "מופעל / מושבת"
+mode = "הישרדות, יצירתי, הרפתקה, צופה"
+upload = "העלאת הדוח כאשר העלאות ציבוריות מופעלות"
+
+[command.status]
+compatibility = "&7קובץ בנוי:&r &fJava 17 / Bukkit 1.20.1+&r &8|&r &7מתזמן:&r &f{scheduler}&r"
+config = "&7מצב משחק:&r {enabled} &8|&r &7שפה:&r {language} &8|&r &7טעינה מחדש של הגדרות ושפות:&r {hot_reload}"
+header = "&6&lGamemodeSwitcher&r"
+player = "&7מחוות:&r {state} &8|&r &7מצב משחק:&r {mode}"
+
+[config.editor]
+adjust = "שמאל +{step}, ימין -{step}, Shift x10, Q להזנת ערך מדויק."
+back = "חזרה"
+close = "סגירה"
+current = "ערך נוכחי: {value}"
+edit = "לחיצה להזנת ערך חדש בצ'אט."
+empty = "אין הגדרות בסעיף הזה."
+entry = "רשומה {number}"
+expired = "תם הזמן להזנת ההגדרה."
+failed = "לא ניתן לערוך את ההגדרות: {reason}"
+loading = "ההגדרות נטענות..."
+next = "העמוד הבא"
+no-permission = "אין לך הרשאה לערוך את ההגדרות האלה."
+open = "לחיצה לפתיחת הסעיף הזה."
+page = "עמוד {page} מתוך {pages}"
+player-only = "יש לפתוח את עורך ההגדרות מתוך המשחק."
+previous = "העמוד הקודם"
+prompt = "יש להזין ערך חדש עבור {path}. לחזרה יש להקליד cancel."
+refresh = "רענון"
+saved = "{path} נשמר. השינויים יחולו אוטומטית."
+saving = "ההגדרות נשמרות..."
+section = "סעיף: {path}"
+title = "{plugin} / הגדרות"
+toggle = "לחיצה להחלפה בין true ל-false."
+too-long = "ניתן להזין עד {maximum} תווים."
+
+[config.editor.type]
+decimal = "יש להזין מספר, למשל 0.25."
+integer = "יש להזין מספר שלם."
+list = "יש להשתמש ברשימת TOML, למשל [\"stone\", \"deepslate\"]."
+text = "טקסט ללא מירכאות מסביב."
+
+[debug]
+preparing = "מכין דוח אבחון של {plugin}..."
+saved = "דוח האבחון של {plugin} נשמר בנתיב {path}."
+
+[debug.action]
+copy-path = "העתקת הנתיב המקומי"
+copy-path-description = "העתקת הנתיב של הדוח המקומי."
+open = "פתיחה: {url}"
+open-description = "פתיחת דוח האבחון שהועלה."
+
+[debug.error]
+already-preparing = "כבר מתבצעת הכנת דוח אבחון עבור {plugin}."
+already-preparing-short = "כבר מתבצעת הכנת דוח אבחון."
+capture-failed = "לא ניתן לאסוף את נתוני דוח האבחון; יש לבדוק את מסוף השרת."
+closed-before-capture = "ספק האבחון נסגר לפני איסוף נתוני הדוח."
+closed-before-write = "ספק האבחון נסגר לפני כתיבת הדוח."
+missing-permission = "חסרה הרשאה: {permission}"
+provider-closed = "ספק האבחון נסגר."
+schedule-failed = "לא ניתן לתזמן את הכנת דוח האבחון."
+write-failed = "לא ניתן לכתוב את דוח האבחון; יש לבדוק את מסוף השרת."
+writer-schedule-failed = "לא ניתן לתזמן את כתיבת דוח האבחון."
+
+[debug.upload]
+completed = "הועלה בשם VolmitSoftware - {plugin} - v{version}."
+failed = "העלאת דוח האבחון נכשלה; הדוח המקומי נשמר."
+interrupted = "העלאת דוח האבחון הופסקה; הדוח המקומי נשמר."
+
+[director.help]
+category = "קטגוריית פקודות"
+command_group = "קבוצת פקודות. לחצו כדי לפתוח."
+no_description = "לא סופק תיאור"
+no_parameters = "אין פרמטרים. לחצו כדי למלא את הפקודה מראש."
+no_subcommands = "אין פקודות משנה בעמוד זה."
+parameters_hover = "רחפו מעל הפרמטרים כדי ללמוד עוד."
+
+[director.help.navigation]
+back = "חזרה"
+page = "עמוד"
+
+[director.help.navigation.next]
+hover = "העמוד הבא"
+
+[director.help.navigation.parent]
+hover = "חזרה לקבוצת פקודות האב"
+
+[director.help.navigation.previous]
+hover = "העמוד הקודם"
+
+[director.help.parameter]
+default = "ברירת המחדל היא \"{value}\" אם לא הוגדר."
+optional = "פרמטר זה הוא אופציונלי."
+required = "פרמטר זה הוא חובה."
+type = "פרמטר זה הוא מסוג {type}."
+
+[director.runtime.error]
+conversion_failed = "לא ניתן להמיר את \"{value}\" ל-{type} עבור {parameter}"
+default_parse_failed = "לא ניתן לנתח את ערך ברירת המחדל של הפרמטר {parameter}"
+execution_failed = "הפעלת הפקודה {command} נכשלה: {reason}"
+invalid_origin = "לא ניתן להריץ פקודה זו ממקור זה."
+missing_argument = "חסר ארגומנט \"{parameter}\" ({type})"
+unclosed_group = "חסר סוגר \"]\" עבור הפרמטר {key}"
+unexpected_argument = "ארגומנט לא צפוי \"{argument}\". פרמטרים אופציונליים חייבים להינתן עם מפתח, לדוגמה seed=123"
+unknown_parameter = "מפתח פרמטר לא ידוע: {key}"
+
+[gesture]
+normal = "&7לחצו פעמיים על החלפה ליד המשנית: {mode}&r"
+sneaking = "&7החזיקו התגנבות ולחצו פעמיים על החלפה ליד המשנית: {mode}&r"
+spectator = "&7לחצו על התגנבות שלוש פעמים בנפרד: {mode}&r"
+rebind = "&7שנו את מקשי ההחלפה ליד המשנית (F) וההתגנבות (Shift שמאלי) באפשרויות > מקשים.&r"
+personal_disabled = "&eהמחוות שלכם כבויות. הפעילו אותן כאן או באמצעות /gsw toggle true.&r"
+empty_hands = "&7שתי הידיים חייבות להיות ריקות לשימוש במחוות.&r"
+help = "&7יש ללחוץ פעמיים על מקש החלפת הידיים (F כברירת מחדל) כדי להחליף מצב. יש להתכופף תוך כדי לפעולה החלופית; לחיצה על התכופפות שלוש פעמים יוצאת ממצב צופה. מצבי היעד נקבעים בהגדרות השרת.&r"
+
+[gui.title]
+root = "<gradient:#634514:#2f523f>GSW</gradient> <color:#404040>הגדרות</color>"
+
+[language.editor]
+title = "{plugin} › {section}"
+loading = "טוען הודעות עבור {locale}..."
+
+[language.editor.category]
+message-count = "&7{count} הודעות&r"
+open = "&8לחץ לפתוח קטגוריה זו.&r"
+
+[language.editor.error]
+no-permission = "אין לך הרשאה לערוך את השפות של {plugin}."
+unable-to-edit = "לא ניתן לערוך: {reason}"
+
+[language.editor.input]
+expired = "זמן ההזנה בעורך השפה פג."
+too-long = "הקלט יכול להכיל לכל היותר {maximum} תווים."
+unable-to-save = "לא ניתן לשמור: {reason}"
+
+[language.editor.locale]
+open = "&8לחץ לפתוח את השפה.&r"
+
+[language.editor.message]
+current-value = "&7ערך נוכחי:&r"
+edit-chat = "&7לחיצה לעריכה בצ׳אט.&r"
+edit-lines = "&7לחיצה לעריכת שורות בודדות.&r"
+edit-plural = "&7לחיצה לעריכת צורת רבים.&r"
+variables = "&8{variables}&r"
+
+[language.editor.navigation]
+back = "&eחזרה&r"
+close = "&cסגור&r"
+next-page = "&eדף הבא&r"
+previous-page = "&eהעמוד הקודם&r"
+
+[language.editor.part]
+line = "שורה {line}"
+
+[language.editor.prompt]
+current = "ערך נוכחי: {value}"
+guidance = "יש להשתמש ב־\\n לשורה חדשה וב־\\\\ ללוכסן הפוך, או להקליד cancel כדי לחזור."
+search = "יש לחפש מפתח הודעה או טקסט. לחזרה, יש להקליד cancel."
+value = "יש להקליד בצ׳אט ערך חדש עבור {key}."
+variables = "משתנים: {variables}"
+
+[language.editor.saved]
+change = "{key}: הערך ״{before}״ הוחלף ב־״{after}״."
+summary = "{locale} נשמרה. בחירות השפה לא השתנו."
+
+[language.editor.search]
+clear = "ניקוי החיפוש"
+messages = "חיפוש הודעות"
+messages-lore = "לחיצה לחיפוש בכל ההודעות."
+
+[language.editor.section]
+group-title = "{locale} / {group}"
+languages = "שפות"
+search = "חיפוש"
+search-title = "{locale} / חיפוש"
+
+[language.editor.value]
+empty = "(ריק)"
+none = "אין"
+
+[language.error]
+editor-player-only = "פתח את עורך השפה במשחק."
+no-providers = "אין ספקי שפה זמינים של Volmit."
+numeric-page = "יש להזין מספר עמוד."
+personal-permission = "אין לך רשות לבחור את השפה שלך."
+personal-player-only = "יש לבחור העדפות שפה של שחקן במשחק."
+plugin-personal-permission = "אין לך הרשאה לבחור שפה אישית עבור {plugin}."
+plugin-server-permission = "אין לך הרשאה לשנות את שפת השרת עבור {plugin}."
+server-locale-required = "יש לבחור קוד שפה כגון en_US כשפת ברירת המחדל של השרת."
+stopping = "בחירת שפה אינה זמינה בזמן שהתוסף מפסיק."
+unavailable-for-all = "השפה {locale} אינה זמינה לכל התוספים שנבחרו."
+
+[language.menu]
+all-volmit-plugins = "כל תוספי Volmit"
+command = "פקודה: {command}"
+current = "נוכחית: {locale}"
+current_with_personal = "נוכחית: {locale} (שלך: {personal})"
+edit_description = "פתח את עורך ההודעות לכל שפה."
+edit_messages = "עריכת הודעות השפה"
+no_controls = "אין לך גישה להגדרות שפה."
+remove_personal_description = "הסר את בחירת השפה האישית שלך."
+reset_description = "השתמש בשפת ברירת המחדל של השרת."
+reset_your_language = "איפוס השפה שלך"
+select_description = "לחץ כדי לבחור בשפה זו."
+selected = "נבחר"
+server_default = "ברירת המחדל של השרת"
+server_description = "שנה את שפת ברירת המחדל של השרת."
+use_server_default = "שימוש בברירת המחדל של השרת"
+your_description = "שנה רק את ההודעות שאתה רואה."
+your_language = "השפה שלך"
+
+[language.selection]
+english-fallback = "{plugin}: השפה {locale} אינה זמינה; נעשה שימוש באנגלית (en_US)."
+personal-selected = "{plugin}: השפה שלך עכשיו {locale}."
+preparing = "מכין את השפה {locale} עבור {target}..."
+save-failed = "{plugin}: לא ניתן לשמור את בחירת השפה; יש לבדוק את מסוף השרת."
+server-default-selected = "{plugin}: השפה שלך תואמת כעת לשפת ברירת המחדל של השרת."
+server-selected = "{plugin}: שפת השרת עכשיו {locale}."
+
+[language.usage]
+editor = "שימוש: /{command} language server edit [locale]"
+selection = "שימוש: /{command} language self [locale|reset] or server [locale]"
+volmit-selection = "שימוש: /volmit plugins languages [locale]"
+
+[menu]
+feedback = "&6התראות אישיות&r"
+feedback_help = "&7השתיקו הודעות, כותרות או צלילים עבורכם.&r"
+back = "&7חזרה למצבי משחק&r"
+selected = "&aנבחר&r"
+survival_help = "&7אסוף משאבים ושמור על הבריאות והרעב.&r"
+creative_help = "&7בנה עם משאבים בלתי מוגבלים ותעופה יצירתית.&r"
+adventure_help = "&7חקור מפות עם הגבלות על שבירת והנחת בלוקים.&r"
+spectator_help = "&7צפה בעולם ועבור דרך בלוקים.&r"
+config_help = "&7ערוך את הגדרות השרת. השינויים חלים מיד.&r"
+language_help = "&7בחר את השפה להודעות ולתפריטים שלך.&r"
+close = "סגירה"
+config = "&6הגדרות&r"
+current = "&7מצב משחק: &f{mode}&r"
+gestures = "&6מחוות&r"
+language = "&aשפה&r"
+select = "&7לחיצה לבחירה.&r"
+title = "<gradient:#634514:#2f523f>מצבי משחק</gradient>"
+toggle_disabled = "&7מחוות: &cמושבת&r"
+toggle_enabled = "&7מחוות: &aמופעל&r"
+toggle_help = "&7לחיצה להפעלה או להשבתה של מחוות.&r"
+unavailable = "&cאין אפשרות לבחור במצב המשחק הזה.&r"
+
+[mode]
+adventure = "הרפתקה"
+creative = "יצירתי"
+spectator = "צופה"
+survival = "הישרדות"
+
+[preferences]
+title = "<gradient:#634514:#2f523f>התראות אישיות</gradient>"
+chat = "&6הודעות בצ׳אט&r"
+action_bar = "&6סרגל פעולה&r"
+screen_title = "&6כותרות על המסך&r"
+sound = "&6צלילי החלפה&r"
+muted = "&cמושתק עבורכם&r"
+inherit = "&7לפי הגדרות השרת: {state}&r"
+toggle = "&7לחצו למעבר בין השתקה להגדרות השרת.&r"
+silence = "&6השתקת הכול&r"
+silence_help = "&7השתיקו הודעות, כותרות וצלילים של החלפות מוצלחות.&r"
+reset = "&aשימוש בהגדרות השרת&r"
+reset_help = "&7בטלו את כל ההשתקות האישיות.&r"
+failures = "&7כשהצ׳אט מושתק, הסיבה להחלפה שנחסמה עדיין מוצגת בסרגל הפעולה.&r"
+failed = "{prefix}&cלא ניתן לשמור את ההעדפה שלך. פרטים במסוף.&r"
+
+[runtime]
+player_only = "{prefix}&cרק שחקן יכול להשתמש בפקודה זו.&r"
+prefix = "<gradient:#e9bd68:#85d6b0><bold>GamemodeSwitcher</bold></gradient> &8â€º&r "
+
+[runtime.hot_reload]
+failed = "{prefix}&cהשינויים בקבצים נדחו; ההגדרות התקינות האחרונות נשארו פעילות.&r"
+success = "{prefix}&aהשינויים בקובצי התצורה והשפה הוחלו.&r"
+
+[runtime.permission]
+denied = "{prefix}&cאין לך הרשאה לבצע פעולה זו.&r"
+
+[state]
+disabled = "&cמושבת&r"
+enabled = "&aמופעל&r"
+
+[switch]
+title = "<gradient:#e9bd68:#85d6b0>{mode}</gradient>"
+subtitle = "&7מצב המשחק הוחלף.&r"
+overlay = "&7מצב משחק: &f{mode}&r"
+spectator_overlay_hint = "&7התכופף שלוש פעמים כדי לצאת ממצב צופה.&r"
+already = "{prefix}&eמצב המשחק שלך כבר מוגדר ל־{mode}.&r"
+cancelled = "{prefix}&eתוסף אחר מנע את שינוי מצב המשחק.&r"
+changed = "{prefix}&aמצב המשחק שונה ל־{mode}.&r"
+cooldown = "{prefix}&eיש להמתין {seconds} שניות לפני החלפה נוספת.&r"
+disabled = "{prefix}&eהחלפת מצבי משחק מושבתת.&r"
+empty_hands = "{prefix}&eיש לרוקן את שתי הידיים כדי להשתמש במחוות.&r"
+no_permission = "{prefix}&eאין לך הרשאה להשתמש במצב המשחק הזה.&r"
+spectator_hint = "{prefix}&eכדי לצאת ממצב צופה, יש להשתמש בפקודה /gsw menu או /gsw set survival.&r"
+world_blocked = "{prefix}&eלא ניתן להחליף מצב משחק בעולם {world}.&r"
+
+[toggle]
+disabled = "{prefix}&eהמחוות הושבתו. הפקודות והתפריט עדיין זמינים.&r"
+enabled = "{prefix}&aמחוות להחלפת מצב משחק הופעלו.&r"
+
+[gui.config.general]
+name = "כללי"
+description = "הפעלת החלפת מצבי משחק ובחירת שפת השרת."
+
+[gui.config.metrics]
+name = "סטטיסטיקה"
+description = "שליטה בדיווח סטטיסטיקה אנונימית ל-bStats."
+
+[gui.config.gestures]
+name = "שליטה במחוות"
+description = "הגדרת זמני לחיצות, המתנה ויעדי מחוות."
+
+[gui.config.gestures.normal]
+name = "יעדי לחיצה כפולה"
+description = "בחירת היעד לכל מצב משחק בלחיצה כפולה על מקש החלפת הידיים."
+
+[gui.config.gestures.sneaking]
+name = "יעדים בזמן התכופפות"
+description = "בחירת היעד לכל מצב משחק בהתכופפות ולחיצה כפולה על מקש החלפת הידיים."
+
+[gui.config.restrictions]
+name = "הגבלות עולמות"
+description = "בחירת העולמות שבהם החלפת מצב משחק אינה זמינה."
+
+[gui.config.feedback]
+name = "משוב החלפה"
+description = "בחירת הודעות, חלוניות, צלילים ותעופה יצירתית בעת החלפה."
+
+[gui.config.diagnostics]
+name = "אבחון"
+description = "שליטה בפרסום דוחות אבחון."
+
+[gui.config.languages]
+name = "שפות"
+description = "עריכת תרגומי השרת והעיצוב שלהם."
+
+[gui.config.general.enabled]
+name = "החלפת מצב משחק"
+description = "אפשר החלפה באמצעות מחוות, פקודות והתפריט."
+
+[gui.config.general.language]
+name = "שפת השרת"
+description = "שפת ברירת המחדל לשחקנים ללא בחירה אישית. תרגומים חסרים משתמשים באנגלית."
+
+[gui.config.metrics.enabled]
+name = "סטטיסטיקה אנונימית"
+description = "שליחת סטטיסטיקה אנונימית ל-bStats. גם הביטול הכללי של bStats חל."
+
+[gui.config.gestures.double-tap-millis]
+name = "חלון לחיצה כפולה"
+description = "הזמן המרבי בין לחיצות החלפת ידיים באלפיות שנייה. טווח: 100 עד 3000."
+
+[gui.config.gestures.sneak-tap-millis]
+name = "חלון לחיצות צופה"
+description = "הזמן המרבי בין לחיצות התכופפות במצב צופה באלפיות שנייה. טווח: 100 עד 3000."
+
+[gui.config.gestures.cooldown-millis]
+name = "המתנה בין החלפות"
+description = "המתנה לאחר החלפה מוצלחת באלפיות שנייה. טווח: 0 עד 60000; 0 מבטל את ההמתנה."
+
+[gui.config.gestures.require-empty-hands]
+name = "דרוש ידיים ריקות"
+description = "דרוש ששתי הידיים יהיו ריקות לפני שמחווה תוכל להחליף את מצב המשחק."
+
+[gui.config.gestures.spectator-exit]
+name = "יציאה ממצב צופה"
+description = "היעד לאחר שלוש לחיצות התכופפות נפרדות במצב צופה."
+
+[gui.config.gestures.normal.survival]
+name = "ממצב הישרדות"
+description = "היעד בלחיצה כפולה על מקש החלפת הידיים במצב הישרדות."
+
+[gui.config.gestures.normal.creative]
+name = "ממצב יצירתי"
+description = "היעד בלחיצה כפולה על מקש החלפת הידיים במצב יצירתי."
+
+[gui.config.gestures.normal.adventure]
+name = "ממצב הרפתקה"
+description = "היעד בלחיצה כפולה על מקש החלפת הידיים במצב הרפתקה."
+
+[gui.config.gestures.sneaking.survival]
+name = "ממצב הישרדות"
+description = "היעד בהתכופפות ולחיצה כפולה על מקש החלפת הידיים במצב הישרדות."
+
+[gui.config.gestures.sneaking.creative]
+name = "ממצב יצירתי"
+description = "היעד בהתכופפות ולחיצה כפולה על מקש החלפת הידיים במצב יצירתי."
+
+[gui.config.gestures.sneaking.adventure]
+name = "ממצב הרפתקה"
+description = "היעד בהתכופפות ולחיצה כפולה על מקש החלפת הידיים במצב הרפתקה."
+
+[gui.config.restrictions.disabled-worlds]
+name = "עולמות חסומים"
+description = "שמות עולמות שבהם מחוות, פקודות והתפריט לא יכולים להחליף מצב משחק. אין הבדל בין אותיות גדולות לקטנות."
+input = "הזן רשימת שמות עולמות, למשל [\"world_nether\", \"world_the_end\"]. השתמש ב-[] ללא הגבלות עולמות."
+
+[gui.config.feedback.auto-fly-creative]
+name = "תעופה בכניסה ליצירתי"
+description = "התחלת תעופה בכניסה למצב יצירתי אם לשחקן מותר לעוף."
+
+[gui.config.feedback.sound-enabled]
+name = "צליל החלפה"
+description = "השמעת צליל אישור לאחר החלפת מצב משחק מוצלחת."
+
+[gui.config.diagnostics.upload-enabled]
+name = "דוחות אבחון ציבוריים"
+description = "אפשר פרסום דוחות אבחון. השתמש ב-upload=false לשמירת דוח מקומי."
+
+[gui.config.feedback.chat-enabled]
+name = "הודעות צ'אט"
+description = "הצגת החלפות מוצלחות ורמזי צופה בצ'אט. כשהאפשרות כבויה, סיבות לכישלון מופיעות מעל סרגל הכלים."
+
+[gui.config.feedback.action-bar-enabled]
+name = "הודעה מעל סרגל הכלים"
+description = "הצגת המצב החדש מעל סרגל הכלים, עם רמז יציאה במצב צופה."
+
+[gui.config.feedback.title-enabled]
+name = "הודעת כותרת"
+description = "הצגת המצב החדש במרכז המסך, עם רמז יציאה במצב צופה."
+
+[gui.config.feedback.popup-duration-ticks]
+name = "משך ההודעה"
+description = "משך הכותרת וההודעה מעל סרגל הכלים בטיקים; 20 טיקים = שנייה אחת. טווח: 1 עד 200."
+
+[gui.config.feedback.sound]
+name = "מזהה צליל"
+description = "הצליל המושמע לאחר החלפת מצב מוצלחת."
+input = "הזן מזהה צליל עם מרחב שמות, כגון minecraft:ui.button.click או minecraft:entity.experience_orb.pickup. ניתן להשתמש במזהים של חבילות משאבים מותאמות."
+
+[gui.config.feedback.sound-volume]
+name = "עוצמת צליל"
+description = "עוצמת צליל ההחלפה. טווח: 0 עד 1; 0 הוא שקט."
+
+[gui.config.feedback.sound-pitch]
+name = "גובה צליל"
+description = "גובה צליל ההחלפה. טווח: 0.5 עד 2; 1 משתמש בגובה המקורי."

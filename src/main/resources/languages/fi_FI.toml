@@ -1,0 +1,517 @@
+# GamemodeSwitcher — fi_FI
+#
+# === Tiedoston muokkaus ===
+# plugins/GamemodeSwitcher/languages/fi_FI.toml
+# Voit muokata tätä tiedostoa suoraan. Paikalliset muutokset säilyvät; puuttuvat tai virheelliset kohdat käyttävät sisäänrakennettua englantia.
+# /gsw language server edit fi_FI
+#
+# === Etuliite ===
+# {prefix}  yleinen runtime.prefix-arvo. Poista {prefix} yksittäisestä viestistä piilottaaksesi sen siinä
+#
+# === Muotoilu ===
+# Värit: &0-&f, &k-&r, &#RRGGBB, &xRRGGBB, &x&R&R&G&G&B&B ja [RRGGBB]. MiniMessage toimii myös omissa muotoiluissa.
+# Näytä & tai [ kirjaimellisesti lisäämällä eteen kenoviiva.
+#
+# === Muuttujat ===
+# Säilytä muuttujien nimet ja käytä vain kunkin viestin omia muuttujia.
+#   {after}  Arvo muutoksen jälkeen
+#   {argument}  odottamaton argumentti
+#   {before}  Arvo ennen muutosta
+#   {command}  komentopolku
+#   {count}  Täsmäytysten lukumäärä
+#   {enabled}  Pelitilan vaihtamisen tila
+#   {group}  Kielieditorin luokka
+#   {hot_reload}  pikalatauksen tila
+#   {key}  parametriavain
+#   {language}  aktiivinen kieli
+#   {line}  Lähderivi tai viivanumero
+#   {locale}  kielitunnus
+#   {maximum}  Suurin sallittu arvo
+#   {mode}  Pelitilan nimi
+#   {new}  uusi arvo
+#   {number}  Kohdan numero
+#   {old}  edellinen arvo
+#   {page}  Nykyinen sivu
+#   {pages}  Sivujen kokonaismäärä
+#   {parameter}  parametrin nimi
+#   {path}  paikallisen raportin polku
+#   {permission}  vaadittu käyttöoikeus
+#   {personal}  henkilökohtainen kielitunnus
+#   {plugin}  Liitännäisen nimi
+#   {prefix}  yleinen runtime.prefix-arvo. Poista {prefix} yksittäisestä viestistä piilottaaksesi sen siinä
+#   {reason}  virheen syy
+#   {scheduler}  ajastin
+#   {seconds}  Jäljellä oleva odotus- tai vahvistusaika sekunteina
+#   {section}  Kielieditorin osio
+#   {setting}  asetuksen nimi
+#   {step}  Lukuarvon muutos yhdellä tavallisella napsautuksella
+#   {state}  Omien eleiden tai ilmoitusten tila
+#   {target}  Kohdepelaaja, yhteisö tai arvo
+#   {type}  tyyppi
+#   {url}  julkinen URL
+#   {value}  nykyinen, oletus- tai raaka-arvo
+#   {variables}  sallitut paikkamerkit
+#   {version}  lisäosan versio
+#   {world}  maailma
+
+[command.description]
+version = "Näytä GamemodeSwitcher-versio"
+config = "Asetukset"
+debug = "GamemodeSwitcherin diagnostiikkatyökalut"
+debug_dump = "Luo kattava GamemodeSwitcher-diagnostiikkaraportti"
+language = "Kieli"
+menu = "Pelimuodot"
+root = "Pelimuodot"
+set = "Pelimuoto"
+status = "Pelimuoto"
+toggle = "Eleet"
+
+[command.feedback]
+failed = "{prefix}&cKomentoa ei voitu suorittaa. Katso lisätiedot konsolista.&r"
+
+[command.feedback.config]
+opened = "{prefix}&aKattava pelinsisäinen asetuseditori avattiin.&r"
+save_failed = "{prefix}&cAsetusta &f{setting}&r&c ei voitu ottaa käyttöön: {reason}&r"
+saved = "{prefix}&a{setting}&r &7muutettiin arvosta &f{old}&r &7arvoon &f{new}&r&7.&r"
+
+[command.parameter]
+enabled = "Käytössä / Pois käytöstä"
+mode = "Selviytyminen, Luova, Seikkailu, Katsoja"
+upload = "Lähetä raportti, kun julkiset lähetykset ovat käytössä"
+
+[command.status]
+compatibility = "&7Artefakti:&r &fJava 17 / Bukkit 1.20.1+&r &8|&r &7Ajastin:&r &f{scheduler}&r"
+config = "&7Pelimuoto:&r {enabled} &8|&r &7Kieli:&r {language} &8|&r &7Lataa asetukset ja kielet uudelleen:&r {hot_reload}"
+header = "&6&lGamemodeSwitcher&r"
+player = "&7Eleet:&r {state} &8|&r &7Pelimuoto:&r {mode}"
+
+[config.editor]
+adjust = "Vasen +{step}, oikea -{step}, vaihto x10, Q tarkalle arvolle."
+back = "Takaisin"
+close = "Sulje"
+current = "Nykyinen arvo: {value}"
+edit = "Napsauta syöttääksesi uuden arvon chatissa."
+empty = "Tässä osiossa ei ole asetuksia."
+entry = "Kohta {number}"
+expired = "Asetuksen syöttöaika umpeutui."
+failed = "Asetuksia ei voitu muokata: {reason}"
+loading = "Ladataan asetuksia..."
+next = "Seuraava sivu"
+no-permission = "Sinulla ei ole oikeutta muokata näitä asetuksia."
+open = "Avaa tämä osio napsauttamalla."
+page = "Sivu {page}/{pages}"
+player-only = "Avaa asetuseditori pelissä."
+previous = "Edellinen sivu"
+prompt = "Syötä uusi arvo asetukselle {path}. Palaa kirjoittamalla cancel."
+refresh = "Päivitä"
+saved = "{path} tallennettu. Muutokset tulevat voimaan automaattisesti."
+saving = "Tallennetaan asetuksia..."
+section = "Osio: {path}"
+title = "{plugin} / Asetukset"
+toggle = "Vaihda arvojen true ja false välillä napsauttamalla."
+too-long = "Syötä enintään {maximum} merkkiä."
+
+[config.editor.type]
+decimal = "Syötä luku, esimerkiksi 0.25."
+integer = "Syötä kokonaisluku."
+list = "Käytä TOML-listaa, esimerkiksi [\"stone\", \"deepslate\"]."
+text = "Teksti; lainausmerkkejä ei tarvita."
+
+[debug]
+preparing = "Valmistellaan lisäosan {plugin} vianmääritysraporttia..."
+saved = "Lisäosan {plugin} vianmääritysraportti tallennettiin polkuun {path}."
+
+[debug.action]
+copy-path = "Kopioi paikallinen polku"
+copy-path-description = "Kopioi paikallisen raportin polku."
+open = "Avaa: {url}"
+open-description = "Avaa lähetetty vianmääritysraportti."
+
+[debug.error]
+already-preparing = "Lisäosan {plugin} vianmääritysraporttia valmistellaan jo."
+already-preparing-short = "Vianmääritysraporttia valmistellaan jo."
+capture-failed = "Vianmääritysraportin tietoja ei voitu kerätä. Tarkista palvelimen konsoli."
+closed-before-capture = "Vianmääritystietojen tarjoaja suljettiin ennen raportin tietojen keräämistä."
+closed-before-write = "Vianmääritystietojen tarjoaja suljettiin ennen raportin kirjoittamista."
+missing-permission = "Puuttuva käyttöoikeus: {permission}"
+provider-closed = "Vianmääritystietojen tarjoaja on suljettu."
+schedule-failed = "Vianmääritysraportin luontia ei voitu ajastaa."
+write-failed = "Vianmääritysraporttia ei voitu kirjoittaa. Tarkista palvelimen konsoli."
+writer-schedule-failed = "Vianmääritysraportin kirjoittamista ei voitu ajastaa."
+
+[debug.upload]
+completed = "Lähetetty nimellä VolmitSoftware - {plugin} - v{version}."
+failed = "Vianmääritysraportin lähetys epäonnistui. Paikallinen raportti on tallennettu."
+interrupted = "Vianmääritysraportin lähetys keskeytyi. Paikallinen raportti on tallennettu."
+
+[director.help]
+category = "Komentokategoria"
+command_group = "Komentoryhmä. Avaa napsauttamalla."
+no_description = "Kuvausta ei ole annettu"
+no_parameters = "Ei parametreja. Esitäytä komento napsauttamalla."
+no_subcommands = "Tällä sivulla ei ole alikomentoja."
+parameters_hover = "Vie hiiri parametrien päälle saadaksesi lisätietoja."
+
+[director.help.navigation]
+back = "Takaisin"
+page = "Sivu"
+
+[director.help.navigation.next]
+hover = "Seuraava sivu"
+
+[director.help.navigation.parent]
+hover = "Palaa ylempään komentoryhmään"
+
+[director.help.navigation.previous]
+hover = "Edellinen sivu"
+
+[director.help.parameter]
+default = "Oletusarvo on \"{value}\", jos sitä ei määritetä."
+optional = "Tämä parametri on valinnainen."
+required = "Tämä parametri on pakollinen."
+type = "Tämän parametrin tyyppi on {type}."
+
+[director.runtime.error]
+conversion_failed = "Arvoa \"{value}\" ei voi muuntaa tyypiksi {type} parametrille {parameter}"
+default_parse_failed = "Parametrin {parameter} oletusarvoa ei voi jäsentää"
+execution_failed = "Komennon {command} suoritus epäonnistui: {reason}"
+invalid_origin = "Tätä komentoa ei voi suorittaa tästä lähteestä."
+missing_argument = "Puuttuva argumentti \"{parameter}\" ({type})"
+unclosed_group = "Sulkeva \"]\" puuttuu parametrilta {key}"
+unexpected_argument = "Odottamaton argumentti \"{argument}\". Valinnaiset parametrit on annettava avaimella, esim. seed=123"
+unknown_parameter = "Tuntematon parametriavain: {key}"
+
+[gesture]
+normal = "&7Paina toisen käden vaihtopainiketta kahdesti: {mode}&r"
+sneaking = "&7Pidä hiipimispainiketta ja paina vaihtopainiketta kahdesti: {mode}&r"
+spectator = "&7Paina hiipimispainiketta kolme kertaa erikseen: {mode}&r"
+rebind = "&7Vaihda toisen käden (F) ja hiipimisen (vasen vaihto) näppäimet kohdassa Asetukset > Ohjaimet > Näppäimet.&r"
+personal_disabled = "&eEleesi ovat pois käytöstä. Ota ne käyttöön tästä tai komennolla /gsw toggle true.&r"
+empty_hands = "&7Molempien käsien on oltava tyhjät eleitä varten.&r"
+help = "&7Vaihda pelimuotoa painamalla käsien vaihtopainiketta (oletuksena F) kahdesti. Hiivi samalla käyttääksesi vaihtoehtoista toimintoa; paina hiipimistä kolmesti poistuaksesi katsojatilasta. Kohdepelimuodot määräytyvät palvelimen asetuksista.&r"
+
+[gui.title]
+root = "<gradient:#634514:#2f523f>GSW</gradient> <color:#404040>Asetukset</color>"
+
+[language.editor]
+title = "{plugin} › {section}"
+loading = "Ladataan kielen {locale} viestejä..."
+
+[language.editor.category]
+message-count = "&7{count} viestiä&r"
+open = "&8Avaa tämä luokka napsauttamalla.&r"
+
+[language.editor.error]
+no-permission = "Sinulla ei ole oikeutta muokata lisäosan {plugin} kieliä."
+unable-to-edit = "Muokkaus epäonnistui: {reason}"
+
+[language.editor.input]
+expired = "Kielieditorin syöttöaika päättyi."
+too-long = "Syöte saa sisältää enintään {maximum} merkkiä."
+unable-to-save = "Tallennus epäonnistui: {reason}"
+
+[language.editor.locale]
+open = "&8Avaa tämä kieli napsauttamalla.&r"
+
+[language.editor.message]
+current-value = "&7Nykyinen arvo:&r"
+edit-chat = "&7Muokkaa chatissa napsauttamalla.&r"
+edit-lines = "&7Muokkaa yksittäisiä rivejä napsauttamalla.&r"
+edit-plural = "&7Muokkaa monikkomuotoa napsauttamalla.&r"
+variables = "&8{variables}&r"
+
+[language.editor.navigation]
+back = "&eTakaisin&r"
+close = "&cSulje&r"
+next-page = "&eSeuraava sivu&r"
+previous-page = "&eEdellinen sivu&r"
+
+[language.editor.part]
+line = "Rivi {line}"
+
+[language.editor.prompt]
+current = "Nykyinen arvo: {value}"
+guidance = "Käytä \\n rivinvaihtoon ja \\\\ kenoviivaan tai palaa kirjoittamalla cancel."
+search = "Hae viestin avainta tai tekstiä. Palaa kirjoittamalla cancel."
+value = "Kirjoita avaimen {key} uusi arvo chattiin."
+variables = "Muuttujat: {variables}"
+
+[language.editor.saved]
+change = "{key}: ”{before}” muutettiin arvoon ”{after}”."
+summary = "{locale} tallennettu. Kielivalinnat säilyvät ennallaan."
+
+[language.editor.search]
+clear = "Tyhjennä haku"
+messages = "Hae viestejä"
+messages-lore = "Napsauta hakeaksesi kaikista viesteistä."
+
+[language.editor.section]
+group-title = "{locale} / {group}"
+languages = "Kielet"
+search = "Etsi"
+search-title = "{locale} / Etsi"
+
+[language.editor.value]
+empty = "(tyhjä)"
+none = "Ei ole"
+
+[language.error]
+editor-player-only = "Avaa kielieditori pelissä."
+no-providers = "Yhtään Volmit-kielipalvelua ei ole saatavilla."
+numeric-page = "Anna sivunumero numerona."
+personal-permission = "Sinulla ei ole lupaa valita kieltäsi."
+personal-player-only = "Pelaajan kieliasetukset on valittava pelissä."
+plugin-personal-permission = "Sinulla ei ole oikeutta valita kieltäsi lisäosalle {plugin}."
+plugin-server-permission = "Sinulla ei ole oikeutta muuttaa lisäosan {plugin} palvelinkieltä."
+server-locale-required = "Valitse palvelimen oletuskieleksi kielikoodi, kuten en_US."
+stopping = "Kielivalintaa ei ole saatavilla, kun plugin pysähtyy."
+unavailable-for-all = "Kieli {locale} ei ole saatavilla kaikille valituille lisäosille."
+
+[language.menu]
+all-volmit-plugins = "Kaikki Volmit-lisäosat"
+command = "Komento: {command}"
+current = "Nykyinen: {locale}"
+current_with_personal = "Nykyinen: {locale} (Omasi: {personal})"
+edit_description = "Avaa kielikohtainen viestieditori."
+edit_messages = "Muokkaa kieliviestejä"
+no_controls = "Sinulla ei ole käytettävissä kieliasetuksia."
+remove_personal_description = "Poista henkilökohtainen kielivalintasi."
+reset_description = "Käytä palvelimen oletuskieltä."
+reset_your_language = "Palauta oma kielesi"
+select_description = "Napsauta valitaksesi tämän kielen."
+selected = "valittu"
+server_default = "Palvelimen oletuskieli"
+server_description = "Vaihda palvelimen oletuskieli."
+use_server_default = "Käytä palvelimen oletuskieltä"
+your_description = "Vaihda vain näkemäsi viestit."
+your_language = "Oma kielesi"
+
+[language.selection]
+english-fallback = "{plugin}: {locale} ei ole saatavilla; käytetään englantia (en_US)."
+personal-selected = "{plugin}: kieli on nyt {locale}."
+preparing = "Valmistellaan kieltä {locale} kohteelle {target}..."
+save-failed = "{plugin}: kielivalintaa ei voitu tallentaa; tarkista palvelinkonsoli."
+server-default-selected = "{plugin}: kielesi noudattaa nyt palvelimen oletuskieltä."
+server-selected = "{plugin}: palvelinkieli on nyt {locale}."
+
+[language.usage]
+editor = "Käyttö: /{command} language server edit [locale]"
+selection = "Käyttö: /{command} language self [locale|reset] or server [locale]"
+volmit-selection = "Käyttö: /volmit plugins languages [locale]"
+
+[menu]
+feedback = "&6Omat ilmoitukset&r"
+feedback_help = "&7Mykistä vaihdon viestit, otsikot tai äänet itseltäsi.&r"
+back = "&7Takaisin pelitiloihin&r"
+selected = "&aValittu&r"
+survival_help = "&7Kerää resursseja ja huolehdi terveydestä ja nälästä.&r"
+creative_help = "&7Rakenna rajattomilla resursseilla ja lennä luovassa tilassa.&r"
+adventure_help = "&7Tutki karttoja, joissa palikoiden rikkomista ja asettamista rajoitetaan.&r"
+spectator_help = "&7Tarkkaile maailmaa ja kulje palikoiden läpi.&r"
+config_help = "&7Muokkaa palvelimen asetuksia. Muutokset tulevat voimaan heti.&r"
+language_help = "&7Valitse viestiesi ja valikoidesi kieli.&r"
+close = "Sulje"
+config = "&6Asetukset&r"
+current = "&7Pelimuoto: &f{mode}&r"
+gestures = "&6Eleet&r"
+language = "&aKieli&r"
+select = "&7Valitse napsauttamalla.&r"
+title = "<gradient:#634514:#2f523f>Pelimuodot</gradient>"
+toggle_disabled = "&7Eleet: &cPois käytöstä&r"
+toggle_enabled = "&7Eleet: &aKäytössä&r"
+toggle_help = "&7Ota eleet käyttöön tai pois käytöstä napsauttamalla.&r"
+unavailable = "&cEt voi valita tätä pelimuotoa.&r"
+
+[mode]
+adventure = "Seikkailu"
+creative = "Luova"
+spectator = "Katsoja"
+survival = "Selviytyminen"
+
+[preferences]
+title = "<gradient:#634514:#2f523f>Omat ilmoitukset</gradient>"
+chat = "&6Chat-viestit&r"
+action_bar = "&6Toimintopalkki&r"
+screen_title = "&6Otsikot&r"
+sound = "&6Vaihtoäänet&r"
+muted = "&cMykistetty sinulta&r"
+inherit = "&7Palvelimen asetukset: {state}&r"
+toggle = "&7Vaihda mykistyksen ja palvelimen asetusten välillä napsauttamalla.&r"
+silence = "&6Mykistä kaikki&r"
+silence_help = "&7Mykistä onnistuneiden vaihtojen viestit, otsikot ja äänet.&r"
+reset = "&aKäytä palvelimen asetuksia&r"
+reset_help = "&7Poista kaikki omat mykistykset.&r"
+failures = "&7Estetyn vaihdon syy näkyy toimintopalkissa, vaikka chat olisi mykistetty.&r"
+failed = "{prefix}&cAsetustasi ei voitu tallentaa. Lisätiedot ovat konsolissa.&r"
+
+[runtime]
+player_only = "{prefix}&cVain pelaaja voi käyttää tätä komentoa.&r"
+prefix = "<gradient:#e9bd68:#85d6b0><bold>GamemodeSwitcher</bold></gradient> &8â€º&r "
+
+[runtime.hot_reload]
+failed = "{prefix}&cTiedostomuutokset hylättiin; viimeksi toimineet asetukset pysyvät käytössä.&r"
+success = "{prefix}&aAsetusten ja kielitiedostojen muutokset otettiin käyttöön.&r"
+
+[runtime.permission]
+denied = "{prefix}&cSinulla ei ole oikeutta tehdä sitä.&r"
+
+[state]
+disabled = "&cPois käytöstä&r"
+enabled = "&aKäytössä&r"
+
+[switch]
+title = "<gradient:#e9bd68:#85d6b0>{mode}</gradient>"
+subtitle = "&7Pelitila vaihdettu.&r"
+overlay = "&7Pelitila: &f{mode}&r"
+spectator_overlay_hint = "&7Poistu Katsojasta painamalla hiipimistä kolmesti.&r"
+already = "{prefix}&ePelimuotosi on jo {mode}.&r"
+cancelled = "{prefix}&eToinen lisäosa esti pelimuodon vaihtamisen.&r"
+changed = "{prefix}&aPelimuodoksi vaihdettiin {mode}.&r"
+cooldown = "{prefix}&eOdota {seconds} sekuntia ennen seuraavaa vaihtoa.&r"
+disabled = "{prefix}&ePelimuodon vaihtaminen on poistettu käytöstä.&r"
+empty_hands = "{prefix}&eTyhjennä molemmat kädet käyttääksesi pelimuotoeleitä.&r"
+no_permission = "{prefix}&eSinulla ei ole lupaa käyttää tätä pelimuotoa.&r"
+spectator_hint = "{prefix}&ePoistu katsojatilasta komennolla /gsw menu tai /gsw set survival.&r"
+world_blocked = "{prefix}&ePelimuotoa ei voi vaihtaa maailmassa {world}.&r"
+
+[toggle]
+disabled = "{prefix}&ePelimuotoeleet poistettu käytöstä. Komennot ja valikko ovat yhä käytettävissä.&r"
+enabled = "{prefix}&aPelimuotoeleet otettu käyttöön.&r"
+
+[gui.config.general]
+name = "Yleiset"
+description = "Ota pelitilan vaihto käyttöön ja valitse palvelimen kieli."
+
+[gui.config.metrics]
+name = "Tilastot"
+description = "Hallitse nimettömiä bStats-tilastoja."
+
+[gui.config.gestures]
+name = "Eleohjaus"
+description = "Aseta painallusten aikarajat, odotusajat ja eleiden kohteet."
+
+[gui.config.gestures.normal]
+name = "Kaksoispainalluksen kohteet"
+description = "Valitse kunkin pelitilan kohde käsien vaihtonäppäimen kaksoispainallukselle."
+
+[gui.config.gestures.sneaking]
+name = "Hiipimisen kohteet"
+description = "Valitse kunkin pelitilan kohde hiivittäessä ja painettaessa käsien vaihtonäppäintä kahdesti."
+
+[gui.config.restrictions]
+name = "Maailmarajoitukset"
+description = "Valitse maailmat, joissa pelitilaa ei voi vaihtaa."
+
+[gui.config.feedback]
+name = "Vaihdon palaute"
+description = "Valitse vaihdon viestit, ilmoitukset, äänet ja luovan tilan lento."
+
+[gui.config.diagnostics]
+name = "Vianmääritys"
+description = "Hallitse vianmääritysraporttien julkista lähettämistä."
+
+[gui.config.languages]
+name = "Kielet"
+description = "Muokkaa palvelimen käännöksiä ja niiden muotoilua."
+
+[gui.config.general.enabled]
+name = "Pelitilan vaihtaminen"
+description = "Salli vaihto eleillä, komennoilla ja valikosta."
+
+[gui.config.general.language]
+name = "Palvelimen kieli"
+description = "Oletuskieli pelaajille, joilla ei ole omaa valintaa. Puuttuvat käännökset käyttävät englantia."
+
+[gui.config.metrics.enabled]
+name = "Nimettömät tilastot"
+description = "Lähetä nimettömiä bStats-tilastoja. Myös bStatsin yleinen käytöstäpoisto huomioidaan."
+
+[gui.config.gestures.double-tap-millis]
+name = "Kaksoispainalluksen aikaraja"
+description = "Käsienvaihtopainallusten enimmäisväli millisekunteina. Sallittu alue: 100-3000."
+
+[gui.config.gestures.sneak-tap-millis]
+name = "Katsojan painallusten aikaraja"
+description = "Katsojatilan hiipimispainallusten enimmäisväli millisekunteina. Sallittu alue: 100-3000."
+
+[gui.config.gestures.cooldown-millis]
+name = "Vaihdon odotusaika"
+description = "Odotusaika onnistuneen vaihdon jälkeen millisekunteina. Sallittu alue: 0-60000; 0 poistaa odotuksen."
+
+[gui.config.gestures.require-empty-hands]
+name = "Vaadi tyhjät kädet"
+description = "Vaadi molempien käsien olevan tyhjät, jotta ele voi vaihtaa pelitilan."
+
+[gui.config.gestures.spectator-exit]
+name = "Katsojatilan poistumistila"
+description = "Kohde kolmen erillisen hiipimispainalluksen jälkeen katsojatilassa."
+
+[gui.config.gestures.normal.survival]
+name = "Selviytymisestä"
+description = "Kohde käsien vaihtonäppäimen kaksoispainallukselle pelitilassa Selviytyminen."
+
+[gui.config.gestures.normal.creative]
+name = "Luovasta"
+description = "Kohde käsien vaihtonäppäimen kaksoispainallukselle pelitilassa Luova."
+
+[gui.config.gestures.normal.adventure]
+name = "Seikkailusta"
+description = "Kohde käsien vaihtonäppäimen kaksoispainallukselle pelitilassa Seikkailu."
+
+[gui.config.gestures.sneaking.survival]
+name = "Selviytymisestä"
+description = "Kohde hiivittäessä ja painettaessa käsien vaihtonäppäintä kahdesti pelitilassa Selviytyminen."
+
+[gui.config.gestures.sneaking.creative]
+name = "Luovasta"
+description = "Kohde hiivittäessä ja painettaessa käsien vaihtonäppäintä kahdesti pelitilassa Luova."
+
+[gui.config.gestures.sneaking.adventure]
+name = "Seikkailusta"
+description = "Kohde hiivittäessä ja painettaessa käsien vaihtonäppäintä kahdesti pelitilassa Seikkailu."
+
+[gui.config.restrictions.disabled-worlds]
+name = "Estetyt maailmat"
+description = "Maailmat, joissa eleet, komennot ja valikko eivät voi vaihtaa pelitilaa. Kirjainkoolla ei ole väliä."
+input = "Anna maailmanimien luettelo, esimerkiksi [\"world_nether\", \"world_the_end\"]. [] poistaa maailmarajoitukset."
+
+[gui.config.feedback.auto-fly-creative]
+name = "Lennä luovaan siirryttäessä"
+description = "Aloita lentäminen luovaan tilaan siirryttäessä, jos pelaaja saa lentää."
+
+[gui.config.feedback.sound-enabled]
+name = "Vaihdon ääni"
+description = "Soita vahvistusääni onnistuneen pelitilan vaihdon jälkeen."
+
+[gui.config.diagnostics.upload-enabled]
+name = "Julkiset vianmääritysraportit"
+description = "Salli vianmääritysraporttien julkinen lähetys. upload=false tallentaa raportin paikallisesti."
+
+[gui.config.feedback.chat-enabled]
+name = "Chat-viestit"
+description = "Näytä onnistuneet vaihdot ja Katsojan ohjeet chatissa. Kun pois käytöstä, virheiden syyt näkyvät toimintapalkissa."
+
+[gui.config.feedback.action-bar-enabled]
+name = "Toimintapalkin ilmoitus"
+description = "Näytä uusi tila pikapalkin yläpuolella sekä poistumisohje Katsojassa."
+
+[gui.config.feedback.title-enabled]
+name = "Otsikkoilmoitus"
+description = "Näytä uusi tila ruudun keskellä sekä poistumisohje Katsojassa."
+
+[gui.config.feedback.popup-duration-ticks]
+name = "Ilmoituksen kesto"
+description = "Otsikon ja toimintapalkin kesto tickeinä; 20 tickiä = 1 sekunti. Alue: 1-200."
+
+[gui.config.feedback.sound]
+name = "Äänen tunniste"
+description = "Onnistuneen pelitilan vaihdon jälkeen soitettava ääni."
+input = "Anna nimiavaruudellinen äänitunniste, kuten minecraft:ui.button.click tai minecraft:entity.experience_orb.pickup. Mukautettujen resurssipakettien tunnisteet sallitaan."
+
+[gui.config.feedback.sound-volume]
+name = "Äänenvoimakkuus"
+description = "Vaihtoäänen voimakkuus. Alue: 0-1; 0 on äänetön."
+
+[gui.config.feedback.sound-pitch]
+name = "Äänenkorkeus"
+description = "Vaihtoäänen korkeus. Alue: 0.5-2; 1 käyttää alkuperäistä korkeutta."

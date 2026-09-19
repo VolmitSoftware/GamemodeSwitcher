@@ -1,0 +1,517 @@
+# GamemodeSwitcher — nl_NL
+#
+# === Bestand bewerken ===
+# plugins/GamemodeSwitcher/languages/nl_NL.toml
+# Je kunt dit bestand rechtstreeks bewerken. Lokale wijzigingen blijven behouden; ontbrekende of ongeldige vermeldingen gebruiken het ingebouwde Engels.
+# /gsw language server edit nl_NL
+#
+# === Voorvoegsel ===
+# {prefix}  de globale waarde runtime.prefix. Verwijder {prefix} uit één bericht om het alleen daar te verbergen
+#
+# === Opmaak ===
+# Kleuren: &0-&f, &k-&r, &#RRGGBB, &xRRGGBB, &x&R&R&G&G&B&B en [RRGGBB]. MiniMessage blijft beschikbaar voor eigen opmaak.
+# Zet een backslash voor & of [ om het teken letterlijk weer te geven.
+#
+# === Variabelen ===
+# Behoud de namen van variabelen en gebruik alleen de variabelen die bij het bericht horen.
+#   {after}  Waarde na de wijziging
+#   {argument}  onverwacht argument
+#   {before}  Waarde vóór de wijziging
+#   {command}  opdrachtpad
+#   {count}  Aantal overeenkomstige vermeldingen
+#   {enabled}  Status van het wisselen van spelmodus
+#   {group}  Categorie in de taaleditor
+#   {hot_reload}  hot-reloadstatus
+#   {key}  parametersleutel
+#   {language}  actieve taal
+#   {line}  Bronregel of regelnummer
+#   {locale}  landinstelling
+#   {maximum}  Maximaal toegestane waarde
+#   {mode}  Naam van de spelmodus
+#   {new}  nieuwe waarde
+#   {number}  Nummer van de vermelding
+#   {old}  vorige waarde
+#   {page}  Huidige pagina
+#   {pages}  Totaal aantal pagina’s
+#   {parameter}  parameternaam
+#   {path}  lokaal rapportpad
+#   {permission}  vereiste machtiging
+#   {personal}  persoonlijke landinstelling
+#   {plugin}  Pluginnaam
+#   {prefix}  de globale waarde runtime.prefix. Verwijder {prefix} uit één bericht om het alleen daar te verbergen
+#   {reason}  foutreden
+#   {scheduler}  planner
+#   {seconds}  Resterende wacht- of bevestigingstijd in seconden
+#   {section}  Onderdeel van de taaleditor
+#   {setting}  instellingsnaam
+#   {step}  Verandering van een getal door één gewone klik
+#   {state}  Persoonlijke gebaren- of meldingsstatus
+#   {target}  Doelspeler, entiteit of waarde
+#   {type}  type
+#   {url}  openbare URL
+#   {value}  huidige, standaard- of ruwe waarde
+#   {variables}  geldige tijdelijke aanduidingen
+#   {version}  pluginversie
+#   {world}  wereld
+
+[command.description]
+version = "Toon de versie van GamemodeSwitcher"
+config = "Configuratie"
+debug = "Diagnosehulpmiddelen voor GamemodeSwitcher"
+debug_dump = "Een uitgebreid diagnostisch rapport voor GamemodeSwitcher maken"
+language = "Taal"
+menu = "Spelmodi"
+root = "Spelmodi"
+set = "Spelmodus"
+status = "Spelmodus"
+toggle = "Gebaren"
+
+[command.feedback]
+failed = "{prefix}&cDe opdracht kon niet worden uitgevoerd. Bekijk de console voor meer informatie.&r"
+
+[command.feedback.config]
+opened = "{prefix}&aDe volledige configuratie-editor in het spel is geopend.&r"
+save_failed = "{prefix}&c&f{setting}&r&c kon niet worden toegepast: {reason}&r"
+saved = "{prefix}&a{setting}&r &7is gewijzigd van &f{old}&r &7naar &f{new}&r&7.&r"
+
+[command.parameter]
+enabled = "Ingeschakeld / Uitgeschakeld"
+mode = "Overleven, Creatief, Avontuur, Toeschouwer"
+upload = "Het rapport uploaden wanneer openbare uploads zijn ingeschakeld"
+
+[command.status]
+compatibility = "&7Artefact:&r &fJava 17 / Bukkit 1.20.1+&r &8|&r &7Planner:&r &f{scheduler}&r"
+config = "&7Spelmodus:&r {enabled} &8|&r &7Taal:&r {language} &8|&r &7Configuratie en talen herladen:&r {hot_reload}"
+header = "&6&lGamemodeSwitcher&r"
+player = "&7Gebaren:&r {state} &8|&r &7Spelmodus:&r {mode}"
+
+[config.editor]
+adjust = "Links +{step}, rechts -{step}, Shift x10, Q om een exacte waarde in te voeren."
+back = "Terug"
+close = "Sluiten"
+current = "Huidige waarde: {value}"
+edit = "Klik om een nieuwe waarde in de chat in te voeren."
+empty = "Deze sectie bevat geen instellingen."
+entry = "Vermelding {number}"
+expired = "De tijd voor het invoeren van de configuratie is verstreken."
+failed = "Kan de configuratie niet bewerken: {reason}"
+loading = "Configuratie laden..."
+next = "Volgende pagina"
+no-permission = "Je hebt geen toestemming om deze configuratie te bewerken."
+open = "Klik om deze sectie te openen."
+page = "Pagina {page} van {pages}"
+player-only = "Open de configuratie-editor in het spel."
+previous = "Vorige pagina"
+prompt = "Voer een nieuwe waarde in voor {path}. Typ cancel om terug te gaan."
+refresh = "Vernieuwen"
+saved = "{path} opgeslagen. Wijzigingen worden automatisch toegepast."
+saving = "Configuratie opslaan..."
+section = "Sectie: {path}"
+title = "{plugin} / Configuratie"
+toggle = "Klik om te wisselen tussen true en false."
+too-long = "Voer maximaal {maximum} tekens in."
+
+[config.editor.type]
+decimal = "Voer een getal in, bijvoorbeeld 0.25."
+integer = "Voer een geheel getal in."
+list = "Gebruik een TOML-lijst, bijvoorbeeld [\"stone\", \"deepslate\"]."
+text = "Tekst; aanhalingstekens zijn niet nodig."
+
+[debug]
+preparing = "Diagnoserapport voor {plugin} wordt voorbereid..."
+saved = "Diagnoserapport voor {plugin} opgeslagen in {path}."
+
+[debug.action]
+copy-path = "Lokaal pad kopiëren"
+copy-path-description = "Kopieer het pad van het lokale rapport."
+open = "Openen: {url}"
+open-description = "Open het geüploade diagnoserapport."
+
+[debug.error]
+already-preparing = "Er wordt al een diagnoserapport voor {plugin} voorbereid."
+already-preparing-short = "Er wordt al een diagnoserapport voorbereid."
+capture-failed = "De gegevens voor het diagnoserapport konden niet worden verzameld. Controleer de serverconsole."
+closed-before-capture = "De diagnoseprovider is gesloten voordat de rapportgegevens waren verzameld."
+closed-before-write = "De diagnoseprovider is gesloten voordat het rapport was geschreven."
+missing-permission = "Ontbrekende machtiging: {permission}"
+provider-closed = "De diagnoseprovider is gesloten."
+schedule-failed = "Het maken van het diagnoserapport kon niet worden ingepland."
+write-failed = "Het diagnoserapport kon niet worden geschreven. Controleer de serverconsole."
+writer-schedule-failed = "Het schrijven van het diagnoserapport kon niet worden ingepland."
+
+[debug.upload]
+completed = "Geüpload als VolmitSoftware - {plugin} - v{version}."
+failed = "Het uploaden van het diagnoserapport is mislukt. Het lokale rapport is opgeslagen."
+interrupted = "Het uploaden van het diagnoserapport is onderbroken. Het lokale rapport is opgeslagen."
+
+[director.help]
+category = "Commandocategorie"
+command_group = "Opdrachtgroep. Klik om te openen."
+no_description = "Geen beschrijving opgegeven"
+no_parameters = "Geen parameters. Klik om de opdracht vooraf in te vullen."
+no_subcommands = "Geen subopdrachten op deze pagina."
+parameters_hover = "Beweeg de muis over de parameters voor meer informatie."
+
+[director.help.navigation]
+back = "Terug"
+page = "Pagina"
+
+[director.help.navigation.next]
+hover = "Volgende pagina"
+
+[director.help.navigation.parent]
+hover = "Terug naar de bovenliggende opdrachtgroep"
+
+[director.help.navigation.previous]
+hover = "Vorige pagina"
+
+[director.help.parameter]
+default = "Standaard \"{value}\" indien niet opgegeven."
+optional = "Deze parameter is optioneel."
+required = "Deze parameter is verplicht."
+type = "Deze parameter is van het type {type}."
+
+[director.runtime.error]
+conversion_failed = "Kan \"{value}\" voor {parameter} niet naar {type} converteren"
+default_parse_failed = "Kan de standaardwaarde voor parameter {parameter} niet verwerken"
+execution_failed = "Opdracht {command} kon niet worden uitgevoerd: {reason}"
+invalid_origin = "Deze opdracht kan niet vanuit deze bron worden uitgevoerd."
+missing_argument = "Ontbrekend argument \"{parameter}\" ({type})"
+unclosed_group = "Ontbrekende sluitende \"]\" voor parameter {key}"
+unexpected_argument = "Onverwacht argument \"{argument}\". Optionele parameters moeten met een sleutel worden opgegeven, bijv. seed=123"
+unknown_parameter = "Onbekende parametersleutel: {key}"
+
+[gesture]
+normal = "&7Druk tweemaal op Wisselen met tweede hand: {mode}&r"
+sneaking = "&7Houd Sluipen vast en druk tweemaal op Wisselen: {mode}&r"
+spectator = "&7Druk Sluipen drie keer afzonderlijk in: {mode}&r"
+rebind = "&7Wijzig Wisselen met tweede hand (F) en Sluipen (linker Shift) via Opties > Besturing > Toetsen.&r"
+personal_disabled = "&eJe gebaren staan uit. Schakel ze hier in of met /gsw toggle true.&r"
+empty_hands = "&7Beide handen moeten leeg zijn voor gebaren.&r"
+help = "&7Druk tweemaal op de toets om handen te wisselen (standaard F) om van modus te wisselen. Doe dit sluipend voor de andere actie; druk driemaal op sluipen om toeschouwer te verlaten. De doelmodi volgen de serverinstellingen.&r"
+
+[gui.title]
+root = "<gradient:#634514:#2f523f>GSW</gradient> <color:#404040>Configuratie</color>"
+
+[language.editor]
+title = "{plugin} › {section}"
+loading = "Berichten voor {locale} laden..."
+
+[language.editor.category]
+message-count = "&7{count} berichten&r"
+open = "&8Klik om deze categorie te openen.&r"
+
+[language.editor.error]
+no-permission = "Je hebt geen toestemming om de talen van {plugin} te bewerken."
+unable-to-edit = "Bewerken mislukt: {reason}"
+
+[language.editor.input]
+expired = "De invoer voor de taalbewerker is verlopen."
+too-long = "De invoer mag maximaal {maximum} tekens bevatten."
+unable-to-save = "Opslaan mislukt: {reason}"
+
+[language.editor.locale]
+open = "&8Klik om deze taal te openen.&r"
+
+[language.editor.message]
+current-value = "&7Huidige waarde:&r"
+edit-chat = "&7Klik om in de chat te bewerken.&r"
+edit-lines = "&7Klik om afzonderlijke regels te bewerken.&r"
+edit-plural = "&7Klik om een meervoudsvorm te bewerken.&r"
+variables = "&8{variables}&r"
+
+[language.editor.navigation]
+back = "&eTerug&r"
+close = "&cSluiten&r"
+next-page = "&eVolgende pagina&r"
+previous-page = "&eVorige pagina&r"
+
+[language.editor.part]
+line = "Regel {line}"
+
+[language.editor.prompt]
+current = "Huidige waarde: {value}"
+guidance = "Gebruik \\n voor een nieuwe regel, \\\\ voor een backslash, of typ cancel om terug te gaan."
+search = "Zoek op berichtsleutel of tekst. Typ cancel om terug te gaan."
+value = "Typ in de chat een nieuwe waarde voor {key}."
+variables = "Variabelen: {variables}"
+
+[language.editor.saved]
+change = "{key}: “{before}” is gewijzigd in “{after}”."
+summary = "{locale} opgeslagen. De taalkeuzes blijven ongewijzigd."
+
+[language.editor.search]
+clear = "Zoekopdracht wissen"
+messages = "Berichten doorzoeken"
+messages-lore = "Klik om alle berichten te doorzoeken."
+
+[language.editor.section]
+group-title = "{locale} / {group}"
+languages = "Talen"
+search = "Zoeken"
+search-title = "{locale} / Zoeken"
+
+[language.editor.value]
+empty = "(leeg)"
+none = "Geen"
+
+[language.error]
+editor-player-only = "Open de taalbewerker in het spel."
+no-providers = "Er zijn geen Volmit-taalaanbieders beschikbaar."
+numeric-page = "Voer een paginanummer in."
+personal-permission = "U hebt geen toestemming om uw taal te selecteren."
+personal-player-only = "Spelertaalvoorkeuren moeten in het spel worden geselecteerd."
+plugin-personal-permission = "Je hebt geen toestemming om je taal voor {plugin} te kiezen."
+plugin-server-permission = "Je hebt geen toestemming om de servertaal voor {plugin} te wijzigen."
+server-locale-required = "Kies een taalcode zoals en_US voor de standaardtaal van de server."
+stopping = "Taalselectie is niet beschikbaar terwijl de plugin stopt."
+unavailable-for-all = "De taal {locale} is niet voor alle geselecteerde plugins beschikbaar."
+
+[language.menu]
+all-volmit-plugins = "Alle Volmit-plugins"
+command = "Commando: {command}"
+current = "Huidig: {locale}"
+current_with_personal = "Huidig: {locale} (Jouw keuze: {personal})"
+edit_description = "Open de berichteneditor voor elke taal."
+edit_messages = "Taalberichten bewerken"
+no_controls = "Je hebt geen toegang tot taalinstellingen."
+remove_personal_description = "Verwijder jouw persoonlijke taalkeuze."
+reset_description = "Gebruik de standaardtaal van de server."
+reset_your_language = "Jouw taalkeuze herstellen"
+select_description = "Klik om deze taal te selecteren."
+selected = "geselecteerd"
+server_default = "Standaardtaal van de server"
+server_description = "Wijzig de standaardtaal van de server."
+use_server_default = "Standaardtaal van de server gebruiken"
+your_description = "Wijzig alleen de berichten die jij ziet."
+your_language = "Jouw taal"
+
+[language.selection]
+english-fallback = "{plugin}: {locale} is niet beschikbaar; Engels (en_US) wordt gebruikt."
+personal-selected = "{plugin}: uw taal is nu {locale}."
+preparing = "Taal {locale} wordt voorbereid voor {target}..."
+save-failed = "{plugin}: de taalkeuze kon niet worden opgeslagen; controleer de serverconsole."
+server-default-selected = "{plugin}: je taal volgt nu de standaardtaal van de server."
+server-selected = "{plugin}: servertaal is nu {locale}."
+
+[language.usage]
+editor = "Gebruik: /{command} language server edit [locale]"
+selection = "Gebruik: /{command} language self [locale|reset] or server [locale]"
+volmit-selection = "Gebruik: /volmit plugins languages [locale]"
+
+[menu]
+feedback = "&6Persoonlijke meldingen&r"
+feedback_help = "&7Demp wisselberichten, titels of geluiden voor jezelf.&r"
+back = "&7Terug naar spelmodi&r"
+selected = "&aGeselecteerd&r"
+survival_help = "&7Verzamel grondstoffen en let op gezondheid en honger.&r"
+creative_help = "&7Bouw met onbeperkte grondstoffen en Creatief vliegen.&r"
+adventure_help = "&7Verken kaarten met beperkingen voor het breken en plaatsen van blokken.&r"
+spectator_help = "&7Bekijk de wereld en vlieg door blokken.&r"
+config_help = "&7Bewerk serverinstellingen. Wijzigingen gelden direct.&r"
+language_help = "&7Kies de taal voor je berichten en menu's.&r"
+close = "Sluiten"
+config = "&6Configuratie&r"
+current = "&7Spelmodus: &f{mode}&r"
+gestures = "&6Gebaren&r"
+language = "&aTaal&r"
+select = "&7Klik om te selecteren.&r"
+title = "<gradient:#634514:#2f523f>Spelmodi</gradient>"
+toggle_disabled = "&7Gebaren: &cUitgeschakeld&r"
+toggle_enabled = "&7Gebaren: &aIngeschakeld&r"
+toggle_help = "&7Klik om gebaren in of uit te schakelen.&r"
+unavailable = "&cJe kunt deze spelmodus niet selecteren.&r"
+
+[mode]
+adventure = "Avontuur"
+creative = "Creatief"
+spectator = "Toeschouwer"
+survival = "Overleven"
+
+[preferences]
+title = "<gradient:#634514:#2f523f>Persoonlijke meldingen</gradient>"
+chat = "&6Chatberichten&r"
+action_bar = "&6Actiebalk&r"
+screen_title = "&6Schermtitels&r"
+sound = "&6Wisselgeluiden&r"
+muted = "&cVoor jou gedempt&r"
+inherit = "&7Serverinstellingen volgen: {state}&r"
+toggle = "&7Klik om te wisselen tussen gedempt en serverinstellingen.&r"
+silence = "&6Alles dempen&r"
+silence_help = "&7Demp berichten, titels en geluiden van geslaagde wissels.&r"
+reset = "&aServerinstellingen gebruiken&r"
+reset_help = "&7Verwijder al je persoonlijke dempingen.&r"
+failures = "&7Bij gedempte chat blijft de reden van een geblokkeerde wissel in de actiebalk zichtbaar.&r"
+failed = "{prefix}&cJe voorkeur kon niet worden opgeslagen. Bekijk de console.&r"
+
+[runtime]
+player_only = "{prefix}&cDeze opdracht kan alleen door een speler worden gebruikt.&r"
+prefix = "<gradient:#e9bd68:#85d6b0><bold>GamemodeSwitcher</bold></gradient> &8â€º&r "
+
+[runtime.hot_reload]
+failed = "{prefix}&cDe bestandswijzigingen zijn geweigerd; de laatst geldige instellingen blijven actief.&r"
+success = "{prefix}&aDe wijzigingen aan de configuratie en taalbestanden zijn toegepast.&r"
+
+[runtime.permission]
+denied = "{prefix}&cJe hebt geen toestemming om dat te doen.&r"
+
+[state]
+disabled = "&cUitgeschakeld&r"
+enabled = "&aIngeschakeld&r"
+
+[switch]
+title = "<gradient:#e9bd68:#85d6b0>{mode}</gradient>"
+subtitle = "&7Spelmodus gewijzigd.&r"
+overlay = "&7Spelmodus: &f{mode}&r"
+spectator_overlay_hint = "&7Druk driemaal op sluipen om Toeschouwer te verlaten.&r"
+already = "{prefix}&eJe spelmodus is al {mode}.&r"
+cancelled = "{prefix}&eEen andere plugin heeft de wijziging tegengehouden.&r"
+changed = "{prefix}&aSpelmodus gewijzigd naar {mode}.&r"
+cooldown = "{prefix}&eWacht {seconds} seconden voordat je opnieuw wisselt.&r"
+disabled = "{prefix}&eSpelmodus wisselen is uitgeschakeld.&r"
+empty_hands = "{prefix}&eMaak beide handen leeg om gebaren te gebruiken.&r"
+no_permission = "{prefix}&eJe hebt geen toestemming om deze spelmodus te gebruiken.&r"
+spectator_hint = "{prefix}&eGebruik /gsw menu of /gsw set survival om de toeschouwermodus te verlaten.&r"
+world_blocked = "{prefix}&eJe kunt niet van spelmodus wisselen in {world}.&r"
+
+[toggle]
+disabled = "{prefix}&eGebaren uitgeschakeld. Commando's en het menu blijven beschikbaar.&r"
+enabled = "{prefix}&aSpelmodusgebaren ingeschakeld.&r"
+
+[gui.config.general]
+name = "Algemeen"
+description = "Schakel spelmoduswissels in en kies de servertaal."
+
+[gui.config.metrics]
+name = "Statistieken"
+description = "Beheer anonieme bStats-statistieken."
+
+[gui.config.gestures]
+name = "Gebarenbediening"
+description = "Stel tiktijden, wachttijden en bestemmingen van gebaren in."
+
+[gui.config.gestures.normal]
+name = "Bestemmingen bij dubbel tikken"
+description = "Kies de bestemming van elke spelmodus bij dubbel tikken op de handwisseltoets."
+
+[gui.config.gestures.sneaking]
+name = "Bestemmingen tijdens sluipen"
+description = "Kies de bestemming van elke spelmodus bij sluipen en dubbel tikken op de handwisseltoets."
+
+[gui.config.restrictions]
+name = "Wereldbeperkingen"
+description = "Kies werelden waarin wisselen van spelmodus niet beschikbaar is."
+
+[gui.config.feedback]
+name = "Wisselmeldingen"
+description = "Kies berichten, meldingen, geluiden en Creatief vliegen bij wisselen."
+
+[gui.config.diagnostics]
+name = "Diagnostiek"
+description = "Beheer het openbaar uploaden van diagnoserapporten."
+
+[gui.config.languages]
+name = "Talen"
+description = "Bewerk serververtalingen en hun opmaak."
+
+[gui.config.general.enabled]
+name = "Spelmodus wisselen"
+description = "Sta wisselen via gebaren, opdrachten en het menu toe."
+
+[gui.config.general.language]
+name = "Servertaal"
+description = "Standaardtaal voor spelers zonder persoonlijke keuze. Ontbrekende vertalingen gebruiken Engels."
+
+[gui.config.metrics.enabled]
+name = "Anonieme statistieken"
+description = "Verstuur anonieme bStats-statistieken. De algemene uitschakeling van bStats geldt ook."
+
+[gui.config.gestures.double-tap-millis]
+name = "Tijd voor dubbel tikken"
+description = "Maximale tijd tussen tikken op de handwisseltoets in milliseconden. Bereik: 100 tot 3000."
+
+[gui.config.gestures.sneak-tap-millis]
+name = "Tiktijd voor Toeschouwer"
+description = "Maximale tijd tussen sluiptoetsdrukken in Toeschouwer, in milliseconden. Bereik: 100 tot 3000."
+
+[gui.config.gestures.cooldown-millis]
+name = "Wachttijd na wisselen"
+description = "Wachttijd na een geslaagde wissel in milliseconden. Bereik: 0 tot 60000; 0 verwijdert de wachttijd."
+
+[gui.config.gestures.require-empty-hands]
+name = "Lege handen vereist"
+description = "Vereis twee lege handen voordat een gebaar de spelmodus kan wijzigen."
+
+[gui.config.gestures.spectator-exit]
+name = "Toeschouwer verlaten"
+description = "Bestemming na drie afzonderlijke sluiptoetsdrukken in Toeschouwer."
+
+[gui.config.gestures.normal.survival]
+name = "Vanuit Overleven"
+description = "Bestemming bij dubbel tikken op de handwisseltoets in Overleven."
+
+[gui.config.gestures.normal.creative]
+name = "Vanuit Creatief"
+description = "Bestemming bij dubbel tikken op de handwisseltoets in Creatief."
+
+[gui.config.gestures.normal.adventure]
+name = "Vanuit Avontuur"
+description = "Bestemming bij dubbel tikken op de handwisseltoets in Avontuur."
+
+[gui.config.gestures.sneaking.survival]
+name = "Vanuit Overleven"
+description = "Bestemming bij sluipen en dubbel tikken op de handwisseltoets in Overleven."
+
+[gui.config.gestures.sneaking.creative]
+name = "Vanuit Creatief"
+description = "Bestemming bij sluipen en dubbel tikken op de handwisseltoets in Creatief."
+
+[gui.config.gestures.sneaking.adventure]
+name = "Vanuit Avontuur"
+description = "Bestemming bij sluipen en dubbel tikken op de handwisseltoets in Avontuur."
+
+[gui.config.restrictions.disabled-worlds]
+name = "Uitgeschakelde werelden"
+description = "Wereldnamen waarin gebaren, opdrachten en het menu geen spelmoduswissels toestaan. Hoofdletters maken geen verschil."
+input = "Gebruik een lijst met wereldnamen, zoals [\"world_nether\", \"world_the_end\"]. Gebruik [] voor geen wereldbeperkingen."
+
+[gui.config.feedback.auto-fly-creative]
+name = "Vliegen bij Creatief"
+description = "Begin met vliegen na het inschakelen van Creatief als de speler mag vliegen."
+
+[gui.config.feedback.sound-enabled]
+name = "Geluid bij wisselen"
+description = "Speel een bevestigingsgeluid na een geslaagde spelmoduswissel."
+
+[gui.config.diagnostics.upload-enabled]
+name = "Openbare debugrapporten"
+description = "Sta openbare diagnoserapporten toe. Gebruik upload=false om een rapport lokaal op te slaan."
+
+[gui.config.feedback.chat-enabled]
+name = "Chatberichten"
+description = "Toon geslaagde wissels en Toeschouwer-tips in de chat. Wanneer uitgeschakeld verschijnen foutredenen in de actiebalk."
+
+[gui.config.feedback.action-bar-enabled]
+name = "Actiebalkmelding"
+description = "Toon de nieuwe modus boven de snelbalk, met een uitstaptip in Toeschouwer."
+
+[gui.config.feedback.title-enabled]
+name = "Titelmelding"
+description = "Toon de nieuwe modus midden op het scherm, met een uitstaptip in Toeschouwer."
+
+[gui.config.feedback.popup-duration-ticks]
+name = "Duur van meldingen"
+description = "Duur van titel en actiebalk in ticks; 20 ticks = 1 seconde. Bereik: 1 tot 200."
+
+[gui.config.feedback.sound]
+name = "Geluidssleutel"
+description = "Geluid na een geslaagde spelmoduswissel."
+input = "Voer een geluidssleutel met naamruimte in, zoals minecraft:ui.button.click of minecraft:entity.experience_orb.pickup. Sleutels van aangepaste resourcepacks zijn toegestaan."
+
+[gui.config.feedback.sound-volume]
+name = "Volume"
+description = "Volume van het wisselgeluid. Bereik: 0 tot 1; 0 is stil."
+
+[gui.config.feedback.sound-pitch]
+name = "Toonhoogte"
+description = "Toonhoogte van het wisselgeluid. Bereik: 0.5 tot 2; 1 gebruikt de oorspronkelijke toonhoogte."

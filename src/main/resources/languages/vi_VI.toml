@@ -1,0 +1,517 @@
+# GamemodeSwitcher — vi_VI
+#
+# === Chỉnh sửa tệp ===
+# plugins/GamemodeSwitcher/languages/vi_VI.toml
+# Bạn có thể chỉnh sửa trực tiếp tệp này. Thay đổi cục bộ được giữ lại; mục thiếu hoặc không hợp lệ dùng bản tiếng Anh tích hợp.
+# /gsw language server edit vi_VI
+#
+# === Tiền tố ===
+# {prefix}  giá trị runtime.prefix toàn cục. Xóa {prefix} khỏi từng thông báo nếu không muốn hiện ở thông báo đó
+#
+# === Định dạng ===
+# Màu: &0-&f, &k-&r, &#RRGGBB, &xRRGGBB, &x&R&R&G&G&B&B và [RRGGBB]. MiniMessage vẫn dùng được cho định dạng tùy chỉnh.
+# Thêm dấu gạch chéo ngược trước & hoặc [ để hiển thị ký tự theo nghĩa đen.
+#
+# === Biến ===
+# Giữ nguyên tên biến và chỉ dùng những biến có sẵn trong từng thông báo.
+#   {after}  Giá trị sau khi thay đổi
+#   {argument}  đối số ngoài dự kiến
+#   {before}  Giá trị trước khi thay đổi
+#   {command}  đường dẫn lệnh
+#   {count}  Số mục khớp
+#   {enabled}  Trạng thái chuyển chế độ chơi
+#   {group}  Danh mục trong trình sửa ngôn ngữ
+#   {hot_reload}  trạng thái tải lại
+#   {key}  khóa tham số
+#   {language}  ngôn ngữ đang dùng
+#   {line}  Số dòng hay dòng nguồn
+#   {locale}  mã vùng
+#   {maximum}  Giá trị được chấp nhận tối đa
+#   {mode}  Tên chế độ chơi
+#   {new}  giá trị mới
+#   {number}  Số thứ tự mục
+#   {old}  giá trị trước
+#   {page}  Số trang hiện tại
+#   {pages}  Tổng số trang
+#   {parameter}  tên tham số
+#   {path}  đường dẫn báo cáo cục bộ
+#   {permission}  quyền cần có
+#   {personal}  mã vùng cá nhân
+#   {plugin}  Tên phần bổ sung
+#   {prefix}  giá trị runtime.prefix toàn cục. Xóa {prefix} khỏi từng thông báo nếu không muốn hiện ở thông báo đó
+#   {reason}  lý do lỗi
+#   {scheduler}  bộ lập lịch
+#   {seconds}  Thời gian chờ hoặc xác nhận còn lại tính bằng giây
+#   {section}  Mục trong trình chỉnh sửa ngôn ngữ
+#   {setting}  tên cài đặt
+#   {step}  Mức thay đổi cài đặt số sau một lần nhấp thông thường
+#   {state}  Trạng thái cử chỉ hoặc thông báo cá nhân
+#   {target}  Người chơi đích, thực thể hay giá trị
+#   {type}  kiểu
+#   {url}  URL công khai
+#   {value}  giá trị hiện tại, mặc định hoặc thô
+#   {variables}  chỗ giữ chỗ hợp lệ
+#   {version}  phiên bản plugin
+#   {world}  thế giới
+
+[command.description]
+version = "Hiển thị phiên bản GamemodeSwitcher"
+config = "Cấu hình"
+debug = "Công cụ chẩn đoán GamemodeSwitcher"
+debug_dump = "Tạo báo cáo chẩn đoán GamemodeSwitcher toàn diện"
+language = "Ngôn ngữ"
+menu = "Chế độ chơi"
+root = "Chế độ chơi"
+set = "Chế độ chơi"
+status = "Chế độ chơi"
+toggle = "Thao tác"
+
+[command.feedback]
+failed = "{prefix}&cKhông thể hoàn tất lệnh. Hãy xem bảng điều khiển để biết chi tiết.&r"
+
+[command.feedback.config]
+opened = "{prefix}&aĐã mở trình chỉnh sửa cấu hình đầy đủ trong trò chơi.&r"
+save_failed = "{prefix}&cKhông thể áp dụng &f{setting}&r&c: {reason}&r"
+saved = "{prefix}&a{setting}&r &7đã đổi từ &f{old}&r &7thành &f{new}&r&7.&r"
+
+[command.parameter]
+enabled = "Đã bật / Đã tắt"
+mode = "Sinh tồn, Sáng tạo, Phiêu lưu, Khán giả"
+upload = "Tải báo cáo lên khi bật tải lên công khai"
+
+[command.status]
+compatibility = "&7Gói dựng:&r &fJava 17 / Bukkit 1.20.1+&r &8|&r &7Bộ lập lịch:&r &f{scheduler}&r"
+config = "&7Chế độ chơi:&r {enabled} &8|&r &7Ngôn ngữ:&r {language} &8|&r &7Tải lại cấu hình và ngôn ngữ:&r {hot_reload}"
+header = "&6&lGamemodeSwitcher&r"
+player = "&7Thao tác:&r {state} &8|&r &7Chế độ chơi:&r {mode}"
+
+[config.editor]
+adjust = "Trái +{step}, phải -{step}, Shift x10, Q để nhập giá trị chính xác."
+back = "Quay lại"
+close = "Đóng"
+current = "Giá trị hiện tại: {value}"
+edit = "Nhấp để nhập giá trị mới trong trò chuyện."
+empty = "Phần này không có cài đặt nào."
+entry = "Mục {number}"
+expired = "Đã hết thời gian nhập cấu hình."
+failed = "Không thể chỉnh sửa cấu hình: {reason}"
+loading = "Đang tải cấu hình..."
+next = "Trang sau"
+no-permission = "Bạn không có quyền chỉnh sửa cấu hình này."
+open = "Nhấp để mở phần này."
+page = "Trang {page} trên {pages}"
+player-only = "Mở trình chỉnh sửa cấu hình trong trò chơi."
+previous = "Trang trước"
+prompt = "Nhập giá trị mới cho {path}. Nhập cancel để quay lại."
+refresh = "Làm mới"
+saved = "Đã lưu {path}. Các thay đổi sẽ tự động được áp dụng."
+saving = "Đang lưu cấu hình..."
+section = "Phần: {path}"
+title = "{plugin} / Cấu hình"
+toggle = "Nhấp để chuyển giữa true và false."
+too-long = "Nhập tối đa {maximum} ký tự."
+
+[config.editor.type]
+decimal = "Nhập một số, chẳng hạn 0.25."
+integer = "Nhập một số nguyên."
+list = "Dùng danh sách TOML, chẳng hạn [\"stone\", \"deepslate\"]."
+text = "Văn bản không cần dấu ngoặc kép bao quanh."
+
+[debug]
+preparing = "Đang chuẩn bị báo cáo chẩn đoán {plugin}..."
+saved = "Đã lưu báo cáo chẩn đoán {plugin} vào {path}."
+
+[debug.action]
+copy-path = "Sao chép đường dẫn cục bộ"
+copy-path-description = "Sao chép đường dẫn của báo cáo cục bộ."
+open = "Mở: {url}"
+open-description = "Mở báo cáo chẩn đoán đã tải lên."
+
+[debug.error]
+already-preparing = "Một báo cáo chẩn đoán cho {plugin} đang được chuẩn bị."
+already-preparing-short = "Một báo cáo chẩn đoán đang được chuẩn bị."
+capture-failed = "Không thể thu thập dữ liệu báo cáo chẩn đoán; hãy kiểm tra bảng điều khiển máy chủ."
+closed-before-capture = "Bộ cung cấp dữ liệu chẩn đoán đã đóng trước khi thu thập dữ liệu báo cáo."
+closed-before-write = "Bộ cung cấp dữ liệu chẩn đoán đã đóng trước khi ghi báo cáo."
+missing-permission = "Thiếu quyền: {permission}"
+provider-closed = "Bộ cung cấp dữ liệu chẩn đoán đã đóng."
+schedule-failed = "Không thể lên lịch tạo báo cáo chẩn đoán."
+write-failed = "Không thể ghi báo cáo chẩn đoán; hãy kiểm tra bảng điều khiển máy chủ."
+writer-schedule-failed = "Không thể lên lịch ghi báo cáo chẩn đoán."
+
+[debug.upload]
+completed = "Đã tải lên với tên VolmitSoftware - {plugin} - v{version}."
+failed = "Không thể tải báo cáo chẩn đoán lên; báo cáo cục bộ đã được lưu."
+interrupted = "Việc tải báo cáo chẩn đoán lên đã bị gián đoạn; báo cáo cục bộ đã được lưu."
+
+[director.help]
+category = "Danh mục lệnh"
+command_group = "Nhóm lệnh. Nhấp để mở."
+no_description = "Không có mô tả"
+no_parameters = "Không có tham số. Nhấp để điền sẵn lệnh."
+no_subcommands = "Không có lệnh con trên trang này."
+parameters_hover = "Di chuột qua các tham số để tìm hiểu thêm."
+
+[director.help.navigation]
+back = "Quay lại"
+page = "Trang"
+
+[director.help.navigation.next]
+hover = "Trang sau"
+
+[director.help.navigation.parent]
+hover = "Quay lại nhóm lệnh cha"
+
+[director.help.navigation.previous]
+hover = "Trang trước"
+
+[director.help.parameter]
+default = "Mặc định là \"{value}\" nếu không được chỉ định."
+optional = "Tham số này là tùy chọn."
+required = "Tham số này là bắt buộc."
+type = "Tham số này có kiểu {type}."
+
+[director.runtime.error]
+conversion_failed = "Không thể chuyển \"{value}\" thành {type} cho {parameter}"
+default_parse_failed = "Không thể phân tích giá trị mặc định của tham số {parameter}"
+execution_failed = "Không thể thực thi lệnh {command}: {reason}"
+invalid_origin = "Không thể chạy lệnh này từ nguồn này."
+missing_argument = "Thiếu đối số \"{parameter}\" ({type})"
+unclosed_group = "Thiếu dấu \"]\" đóng cho tham số {key}"
+unexpected_argument = "Đối số không mong đợi \"{argument}\". Các tham số tùy chọn phải được chỉ định bằng khóa, ví dụ seed=123"
+unknown_parameter = "Khóa tham số không xác định: {key}"
+
+[gesture]
+normal = "&7Nhấn hai lần phím đổi vật phẩm sang tay phụ: {mode}&r"
+sneaking = "&7Giữ Cúi người và nhấn hai lần phím đổi tay: {mode}&r"
+spectator = "&7Nhấn Cúi người ba lần riêng biệt: {mode}&r"
+rebind = "&7Đổi phím tay phụ (mặc định F) và Cúi người (Shift trái) trong Tùy chọn > Điều khiển > Gán phím.&r"
+personal_disabled = "&eCử chỉ của bạn đang tắt. Bật tại đây hoặc dùng /gsw toggle true.&r"
+empty_hands = "&7Cả hai tay phải trống để dùng cử chỉ.&r"
+help = "&7Nhấn hai lần phím đổi tay (mặc định là F) để đổi chế độ. Vừa cúi vừa làm để dùng thao tác khác; nhấn cúi ba lần để rời khán giả. Chế độ đích tuân theo cài đặt máy chủ.&r"
+
+[gui.title]
+root = "<gradient:#634514:#2f523f>GSW</gradient> <color:#404040>Cấu hình</color>"
+
+[language.editor]
+title = "{plugin} › {section}"
+loading = "Đang tải tin nhắn cho {locale}..."
+
+[language.editor.category]
+message-count = "&7{count} tin nhắn&r"
+open = "&8Nhấn vào để mở phân loại này.&r"
+
+[language.editor.error]
+no-permission = "Bạn không có quyền chỉnh sửa ngôn ngữ của {plugin}."
+unable-to-edit = "Không thể chỉnh sửa: {reason}"
+
+[language.editor.input]
+expired = "Đã hết thời gian nhập trong trình chỉnh sửa ngôn ngữ."
+too-long = "Nội dung nhập chỉ được có tối đa {maximum} ký tự."
+unable-to-save = "Không thể lưu: {reason}"
+
+[language.editor.locale]
+open = "&8Nhấn vào để mở ngôn ngữ này.&r"
+
+[language.editor.message]
+current-value = "&7Giá trị hiện có:&r"
+edit-chat = "&7Nhấp để chỉnh sửa trong trò chuyện.&r"
+edit-lines = "&7Nhấp để chỉnh sửa từng dòng.&r"
+edit-plural = "&7Nhấp để chỉnh sửa một dạng số nhiều.&r"
+variables = "&8{variables}&r"
+
+[language.editor.navigation]
+back = "&eQuay lại&r"
+close = "&cĐóng&r"
+next-page = "&eTrang kế&r"
+previous-page = "&eTrang trước&r"
+
+[language.editor.part]
+line = "Dòng {line}"
+
+[language.editor.prompt]
+current = "Giá trị hiện tại: {value}"
+guidance = "Dùng \\n để xuống dòng, \\\\ để nhập dấu gạch chéo ngược, hoặc nhập cancel để quay lại."
+search = "Tìm khóa hoặc nội dung tin nhắn. Nhập cancel để quay lại."
+value = "Nhập giá trị mới cho {key} trong trò chuyện."
+variables = "Biến: {variables}"
+
+[language.editor.saved]
+change = "{key}: “{before}” đã đổi thành “{after}”."
+summary = "Đã lưu {locale}. Các lựa chọn ngôn ngữ không thay đổi."
+
+[language.editor.search]
+clear = "Xóa tìm kiếm"
+messages = "Tìm tin nhắn"
+messages-lore = "Nhấn vào để tìm kiếm mọi tin nhắn."
+
+[language.editor.section]
+group-title = "{locale} / {group}"
+languages = "Ngôn ngữ"
+search = "Tìm kiếm"
+search-title = "{locale} / Tìm kiếm"
+
+[language.editor.value]
+empty = "(trống)"
+none = "Không có"
+
+[language.error]
+editor-player-only = "Mở trình soạn thảo ngôn ngữ trong trò chơi."
+no-providers = "Không có nhà cung cấp ngôn ngữ Volmit nào khả dụng."
+numeric-page = "Nhập số trang bằng chữ số."
+personal-permission = "Bạn không có quyền chọn ngôn ngữ của mình."
+personal-player-only = "Bạn phải chọn ngôn ngữ cá nhân trong trò chơi."
+plugin-personal-permission = "Bạn không có quyền chọn ngôn ngữ cá nhân cho {plugin}."
+plugin-server-permission = "Bạn không có quyền thay đổi ngôn ngữ máy chủ cho {plugin}."
+server-locale-required = "Chọn mã ngôn ngữ như en_US làm ngôn ngữ mặc định của máy chủ."
+stopping = "Không có khả năng chọn ngôn ngữ trong khi bổ sung đang dừng."
+unavailable-for-all = "Ngôn ngữ {locale} không khả dụng cho tất cả plugin đã chọn."
+
+[language.menu]
+all-volmit-plugins = "Tất cả plugin Volmit"
+command = "Câu lệnh: {command}"
+current = "Hiện tại: {locale}"
+current_with_personal = "Hiện tại: {locale} (Của bạn: {personal})"
+edit_description = "Mở trình chỉnh sửa thông báo cho từng ngôn ngữ."
+edit_messages = "Chỉnh sửa thông báo ngôn ngữ"
+no_controls = "Bạn không có quyền dùng các tùy chọn ngôn ngữ."
+remove_personal_description = "Xóa lựa chọn ngôn ngữ cá nhân của bạn."
+reset_description = "Dùng ngôn ngữ mặc định của máy chủ."
+reset_your_language = "Đặt lại ngôn ngữ của bạn"
+select_description = "Nhấp để chọn ngôn ngữ này."
+selected = "Đã chọn"
+server_default = "Ngôn ngữ mặc định của máy chủ"
+server_description = "Thay đổi ngôn ngữ mặc định của máy chủ."
+use_server_default = "Dùng ngôn ngữ mặc định của máy chủ"
+your_description = "Chỉ thay đổi những thông báo bạn thấy."
+your_language = "Ngôn ngữ của bạn"
+
+[language.selection]
+english-fallback = "{plugin}: {locale} không khả dụng; sẽ dùng tiếng Anh (en_US)."
+personal-selected = "{plugin}: ngôn ngữ của bạn hiện là {locale}."
+preparing = "Đang chuẩn bị ngôn ngữ {locale} cho {target}..."
+save-failed = "{plugin}: không thể lưu lựa chọn ngôn ngữ; hãy kiểm tra bảng điều khiển máy chủ."
+server-default-selected = "{plugin}: ngôn ngữ của bạn hiện theo ngôn ngữ mặc định của máy chủ."
+server-selected = "{plugin}: ngôn ngữ máy chủ hiện là {locale}."
+
+[language.usage]
+editor = "Cách dùng: /{command} language server edit [locale]"
+selection = "Cách dùng: /{command} language self [locale|reset] or server [locale]"
+volmit-selection = "Cách dùng: /volmit plugins languages [locale]"
+
+[menu]
+feedback = "&6Thông báo cá nhân&r"
+feedback_help = "&7Tắt tin nhắn, tiêu đề hoặc âm thanh chuyển chế độ cho riêng bạn.&r"
+back = "&7Trở về chế độ chơi&r"
+selected = "&aĐã chọn&r"
+survival_help = "&7Thu thập tài nguyên và quản lý sức khỏe, độ đói.&r"
+creative_help = "&7Xây dựng với tài nguyên vô hạn và khả năng bay Sáng tạo.&r"
+adventure_help = "&7Khám phá bản đồ có giới hạn phá và đặt khối.&r"
+spectator_help = "&7Quan sát thế giới và đi xuyên qua khối.&r"
+config_help = "&7Sửa cài đặt máy chủ. Thay đổi có hiệu lực ngay.&r"
+language_help = "&7Chọn ngôn ngữ cho tin nhắn và menu của bạn.&r"
+close = "Đóng"
+config = "&6Cấu hình&r"
+current = "&7Chế độ chơi: &f{mode}&r"
+gestures = "&6Thao tác&r"
+language = "&aNgôn ngữ&r"
+select = "&7Nhấp để chọn.&r"
+title = "<gradient:#634514:#2f523f>Chế độ chơi</gradient>"
+toggle_disabled = "&7Thao tác: &cĐã tắt&r"
+toggle_enabled = "&7Thao tác: &aĐã bật&r"
+toggle_help = "&7Nhấp để bật hoặc tắt thao tác.&r"
+unavailable = "&cBạn không thể chọn chế độ chơi này.&r"
+
+[mode]
+adventure = "Phiêu lưu"
+creative = "Sáng tạo"
+spectator = "Khán giả"
+survival = "Sinh tồn"
+
+[preferences]
+title = "<gradient:#634514:#2f523f>Thông báo cá nhân</gradient>"
+chat = "&6Tin nhắn trò chuyện&r"
+action_bar = "&6Thanh hành động&r"
+screen_title = "&6Tiêu đề trên màn hình&r"
+sound = "&6Âm thanh chuyển chế độ&r"
+muted = "&cĐã tắt cho bạn&r"
+inherit = "&7Theo cài đặt máy chủ: {state}&r"
+toggle = "&7Nhấp để đổi giữa tắt và dùng cài đặt máy chủ.&r"
+silence = "&6Tắt tất cả&r"
+silence_help = "&7Tắt tin nhắn, tiêu đề và âm thanh khi chuyển thành công.&r"
+reset = "&aDùng cài đặt máy chủ&r"
+reset_help = "&7Xóa mọi cài đặt tắt thông báo cá nhân.&r"
+failures = "&7Khi tắt trò chuyện, lý do chuyển bị chặn vẫn hiển thị trên thanh hành động.&r"
+failed = "{prefix}&cKhông thể lưu tùy chọn của bạn. Xem bảng điều khiển để biết chi tiết.&r"
+
+[runtime]
+player_only = "{prefix}&cChỉ người chơi mới có thể sử dụng lệnh này.&r"
+prefix = "<gradient:#e9bd68:#85d6b0><bold>GamemodeSwitcher</bold></gradient> &8â€º&r "
+
+[runtime.hot_reload]
+failed = "{prefix}&cĐã từ chối thay đổi tệp; các thiết lập hợp lệ gần nhất vẫn đang hoạt động.&r"
+success = "{prefix}&aĐã áp dụng các thay đổi trong tệp cấu hình và ngôn ngữ.&r"
+
+[runtime.permission]
+denied = "{prefix}&cBạn không có quyền thực hiện thao tác này.&r"
+
+[state]
+disabled = "&cĐã tắt&r"
+enabled = "&aĐã bật&r"
+
+[switch]
+title = "<gradient:#e9bd68:#85d6b0>{mode}</gradient>"
+subtitle = "&7Đã đổi chế độ chơi.&r"
+overlay = "&7Chế độ chơi: &f{mode}&r"
+spectator_overlay_hint = "&7Nhấn cúi ba lần để thoát Quan sát.&r"
+already = "{prefix}&eBạn đã ở chế độ {mode}.&r"
+cancelled = "{prefix}&eMột plugin khác đã chặn việc đổi chế độ chơi.&r"
+changed = "{prefix}&aĐã đổi chế độ chơi sang {mode}.&r"
+cooldown = "{prefix}&eChờ {seconds} giây trước khi đổi tiếp.&r"
+disabled = "{prefix}&eChức năng đổi chế độ chơi đã bị tắt.&r"
+empty_hands = "{prefix}&eĐể trống cả hai tay để dùng thao tác đổi chế độ.&r"
+no_permission = "{prefix}&eBạn không có quyền dùng chế độ chơi này.&r"
+spectator_hint = "{prefix}&eDùng /gsw menu hoặc /gsw set survival để rời chế độ khán giả.&r"
+world_blocked = "{prefix}&eKhông thể đổi chế độ chơi trong {world}.&r"
+
+[toggle]
+disabled = "{prefix}&eĐã tắt thao tác. Lệnh và trình đơn vẫn dùng được.&r"
+enabled = "{prefix}&aĐã bật thao tác đổi chế độ chơi.&r"
+
+[gui.config.general]
+name = "Chung"
+description = "Bật đổi chế độ chơi và chọn ngôn ngữ máy chủ."
+
+[gui.config.metrics]
+name = "Thống kê"
+description = "Quản lý thống kê ẩn danh của bStats."
+
+[gui.config.gestures]
+name = "Điều khiển cử chỉ"
+description = "Đặt khoảng nhấn, thời gian chờ và đích của cử chỉ."
+
+[gui.config.gestures.normal]
+name = "Đích nhấn hai lần"
+description = "Chọn đích cho từng chế độ khi nhấn phím đổi tay hai lần."
+
+[gui.config.gestures.sneaking]
+name = "Đích khi cúi"
+description = "Chọn đích cho từng chế độ khi cúi và nhấn phím đổi tay hai lần."
+
+[gui.config.restrictions]
+name = "Giới hạn thế giới"
+description = "Chọn thế giới không cho phép đổi chế độ chơi."
+
+[gui.config.feedback]
+name = "Thông báo đổi chế độ"
+description = "Chọn tin nhắn, thông báo, âm thanh và cách bay Sáng tạo khi đổi."
+
+[gui.config.diagnostics]
+name = "Chẩn đoán"
+description = "Quản lý việc tải báo cáo chẩn đoán lên công khai."
+
+[gui.config.languages]
+name = "Ngôn ngữ"
+description = "Sửa bản dịch máy chủ và định dạng của chúng."
+
+[gui.config.general.enabled]
+name = "Đổi chế độ chơi"
+description = "Cho phép đổi bằng cử chỉ, lệnh và menu."
+
+[gui.config.general.language]
+name = "Ngôn ngữ máy chủ"
+description = "Ngôn ngữ mặc định cho người chưa chọn ngôn ngữ riêng. Mục thiếu bản dịch dùng tiếng Anh."
+
+[gui.config.metrics.enabled]
+name = "Thống kê ẩn danh"
+description = "Gửi thống kê ẩn danh tới bStats. Cài đặt tắt bStats toàn cục cũng có hiệu lực."
+
+[gui.config.gestures.double-tap-millis]
+name = "Khoảng nhấn hai lần"
+description = "Thời gian tối đa giữa các lần nhấn đổi tay, tính bằng mili giây. Phạm vi: 100 đến 3000."
+
+[gui.config.gestures.sneak-tap-millis]
+name = "Khoảng nhấn Quan sát"
+description = "Thời gian tối đa giữa các lần nhấn cúi trong Quan sát, tính bằng mili giây. Phạm vi: 100 đến 3000."
+
+[gui.config.gestures.cooldown-millis]
+name = "Thời gian chờ đổi"
+description = "Thời gian chờ sau khi đổi thành công, tính bằng mili giây. Phạm vi: 0 đến 60000; 0 bỏ thời gian chờ."
+
+[gui.config.gestures.require-empty-hands]
+name = "Yêu cầu tay trống"
+description = "Yêu cầu cả hai tay trống để cử chỉ có thể đổi chế độ."
+
+[gui.config.gestures.spectator-exit]
+name = "Thoát chế độ Quan sát"
+description = "Đích sau ba lần nhấn cúi riêng biệt trong Quan sát."
+
+[gui.config.gestures.normal.survival]
+name = "Từ Sinh tồn"
+description = "Đích khi nhấn phím đổi tay hai lần trong chế độ Sinh tồn."
+
+[gui.config.gestures.normal.creative]
+name = "Từ Sáng tạo"
+description = "Đích khi nhấn phím đổi tay hai lần trong chế độ Sáng tạo."
+
+[gui.config.gestures.normal.adventure]
+name = "Từ Phiêu lưu"
+description = "Đích khi nhấn phím đổi tay hai lần trong chế độ Phiêu lưu."
+
+[gui.config.gestures.sneaking.survival]
+name = "Từ Sinh tồn"
+description = "Đích khi cúi và nhấn phím đổi tay hai lần trong chế độ Sinh tồn."
+
+[gui.config.gestures.sneaking.creative]
+name = "Từ Sáng tạo"
+description = "Đích khi cúi và nhấn phím đổi tay hai lần trong chế độ Sáng tạo."
+
+[gui.config.gestures.sneaking.adventure]
+name = "Từ Phiêu lưu"
+description = "Đích khi cúi và nhấn phím đổi tay hai lần trong chế độ Phiêu lưu."
+
+[gui.config.restrictions.disabled-worlds]
+name = "Thế giới bị vô hiệu hóa"
+description = "Tên thế giới nơi cử chỉ, lệnh và menu không thể đổi chế độ. Không phân biệt chữ hoa và chữ thường."
+input = "Nhập danh sách tên thế giới, chẳng hạn [\"world_nether\", \"world_the_end\"]. Dùng [] để không giới hạn thế giới."
+
+[gui.config.feedback.auto-fly-creative]
+name = "Bay khi vào Sáng tạo"
+description = "Bắt đầu bay sau khi vào Sáng tạo nếu người chơi được phép bay."
+
+[gui.config.feedback.sound-enabled]
+name = "Âm thanh đổi chế độ"
+description = "Phát âm thanh xác nhận sau khi đổi chế độ thành công."
+
+[gui.config.diagnostics.upload-enabled]
+name = "Báo cáo công khai"
+description = "Cho phép tải báo cáo chẩn đoán lên công khai. Dùng upload=false để lưu báo cáo cục bộ."
+
+[gui.config.feedback.chat-enabled]
+name = "Tin nhắn trò chuyện"
+description = "Hiện lần đổi thành công và gợi ý Quan sát trong trò chuyện. Khi tắt, lý do thất bại hiện trên thanh hành động."
+
+[gui.config.feedback.action-bar-enabled]
+name = "Thông báo thanh hành động"
+description = "Hiện chế độ mới trên thanh vật phẩm, kèm gợi ý thoát khi ở Quan sát."
+
+[gui.config.feedback.title-enabled]
+name = "Thông báo tiêu đề"
+description = "Hiện chế độ mới giữa màn hình, kèm gợi ý thoát khi ở Quan sát."
+
+[gui.config.feedback.popup-duration-ticks]
+name = "Thời lượng thông báo"
+description = "Thời lượng tiêu đề và thanh hành động tính bằng tick; 20 tick = 1 giây. Phạm vi: 1 đến 200."
+
+[gui.config.feedback.sound]
+name = "Khóa âm thanh"
+description = "Âm thanh phát sau khi đổi chế độ thành công."
+input = "Nhập khóa âm thanh có không gian tên, như minecraft:ui.button.click hoặc minecraft:entity.experience_orb.pickup. Có thể dùng khóa của gói tài nguyên tùy chỉnh."
+
+[gui.config.feedback.sound-volume]
+name = "Âm lượng"
+description = "Âm lượng của tiếng đổi chế độ. Phạm vi: 0 đến 1; 0 là im lặng."
+
+[gui.config.feedback.sound-pitch]
+name = "Cao độ"
+description = "Cao độ của tiếng đổi chế độ. Phạm vi: 0.5 đến 2; 1 dùng cao độ gốc."
