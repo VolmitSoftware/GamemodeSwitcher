@@ -45,6 +45,7 @@
 #   {section}  Abschnitt des Spracheneditors
 #   {setting}  Einstellungsname
 #   {step}  Änderung eines Zahlenwerts durch einen normalen Klick
+#   {sound}  Soundkennung
 #   {state}  Persönlicher Gesten- oder Rückmeldungsstatus
 #   {target}  Zielspieler, Entität oder Wert
 #   {type}  Parametertyp
@@ -66,6 +67,8 @@ set = "Spielmodus"
 status = "Spielmodus"
 toggle = "Gesten"
 
+return = "Aus deiner Zuschauersitzung zurückkehren"
+
 [command.feedback]
 failed = "{prefix}&cDer Befehl konnte nicht ausgeführt werden. Details stehen in der Konsole.&r"
 
@@ -80,7 +83,7 @@ mode = "Überleben, Kreativ, Abenteuer, Zuschauer"
 upload = "Den Bericht hochladen, wenn öffentliche Uploads aktiviert sind"
 
 [command.status]
-compatibility = "&7Artefakt:&r &fJava 17 / Bukkit 1.20.1+&r &8|&r &7Planer:&r &f{scheduler}&r"
+compatibility = "&7Artefakt:&r &fJava 25 / Bukkit 26.1+&r &8|&r &7Planer:&r &f{scheduler}&r"
 config = "&7Spielmodus:&r {enabled} &8|&r &7Sprache:&r {language} &8|&r &7Konfiguration und Sprachen neu laden:&r {hot_reload}"
 header = "&6&lGamemodeSwitcher&r"
 player = "&7Gesten:&r {state} &8|&r &7Spielmodus:&r {mode}"
@@ -515,3 +518,42 @@ description = "Lautstärke des Wechselsounds. Bereich: 0 bis 1; 0 ist stumm."
 [gui.config.feedback.sound-pitch]
 name = "Tonhöhe"
 description = "Tonhöhe des Wechselsounds. Bereich: 0.5 bis 2; 1 entspricht der Originaltonhöhe."
+
+[sound.menu]
+title = "<gradient:#634514:#2f523f>Wechselsound</gradient>"
+current = "<gray>Aktueller Sound: {sound}</gray>"
+select = "<gray>Linksklick zum Auswählen. Rechtsklick zum Anhören.</gray>"
+selected = "<green>Ausgewählter Sound</green>"
+preview = "<gold>Aktuellen Sound anhören</gold>"
+preview-help = "<gray>Mit der aktuellen Serverlautstärke und Tonhöhe anhören, auch wenn Wechselsounds stummgeschaltet sind.</gray>"
+custom = "<gold>Eigene Soundkennung</gold>"
+custom-help = "<gray>Eine Minecraft- oder Ressourcenpaket-Soundkennung eingeben.</gray>"
+
+[sound.preset]
+click = "<gold>Tastenklick</gold>"
+chime = "<gold>Glockenspiel</gold>"
+pling = "<gold>Pling</gold>"
+experience = "<gold>Erfahrung aufsammeln</gold>"
+bell = "<gold>Glocke</gold>"
+
+[spectator]
+busy = "{prefix} &eEin Wechsel des Zuschauermodus läuft bereits.&r"
+none = "{prefix} &eDu hast keine aktive Zuschauersitzung.&r"
+return-failed = "{prefix}&cRückkehr fehlgeschlagen. Deine Sitzung ist gespeichert; versuche /gsw return erneut.&r"
+save-failed = "{prefix} &cDeine Zuschauersitzung konnte nicht gespeichert werden. Dein Spielmodus wurde nicht geändert.&r"
+
+[gui.config.spectator]
+name = "Zuschauer-Rückkehr"
+description = "Modus oder Position wiederherstellen, die beim Start einer Zuschauersitzung durch dieses Plugin gespeichert wurden."
+
+[gui.config.spectator.restore-previous-mode]
+name = "Vorherigen Modus wiederherstellen"
+description = "Dreimal Schleichen oder /gsw return stellt den vorherigen Modus wieder her. Aktuelle Berechtigungen und Weltbeschränkungen gelten weiterhin."
+
+[gui.config.spectator.return-to-origin]
+name = "Zur Startposition zurückkehren"
+description = "Vor dem Verlassen einer Plugin-Zuschauersitzung zur gespeicherten Startposition zurückkehren."
+
+[gui.config.spectator.allow-unsafe-return]
+name = "Unsichere Rückkehr erlauben"
+description = "Ohne Boden- und Freiraumprüfung zurückkehren. Standardmäßig an; ausschalten für sichere Ziele. Gilt auch für laufende Sitzungen."

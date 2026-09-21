@@ -45,6 +45,7 @@
 #   {section}  מקטע בעורך השפות
 #   {setting}  שם הגדרה
 #   {step}  שינוי בהגדרה מספרית בלחיצה רגילה אחת
+#   {sound}  מזהה הצליל
 #   {state}  מצב אישי של מחוות או התראות
 #   {target}  שחקן היעד, הישות או הערך
 #   {type}  סוג
@@ -66,6 +67,8 @@ set = "מצב משחק"
 status = "מצב משחק"
 toggle = "מחוות"
 
+return = "חזרה ממצב הצופה שלך"
+
 [command.feedback]
 failed = "{prefix}&cלא ניתן להשלים את הפקודה. פרטים נוספים מופיעים במסוף.&r"
 
@@ -80,7 +83,7 @@ mode = "הישרדות, יצירתי, הרפתקה, צופה"
 upload = "העלאת הדוח כאשר העלאות ציבוריות מופעלות"
 
 [command.status]
-compatibility = "&7קובץ בנוי:&r &fJava 17 / Bukkit 1.20.1+&r &8|&r &7מתזמן:&r &f{scheduler}&r"
+compatibility = "&7קובץ בנוי:&r &fJava 25 / Bukkit 26.1+&r &8|&r &7מתזמן:&r &f{scheduler}&r"
 config = "&7מצב משחק:&r {enabled} &8|&r &7שפה:&r {language} &8|&r &7טעינה מחדש של הגדרות ושפות:&r {hot_reload}"
 header = "&6&lGamemodeSwitcher&r"
 player = "&7מחוות:&r {state} &8|&r &7מצב משחק:&r {mode}"
@@ -515,3 +518,42 @@ description = "עוצמת צליל ההחלפה. טווח: 0 עד 1; 0 הוא ש
 [gui.config.feedback.sound-pitch]
 name = "גובה צליל"
 description = "גובה צליל ההחלפה. טווח: 0.5 עד 2; 1 משתמש בגובה המקורי."
+
+[sound.menu]
+title = "<gradient:#634514:#2f523f>צליל החלפה</gradient>"
+current = "<gray>הצליל הנוכחי: {sound}</gray>"
+select = "<gray>לחיצה שמאלית לבחירה. לחיצה ימנית להאזנה.</gray>"
+selected = "<green>הצליל שנבחר</green>"
+preview = "<gold>האזנה לצליל הנוכחי</gold>"
+preview-help = "<gray>האזנה בעוצמה ובגובה הצליל הנוכחיים של השרת, גם כאשר צלילי ההחלפה מושתקים.</gray>"
+custom = "<gold>מפתח צליל מותאם</gold>"
+custom-help = "<gray>הזן מפתח צליל של Minecraft או של חבילת משאבים.</gray>"
+
+[sound.preset]
+click = "<gold>לחיצת כפתור</gold>"
+chime = "<gold>פעמונים</gold>"
+pling = "<gold>פלינג</gold>"
+experience = "<gold>איסוף ניסיון</gold>"
+bell = "<gold>פעמון</gold>"
+
+[spectator]
+busy = "{prefix} &eמעבר מצב צופה כבר מתבצע.&r"
+none = "{prefix} &eאין לך הפעלת מצב צופה פעילה.&r"
+return-failed = "{prefix}&cהחזרה נכשלה. ההפעלה נשמרה; נסה שוב עם /gsw return.&r"
+save-failed = "{prefix} &cלא ניתן לשמור את הפעלת מצב הצופה. מצב המשחק שלך לא השתנה.&r"
+
+[gui.config.spectator]
+name = "חזרה ממצב צופה"
+description = "שחזור המצב או המיקום שנשמרו כאשר התוסף התחיל הפעלת מצב צופה."
+
+[gui.config.spectator.restore-previous-mode]
+name = "שחזור המצב הקודם"
+description = "לחץ שלוש פעמים על התגנבות או השתמש ב־/gsw return כדי לשחזר את המצב הקודם. ההרשאות והגבלות העולמות הנוכחיות עדיין חלות."
+
+[gui.config.spectator.return-to-origin]
+name = "חזרה למיקום ההתחלה"
+description = "חזרה למיקום ההתחלה השמור לפני יציאה מהפעלת צופה שהתחילה דרך התוסף."
+
+[gui.config.spectator.allow-unsafe-return]
+name = "אפשר חזרה לא בטוחה"
+description = "חזרה ללא בדיקת הקרקע והמרחב הפנוי. פעיל כברירת מחדל; כבה כדי לדרוש יעד בטוח. חל גם על הפעלות פעילות."

@@ -52,6 +52,10 @@ public final class GuiMessages {
         add(entries, "restrictions", "World restrictions", "Choose worlds where game mode switching is unavailable.");
         add(entries, "feedback", "Switch feedback", "Choose switch messages, popups, sounds, and Creative flight behavior.");
         add(entries, "diagnostics", "Diagnostics", "Control public diagnostic report uploads.");
+        add(entries, "spectator", "Spectator return", "Restore the mode or location recorded when this plugin starts a spectator session.");
+        add(entries, "spectator.restore-previous-mode", "Restore previous mode", "Triple-tap Sneak or use /gsw return to restore the mode you entered Spectator from. Current permissions and world restrictions still apply.");
+        add(entries, "spectator.return-to-origin", "Return to starting location", "Return to your saved entry location before leaving a plugin-started spectator session.");
+        add(entries, "spectator.allow-unsafe-return", "Allow unsafe returns", "Allow returns without checking the floor or clear space. Enabled by default; turn off to require a safe destination. Applies to active sessions too.");
         add(entries, "languages", "Languages", "Edit server translations and their formatting.");
         add(entries, "general.enabled", "Game mode switching", "Allow switching through gestures, commands, and the menu.");
         add(entries, "general.language", "Server language", "Default language for players without a personal choice. Missing translations use English.");

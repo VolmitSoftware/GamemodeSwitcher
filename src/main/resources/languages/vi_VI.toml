@@ -40,6 +40,7 @@
 #   {plugin}  Tên phần bổ sung
 #   {prefix}  giá trị runtime.prefix toàn cục. Xóa {prefix} khỏi từng thông báo nếu không muốn hiện ở thông báo đó
 #   {reason}  lý do lỗi
+#   {sound}  Mã âm thanh
 #   {scheduler}  bộ lập lịch
 #   {seconds}  Thời gian chờ hoặc xác nhận còn lại tính bằng giây
 #   {section}  Mục trong trình chỉnh sửa ngôn ngữ
@@ -55,6 +56,7 @@
 #   {world}  thế giới
 
 [command.description]
+return = "Trở về từ phiên khán giả"
 version = "Hiển thị phiên bản GamemodeSwitcher"
 config = "Cấu hình"
 debug = "Công cụ chẩn đoán GamemodeSwitcher"
@@ -80,7 +82,7 @@ mode = "Sinh tồn, Sáng tạo, Phiêu lưu, Khán giả"
 upload = "Tải báo cáo lên khi bật tải lên công khai"
 
 [command.status]
-compatibility = "&7Gói dựng:&r &fJava 17 / Bukkit 1.20.1+&r &8|&r &7Bộ lập lịch:&r &f{scheduler}&r"
+compatibility = "&7Gói dựng:&r &fJava 25+ / Minecraft 26.1+&r &8|&r &7Bộ lập lịch:&r &f{scheduler}&r"
 config = "&7Chế độ chơi:&r {enabled} &8|&r &7Ngôn ngữ:&r {language} &8|&r &7Tải lại cấu hình và ngôn ngữ:&r {hot_reload}"
 header = "&6&lGamemodeSwitcher&r"
 player = "&7Thao tác:&r {state} &8|&r &7Chế độ chơi:&r {mode}"
@@ -515,3 +517,42 @@ description = "Âm lượng của tiếng đổi chế độ. Phạm vi: 0 đế
 [gui.config.feedback.sound-pitch]
 name = "Cao độ"
 description = "Cao độ của tiếng đổi chế độ. Phạm vi: 0.5 đến 2; 1 dùng cao độ gốc."
+
+[spectator]
+save-failed = "{prefix}&cKhông thể lưu phiên. Chế độ chơi chưa thay đổi.&r"
+return-failed = "{prefix}&cKhông thể trở về. Phiên đã được lưu; hãy thử lại /gsw return.&r"
+none = "{prefix}&cBạn không có phiên khán giả đang hoạt động.&r"
+busy = "{prefix}&cĐang chuyển chế độ khán giả.&r"
+
+[gui.config.spectator]
+description = "Chọn khôi phục chế độ trước và trở về vị trí ban đầu."
+name = "Phiên khán giả"
+
+[gui.config.spectator.restore-previous-mode]
+description = "Trở về chế độ trước khi kết thúc phiên khán giả."
+name = "Khôi phục chế độ trước"
+
+[gui.config.spectator.return-to-origin]
+description = "Trở về vị trí ban đầu đã lưu trước khi thoát phiên khán giả do plugin bắt đầu."
+name = "Trở về vị trí ban đầu"
+
+[sound.menu]
+custom-help = "<gray>Nhập mã âm thanh Minecraft hoặc gói tài nguyên.</gray>"
+custom = "<gray>Mã âm thanh tùy chỉnh</gray>"
+preview-help = "<gray>Nghe với âm lượng và cao độ của máy chủ, kể cả khi đã tắt âm thanh chuyển chế độ.</gray>"
+preview = "<gray>Nghe thử âm thanh hiện tại</gray>"
+selected = "<gray>Âm thanh đã chọn</gray>"
+select = "<gray>Nhấp trái để chọn. Nhấp phải để nghe thử.</gray>"
+current = "<gray>Âm thanh hiện tại: {sound}</gray>"
+title = "<gradient:#634514:#2f523f>Âm thanh chuyển chế độ</gradient>"
+
+[sound.preset]
+bell = "<gray>Chuông</gray>"
+experience = "<gray>Nhặt kinh nghiệm</gray>"
+pling = "<gray>Nốt cao</gray>"
+chime = "<gray>Tiếng ngân</gray>"
+click = "<gray>Tiếng nhấn nút</gray>"
+
+[gui.config.spectator.allow-unsafe-return]
+name = "Cho phép trở về không an toàn"
+description = "Trở về mà không kiểm tra nền và khoảng trống. Mặc định bật; tắt để yêu cầu nơi đến an toàn. Áp dụng cả phiên đang hoạt động."

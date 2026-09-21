@@ -837,6 +837,7 @@ public final class LanguageService {
                         Map.entry("prefix", "Global runtime.prefix value; optional per message"),
                         Map.entry("reason", "Failure reason"),
                         Map.entry("scheduler", "Scheduler implementation"),
+                        Map.entry("sound", "Namespaced sound identifier"),
                         Map.entry("seconds", "Remaining cooldown or confirmation time in seconds"),
                         Map.entry("section", "Language editor section"),
                         Map.entry("setting", "Setting name"),

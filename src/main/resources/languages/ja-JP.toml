@@ -45,6 +45,7 @@
 #   {section}  言語エディターのセクション
 #   {setting}  設定名
 #   {step}  通常のクリック1回で変更する数値
+#   {sound}  サウンドの識別子
 #   {state}  個人のジェスチャーまたは通知の状態
 #   {target}  ターゲットプレーヤー、エンティティティティ、または値
 #   {type}  型
@@ -66,6 +67,8 @@ set = "ゲームモード"
 status = "ゲームモード"
 toggle = "ジェスチャー"
 
+return = "スペクテイターセッションから戻る"
+
 [command.feedback]
 failed = "{prefix}&cコマンドを完了できませんでした。詳細はコンソールを参照してください。&r"
 
@@ -80,7 +83,7 @@ mode = "サバイバル, クリエイティブ, アドベンチャー, スペク
 upload = "公開アップロードが有効な場合にレポートをアップロード"
 
 [command.status]
-compatibility = "&7成果物:&r&fJava 17 / Bukkit 1.20.1+&r&8|&r&7スケジューラ:&r&f{scheduler}&r"
+compatibility = "&7成果物:&r&fJava 25 / Bukkit 26.1+&r&8|&r&7スケジューラ:&r&f{scheduler}&r"
 config = "&7ゲームモード:&r {enabled} &8|&r &7言語:&r {language} &8|&r &7設定と言語を再読み込み:&r {hot_reload}"
 header = "&6&lGamemodeSwitcher&r"
 player = "&7ジェスチャー:&r {state} &8|&r &7ゲームモード:&r {mode}"
@@ -515,3 +518,42 @@ description = "切替音の音量です。範囲は0から1で、0は無音で�
 [gui.config.feedback.sound-pitch]
 name = "音の高さ"
 description = "切替音の高さです。範囲は0.5から2で、1は元の高さです。"
+
+[sound.menu]
+title = "<gradient:#634514:#2f523f>切り替え音</gradient>"
+current = "<gray>現在の音: {sound}</gray>"
+select = "<gray>左クリックで選択、右クリックで試聴。</gray>"
+selected = "<green>選択中の音</green>"
+preview = "<gold>現在の音を試聴</gold>"
+preview-help = "<gray>サーバーの現在の音量と音程で試聴します。切り替え音をミュートしていても試聴できます。</gray>"
+custom = "<gold>カスタムサウンドキー</gold>"
+custom-help = "<gray>Minecraft またはリソースパックのサウンドキーを入力します。</gray>"
+
+[sound.preset]
+click = "<gold>ボタンクリック</gold>"
+chime = "<gold>チャイム</gold>"
+pling = "<gold>プリング</gold>"
+experience = "<gold>経験値の取得</gold>"
+bell = "<gold>鐘</gold>"
+
+[spectator]
+busy = "{prefix} &eスペクテイターの切り替え処理中です。&r"
+none = "{prefix} &e有効なスペクテイターセッションがありません。&r"
+return-failed = "{prefix}&c帰還できませんでした。セッションは保存されています。/gsw return を再試行してください。&r"
+save-failed = "{prefix} &cスペクテイターセッションを保存できませんでした。ゲームモードは変更されていません。&r"
+
+[gui.config.spectator]
+name = "スペクテイターからの復帰"
+description = "このプラグインがスペクテイターを開始したときに保存したモードや位置に戻します。"
+
+[gui.config.spectator.restore-previous-mode]
+name = "前のモードに戻す"
+description = "スニークを3回押すか /gsw return を使用して前のモードに戻ります。現在の権限とワールド制限は引き続き適用されます。"
+
+[gui.config.spectator.return-to-origin]
+name = "開始位置に戻る"
+description = "プラグインから開始した観戦セッションを終了する前に、保存された開始位置へ戻ります。"
+
+[gui.config.spectator.allow-unsafe-return]
+name = "安全確認なしの帰還を許可"
+description = "床や空間を確認せずに帰還します。初期設定は有効です。安全な場所のみ許可するには無効にしてください。進行中のセッションにも適用されます。"

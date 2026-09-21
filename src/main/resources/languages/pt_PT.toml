@@ -40,6 +40,7 @@
 #   {plugin}  Nome do plug-in
 #   {prefix}  o valor global runtime.prefix. Remove {prefix} de uma mensagem para o ocultar apenas aí
 #   {reason}  motivo da falha
+#   {sound}  Identificador do som
 #   {scheduler}  agendador
 #   {seconds}  Tempo de espera ou confirmação restante em segundos
 #   {section}  Secção do editor de idiomas
@@ -55,6 +56,7 @@
 #   {world}  mundo
 
 [command.description]
+return = "Regressar da sessão de espetador"
 version = "Mostrar a versão do GamemodeSwitcher"
 config = "Configuração"
 debug = "Ferramentas de diagnóstico do GamemodeSwitcher"
@@ -80,7 +82,7 @@ mode = "Sobrevivência, Criativo, Aventura, Espetador"
 upload = "Carregar o relatório quando os carregamentos públicos estão ativados"
 
 [command.status]
-compatibility = "&7Artefacto:&r &fJava 17 / Bukkit 1.20.1+&r &8|&r &7Agendador:&r &f{scheduler}&r"
+compatibility = "&7Artefacto:&r &fJava 25+ / Minecraft 26.1+&r &8|&r &7Agendador:&r &f{scheduler}&r"
 config = "&7Modo de jogo:&r {enabled} &8|&r &7Idioma:&r {language} &8|&r &7Recarregar configuração e idiomas:&r {hot_reload}"
 header = "&6&lGamemodeSwitcher&r"
 player = "&7Gestos:&r {state} &8|&r &7Modo de jogo:&r {mode}"
@@ -515,3 +517,42 @@ description = "Volume do som de mudança. Intervalo: 0 a 1; 0 é silêncio."
 [gui.config.feedback.sound-pitch]
 name = "Tom"
 description = "Tom do som de mudança. Intervalo: 0.5 a 2; 1 usa o tom original."
+
+[spectator]
+save-failed = "{prefix}&cNão foi possível guardar a sessão. O modo de jogo não foi alterado.&r"
+return-failed = "{prefix}&cNão foi possível regressar. A sessão está guardada; tenta /gsw return novamente.&r"
+none = "{prefix}&cNão tens uma sessão de espetador ativa.&r"
+busy = "{prefix}&cJá está em curso uma mudança de modo de espetador.&r"
+
+[gui.config.spectator]
+description = "Escolhe o regresso ao modo anterior e à posição inicial."
+name = "Sessões de espetador"
+
+[gui.config.spectator.restore-previous-mode]
+description = "Ao sair da sessão de espetador, regressa ao modo anterior."
+name = "Restaurar modo anterior"
+
+[gui.config.spectator.return-to-origin]
+description = "Regressa à posição inicial guardada antes de sair de uma sessão de espetador iniciada pelo plugin."
+name = "Regressar à origem"
+
+[sound.menu]
+custom-help = "<gray>Introduz um identificador de som do Minecraft ou de um pacote de recursos.</gray>"
+custom = "<gray>Identificador de som personalizado</gray>"
+preview-help = "<gray>Ouve com o volume e tom do servidor, mesmo com os sons de mudança silenciados.</gray>"
+preview = "<gray>Ouvir som atual</gray>"
+selected = "<gray>Som selecionado</gray>"
+select = "<gray>Clica à esquerda para escolher. À direita para ouvir.</gray>"
+current = "<gray>Som atual: {sound}</gray>"
+title = "<gradient:#634514:#2f523f>Som da mudança</gradient>"
+
+[sound.preset]
+bell = "<gray>Sino</gray>"
+experience = "<gray>Recolha de experiência</gray>"
+pling = "<gray>Nota aguda</gray>"
+chime = "<gray>Carrilhão</gray>"
+click = "<gray>Clique de botão</gray>"
+
+[gui.config.spectator.allow-unsafe-return]
+name = "Permitir regressos inseguros"
+description = "Regressa sem verificar o chão ou o espaço livre. Ativo por predefinição; desativa para exigir um destino seguro. Aplica-se também a sessões ativas."

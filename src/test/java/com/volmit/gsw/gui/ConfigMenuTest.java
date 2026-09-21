@@ -42,7 +42,7 @@ class ConfigMenuTest {
                 .filter(entry -> !entry.getKey().contains("."))
                 .sorted(Comparator.comparingInt(entry -> entry.getValue().order()))
                 .map(Map.Entry::getKey).toList();
-        assertThat(roots).containsExactly("general", "metrics", "gestures", "restrictions", "feedback", "diagnostics");
+        assertThat(roots).containsExactly("general", "metrics", "gestures", "restrictions", "feedback", "spectator", "diagnostics");
     }
 
     @Test

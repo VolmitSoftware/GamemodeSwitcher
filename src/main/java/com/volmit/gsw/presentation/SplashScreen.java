@@ -27,7 +27,7 @@ public final class SplashScreen {
                     "GamemodeSwitcher | Gestures and game modes",
                     "Version: " + plugin.getDescription().getVersion(),
                     "By: VolmitSoftware (Arcane Arts) | VolmitSoftware.com",
-                    "Server: " + SplashScreenSupport.serverVersionWithoutMcSuffix() + " | MC Support: 1.20.1+",
+                    "Server: " + SplashScreenSupport.serverVersionWithoutMcSuffix() + " | MC Support: 26.1+ | Java: 25+",
                     "Java: " + SplashScreenSupport.javaMajorVersion() + " | " + plugin.schedulerName()
                             + " | Date: " + SplashScreenSupport.startupDate()
             };

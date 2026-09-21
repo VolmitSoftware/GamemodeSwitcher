@@ -53,6 +53,15 @@ public final class SwitcherCommands {
         }
     }
 
+    @Director(name = "return", sync = true, description = "Return from your Spectator session", descriptionKey = "command.description.return")
+    public void returnFromSpectator(@Param(name = "sender", contextual = true) CommandSender sender) {
+        if (sender instanceof Player player) {
+            plugin.getSwitchService().returnFromSpectator(player);
+        } else {
+            plugin.getLanguageService().sendPrefixed(sender, SwitcherMessages.PLAYER_ONLY);
+        }
+    }
+
     @Director(name = "toggle", sync = true, description = "Enable or disable your game mode gestures", descriptionKey = "command.description.toggle")
     public void toggle(
             @Param(name = "enabled", defaultValue = "true", description = "Enable or disable gestures; omit to toggle", descriptionKey = "command.parameter.enabled") boolean enabled,

@@ -37,7 +37,7 @@ class ConfigServiceTest {
     }
 
     @Test
-    void defaultsKeepOriginalDestinationsAndJava17Baseline() throws IOException {
+    void defaultsKeepOriginalDestinations() throws IOException {
         ConfigService service = new ConfigService(directory.toFile());
         service.initialize();
         RuntimeConfig config = service.runtime();
@@ -47,8 +47,21 @@ class ConfigServiceTest {
         assertThat(config.target(GameMode.SPECTATOR, false)).isEqualTo(GameMode.CREATIVE);
         assertThat(config.debugUpload()).isTrue();
         assertThat(config.metricsEnabled()).isTrue();
+        assertThat(config.allowUnsafeReturn()).isTrue();
         assertThat(config.feedback()).isEqualTo(new FeedbackConfig(true, true, true, 50,
                 true, "minecraft:ui.button.click", 0.7F, 1.2F));
+    }
+
+    @Test
+    void unsafeReturnDefaultsOnAndCanBeDisabledByHotReload() throws IOException {
+        assertThat(ConfigService.parse("[spectator]\nreturn-to-origin = true").allowUnsafeReturn()).isTrue();
+        ConfigService service = new ConfigService(directory.toFile());
+        service.initialize();
+        Files.writeString(service.file(), service.source().replace("allow-unsafe-return = true", "allow-unsafe-return = false"));
+        service.reload();
+        assertThat(service.runtime().allowUnsafeReturn()).isFalse();
+        assertThatThrownBy(() -> ConfigService.parse("[spectator]\nallow-unsafe-return = 'yes'"))
+                .isInstanceOf(IOException.class);
     }
 
     @Test

@@ -40,6 +40,7 @@
 #   {plugin}  Nazwa wtyczki
 #   {prefix}  globalna wartość runtime.prefix. Usuń {prefix} z pojedynczej wiadomości, aby ukryć go tylko tam
 #   {reason}  powód błędu
+#   {sound}  Identyfikator dźwięku
 #   {scheduler}  planista
 #   {seconds}  Pozostały czas oczekiwania lub potwierdzenia w sekundach
 #   {section}  Sekcja edytora języków
@@ -55,6 +56,7 @@
 #   {world}  świat
 
 [command.description]
+return = "Powróć z sesji obserwatora"
 version = "Pokaż wersję GamemodeSwitcher"
 config = "Konfiguracja"
 debug = "Narzędzia diagnostyczne GamemodeSwitcher"
@@ -80,7 +82,7 @@ mode = "Przetrwanie, Kreatywny, Przygoda, Widz"
 upload = "Prześlij raport, gdy publiczne przesyłanie jest włączone"
 
 [command.status]
-compatibility = "&7Artefakt:&r &fJava 17 / Bukkit 1.20.1+&r &8|&r &7Harmonogram:&r &f{scheduler}&r"
+compatibility = "&7Artefakt:&r &fJava 25+ / Minecraft 26.1+&r &8|&r &7Harmonogram:&r &f{scheduler}&r"
 config = "&7Tryb gry:&r {enabled} &8|&r &7Język:&r {language} &8|&r &7Wczytaj ponownie konfigurację i języki:&r {hot_reload}"
 header = "&6&lGamemodeSwitcher&r"
 player = "&7Gesty:&r {state} &8|&r &7Tryb gry:&r {mode}"
@@ -515,3 +517,42 @@ description = "Głośność dźwięku zmiany. Zakres: od 0 do 1; 0 oznacza cisz�
 [gui.config.feedback.sound-pitch]
 name = "Wysokość dźwięku"
 description = "Wysokość dźwięku zmiany. Zakres: od 0.5 do 2; 1 oznacza oryginalną wysokość."
+
+[spectator]
+save-failed = "{prefix}&cNie udało się zapisać sesji. Tryb gry nie został zmieniony.&r"
+return-failed = "{prefix}&cPowrót nie powiódł się. Sesja jest zapisana; ponów /gsw return.&r"
+none = "{prefix}&cNie masz aktywnej sesji obserwatora.&r"
+busy = "{prefix}&cZmiana trybu obserwatora już trwa.&r"
+
+[gui.config.spectator]
+description = "Ustaw powrót do poprzedniego trybu i miejsca rozpoczęcia."
+name = "Sesje obserwatora"
+
+[gui.config.spectator.restore-previous-mode]
+description = "Po zakończeniu sesji obserwatora wróć do poprzedniego trybu."
+name = "Przywróć poprzedni tryb"
+
+[gui.config.spectator.return-to-origin]
+description = "Przed wyjściem z sesji obserwatora rozpoczętej przez plugin wróć do zapisanego miejsca rozpoczęcia."
+name = "Powrót do miejsca rozpoczęcia"
+
+[sound.menu]
+custom-help = "<gray>Wpisz identyfikator dźwięku Minecraft lub paczki zasobów.</gray>"
+custom = "<gray>Własny identyfikator dźwięku</gray>"
+preview-help = "<gray>Odsłuchaj z głośnością i wysokością serwera, nawet gdy dźwięki zmian są wyciszone.</gray>"
+preview = "<gray>Odsłuchaj obecny dźwięk</gray>"
+selected = "<gray>Wybrany dźwięk</gray>"
+select = "<gray>Lewy przycisk wybiera. Prawy odtwarza podgląd.</gray>"
+current = "<gray>Obecny dźwięk: {sound}</gray>"
+title = "<gradient:#634514:#2f523f>Dźwięk zmiany</gradient>"
+
+[sound.preset]
+bell = "<gray>Dzwon</gray>"
+experience = "<gray>Zebranie doświadczenia</gray>"
+pling = "<gray>Brzęk</gray>"
+chime = "<gray>Dzwonki</gray>"
+click = "<gray>Kliknięcie przycisku</gray>"
+
+[gui.config.spectator.allow-unsafe-return]
+name = "Zezwalaj na niebezpieczny powrót"
+description = "Powracaj bez sprawdzania podłoża i wolnego miejsca. Domyślnie włączone; wyłącz, aby wymagać bezpiecznego celu. Dotyczy też aktywnych sesji."

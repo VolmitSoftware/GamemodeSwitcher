@@ -40,6 +40,7 @@
 #   {plugin}  Plugin name
 #   {prefix}  genel runtime.prefix değeri. Yalnızca belirli bir iletide gizlemek için o iletiden {prefix} öğesini kaldırın
 #   {reason}  hata nedeni
+#   {sound}  Ses kimliği
 #   {scheduler}  zamanlayıcı
 #   {seconds}  Saniye cinsinden kalan bekleme veya onay süresi
 #   {section}  Dil düzenleyicisi bölümü
@@ -55,6 +56,7 @@
 #   {world}  dünya
 
 [command.description]
+return = "İzleyici oturumundan dön"
 version = "GamemodeSwitcher sürümünü göster"
 config = "Yapılandırma"
 debug = "GamemodeSwitcher tanı araçları"
@@ -80,7 +82,7 @@ mode = "Hayatta Kalma, Yaratıcı, Macera, İzleyici"
 upload = "Herkese açık yüklemeler etkinse raporu yükle"
 
 [command.status]
-compatibility = "&7Derleme:&r &fJava 17 / Bukkit 1.20.1+&r &8|&r &7Zamanlayıcı:&r &f{scheduler}&r"
+compatibility = "&7Derleme:&r &fJava 25+ / Minecraft 26.1+&r &8|&r &7Zamanlayıcı:&r &f{scheduler}&r"
 config = "&7Oyun modu:&r {enabled} &8|&r &7Dil:&r {language} &8|&r &7Yapılandırmayı ve dilleri yeniden yükle:&r {hot_reload}"
 header = "&6&lGamemodeSwitcher&r"
 player = "&7Hareketler:&r {state} &8|&r &7Oyun modu:&r {mode}"
@@ -515,3 +517,42 @@ description = "Değiştirme sesinin düzeyi. Aralık: 0 ile 1; 0 sessizdir."
 [gui.config.feedback.sound-pitch]
 name = "Ses perdesi"
 description = "Değiştirme sesinin perdesi. Aralık: 0.5 ile 2; 1 özgün perdeyi kullanır."
+
+[spectator]
+save-failed = "{prefix}&cOturum kaydedilemedi. Oyun modun değiştirilmedi.&r"
+return-failed = "{prefix}&cDönülemedi. Oturumun kayıtlı; /gsw return ile tekrar dene.&r"
+none = "{prefix}&cEtkin bir İzleyici oturumun yok.&r"
+busy = "{prefix}&cBir İzleyici geçişi zaten sürüyor.&r"
+
+[gui.config.spectator]
+description = "Önceki moda ve başlangıç konumuna dönüşü ayarla."
+name = "İzleyici oturumları"
+
+[gui.config.spectator.restore-previous-mode]
+description = "İzleyici oturumundan çıkarken önceki moda dön."
+name = "Önceki modu geri yükle"
+
+[gui.config.spectator.return-to-origin]
+description = "Eklentinin başlattığı İzleyici oturumundan çıkmadan önce kayıtlı başlangıç konumuna dön."
+name = "Başlangıca dön"
+
+[sound.menu]
+custom-help = "<gray>Minecraft veya kaynak paketi ses kimliğini gir.</gray>"
+custom = "<gray>Özel ses kimliği</gray>"
+preview-help = "<gray>Geçiş sesleri susturulsa bile sunucunun ses düzeyi ve perdesiyle dinle.</gray>"
+preview = "<gray>Geçerli sesi dinle</gray>"
+selected = "<gray>Seçili ses</gray>"
+select = "<gray>Seçmek için sol, dinlemek için sağ tıkla.</gray>"
+current = "<gray>Geçerli ses: {sound}</gray>"
+title = "<gradient:#634514:#2f523f>Geçiş sesi</gradient>"
+
+[sound.preset]
+bell = "<gray>Çan</gray>"
+experience = "<gray>Deneyim toplama</gray>"
+pling = "<gray>İnce nota</gray>"
+chime = "<gray>Çınlama</gray>"
+click = "<gray>Düğme tıklaması</gray>"
+
+[gui.config.spectator.allow-unsafe-return]
+name = "Güvensiz dönüşlere izin ver"
+description = "Zemini ve boş alanı kontrol etmeden dön. Varsayılan olarak açık; güvenli hedef zorunluluğu için kapat. Etkin oturumlara da uygulanır."

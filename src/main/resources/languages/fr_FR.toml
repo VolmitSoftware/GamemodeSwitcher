@@ -45,6 +45,7 @@
 #   {section}  Section de l’éditeur de langues
 #   {setting}  nom du réglage
 #   {step}  Variation d'un réglage numérique lors d'un clic normal
+#   {sound}  identifiant du son
 #   {state}  État personnel des gestes ou des notifications
 #   {target}  Lecteur cible, entité ou valeur
 #   {type}  type
@@ -66,6 +67,8 @@ set = "Mode de jeu"
 status = "Mode de jeu"
 toggle = "Gestes"
 
+return = "Revenir de votre session spectateur"
+
 [command.feedback]
 failed = "{prefix}&cLa commande n'a pas pu être exécutée. Consultez la console pour plus de détails.&r"
 
@@ -80,7 +83,7 @@ mode = "Survie, Créatif, Aventure, Spectateur"
 upload = "Téléverser le rapport lorsque les envois publics sont activés"
 
 [command.status]
-compatibility = "&7Artefact :&r &fJava 17 / Bukkit 1.20.1+&r &8|&r &7Planificateur :&r &f{scheduler}&r"
+compatibility = "&7Artefact :&r &fJava 25 / Bukkit 26.1+&r &8|&r &7Planificateur :&r &f{scheduler}&r"
 config = "&7Mode de jeu:&r {enabled} &8|&r &7Langue:&r {language} &8|&r &7Recharger la configuration et les langues:&r {hot_reload}"
 header = "&6&lGamemodeSwitcher&r"
 player = "&7Gestes:&r {state} &8|&r &7Mode de jeu:&r {mode}"
@@ -515,3 +518,42 @@ description = "Volume du son de changement. Plage : 0 à 1 ; 0 est silencieux."
 [gui.config.feedback.sound-pitch]
 name = "Hauteur du son"
 description = "Hauteur du son de changement. Plage : 0.5 à 2 ; 1 utilise la hauteur d'origine."
+
+[sound.menu]
+title = "<gradient:#634514:#2f523f>Son de changement</gradient>"
+current = "<gray>Son actuel : {sound}</gray>"
+select = "<gray>Clic gauche pour choisir. Clic droit pour écouter.</gray>"
+selected = "<green>Son sélectionné</green>"
+preview = "<gold>Écouter le son actuel</gold>"
+preview-help = "<gray>Écouter avec le volume et la hauteur actuels du serveur, même si les sons de changement sont désactivés.</gray>"
+custom = "<gold>Son personnalisé</gold>"
+custom-help = "<gray>Saisissez une clé de son Minecraft ou de pack de ressources.</gray>"
+
+[sound.preset]
+click = "<gold>Clic de bouton</gold>"
+chime = "<gold>Carillon</gold>"
+pling = "<gold>Pling</gold>"
+experience = "<gold>Ramassage d'expérience</gold>"
+bell = "<gold>Cloche</gold>"
+
+[spectator]
+busy = "{prefix} &eUne transition du mode spectateur est déjà en cours.&r"
+none = "{prefix} &eVous n'avez aucune session spectateur active.&r"
+return-failed = "{prefix}&cRetour impossible. Votre session est enregistrée ; réessayez /gsw return.&r"
+save-failed = "{prefix} &cImpossible d'enregistrer votre session spectateur. Votre mode de jeu n'a pas changé.&r"
+
+[gui.config.spectator]
+name = "Retour de spectateur"
+description = "Rétablir le mode ou la position enregistrés lorsque ce plugin lance une session spectateur."
+
+[gui.config.spectator.restore-previous-mode]
+name = "Rétablir le mode précédent"
+description = "Appuyez trois fois sur S'accroupir ou utilisez /gsw return pour rétablir le mode précédent. Les permissions et restrictions de mondes actuelles restent applicables."
+
+[gui.config.spectator.return-to-origin]
+name = "Revenir au point de départ"
+description = "Revenir à la position de départ enregistrée avant de quitter une session spectateur lancée par le plugin."
+
+[gui.config.spectator.allow-unsafe-return]
+name = "Autoriser les retours non sécurisés"
+description = "Revenir sans vérifier le sol ni l’espace libre. Activé par défaut ; désactivez pour exiger une destination sûre. S’applique aussi aux sessions actives."

@@ -40,6 +40,7 @@
 #   {plugin}  Название плагина
 #   {prefix}  глобальное значение runtime.prefix. Удалите {prefix} из отдельного сообщения, чтобы скрыть его только там
 #   {reason}  причина ошибки
+#   {sound}  Идентификатор звука
 #   {scheduler}  планировщик
 #   {seconds}  Оставшееся время ожидания или подтверждения в секундах
 #   {section}  Раздел редактора языков
@@ -55,6 +56,7 @@
 #   {world}  мир
 
 [command.description]
+return = "Вернуться из сеанса наблюдения"
 version = "Показать версию GamemodeSwitcher"
 config = "Настройки"
 debug = "Инструменты диагностики GamemodeSwitcher"
@@ -80,7 +82,7 @@ mode = "Выживание, Творческий, Приключение, Наб
 upload = "Загрузить отчёт, если включена публичная загрузка"
 
 [command.status]
-compatibility = "&7Артефакт:&r &fJava 17 / Bukkit 1.20.1+&r &8|&r &7Планировщик:&r &f{scheduler}&r"
+compatibility = "&7Артефакт:&r &fJava 25+ / Minecraft 26.1+&r &8|&r &7Планировщик:&r &f{scheduler}&r"
 config = "&7Режим игры:&r {enabled} &8|&r &7Язык:&r {language} &8|&r &7Перезагрузить настройки и языки:&r {hot_reload}"
 header = "&6&lGamemodeSwitcher&r"
 player = "&7Жесты:&r {state} &8|&r &7Режим игры:&r {mode}"
@@ -515,3 +517,42 @@ description = "Громкость звука смены. Диапазон: от 
 [gui.config.feedback.sound-pitch]
 name = "Высота звука"
 description = "Высота звука смены. Диапазон: от 0.5 до 2; 1 использует исходную высоту."
+
+[spectator]
+save-failed = "{prefix}&cНе удалось сохранить сеанс. Режим игры не изменён.&r"
+return-failed = "{prefix}&cНе удалось вернуться. Сеанс сохранён; повторите /gsw return.&r"
+none = "{prefix}&cУ вас нет активного сеанса наблюдения.&r"
+busy = "{prefix}&cПереход режима наблюдения уже выполняется.&r"
+
+[gui.config.spectator]
+description = "Настройте возврат к прежнему режиму и исходной позиции."
+name = "Сеансы наблюдения"
+
+[gui.config.spectator.restore-previous-mode]
+description = "При завершении сеанса наблюдения возвращаться к прежнему режиму."
+name = "Восстанавливать прежний режим"
+
+[gui.config.spectator.return-to-origin]
+description = "Перед выходом из сеанса наблюдения, начатого плагином, вернуться к сохранённой исходной позиции."
+name = "Возвращаться к исходной позиции"
+
+[sound.menu]
+custom-help = "<gray>Введите идентификатор звука Minecraft или набора ресурсов.</gray>"
+custom = "<gray>Свой идентификатор звука</gray>"
+preview-help = "<gray>Прослушать с громкостью и высотой тона сервера, даже если звуки переключения отключены.</gray>"
+preview = "<gray>Прослушать текущий звук</gray>"
+selected = "<gray>Выбранный звук</gray>"
+select = "<gray>Левая кнопка — выбрать. Правая — прослушать.</gray>"
+current = "<gray>Текущий звук: {sound}</gray>"
+title = "<gradient:#634514:#2f523f>Звук переключения</gradient>"
+
+[sound.preset]
+bell = "<gray>Колокол</gray>"
+experience = "<gray>Подбор опыта</gray>"
+pling = "<gray>Звонкая нота</gray>"
+chime = "<gray>Перезвон</gray>"
+click = "<gray>Щелчок кнопки</gray>"
+
+[gui.config.spectator.allow-unsafe-return]
+name = "Разрешать небезопасный возврат"
+description = "Возврат без проверки пола и свободного места. По умолчанию включено; отключите для проверки безопасности. Применяется и к активным сеансам."

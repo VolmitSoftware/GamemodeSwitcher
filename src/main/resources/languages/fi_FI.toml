@@ -45,6 +45,7 @@
 #   {section}  Kielieditorin osio
 #   {setting}  asetuksen nimi
 #   {step}  Lukuarvon muutos yhdellä tavallisella napsautuksella
+#   {sound}  äänen tunnus
 #   {state}  Omien eleiden tai ilmoitusten tila
 #   {target}  Kohdepelaaja, yhteisö tai arvo
 #   {type}  tyyppi
@@ -66,6 +67,8 @@ set = "Pelimuoto"
 status = "Pelimuoto"
 toggle = "Eleet"
 
+return = "Palaa tarkkailuistunnosta"
+
 [command.feedback]
 failed = "{prefix}&cKomentoa ei voitu suorittaa. Katso lisätiedot konsolista.&r"
 
@@ -80,7 +83,7 @@ mode = "Selviytyminen, Luova, Seikkailu, Katsoja"
 upload = "Lähetä raportti, kun julkiset lähetykset ovat käytössä"
 
 [command.status]
-compatibility = "&7Artefakti:&r &fJava 17 / Bukkit 1.20.1+&r &8|&r &7Ajastin:&r &f{scheduler}&r"
+compatibility = "&7Artefakti:&r &fJava 25 / Bukkit 26.1+&r &8|&r &7Ajastin:&r &f{scheduler}&r"
 config = "&7Pelimuoto:&r {enabled} &8|&r &7Kieli:&r {language} &8|&r &7Lataa asetukset ja kielet uudelleen:&r {hot_reload}"
 header = "&6&lGamemodeSwitcher&r"
 player = "&7Eleet:&r {state} &8|&r &7Pelimuoto:&r {mode}"
@@ -515,3 +518,42 @@ description = "Vaihtoäänen voimakkuus. Alue: 0-1; 0 on äänetön."
 [gui.config.feedback.sound-pitch]
 name = "Äänenkorkeus"
 description = "Vaihtoäänen korkeus. Alue: 0.5-2; 1 käyttää alkuperäistä korkeutta."
+
+[sound.menu]
+title = "<gradient:#634514:#2f523f>Vaihtoääni</gradient>"
+current = "<gray>Nykyinen ääni: {sound}</gray>"
+select = "<gray>Valitse vasemmalla painikkeella. Esikuuntele oikealla.</gray>"
+selected = "<green>Valittu ääni</green>"
+preview = "<gold>Esikuuntele nykyinen ääni</gold>"
+preview-help = "<gray>Kuuntele palvelimen nykyisellä äänenvoimakkuudella ja sävelkorkeudella, vaikka vaihtoäänet olisi mykistetty.</gray>"
+custom = "<gold>Oma äänitunnus</gold>"
+custom-help = "<gray>Anna Minecraftin tai resurssipaketin äänitunnus.</gray>"
+
+[sound.preset]
+click = "<gold>Painikkeen napsahdus</gold>"
+chime = "<gold>Kellopeli</gold>"
+pling = "<gold>Pling</gold>"
+experience = "<gold>Kokemuspisteen keräys</gold>"
+bell = "<gold>Kello</gold>"
+
+[spectator]
+busy = "{prefix} &eTarkkailutilan vaihto on jo käynnissä.&r"
+none = "{prefix} &eSinulla ei ole aktiivista tarkkailuistuntoa.&r"
+return-failed = "{prefix}&cPaluu epäonnistui. Istuntosi on tallennettu; yritä /gsw return uudelleen.&r"
+save-failed = "{prefix} &cTarkkailuistuntoa ei voitu tallentaa. Pelitilaasi ei muutettu.&r"
+
+[gui.config.spectator]
+name = "Paluu tarkkailusta"
+description = "Palauta tila tai sijainti, joka tallennettiin tämän lisäosan aloittaessa tarkkailuistunnon."
+
+[gui.config.spectator.restore-previous-mode]
+name = "Palauta edellinen tila"
+description = "Paina hiipimistä kolmesti tai käytä /gsw return palauttaaksesi aiemman tilan. Nykyisiä oikeuksia ja maailman rajoituksia noudatetaan."
+
+[gui.config.spectator.return-to-origin]
+name = "Palaa aloituspaikkaan"
+description = "Palaa tallennettuun aloituspaikkaan ennen lisäosan aloittaman tarkkailijaistunnon päättymistä."
+
+[gui.config.spectator.allow-unsafe-return]
+name = "Salli turvaton paluu"
+description = "Palaa tarkistamatta lattiaa tai vapaata tilaa. Oletuksena päällä; poista käytöstä vaatiaksesi turvallisen kohteen. Koskee myös käynnissä olevia istuntoja."

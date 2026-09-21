@@ -40,6 +40,7 @@
 #   {plugin}  插件名稱
 #   {prefix}  全域 runtime.prefix 值。從個別訊息中移除 {prefix}，即可只在該處隱藏前綴
 #   {reason}  失敗原因
+#   {sound}  聲音識別碼
 #   {scheduler}  排程器
 #   {seconds}  剩餘冷卻或確認時間（秒）
 #   {section}  語言編輯器區段
@@ -55,6 +56,7 @@
 #   {world}  世界
 
 [command.description]
+return = "從旁觀階段返回"
 version = "顯示 GamemodeSwitcher 版本"
 config = "設定"
 debug = "GamemodeSwitcher診斷工具"
@@ -80,7 +82,7 @@ mode = "生存, 創造, 冒險, 旁觀"
 upload = "啟用公開上傳時上傳報告"
 
 [command.status]
-compatibility = "&7工件:&r&fJava 17 / Bukkit 1.20.1+&r&8|&r&7排程者:&r&f{scheduler}&r"
+compatibility = "&7工件:&r&fJava 25+ / Minecraft 26.1+&r&8|&r&7排程者:&r&f{scheduler}&r"
 config = "&7遊戲模式:&r {enabled} &8|&r &7語言:&r {language} &8|&r &7重新載入設定和語言:&r {hot_reload}"
 header = "&6&lGamemodeSwitcher&r"
 player = "&7手勢:&r {state} &8|&r &7遊戲模式:&r {mode}"
@@ -515,3 +517,42 @@ description = "切換音效的音量。範圍：0 至 1；0 為靜音。"
 [gui.config.feedback.sound-pitch]
 name = "音高"
 description = "切換音效的音高。範圍：0.5 至 2；1 使用原始音高。"
+
+[spectator]
+save-failed = "{prefix}&c無法儲存階段。遊戲模式未變更。&r"
+return-failed = "{prefix}&c無法返回。階段已儲存；請重試 /gsw return。&r"
+none = "{prefix}&c你沒有進行中的旁觀階段。&r"
+busy = "{prefix}&c旁觀模式切換正在進行。&r"
+
+[gui.config.spectator]
+description = "設定恢復原模式及返回起點。"
+name = "旁觀階段"
+
+[gui.config.spectator.restore-previous-mode]
+description = "結束旁觀階段時恢復進入前的模式。"
+name = "恢復原模式"
+
+[gui.config.spectator.return-to-origin]
+description = "退出由外掛開始的旁觀階段前，返回儲存的起始位置。"
+name = "返回起點"
+
+[sound.menu]
+custom-help = "<gray>輸入 Minecraft 或資源包的聲音識別碼。</gray>"
+custom = "<gray>自訂聲音識別碼</gray>"
+preview-help = "<gray>以伺服器的音量及音高試聽，即使切換音效已靜音。</gray>"
+preview = "<gray>試聽目前聲音</gray>"
+selected = "<gray>已選聲音</gray>"
+select = "<gray>左鍵選擇，右鍵試聽。</gray>"
+current = "<gray>目前聲音：{sound}</gray>"
+title = "<gradient:#634514:#2f523f>切換音效</gradient>"
+
+[sound.preset]
+bell = "<gray>鐘聲</gray>"
+experience = "<gray>拾取經驗</gray>"
+pling = "<gray>清脆音符</gray>"
+chime = "<gray>風鈴</gray>"
+click = "<gray>按鈕點擊</gray>"
+
+[gui.config.spectator.allow-unsafe-return]
+name = "允許不安全返回"
+description = "不檢查地面或淨空即可返回。預設開啟；關閉後要求目標安全。也適用於進行中的階段。"

@@ -122,7 +122,10 @@ public final class ConfigService {
                     toml.getBoolean("feedback.auto-fly-creative", true),
                     feedback(toml),
                     disabledWorlds, modes(toml, false), modes(toml, true),
-                    GameMode.valueOf(toml.getString("gestures.spectator-exit", "CREATIVE").toUpperCase(Locale.ROOT))
+                    GameMode.valueOf(toml.getString("gestures.spectator-exit", "CREATIVE").toUpperCase(Locale.ROOT)),
+                    toml.getBoolean("spectator.restore-previous-mode", false),
+                    toml.getBoolean("spectator.return-to-origin", false),
+                    toml.getBoolean("spectator.allow-unsafe-return", true)
             );
         } catch (IllegalArgumentException | ClassCastException exception) {
             throw new IOException("Invalid config.toml: " + exception.getMessage(), exception);

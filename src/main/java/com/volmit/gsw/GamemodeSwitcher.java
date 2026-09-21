@@ -19,6 +19,7 @@ import com.volmit.gsw.debug.SwitcherDebugContributor;
 import com.volmit.gsw.gameplay.SwitchService;
 import com.volmit.gsw.gui.ConfigMenu;
 import com.volmit.gsw.gui.ModeSelector;
+import com.volmit.gsw.gui.SoundPicker;
 import com.volmit.gsw.localization.LanguageService;
 import com.volmit.gsw.localization.SwitcherMessages;
 import com.volmit.gsw.metrics.MetricsService;
@@ -48,6 +49,7 @@ public final class GamemodeSwitcher extends JavaPlugin {
     private BukkitConfigEditor configEditor;
     private BukkitDebugDump debugDump;
     private ModeSelector selector;
+    private SoundPicker soundPicker;
     private ConfigReloader reloader;
     private MetricsService metricsService;
     private ExecutorService reloadWorker;
@@ -86,6 +88,15 @@ public final class GamemodeSwitcher extends JavaPlugin {
                     this::loadConfigurationDocument, this::saveConfiguration,
                     new BukkitConfigEditor.Presentation("gamemodeswitcher.config", ChatMenuStyle.theme(),
                             languageService.directorResolver())));
+            configEditor.configureFeedback(new BukkitConfigEditor.Feedback(false,
+                    (player, change) -> ComponentText.markup(languageService.render(player,
+                            SwitcherMessages.CONFIG_SAVED, MessageArgs.builder()
+                                    .untrusted("setting", change.setting())
+                                    .untrusted("old", change.before())
+                                    .untrusted("new", change.after()).build())),
+                    (player, key, arguments) -> ComponentText.markup(languageService.render(player, SwitcherMessages.PREFIX)
+                            + languageService.renderWithoutPrefix(player, key, arguments))));
+            soundPicker = new SoundPicker(this);
             ConfigMenu.configure(this);
             debugDump = BukkitDebugDump.create(this, new BukkitDebugDump.Options(
                     () -> configService.runtime().debugUpload(), new SwitcherDebugContributor(this),
@@ -117,6 +128,7 @@ public final class GamemodeSwitcher extends JavaPlugin {
         stopReloadWorker();
         closeService("bStats metrics", metricsService);
         closeService("game mode selector", selector);
+        closeService("sound picker", soundPicker);
         closeService("configuration editor", configEditor);
         closeService("language editor", languageSwitcher);
         closeService("diagnostics", debugDump);
@@ -157,6 +169,10 @@ public final class GamemodeSwitcher extends JavaPlugin {
 
     public BukkitConfigEditor getConfigEditor() {
         return configEditor;
+    }
+
+    public SoundPicker getSoundPicker() {
+        return soundPicker;
     }
 
     public ModeSelector getSelector() {

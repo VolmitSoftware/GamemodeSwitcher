@@ -40,6 +40,7 @@
 #   {plugin}  Įskiepio pavadinimas
 #   {prefix}  visuotinė runtime.prefix reikšmė. Pašalinkite {prefix} iš atskiro pranešimo, kad jame jo nerodytų
 #   {reason}  klaidos priežastis
+#   {sound}  Garso identifikatorius
 #   {scheduler}  planavimo sistema
 #   {seconds}  Likęs laukimo arba patvirtinimo laikas sekundėmis
 #   {section}  Kalbų redaktoriaus skiltis
@@ -55,6 +56,7 @@
 #   {world}  pasaulis
 
 [command.description]
+return = "Grįžti iš stebėtojo sesijos"
 version = "Rodyti GamemodeSwitcher versiją"
 config = "Konfigūracija"
 debug = "GamemodeSwitcher diagnostikos įrankiai"
@@ -80,7 +82,7 @@ mode = "Išlikimas, Kūryba, Nuotykiai, Stebėtojas"
 upload = "Įkelti ataskaitą, kai viešas įkėlimas įjungtas"
 
 [command.status]
-compatibility = "&7Artefaktas:&r &fJava 17 / Bukkit 1.20.1+&r &8|&r &7Planuoklis:&r &f{scheduler}&r"
+compatibility = "&7Artefaktas:&r &fJava 25+ / Minecraft 26.1+&r &8|&r &7Planuoklis:&r &f{scheduler}&r"
 config = "&7Žaidimo režimas:&r {enabled} &8|&r &7Kalba:&r {language} &8|&r &7Iš naujo įkelti konfigūraciją ir kalbas:&r {hot_reload}"
 header = "&6&lGamemodeSwitcher&r"
 player = "&7Gestai:&r {state} &8|&r &7Žaidimo režimas:&r {mode}"
@@ -515,3 +517,42 @@ description = "Keitimo garso garsumas. Ribos: nuo 0 iki 1; 0 yra tyla."
 [gui.config.feedback.sound-pitch]
 name = "Garso aukštis"
 description = "Keitimo garso aukštis. Ribos: nuo 0.5 iki 2; 1 naudoja pradinį aukštį."
+
+[spectator]
+save-failed = "{prefix}&cNepavyko išsaugoti sesijos. Žaidimo režimas nepakeistas.&r"
+return-failed = "{prefix}&cNepavyko grįžti. Sesija išsaugota; bandykite /gsw return dar kartą.&r"
+none = "{prefix}&cNeturite aktyvios stebėtojo sesijos.&r"
+busy = "{prefix}&cStebėtojo režimo keitimas jau vyksta.&r"
+
+[gui.config.spectator]
+description = "Pasirinkite ankstesnio režimo ir pradinės vietos atkūrimą."
+name = "Stebėtojo sesijos"
+
+[gui.config.spectator.restore-previous-mode]
+description = "Išeidami iš stebėtojo sesijos grįžkite į ankstesnį režimą."
+name = "Atkurti ankstesnį režimą"
+
+[gui.config.spectator.return-to-origin]
+description = "Prieš išeidami iš papildinio pradėtos stebėtojo sesijos grįžkite į išsaugotą pradinę vietą."
+name = "Grįžti į pradinę vietą"
+
+[sound.menu]
+custom-help = "<gray>Įveskite Minecraft arba išteklių paketo garso identifikatorių.</gray>"
+custom = "<gray>Pasirinktinis garso identifikatorius</gray>"
+preview-help = "<gray>Perklausykite naudodami serverio garsumą ir aukštį, net jei keitimo garsai nutildyti.</gray>"
+preview = "<gray>Perklausyti dabartinį garsą</gray>"
+selected = "<gray>Pasirinktas garsas</gray>"
+select = "<gray>Kairysis paspaudimas pasirenka, dešinysis perklauso.</gray>"
+current = "<gray>Dabartinis garsas: {sound}</gray>"
+title = "<gradient:#634514:#2f523f>Keitimo garsas</gradient>"
+
+[sound.preset]
+bell = "<gray>Varpas</gray>"
+experience = "<gray>Patirties surinkimas</gray>"
+pling = "<gray>Natų skambesys</gray>"
+chime = "<gray>Skambesys</gray>"
+click = "<gray>Mygtuko paspaudimas</gray>"
+
+[gui.config.spectator.allow-unsafe-return]
+name = "Leisti nesaugų grįžimą"
+description = "Grįžti netikrinant grindų ir laisvos vietos. Įjungta pagal numatymą; išjunkite, kad būtų reikalaujama saugios vietos. Taikoma ir aktyvioms sesijoms."

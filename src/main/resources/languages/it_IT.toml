@@ -45,6 +45,7 @@
 #   {section}  Sezione dell’editor delle lingue
 #   {setting}  nome impostazione
 #   {step}  Variazione di un valore numerico con un clic normale
+#   {sound}  identificatore del suono
 #   {state}  Stato personale dei gesti o delle notifiche
 #   {target}  Giocatore di destinazione, entità o valore
 #   {type}  tipo
@@ -66,6 +67,8 @@ set = "Modalità di gioco"
 status = "Modalità di gioco"
 toggle = "Gesti"
 
+return = "Ritorna dalla sessione spettatore"
+
 [command.feedback]
 failed = "{prefix}&cImpossibile completare il comando. Consulta la console per i dettagli.&r"
 
@@ -80,7 +83,7 @@ mode = "Sopravvivenza, Creativa, Avventura, Spettatore"
 upload = "Carica il rapporto quando i caricamenti pubblici sono abilitati"
 
 [command.status]
-compatibility = "&7Artefatto:&r &fJava 17 / Bukkit 1.20.1+&r &8|&r &7Pianificatore:&r &f{scheduler}&r"
+compatibility = "&7Artefatto:&r &fJava 25 / Bukkit 26.1+&r &8|&r &7Pianificatore:&r &f{scheduler}&r"
 config = "&7Modalità di gioco:&r {enabled} &8|&r &7Lingua:&r {language} &8|&r &7Ricarica configurazione e lingue:&r {hot_reload}"
 header = "&6&lGamemodeSwitcher&r"
 player = "&7Gesti:&r {state} &8|&r &7Modalità di gioco:&r {mode}"
@@ -515,3 +518,42 @@ description = "Volume del suono di cambio. Intervallo: da 0 a 1; 0 è silenzioso
 [gui.config.feedback.sound-pitch]
 name = "Tonalità"
 description = "Tonalità del suono di cambio. Intervallo: da 0.5 a 2; 1 usa la tonalità originale."
+
+[sound.menu]
+title = "<gradient:#634514:#2f523f>Suono del cambio</gradient>"
+current = "<gray>Suono attuale: {sound}</gray>"
+select = "<gray>Clic sinistro per scegliere. Clic destro per ascoltare.</gray>"
+selected = "<green>Suono selezionato</green>"
+preview = "<gold>Ascolta il suono attuale</gold>"
+preview-help = "<gray>Ascolta con volume e tonalità attuali del server, anche se i suoni del cambio sono silenziati.</gray>"
+custom = "<gold>Suono personalizzato</gold>"
+custom-help = "<gray>Inserisci una chiave sonora di Minecraft o di un pacchetto di risorse.</gray>"
+
+[sound.preset]
+click = "<gold>Clic del pulsante</gold>"
+chime = "<gold>Carillon</gold>"
+pling = "<gold>Pling</gold>"
+experience = "<gold>Raccolta esperienza</gold>"
+bell = "<gold>Campana</gold>"
+
+[spectator]
+busy = "{prefix} &eÈ già in corso una transizione della modalità spettatore.&r"
+none = "{prefix} &eNon hai una sessione spettatore attiva.&r"
+return-failed = "{prefix}&cImpossibile tornare. La sessione è salvata; riprova con /gsw return.&r"
+save-failed = "{prefix} &cImpossibile salvare la sessione spettatore. La modalità di gioco non è cambiata.&r"
+
+[gui.config.spectator]
+name = "Ritorno da spettatore"
+description = "Ripristina la modalità o la posizione salvate quando questo plugin avvia una sessione spettatore."
+
+[gui.config.spectator.restore-previous-mode]
+name = "Ripristina modalità precedente"
+description = "Premi Accovacciati tre volte o usa /gsw return per ripristinare la modalità precedente. Si applicano le autorizzazioni e le restrizioni dei mondi attuali."
+
+[gui.config.spectator.return-to-origin]
+name = "Torna al punto di partenza"
+description = "Torna alla posizione iniziale salvata prima di uscire da una sessione spettatore avviata dal plugin."
+
+[gui.config.spectator.allow-unsafe-return]
+name = "Consenti ritorni non sicuri"
+description = "Torna senza controllare il terreno o lo spazio libero. Attivo per impostazione predefinita; disattiva per richiedere una destinazione sicura. Vale anche per sessioni attive."

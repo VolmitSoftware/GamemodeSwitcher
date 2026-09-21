@@ -1132,7 +1132,7 @@ export default {
     try {
       await context.step('command help and status are available', async () => {
         await context.command('/gsw', /\(\(\(/, MODE_TIMEOUT)
-        await context.command('/gsw status', /Java 17.*1\.20\.1/i, MODE_TIMEOUT)
+        await context.command('/gsw status', /Java 25.*26\.1/i, MODE_TIMEOUT)
         await context.command('/gsw toggle enabled=true', /gestures enabled/i, MODE_TIMEOUT)
         await context.command('/clear', /removed|no items/i, MODE_TIMEOUT)
       })

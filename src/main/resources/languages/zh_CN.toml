@@ -40,6 +40,7 @@
 #   {plugin}  插件名称
 #   {prefix}  全局 runtime.prefix 值。从某条消息中删除 {prefix}，即可只在该消息中隐藏前缀
 #   {reason}  失败原因
+#   {sound}  声音标识符
 #   {scheduler}  调度器
 #   {seconds}  剩余冷却或确认时间（秒）
 #   {section}  语言编辑器分区
@@ -55,6 +56,7 @@
 #   {world}  世界
 
 [command.description]
+return = "从旁观会话返回"
 version = "显示 GamemodeSwitcher 版本"
 config = "配置"
 debug = "GamemodeSwitcher诊断工具"
@@ -80,7 +82,7 @@ mode = "生存, 创造, 冒险, 旁观"
 upload = "启用公开上传时上传报告"
 
 [command.status]
-compatibility = "&7工件:&r&fJava 17 / Bukkit 1.20.1+&r&8|&r&7调度程序:&r&f{scheduler}&r"
+compatibility = "&7工件:&r&fJava 25+ / Minecraft 26.1+&r&8|&r&7调度程序:&r&f{scheduler}&r"
 config = "&7游戏模式:&r {enabled} &8|&r &7语言:&r {language} &8|&r &7重新加载配置和语言:&r {hot_reload}"
 header = "&6&lGamemodeSwitcher&r"
 player = "&7手势:&r {state} &8|&r &7游戏模式:&r {mode}"
@@ -515,3 +517,42 @@ description = "切换声音的音量。范围：0 至 1；0 为静音。"
 [gui.config.feedback.sound-pitch]
 name = "音调"
 description = "切换声音的音调。范围：0.5 至 2；1 使用原始音调。"
+
+[spectator]
+save-failed = "{prefix}&c无法保存会话。游戏模式未更改。&r"
+return-failed = "{prefix}&c无法返回。会话已保存；请重试 /gsw return。&r"
+none = "{prefix}&c你没有正在进行的旁观会话。&r"
+busy = "{prefix}&c旁观模式切换正在进行。&r"
+
+[gui.config.spectator]
+description = "设置恢复原模式和返回起点。"
+name = "旁观会话"
+
+[gui.config.spectator.restore-previous-mode]
+description = "结束旁观会话时恢复进入前的模式。"
+name = "恢复原模式"
+
+[gui.config.spectator.return-to-origin]
+description = "退出由插件开始的旁观会话前，返回保存的起始位置。"
+name = "返回起点"
+
+[sound.menu]
+custom-help = "<gray>输入 Minecraft 或资源包的声音标识符。</gray>"
+custom = "<gray>自定义声音标识符</gray>"
+preview-help = "<gray>按服务器的音量和音高试听，即使切换音效已静音。</gray>"
+preview = "<gray>试听当前声音</gray>"
+selected = "<gray>已选声音</gray>"
+select = "<gray>左键选择，右键试听。</gray>"
+current = "<gray>当前声音：{sound}</gray>"
+title = "<gradient:#634514:#2f523f>切换音效</gradient>"
+
+[sound.preset]
+bell = "<gray>钟声</gray>"
+experience = "<gray>拾取经验</gray>"
+pling = "<gray>清脆音符</gray>"
+chime = "<gray>风铃</gray>"
+click = "<gray>按钮点击</gray>"
+
+[gui.config.spectator.allow-unsafe-return]
+name = "允许不安全返回"
+description = "不检查地面或净空即可返回。默认开启；关闭后要求目标安全。也适用于正在进行的会话。"

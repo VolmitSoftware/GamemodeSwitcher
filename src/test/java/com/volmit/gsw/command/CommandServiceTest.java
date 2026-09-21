@@ -162,7 +162,7 @@ public class CommandServiceTest {
         when(command.getName()).thenReturn("gamemodeswitcher");
         try {
             List<String> completions = new CommandService(plugin).onTabComplete(sender, command, "gsw", new String[]{""});
-            assertEquals(List.of("config", "debug", "language", "menu", "set", "status", "toggle"),
+            assertEquals(List.of("config", "debug", "language", "menu", "return", "set", "status", "toggle"),
                     completions.stream().sorted().toList());
         } finally {
             language.close();

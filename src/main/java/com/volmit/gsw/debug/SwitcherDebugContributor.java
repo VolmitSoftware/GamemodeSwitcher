@@ -43,7 +43,10 @@ public final class SwitcherDebugContributor implements DebugDumpContributor {
                 + "Disabled worlds count: " + config.disabledWorlds().size() + "\n"
                 + "Normal transitions: " + config.normalModes() + "\n"
                 + "Sneaking transitions: " + config.sneakingModes() + "\n"
-                + "Spectator exit: " + config.spectatorExit() + "\n";
+                + "Spectator exit: " + config.spectatorExit() + "\n"
+                + "Spectator previous-mode restoration: " + config.restorePreviousMode() + "\n"
+                + "Spectator return to origin: " + config.returnToOrigin() + "\n"
+                + "Spectator unsafe returns allowed: " + config.allowUnsafeReturn() + "\n";
     }
 
     private record Snapshot(String scheduler, RuntimeConfig config, List<String> languages, int states,

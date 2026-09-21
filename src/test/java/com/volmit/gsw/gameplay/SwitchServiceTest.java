@@ -56,6 +56,48 @@ class SwitchServiceTest {
     Path directory;
 
     @Test
+    void previousModeReturnRechecksPermissionAndHonorsExplicitTarget() throws Exception {
+        Fixture fixture = fixture();
+        acceptChanges(fixture);
+        fixture.service().close();
+        try (SpectatorSessions sessions = new SpectatorSessions(directory.resolve("data/spectator-sessions.toml"), Logger.getAnonymousLogger())) {
+            sessions.put(fixture.player().getUniqueId(), new SpectatorSession(fixture.player().getWorld().getUID(),
+                    0, 64, 0, 0, 0, GameMode.ADVENTURE, true, false)).get(5, TimeUnit.SECONDS);
+        }
+        SwitchFeedback feedback = new SwitchFeedback(new SwitchFeedback.Dependencies(fixture.plugin(), fixture.config(), fixture.language()));
+        try (SwitchService service = new SwitchService(new SwitchService.Dependencies(fixture.plugin(), fixture.config(), fixture.language(), feedback))) {
+            fixture.mode().set(GameMode.SPECTATOR);
+            assertThat(service.spectatorExit(fixture.player())).isEqualTo(GameMode.ADVENTURE);
+            when(fixture.player().hasPermission(SwitchService.permission(GameMode.ADVENTURE))).thenReturn(false);
+            assertThat(service.returnFromSpectator(fixture.player())).isFalse();
+            assertThat(fixture.mode().get()).isEqualTo(GameMode.SPECTATOR);
+            assertThat(service.switchMode(fixture.player(), GameMode.SURVIVAL)).isTrue();
+            assertThat(fixture.mode().get()).isEqualTo(GameMode.SURVIVAL);
+            assertThat(service.spectatorExit(fixture.player())).isEqualTo(GameMode.CREATIVE);
+        }
+    }
+
+    @Test
+    void deathDiscardsRememberedModeWithoutRestoringIt() throws Exception {
+        Fixture fixture = fixture();
+        fixture.service().close();
+        try (SpectatorSessions sessions = new SpectatorSessions(directory.resolve("data/spectator-sessions.toml"), Logger.getAnonymousLogger())) {
+            sessions.put(fixture.player().getUniqueId(), new SpectatorSession(fixture.player().getWorld().getUID(),
+                    0, 64, 0, 0, 0, GameMode.ADVENTURE, true, false)).get(5, TimeUnit.SECONDS);
+        }
+        SwitchFeedback feedback = new SwitchFeedback(new SwitchFeedback.Dependencies(fixture.plugin(), fixture.config(), fixture.language()));
+        try (SwitchService service = new SwitchService(new SwitchService.Dependencies(fixture.plugin(), fixture.config(), fixture.language(), feedback))) {
+            fixture.mode().set(GameMode.SPECTATOR);
+            PlayerDeathEvent event = mock(PlayerDeathEvent.class);
+            when(event.getEntity()).thenReturn(fixture.player());
+            service.onDeath(event);
+            assertThat(service.returnFromSpectator(fixture.player())).isFalse();
+            assertThat(service.spectatorExit(fixture.player())).isEqualTo(GameMode.CREATIVE);
+            verify(fixture.player(), never()).setGameMode(any(GameMode.class));
+        }
+    }
+
+    @Test
     void eligibilityIsReadOnlyAndExplainsTheSameRestrictionsAsSwitching() throws Exception {
         Fixture fixture = fixture();
         acceptChanges(fixture);
@@ -151,6 +193,8 @@ class SwitchServiceTest {
 
     @Test
     void emptyHandsRequirementRejectsEitherOccupiedHandAndRechecksBeforeDispatch() throws IOException {
+        ItemStack occupied = heldItem(false);
+        ItemStack empty = heldItem(true);
         Fixture fixture = fixture();
         String previous = fixture.config().source();
         fixture.config().save(previous, previous.replace("require-empty-hands = false", "require-empty-hands = true"));
@@ -161,23 +205,23 @@ class SwitchServiceTest {
                         scheduled.add(invocation.getArgument(2, Runnable.class));
                         return true;
                     });
-            when(fixture.inventory().getItemInMainHand()).thenReturn(new ItemStack(Material.STONE));
+            when(fixture.inventory().getItemInMainHand()).thenReturn(occupied);
             service.onSwap(swap(fixture.player()));
             service.onSwap(swap(fixture.player()));
             assertThat(scheduled).isEmpty();
             assertThat(service.stateCount()).isZero();
 
-            when(fixture.inventory().getItemInMainHand()).thenReturn(new ItemStack(Material.AIR));
-            when(fixture.inventory().getItemInOffHand()).thenReturn(new ItemStack(Material.STONE));
+            when(fixture.inventory().getItemInMainHand()).thenReturn(empty);
+            when(fixture.inventory().getItemInOffHand()).thenReturn(occupied);
             service.onSwap(swap(fixture.player()));
             service.onSwap(swap(fixture.player()));
             assertThat(scheduled).isEmpty();
 
-            when(fixture.inventory().getItemInOffHand()).thenReturn(new ItemStack(Material.AIR));
+            when(fixture.inventory().getItemInOffHand()).thenReturn(empty);
             service.onSwap(swap(fixture.player()));
             service.onSwap(swap(fixture.player()));
             assertThat(scheduled).hasSize(1);
-            when(fixture.inventory().getItemInOffHand()).thenReturn(new ItemStack(Material.STONE));
+            when(fixture.inventory().getItemInOffHand()).thenReturn(occupied);
             scheduled.get(0).run();
             verify(fixture.player(), never()).setGameMode(any(GameMode.class));
         }
@@ -363,4 +407,12 @@ class SwitchServiceTest {
     private record Fixture(Plugin plugin, Player player, PlayerInventory inventory, ConfigService config,
                            LanguageService language, SwitchService service, AtomicReference<GameMode> mode) {
     }
+    private ItemStack heldItem(boolean empty) {
+        Material material = mock(Material.class);
+        when(material.isAir()).thenReturn(empty);
+        ItemStack item = mock(ItemStack.class);
+        when(item.getType()).thenReturn(material);
+        return item;
+    }
+
 }

@@ -23,7 +23,7 @@ public final class SwitcherMessages {
     public static final TextKey STATUS_HEADER = TextKey.of("command.status.header", "&6&lGamemodeSwitcher&r");
     public static final TextKey STATUS_CONFIG = TextKey.of("command.status.config", "&7Switching:&r {enabled} &8|&r &7Language:&r &f{language}&r &8|&r &7Hot reload:&r {hot_reload}");
     public static final TextKey STATUS_PLAYER = TextKey.of("command.status.player", "&7Gestures:&r {state} &8|&r &7Game mode:&r {mode}");
-    public static final TextKey STATUS_COMPATIBILITY = TextKey.of("command.status.compatibility", "&7Artifact:&r &fJava 17 / Bukkit 1.20.1+&r &8|&r &7Scheduler:&r &f{scheduler}&r");
+    public static final TextKey STATUS_COMPATIBILITY = TextKey.of("command.status.compatibility", "&7Requires:&r &fJava 25+ / Minecraft 26.1+&r &8|&r &7Scheduler:&r &f{scheduler}&r");
     public static final TextKey STATE_ENABLED = TextKey.of("state.enabled", "&aEnabled&r");
     public static final TextKey STATE_DISABLED = TextKey.of("state.disabled", "&cDisabled&r");
     public static final TextKey MODE_SURVIVAL = TextKey.of("mode.survival", "Survival");
@@ -91,6 +91,11 @@ public final class SwitcherMessages {
     public static final TextKey COMMAND_ROOT = TextKey.of("command.description.root", "Game mode switching, personal gestures, and configuration");
     public static final TextKey COMMAND_MENU = TextKey.of("command.description.menu", "Open the game mode selector");
     public static final TextKey COMMAND_SET = TextKey.of("command.description.set", "Change your game mode");
+    public static final TextKey COMMAND_RETURN = TextKey.of("command.description.return", "Return from your Spectator session");
+    public static final TextKey SPECTATOR_BUSY = prefixed("spectator.busy", "&eA Spectator transition is already in progress.&r");
+    public static final TextKey SPECTATOR_NONE = prefixed("spectator.none", "&eYou do not have an active Spectator session.&r");
+    public static final TextKey SPECTATOR_RETURN_FAILED = prefixed("spectator.return-failed", "&cCould not return. Your session is saved; try /gsw return again.&r");
+    public static final TextKey SPECTATOR_SAVE_FAILED = prefixed("spectator.save-failed", "&cCould not save your Spectator session. Your game mode was not changed.&r");
     public static final TextKey COMMAND_TOGGLE = TextKey.of("command.description.toggle", "Enable or disable your game mode gestures");
     public static final TextKey COMMAND_STATUS = TextKey.of("command.description.status", "Show switching settings and your game mode");
     public static final TextKey COMMAND_CONFIG = TextKey.of("command.description.config", "Open the configuration editor");
@@ -109,6 +114,7 @@ public final class SwitcherMessages {
         MessageCatalog.Builder builder = MessageCatalog.builder("en_US");
         builder.addAll(productKeys());
         builder.addAll(GuiMessages.keys());
+        builder.addAll(SoundMessages.keys());
         builder.addAll(DirectorMessages.keys());
         builder.addAll(BukkitLanguageMessages.keys());
         builder.addAll(BukkitDebugMessages.keys());
@@ -147,6 +153,8 @@ public final class SwitcherMessages {
                 MENU_SELECTED, MENU_SURVIVAL_HELP, MENU_CREATIVE_HELP, MENU_ADVENTURE_HELP, MENU_SPECTATOR_HELP,
                 MENU_CONFIG_HELP, MENU_LANGUAGE_HELP, MENU_CLOSE, GUI_ROOT_TITLE, COMMAND_ROOT, COMMAND_MENU, COMMAND_SET, COMMAND_TOGGLE,
                 COMMAND_STATUS, COMMAND_CONFIG, COMMAND_LANGUAGE, COMMAND_DEBUG, COMMAND_VERSION,
+                COMMAND_RETURN, SPECTATOR_BUSY, SPECTATOR_NONE, SPECTATOR_RETURN_FAILED, SPECTATOR_SAVE_FAILED,
                 COMMAND_DEBUG_DUMP, PARAMETER_MODE, PARAMETER_ENABLED, PARAMETER_UPLOAD);
     }
 }
+

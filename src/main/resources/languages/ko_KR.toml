@@ -45,6 +45,7 @@
 #   {section}  언어 편집기 섹션
 #   {setting}  설정 이름
 #   {step}  일반 클릭 한 번으로 변경되는 수치
+#   {sound}  소리 식별자
 #   {state}  개인 동작 또는 알림 상태
 #   {target}  대상 플레이어, 단체, 또는 가치
 #   {type}  형식
@@ -66,6 +67,8 @@ set = "게임 모드"
 status = "게임 모드"
 toggle = "동작"
 
+return = "관전자 세션에서 돌아오기"
+
 [command.feedback]
 failed = "{prefix}&c명령을 완료할 수 없습니다. 자세한 내용은 콘솔을 참조하십시오.&r"
 
@@ -80,7 +83,7 @@ mode = "서바이벌, 크리에이티브, 모험, 관전자"
 upload = "공개 업로드가 활성화된 경우 보고서 업로드"
 
 [command.status]
-compatibility = "&7아티팩트:&r&fJava 17 / Bukkit 1.20.1+&r&8|&r&7스케줄러:&r&f{scheduler}&r"
+compatibility = "&7아티팩트:&r&fJava 25 / Bukkit 26.1+&r&8|&r&7스케줄러:&r&f{scheduler}&r"
 config = "&7게임 모드:&r {enabled} &8|&r &7언어:&r {language} &8|&r &7설정 및 언어 다시 불러오기:&r {hot_reload}"
 header = "&6&lGamemodeSwitcher&r"
 player = "&7동작:&r {state} &8|&r &7게임 모드:&r {mode}"
@@ -515,3 +518,42 @@ description = "전환 소리의 음량입니다. 범위는 0부터 1이며 0은 
 [gui.config.feedback.sound-pitch]
 name = "음높이"
 description = "전환 소리의 음높이입니다. 범위는 0.5부터 2이며 1은 원래 높이입니다."
+
+[sound.menu]
+title = "<gradient:#634514:#2f523f>전환 소리</gradient>"
+current = "<gray>현재 소리: {sound}</gray>"
+select = "<gray>왼쪽 클릭으로 선택, 오른쪽 클릭으로 미리 듣기.</gray>"
+selected = "<green>선택한 소리</green>"
+preview = "<gold>현재 소리 미리 듣기</gold>"
+preview-help = "<gray>서버의 현재 음량과 음높이로 듣습니다. 전환 소리를 꺼도 미리 들을 수 있습니다.</gray>"
+custom = "<gold>사용자 지정 소리 키</gold>"
+custom-help = "<gray>Minecraft 또는 리소스 팩의 소리 키를 입력하세요.</gray>"
+
+[sound.preset]
+click = "<gold>버튼 클릭</gold>"
+chime = "<gold>차임</gold>"
+pling = "<gold>플링</gold>"
+experience = "<gold>경험치 획득</gold>"
+bell = "<gold>종</gold>"
+
+[spectator]
+busy = "{prefix} &e관전자 모드 전환이 이미 진행 중입니다.&r"
+none = "{prefix} &e활성 관전자 세션이 없습니다.&r"
+return-failed = "{prefix}&c복귀하지 못했습니다. 세션은 저장되어 있습니다. /gsw return 으로 다시 시도하세요.&r"
+save-failed = "{prefix} &c관전자 세션을 저장할 수 없습니다. 게임 모드는 변경되지 않았습니다.&r"
+
+[gui.config.spectator]
+name = "관전자 복귀"
+description = "이 플러그인이 관전자 세션을 시작할 때 저장한 모드나 위치로 돌아갑니다."
+
+[gui.config.spectator.restore-previous-mode]
+name = "이전 모드 복원"
+description = "웅크리기를 세 번 누르거나 /gsw return을 사용하여 이전 모드로 돌아갑니다. 현재 권한과 월드 제한이 계속 적용됩니다."
+
+[gui.config.spectator.return-to-origin]
+name = "시작 위치로 돌아가기"
+description = "플러그인으로 시작한 관전자 세션을 종료하기 전에 저장된 시작 위치로 돌아갑니다."
+
+[gui.config.spectator.allow-unsafe-return]
+name = "안전 확인 없는 복귀 허용"
+description = "바닥과 빈 공간을 확인하지 않고 복귀합니다. 기본값은 켜짐이며 끄면 안전한 위치만 허용합니다. 진행 중인 세션에도 적용됩니다."

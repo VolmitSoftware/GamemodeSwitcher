@@ -33,7 +33,7 @@ java {
 tasks.withType(JavaCompile).configureEach {
     options.compilerArgs.add('-parameters')
     options.encoding = 'UTF-8'
-    options.release.set(17)
+    options.release.set(25)
 }
 
 repositories {
@@ -66,7 +66,7 @@ configurations {
 }
 
 dependencies {
-    compileOnly('org.spigotmc:spigot-api:1.20.1-R0.1-SNAPSHOT')
+    compileOnly('org.spigotmc:spigot-api:26.1-R0.1-SNAPSHOT')
     implementation(providers.gradleProperty('volmLibCoordinate').orElse('com.github.VolmitSoftware:VolmLib:master-SNAPSHOT').get()) {
         changing = true
         transitive = false
@@ -83,7 +83,7 @@ dependencies {
     testImplementation('org.junit.jupiter:junit-jupiter')
     testImplementation('org.assertj:assertj-core:3.27.4')
     testImplementation('org.mockito:mockito-core:5.20.0')
-    testImplementation('org.spigotmc:spigot-api:1.20.1-R0.1-SNAPSHOT')
+    testImplementation('org.spigotmc:spigot-api:26.1-R0.1-SNAPSHOT')
     testRuntimeOnly('org.junit.platform:junit-platform-launcher')
 }
 
@@ -122,7 +122,7 @@ tasks.named('test').configure {
     systemProperty('gamemodeswitcher.projectDir', layout.projectDirectory.asFile.absolutePath)
 }
 
-tasks.register('verifyJava17Artifact') {
+tasks.register('verifyJava25Artifact') {
     dependsOn(tasks.named('shadowJar'))
     inputs.file(tasks.named('shadowJar').flatMap { it.archiveFile })
     doLast {
@@ -134,7 +134,15 @@ tasks.register('verifyJava17Artifact') {
         new java.util.zip.ZipFile(artifact).withCloseable { java.util.zip.ZipFile archive ->
             archive.entries().each { java.util.zip.ZipEntry entry ->
                 String path = entry.name
-                if (path == 'plugin.yml') { metadataCount++ }
+                if (path == 'plugin.yml') {
+                    metadataCount++
+                    String descriptor = archive.getInputStream(entry).withCloseable { InputStream input ->
+                        input.getText('UTF-8')
+                    }
+                    if (!descriptor.contains("api-version: '26.1'")) {
+                        throw new GradleException('Plugin descriptor must require Minecraft 26.1 or newer')
+                    }
+                }
                 if (path.startsWith('languages/') && path.endsWith('.toml')) { localeCount++ }
                 if (path == 'com/volmit/gsw/metrics/Metrics.class') { metricsPresent = true }
                 if (path == 'gamemodeswitcher-language-source.properties') {
@@ -152,8 +160,9 @@ tasks.register('verifyJava17Artifact') {
                         int magic = input.readInt()
                         input.readUnsignedShort()
                         int major = input.readUnsignedShort()
-                        if (Integer.toUnsignedLong(magic) != 0xCAFEBABEL || major > 61) {
-                            throw new GradleException("Invalid Java 17 class in artifact: ${path} (major ${major})")
+                        boolean pluginClass = path.startsWith('com/volmit/gsw/') && !path.startsWith('com/volmit/gsw/libs/')
+                        if (Integer.toUnsignedLong(magic) != 0xCAFEBABEL || major > 69 || (pluginClass && major != 69)) {
+                            throw new GradleException("Invalid Java 25 class in artifact: ${path} (major ${major})")
                         }
                     }
                 }
@@ -170,7 +179,7 @@ tasks.register('verifyJava17Artifact') {
 }
 
 tasks.named('check').configure {
-    dependsOn('compileCurrentPaperCompatibility', 'compileCurrentSpigotCompatibility', 'verifyJava17Artifact')
+    dependsOn('compileCurrentPaperCompatibility', 'compileCurrentSpigotCompatibility', 'verifyJava25Artifact')
 }
 
 tasks.register('buildSwiftSwamp', Copy) {

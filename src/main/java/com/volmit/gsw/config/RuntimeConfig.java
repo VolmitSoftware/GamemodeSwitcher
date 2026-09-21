@@ -19,7 +19,10 @@ public record RuntimeConfig(
         Set<String> disabledWorlds,
         Map<GameMode, GameMode> normalModes,
         Map<GameMode, GameMode> sneakingModes,
-        GameMode spectatorExit
+        GameMode spectatorExit,
+        boolean restorePreviousMode,
+        boolean returnToOrigin,
+        boolean allowUnsafeReturn
 ) {
     public RuntimeConfig {
         disabledWorlds = Set.copyOf(disabledWorlds);

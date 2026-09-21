@@ -23,7 +23,7 @@ sneak-tap-millis = 600
 cooldown-millis = 500
 # Require both hands to be empty for gestures. Commands and the menu do not require empty hands.
 require-empty-hands = false
-# Mode reached after three separate sneak presses in Spectator.
+# Mode reached after three separate sneak presses in Spectator, unless a session restores its previous mode.
 # Destinations can be SURVIVAL, CREATIVE, ADVENTURE, or SPECTATOR.
 spectator-exit = "CREATIVE"
 
@@ -40,6 +40,18 @@ adventure = "CREATIVE"
 survival = "ADVENTURE"
 creative = "SPECTATOR"
 adventure = "SURVIVAL"
+
+[spectator]
+# The next two settings are captured when entering Spectator and apply to new sessions.
+# Remember the previous mode for triple-Sneak and /gsw return. Only GSW entries are tracked.
+restore-previous-mode = false
+# Return to the entry location before leaving a tracked Spectator session through GSW.
+# Blocked or missing-world destinations keep you in Spectator; retry with /gsw return.
+# Sessions survive reconnects/restarts; death or another plugin's mode change ends the session.
+return-to-origin = false
+# Return even without solid ground or clear space, or outside the world border.
+# Set false to require a safe destination. Changes also apply to existing sessions.
+allow-unsafe-return = true
 
 [restrictions]
 # World names where gestures, commands, and the menu cannot change game modes.

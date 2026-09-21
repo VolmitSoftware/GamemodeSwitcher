@@ -40,6 +40,7 @@
 #   {plugin}  Pluginnaam
 #   {prefix}  de globale waarde runtime.prefix. Verwijder {prefix} uit één bericht om het alleen daar te verbergen
 #   {reason}  foutreden
+#   {sound}  Geluidsleutel
 #   {scheduler}  planner
 #   {seconds}  Resterende wacht- of bevestigingstijd in seconden
 #   {section}  Onderdeel van de taaleditor
@@ -55,6 +56,7 @@
 #   {world}  wereld
 
 [command.description]
+return = "Terugkeren uit je toeschouwersessie"
 version = "Toon de versie van GamemodeSwitcher"
 config = "Configuratie"
 debug = "Diagnosehulpmiddelen voor GamemodeSwitcher"
@@ -80,7 +82,7 @@ mode = "Overleven, Creatief, Avontuur, Toeschouwer"
 upload = "Het rapport uploaden wanneer openbare uploads zijn ingeschakeld"
 
 [command.status]
-compatibility = "&7Artefact:&r &fJava 17 / Bukkit 1.20.1+&r &8|&r &7Planner:&r &f{scheduler}&r"
+compatibility = "&7Artefact:&r &fJava 25+ / Minecraft 26.1+&r &8|&r &7Planner:&r &f{scheduler}&r"
 config = "&7Spelmodus:&r {enabled} &8|&r &7Taal:&r {language} &8|&r &7Configuratie en talen herladen:&r {hot_reload}"
 header = "&6&lGamemodeSwitcher&r"
 player = "&7Gebaren:&r {state} &8|&r &7Spelmodus:&r {mode}"
@@ -515,3 +517,42 @@ description = "Volume van het wisselgeluid. Bereik: 0 tot 1; 0 is stil."
 [gui.config.feedback.sound-pitch]
 name = "Toonhoogte"
 description = "Toonhoogte van het wisselgeluid. Bereik: 0.5 tot 2; 1 gebruikt de oorspronkelijke toonhoogte."
+
+[spectator]
+save-failed = "{prefix}&cJe sessie kon niet worden opgeslagen. Je spelmodus is niet gewijzigd.&r"
+return-failed = "{prefix}&cTerugkeren is mislukt. Je sessie is opgeslagen; probeer /gsw return opnieuw.&r"
+none = "{prefix}&cJe hebt geen actieve toeschouwersessie.&r"
+busy = "{prefix}&cEr loopt al een wisseling van toeschouwermodus.&r"
+
+[gui.config.spectator]
+description = "Kies terugkeer naar de vorige modus en beginlocatie."
+name = "Toeschouwersessies"
+
+[gui.config.spectator.restore-previous-mode]
+description = "Keer bij het verlaten van je toeschouwersessie terug naar je vorige modus."
+name = "Vorige modus herstellen"
+
+[gui.config.spectator.return-to-origin]
+description = "Keer terug naar de opgeslagen beginlocatie voordat je een door de plugin gestarte toeschouwersessie verlaat."
+name = "Terug naar beginlocatie"
+
+[sound.menu]
+custom-help = "<gray>Voer een geluidsleutel van Minecraft of een resourcepack in.</gray>"
+custom = "<gray>Aangepaste geluidsleutel</gray>"
+preview-help = "<gray>Luister met het huidige servervolume en de toonhoogte, ook als wisselgeluiden gedempt zijn.</gray>"
+preview = "<gray>Huidig geluid beluisteren</gray>"
+selected = "<gray>Geselecteerd geluid</gray>"
+select = "<gray>Linksklik om te kiezen. Rechtsklik om te beluisteren.</gray>"
+current = "<gray>Huidig geluid: {sound}</gray>"
+title = "<gradient:#634514:#2f523f>Wisselgeluid</gradient>"
+
+[sound.preset]
+bell = "<gray>Bel</gray>"
+experience = "<gray>Ervaring oppakken</gray>"
+pling = "<gray>Plingtoon</gray>"
+chime = "<gray>Klank</gray>"
+click = "<gray>Knopklik</gray>"
+
+[gui.config.spectator.allow-unsafe-return]
+name = "Onveilig terugkeren toestaan"
+description = "Keer terug zonder vloer of vrije ruimte te controleren. Standaard aan; zet uit om een veilige bestemming te eisen. Geldt ook voor actieve sessies."

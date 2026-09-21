@@ -1,7 +1,7 @@
 name: ${name}
 version: ${version}
 main: com.volmit.gsw.GamemodeSwitcher
-api-version: '1.20'
+api-version: '26.1'
 folia-supported: true
 authors: [Volmit Software]
 website: https://volmit.com

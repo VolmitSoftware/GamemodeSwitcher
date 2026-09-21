@@ -33,7 +33,11 @@ public final class ConfigMenu {
         add(entries, "gestures", Material.CLOCK, 2);
         add(entries, "restrictions", Material.IRON_DOOR, 3);
         add(entries, "feedback", Material.NOTE_BLOCK, 4);
-        add(entries, "diagnostics", Material.PAPER, 5);
+        add(entries, "spectator", Material.ENDER_EYE, 5);
+        add(entries, "diagnostics", Material.PAPER, 6);
+        add(entries, "spectator.restore-previous-mode", Material.ENDER_EYE, 0);
+        add(entries, "spectator.return-to-origin", Material.COMPASS, 1);
+        add(entries, "spectator.allow-unsafe-return", Material.ENDER_PEARL, 2);
         add(entries, "general.enabled", Material.LEVER, 0);
         entries.put("general.language", new BukkitConfigEditor.EntryPresentation(
                 GuiMessages.name("general.language"), GuiMessages.description("general.language"),
@@ -62,7 +66,7 @@ public final class ConfigMenu {
         add(entries, "feedback.sound-enabled", Material.NOTE_BLOCK, 4);
         entries.put("feedback.sound", new BukkitConfigEditor.EntryPresentation(
                 GuiMessages.name("feedback.sound"), GuiMessages.description("feedback.sound"),
-                Material.JUKEBOX, 5, null, GuiMessages.SOUND_INPUT, null));
+                Material.JUKEBOX, 5, null, GuiMessages.SOUND_INPUT, player -> plugin.getSoundPicker().open(player)));
         addNumber(entries, "feedback.sound-volume", Material.NOTE_BLOCK, 6, new BukkitConfigEditor.NumericControl(0.1, 0, 1));
         addNumber(entries, "feedback.sound-pitch", Material.NOTE_BLOCK, 7, new BukkitConfigEditor.NumericControl(0.1, 0.5, 2));
         add(entries, "feedback.auto-fly-creative", Material.FEATHER, 8);
