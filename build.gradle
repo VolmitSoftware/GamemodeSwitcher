@@ -3,11 +3,26 @@ import org.gradle.api.attributes.java.TargetJvmVersion
 import org.gradle.api.tasks.compile.JavaCompile
 import org.gradle.jvm.toolchain.JavaLanguageVersion
 
+buildscript {
+    repositories {
+        mavenCentral()
+        maven { url = uri('https://jitpack.io') }
+    }
+    dependencies {
+        classpath('com.github.VolmitSoftware.VolmLib:packaging:master-SNAPSHOT')
+    }
+}
+
 plugins {
     id 'java-library'
     id 'maven-publish'
     id 'com.gradleup.shadow' version '9.0.0-rc3'
+    id 'de.crazydev22.slimjar' version '2.1.9'
 }
+
+apply plugin: 'art.arcane.volmit-packaging'
+
+tasks.named('slimJar').get()
 
 group = 'com.volmit'
 version = '2.0.0'
@@ -47,6 +62,11 @@ repositories {
 }
 
 configurations {
+    runtimeLibraryTest {
+        canBeConsumed = false
+        canBeResolved = true
+        extendsFrom(configurations.slimApi)
+    }
     currentPaperCompatibility {
         canBeConsumed = false
         canBeResolved = true
@@ -71,12 +91,15 @@ dependencies {
         changing = true
         transitive = false
     }
-    implementation('com.google.code.gson:gson:2.10.1')
-    implementation('com.moandjiezana.toml:toml4j:0.7.2')
-    implementation('net.kyori:adventure-api:4.26.1')
-    implementation('net.kyori:adventure-text-minimessage:4.26.1')
-    implementation('net.kyori:adventure-text-serializer-legacy:4.26.1')
-    implementation('net.kyori:adventure-text-serializer-plain:4.26.1')
+    implementation('de.crazydev22.slimjar.helper:spigot:2.1.9')
+    slimApi('net.kyori:adventure-text-serializer-gson:4.26.1')
+    slimApi('net.kyori:adventure-text-serializer-json:4.26.1')
+    slimApi('com.google.code.gson:gson:2.10.1')
+    slimApi('com.moandjiezana.toml:toml4j:0.7.2')
+    slimApi('net.kyori:adventure-api:4.26.1')
+    slimApi('net.kyori:adventure-text-minimessage:4.26.1')
+    slimApi('net.kyori:adventure-text-serializer-legacy:4.26.1')
+    slimApi('net.kyori:adventure-text-serializer-plain:4.26.1')
     currentPaperCompatibility('io.papermc.paper:paper-api:26.1.2.build.74-stable')
     currentSpigotCompatibility('org.spigotmc:spigot-api:26.2-R0.1-SNAPSHOT')
     testImplementation(platform('org.junit:junit-bom:5.13.4'))
@@ -108,9 +131,19 @@ tasks.named('processResources').configure {
 }
 
 tasks.named('jar').configure { archiveClassifier.set('thin') }
+slimJar {
+    relocate('com.google.gson', 'com.volmit.gsw.libs.gson')
+    relocate('com.moandjiezana.toml', 'com.volmit.gsw.libs.toml')
+    relocate('net.kyori', 'com.volmit.gsw.libs.kyori')
+}
+
 tasks.named('shadowJar').configure {
     archiveClassifier.set('')
     duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+    minimize {
+        exclude(dependency('de.crazydev22.slimjar.helper:.*:.*'))
+    }
+    relocate('io.github.slimjar', 'com.volmit.gsw.libs.slimjar')
     relocate('art.arcane.volmlib', 'com.volmit.gsw.libs.volmlib')
     relocate('com.google.gson', 'com.volmit.gsw.libs.gson')
     relocate('com.moandjiezana.toml', 'com.volmit.gsw.libs.toml')
@@ -120,6 +153,34 @@ tasks.named('shadowJar').configure {
 tasks.named('test').configure {
     useJUnitPlatform()
     systemProperty('gamemodeswitcher.projectDir', layout.projectDirectory.asFile.absolutePath)
+    exclude('com/volmit/gsw/RuntimeJarTest.class')
+}
+
+def runtimeLibraryTestJar = tasks.register('runtimeLibraryTestJar', com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar) {
+    archiveFileName.set('runtime-libraries.jar')
+    destinationDirectory.set(layout.buildDirectory.dir('test-libraries'))
+    configurations = [project.configurations.runtimeLibraryTest]
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+    relocate('com.google.gson', "com.volmit.gsw.libs.gson")
+    relocate('com.moandjiezana.toml', "com.volmit.gsw.libs.toml")
+    relocate('net.kyori', "com.volmit.gsw.libs.kyori")
+}
+
+def packagingTest = tasks.register('packagingTest', Test) {
+    group = 'verification'
+    description = 'Runs the tests that load the packaged runtime jars.'
+    testClassesDirs = sourceSets.test.output.classesDirs
+    classpath = sourceSets.test.runtimeClasspath
+    include('com/volmit/gsw/RuntimeJarTest.class')
+    dependsOn(tasks.named('shadowJar'))
+    dependsOn(runtimeLibraryTestJar)
+    useJUnitPlatform()
+    inputs.file(tasks.named('shadowJar').flatMap { it.archiveFile })
+    inputs.file(runtimeLibraryTestJar.flatMap { it.archiveFile })
+    doFirst {
+        systemProperty('gamemodeswitcher.runtimeJar', tasks.named('shadowJar').get().archiveFile.get().asFile.absolutePath)
+        systemProperty('gamemodeswitcher.runtimeTestLibraries', runtimeLibraryTestJar.get().archiveFile.get().asFile.absolutePath)
+    }
 }
 
 tasks.register('verifyJava25Artifact') {
@@ -132,8 +193,18 @@ tasks.register('verifyJava25Artifact') {
         boolean metricsPresent = false
         Properties languageManifest = null
         new java.util.zip.ZipFile(artifact).withCloseable { java.util.zip.ZipFile archive ->
+            if (archive.getEntry('slimjar.dat') == null
+                    || archive.getEntry('slimjar-resolutions.dat') == null
+                    || archive.getEntry('com/volmit/gsw/libs/slimjar/app/builder/SpigotApplicationBuilder.class') == null) {
+                throw new GradleException('Runtime artifact is missing its dependency bootstrap')
+            }
             archive.entries().each { java.util.zip.ZipEntry entry ->
                 String path = entry.name
+                if (path.startsWith('com/volmit/gsw/libs/gson/')
+                        || path.startsWith('com/volmit/gsw/libs/toml/')
+                        || path.startsWith('com/volmit/gsw/libs/kyori/')) {
+                    throw new GradleException("Runtime-downloaded library is bundled in artifact: ${path}")
+                }
                 if (path == 'plugin.yml') {
                     metadataCount++
                     String descriptor = archive.getInputStream(entry).withCloseable { InputStream input ->
@@ -179,6 +250,7 @@ tasks.register('verifyJava25Artifact') {
 }
 
 tasks.named('check').configure {
+    dependsOn(packagingTest)
     dependsOn('compileCurrentPaperCompatibility', 'compileCurrentSpigotCompatibility', 'verifyJava25Artifact')
 }
 
@@ -208,6 +280,23 @@ publishing {
     }
 }
 tasks.named('publishToMavenLocal').configure { dependsOn('check', 'buildSwiftSwamp') }
+pluginPackaging {
+    artifacts {
+        create('distribution') {
+            taskName = 'shadowJar'
+            shrink = true
+            shrinkRelocations = [
+                'com.google.gson': 'com.volmit.gsw.libs.gson',
+                'com.moandjiezana.toml': 'com.volmit.gsw.libs.toml',
+                'net.kyori': 'com.volmit.gsw.libs.kyori'
+            ]
+            maximumBytes = 1100000
+            prunePrefixes = ['com/volmit/gsw/libs/volmlib/']
+            requiredEntries = ['plugin.yml', 'com/volmit/gsw/GamemodeSwitcher.class']
+        }
+    }
+}
+
 configurations.configureEach {
     resolutionStrategy.cacheChangingModulesFor(0, 'seconds')
     resolutionStrategy.cacheDynamicVersionsFor(0, 'seconds')

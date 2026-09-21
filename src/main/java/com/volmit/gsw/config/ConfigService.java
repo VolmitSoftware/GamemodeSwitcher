@@ -2,6 +2,8 @@ package com.volmit.gsw.config;
 
 import art.arcane.volmlib.util.io.AtomicFileIO;
 import art.arcane.volmlib.util.config.ConfigEditorDocument;
+import art.arcane.volmlib.util.config.TomlDocumentEditor;
+import com.google.gson.JsonPrimitive;
 import com.moandjiezana.toml.Toml;
 import org.bukkit.GameMode;
 
@@ -60,6 +62,16 @@ public final class ConfigService {
         }
         String source = Files.readString(file, StandardCharsets.UTF_8);
         return new PreparedConfig(source, parse(source));
+    }
+
+    public PreparedConfig prepare(ConfigEditorDocument.Edit edit) throws IOException {
+        String replacement = TomlDocumentEditor.set(edit.original().source(), edit.path(), edit.value());
+        return new PreparedConfig(replacement, parse(replacement));
+    }
+
+    public synchronized void selectLanguage(String locale) throws IOException {
+        String original = source();
+        save(original, TomlDocumentEditor.set(original, List.of("general", "language"), new JsonPrimitive(locale)));
     }
 
     public synchronized void install(PreparedConfig prepared) {

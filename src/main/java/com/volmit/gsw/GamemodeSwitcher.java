@@ -2,7 +2,6 @@ package com.volmit.gsw;
 
 import art.arcane.volmlib.util.config.BukkitConfigEditor;
 import art.arcane.volmlib.util.config.ConfigEditorDocument;
-import art.arcane.volmlib.util.config.TomlDocumentEditor;
 import art.arcane.volmlib.util.diagnostics.BukkitDebugDump;
 import art.arcane.volmlib.util.localization.BukkitLanguageSwitcher;
 import art.arcane.volmlib.util.localization.LocalizationSnapshot;
@@ -10,7 +9,6 @@ import art.arcane.volmlib.util.localization.MessageArgs;
 import art.arcane.volmlib.util.localization.RemoteLanguageCatalog;
 import art.arcane.volmlib.util.plugin.ComponentText;
 import art.arcane.volmlib.util.scheduling.FoliaScheduler;
-import com.google.gson.JsonPrimitive;
 import com.volmit.gsw.command.CommandService;
 import com.volmit.gsw.config.ConfigReloader;
 import com.volmit.gsw.config.ConfigService;
@@ -26,13 +24,13 @@ import com.volmit.gsw.metrics.MetricsService;
 import com.volmit.gsw.presentation.ChatMenuStyle;
 import com.volmit.gsw.presentation.SplashScreen;
 import com.volmit.gsw.presentation.SwitchFeedback;
+import io.github.slimjar.app.builder.SpigotApplicationBuilder;
 import org.bukkit.GameMode;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.io.IOException;
-import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.RejectedExecutionException;
@@ -54,6 +52,12 @@ public final class GamemodeSwitcher extends JavaPlugin {
     private MetricsService metricsService;
     private ExecutorService reloadWorker;
     private volatile boolean closing;
+
+    public GamemodeSwitcher() {
+        getLogger().info("Loading libraries...");
+        new SpigotApplicationBuilder(this).build();
+        getLogger().info("Libraries loaded.");
+    }
 
     @Override
     public void onEnable() {
@@ -236,11 +240,11 @@ public final class GamemodeSwitcher extends JavaPlugin {
     private ConfigEditorDocument saveConfigurationLocked(ConfigEditorDocument.Edit edit) throws IOException {
         synchronized (configurationLock) {
             requireActive();
-            String replacement = TomlDocumentEditor.set(edit.original().source(), edit.path(), edit.value());
-            RuntimeConfig configuration = ConfigService.parse(replacement);
+            ConfigService.PreparedConfig prepared = configService.prepare(edit);
+            RuntimeConfig configuration = prepared.runtime();
             LanguageService.PreparedLanguage language = languageService.prepare(configuration.language());
             requireActive();
-            configService.save(edit.original().source(), replacement);
+            configService.save(edit.original().source(), prepared.source());
             languageService.install(language);
             metricsService.reload(configuration.metricsEnabled());
             switchService.clear();
@@ -251,9 +255,7 @@ public final class GamemodeSwitcher extends JavaPlugin {
     private void selectDefaultLanguage(String locale, LocalizationSnapshot snapshot) throws IOException {
         synchronized (configurationLock) {
             requireActive();
-            String original = configService.source();
-            String replacement = TomlDocumentEditor.set(original, List.of("general", "language"), new JsonPrimitive(locale));
-            configService.save(original, replacement);
+            configService.selectLanguage(locale);
             languageService.install(new LanguageService.PreparedLanguage(locale, languageService.languageFile(locale), snapshot, true));
         }
     }
