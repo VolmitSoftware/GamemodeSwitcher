@@ -2,6 +2,7 @@ package com.volmit.gsw.gameplay;
 
 import art.arcane.volmlib.util.scheduling.FoliaScheduler;
 import art.arcane.volmlib.util.scheduling.WorldChunks;
+import org.bukkit.Chunk;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.World;
@@ -62,9 +63,9 @@ class SpectatorOriginTest {
         Set<String> loaded = new HashSet<>();
         try (MockedStatic<WorldChunks> chunks = mockStatic(WorldChunks.class);
              MockedStatic<FoliaScheduler> scheduler = mockStatic(FoliaScheduler.class)) {
-            chunks.when(() -> WorldChunks.loadExisting(eq(plugin), eq(world), anyInt(), anyInt())).thenAnswer(invocation -> {
+            chunks.when(() -> WorldChunks.load(eq(plugin), eq(world), anyInt(), anyInt(), eq(false))).thenAnswer(invocation -> {
                 loaded.add(invocation.getArgument(2) + ":" + invocation.getArgument(3));
-                return CompletableFuture.completedFuture(true);
+                return CompletableFuture.completedFuture(mock(Chunk.class));
             });
             scheduler.when(() -> FoliaScheduler.runRegion(eq(plugin), eq(world), anyInt(), anyInt(), any(Runnable.class)))
                     .thenAnswer(invocation -> {
@@ -86,8 +87,8 @@ class SpectatorOriginTest {
         Plugin plugin = mock(Plugin.class);
         World world = mock(World.class);
         try (MockedStatic<WorldChunks> chunks = mockStatic(WorldChunks.class)) {
-            chunks.when(() -> WorldChunks.loadExisting(eq(plugin), eq(world), anyInt(), anyInt()))
-                    .thenReturn(CompletableFuture.completedFuture(false));
+            chunks.when(() -> WorldChunks.load(eq(plugin), eq(world), anyInt(), anyInt(), eq(false)))
+                    .thenReturn(CompletableFuture.completedFuture(null));
             assertThat(new SpectatorOrigin(plugin).allowed(new Location(world, 8, 64, 8),
                     new SpectatorOrigin.Dimensions(0.6, 1.8), false).join()).isFalse();
         }

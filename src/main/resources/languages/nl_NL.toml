@@ -41,6 +41,8 @@
 #   {prefix}  de globale waarde runtime.prefix. Verwijder {prefix} uit één bericht om het alleen daar te verbergen
 #   {reason}  foutreden
 #   {sound}  Geluidsleutel
+#   {java}  Required Java version
+#   {minecraft}  Supported Minecraft version range
 #   {scheduler}  planner
 #   {seconds}  Resterende wacht- of bevestigingstijd in seconden
 #   {section}  Onderdeel van de taaleditor
@@ -82,7 +84,7 @@ mode = "Overleven, Creatief, Avontuur, Toeschouwer"
 upload = "Het rapport uploaden wanneer openbare uploads zijn ingeschakeld"
 
 [command.status]
-compatibility = "&7Artefact:&r &fJava 25+ / Minecraft 26.1+&r &8|&r &7Planner:&r &f{scheduler}&r"
+compatibility = "&7Artefact:&r &fJava {java} / Minecraft {minecraft}&r &8|&r &7Planner:&r &f{scheduler}&r"
 config = "&7Spelmodus:&r {enabled} &8|&r &7Taal:&r {language} &8|&r &7Configuratie en talen herladen:&r {hot_reload}"
 header = "&6&lGamemodeSwitcher&r"
 player = "&7Gebaren:&r {state} &8|&r &7Spelmodus:&r {mode}"
@@ -556,3 +558,7 @@ click = "<gray>Knopklik</gray>"
 [gui.config.spectator.allow-unsafe-return]
 name = "Onveilig terugkeren toestaan"
 description = "Keer terug zonder vloer of vrije ruimte te controleren. Standaard aan; zet uit om een veilige bestemming te eisen. Geldt ook voor actieve sessies."
+
+[gui.config.general.update-notifications]
+name = "Updatemeldingen"
+description = "Controleer GitHub-releases en waarschuw bevoegde spelers via de gezamenlijke Volmit-melding. Er worden geen updates geïnstalleerd."

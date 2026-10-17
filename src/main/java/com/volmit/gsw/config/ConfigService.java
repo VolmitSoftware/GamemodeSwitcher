@@ -124,7 +124,7 @@ public final class ConfigService {
                 disabledWorlds.add(name.toLowerCase(Locale.ROOT));
             }
             return new RuntimeConfig(
-                    toml.getBoolean("general.enabled", true), language,
+                    toml.getBoolean("general.enabled", true), toml.getBoolean("general.update-notifications", true), language,
                     toml.getBoolean("diagnostics.upload-enabled", true),
                     toml.getBoolean("metrics.enabled", true),
                     bounded(toml, "gestures.double-tap-millis", 600, 100, 3000),

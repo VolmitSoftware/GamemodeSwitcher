@@ -41,6 +41,8 @@
 #   {prefix}  giá trị runtime.prefix toàn cục. Xóa {prefix} khỏi từng thông báo nếu không muốn hiện ở thông báo đó
 #   {reason}  lý do lỗi
 #   {sound}  Mã âm thanh
+#   {java}  Required Java version
+#   {minecraft}  Supported Minecraft version range
 #   {scheduler}  bộ lập lịch
 #   {seconds}  Thời gian chờ hoặc xác nhận còn lại tính bằng giây
 #   {section}  Mục trong trình chỉnh sửa ngôn ngữ
@@ -82,7 +84,7 @@ mode = "Sinh tồn, Sáng tạo, Phiêu lưu, Khán giả"
 upload = "Tải báo cáo lên khi bật tải lên công khai"
 
 [command.status]
-compatibility = "&7Gói dựng:&r &fJava 25+ / Minecraft 26.1+&r &8|&r &7Bộ lập lịch:&r &f{scheduler}&r"
+compatibility = "&7Gói dựng:&r &fJava {java} / Minecraft {minecraft}&r &8|&r &7Bộ lập lịch:&r &f{scheduler}&r"
 config = "&7Chế độ chơi:&r {enabled} &8|&r &7Ngôn ngữ:&r {language} &8|&r &7Tải lại cấu hình và ngôn ngữ:&r {hot_reload}"
 header = "&6&lGamemodeSwitcher&r"
 player = "&7Thao tác:&r {state} &8|&r &7Chế độ chơi:&r {mode}"
@@ -556,3 +558,7 @@ click = "<gray>Tiếng nhấn nút</gray>"
 [gui.config.spectator.allow-unsafe-return]
 name = "Cho phép trở về không an toàn"
 description = "Trở về mà không kiểm tra nền và khoảng trống. Mặc định bật; tắt để yêu cầu nơi đến an toàn. Áp dụng cả phiên đang hoạt động."
+
+[gui.config.general.update-notifications]
+name = "Thông báo cập nhật"
+description = "Kiểm tra bản phát hành trên GitHub và báo cho người chơi có quyền qua thông báo chung của Volmit. Không cài đặt bản cập nhật."

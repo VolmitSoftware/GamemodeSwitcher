@@ -1,0 +1,89 @@
+name: Bug report
+description: Something in GamemodeSwitcher is broken, throws an error, or behaves differently from the docs.
+labels: [bug]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Before you file, update to the [latest GamemodeSwitcher release](https://github.com/VolmitSoftware/GamemodeSwitcher/releases/latest) and [search open issues](https://github.com/VolmitSoftware/GamemodeSwitcher/issues?q=is%3Aissue) for the same problem. One problem per issue.
+
+        GamemodeSwitcher supports Minecraft 26.1 through 26.3 on Spigot, Paper, Purpur, Leaf, Folia, and Canvas, with Java 25.
+  - type: textarea
+    id: what-happened
+    attributes:
+      label: What happened
+      description: Describe what you saw. Paste the exact error or chat message if there was one.
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: What you expected
+      description: What should have happened instead? Link the docs page if it describes the behavior.
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to reproduce
+      description: Start from a server with GamemodeSwitcher installed. Include the commands, config values, and actions that trigger it.
+      placeholder: |
+        1. Set ... to ... in config.toml
+        2. Run /gamemodeswitcher ...
+        3. ...
+    validations:
+      required: true
+  - type: textarea
+    id: diagnostics
+    attributes:
+      label: Debug dump or server log
+      description: |
+        If GamemodeSwitcher is running, run `/gamemodeswitcher debug dump upload=true` from the console and paste the mclo.gs link it prints. If uploads are turned off on your server, drag in the file from `plugins/GamemodeSwitcher/debug/` instead.
+        If GamemodeSwitcher failed to start or the command is unavailable, upload the whole `logs/latest.log` to [mclo.gs](https://mclo.gs) and paste that link. A crash excerpt or a screenshot of the console is not enough.
+      placeholder: https://mclo.gs/...
+    validations:
+      required: true
+  - type: input
+    id: plugin-version
+    attributes:
+      label: "GamemodeSwitcher version"
+      description: Shown by `/gamemodeswitcher debug version` and in the startup banner. Write the number; "latest" changes every release.
+    validations:
+      required: true
+  - type: dropdown
+    id: platform
+    attributes:
+      label: Server software
+      description: The server or loader GamemodeSwitcher runs on, not your hosting panel or launcher.
+      options:
+        - "Spigot"
+        - "Paper"
+        - "Purpur"
+        - "Leaf"
+        - "Folia"
+        - "Canvas"
+        - Something else (name it under What happened)
+    validations:
+      required: true
+  - type: dropdown
+    id: minecraft
+    attributes:
+      label: Minecraft version
+      description: Pick the release line. The debug dump records the exact build.
+      options:
+        - "26.3"
+        - "26.2"
+        - "26.1"
+        - Another version (not supported)
+    validations:
+      required: true
+  - type: textarea
+    id: other-plugins
+    attributes:
+      label: Other plugins involved
+      description: If the problem only happens alongside another plugin or a datapack, name it and its version. Leave this empty if you have not checked.
+  - type: textarea
+    id: media
+    attributes:
+      label: Screenshots or video
+      description: Useful for anything visual. Drag files in here.

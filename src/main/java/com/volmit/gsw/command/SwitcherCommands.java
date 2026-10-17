@@ -106,7 +106,8 @@ public final class SwitcherCommands {
             }
         }
         entries.add(statusEntry(sender, SwitcherMessages.STATUS_COMPATIBILITY,
-                MessageArgs.builder().untrusted("scheduler", plugin.schedulerName()).build()));
+                MessageArgs.builder().untrusted("java", "25").untrusted("minecraft", "26.1-26.3")
+                        .untrusted("scheduler", plugin.schedulerName()).build()));
         if (!(sender instanceof Player)) {
             entries.add(statusEntry(sender, SwitcherMessages.GESTURE_HELP, MessageArgs.empty()));
         }

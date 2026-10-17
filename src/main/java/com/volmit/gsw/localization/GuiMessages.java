@@ -57,6 +57,7 @@ public final class GuiMessages {
         add(entries, "spectator.return-to-origin", "Return to starting location", "Return to your saved entry location before leaving a plugin-started spectator session.");
         add(entries, "spectator.allow-unsafe-return", "Allow unsafe returns", "Allow returns without checking the floor or clear space. Enabled by default; turn off to require a safe destination. Applies to active sessions too.");
         add(entries, "languages", "Languages", "Edit server translations and their formatting.");
+        add(entries, "general.update-notifications", "Update notifications", "Check GitHub releases and notify permitted players through the shared Volmit update notice. No updates are installed.");
         add(entries, "general.enabled", "Game mode switching", "Allow switching through gestures, commands, and the menu.");
         add(entries, "general.language", "Server language", "Default language for players without a personal choice. Missing translations use English.");
         add(entries, "metrics.enabled", "Anonymous statistics", "Send anonymous bStats statistics. The global bStats opt-out also applies.");

@@ -41,6 +41,8 @@
 #   {prefix}  глобальное значение runtime.prefix. Удалите {prefix} из отдельного сообщения, чтобы скрыть его только там
 #   {reason}  причина ошибки
 #   {sound}  Идентификатор звука
+#   {java}  Required Java version
+#   {minecraft}  Supported Minecraft version range
 #   {scheduler}  планировщик
 #   {seconds}  Оставшееся время ожидания или подтверждения в секундах
 #   {section}  Раздел редактора языков
@@ -82,7 +84,7 @@ mode = "Выживание, Творческий, Приключение, Наб
 upload = "Загрузить отчёт, если включена публичная загрузка"
 
 [command.status]
-compatibility = "&7Артефакт:&r &fJava 25+ / Minecraft 26.1+&r &8|&r &7Планировщик:&r &f{scheduler}&r"
+compatibility = "&7Артефакт:&r &fJava {java} / Minecraft {minecraft}&r &8|&r &7Планировщик:&r &f{scheduler}&r"
 config = "&7Режим игры:&r {enabled} &8|&r &7Язык:&r {language} &8|&r &7Перезагрузить настройки и языки:&r {hot_reload}"
 header = "&6&lGamemodeSwitcher&r"
 player = "&7Жесты:&r {state} &8|&r &7Режим игры:&r {mode}"
@@ -556,3 +558,7 @@ click = "<gray>Щелчок кнопки</gray>"
 [gui.config.spectator.allow-unsafe-return]
 name = "Разрешать небезопасный возврат"
 description = "Возврат без проверки пола и свободного места. По умолчанию включено; отключите для проверки безопасности. Применяется и к активным сеансам."
+
+[gui.config.general.update-notifications]
+name = "Уведомления об обновлениях"
+description = "Проверять выпуски на GitHub и уведомлять игроков с разрешением через общее сообщение Volmit. Обновления не устанавливаются."

@@ -40,6 +40,8 @@
 #   {plugin}  Nombre de plugin
 #   {prefix}  el valor global runtime.prefix. Elimina {prefix} de un mensaje para ocultarlo solo allí
 #   {reason}  motivo del fallo
+#   {java}  Required Java version
+#   {minecraft}  Supported Minecraft version range
 #   {scheduler}  planificador
 #   {seconds}  Tiempo restante de espera o confirmación en segundos
 #   {section}  Sección del editor de idiomas
@@ -83,7 +85,7 @@ mode = "Supervivencia, Creativo, Aventura, Espectador"
 upload = "Subir el informe cuando las cargas públicas estén habilitadas"
 
 [command.status]
-compatibility = "&7Artefacto:&r &fJava 25 / Bukkit 26.1+&r &8|&r &7Planificador:&r &f{scheduler}&r"
+compatibility = "&7Artefacto:&r &fJava {java} / Minecraft {minecraft}&r &8|&r &7Planificador:&r &f{scheduler}&r"
 config = "&7Modo de juego:&r {enabled} &8|&r &7Idioma:&r {language} &8|&r &7Recargar configuración e idiomas:&r {hot_reload}"
 header = "&6&lGamemodeSwitcher&r"
 player = "&7Gestos:&r {state} &8|&r &7Modo de juego:&r {mode}"
@@ -557,3 +559,7 @@ description = "Regresa a la posición inicial guardada antes de salir de una ses
 [gui.config.spectator.allow-unsafe-return]
 name = "Permitir regresos inseguros"
 description = "Regresar sin comprobar el suelo ni el espacio libre. Activado por defecto; desactívalo para exigir un destino seguro. También afecta a sesiones activas."
+
+[gui.config.general.update-notifications]
+name = "Avisos de actualizaciones"
+description = "Buscar versiones en GitHub y avisar a los jugadores autorizados mediante el aviso conjunto de Volmit. No se instalan actualizaciones."

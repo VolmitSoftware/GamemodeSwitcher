@@ -25,6 +25,7 @@ import com.volmit.gsw.presentation.ChatMenuStyle;
 import com.volmit.gsw.presentation.SplashScreen;
 import com.volmit.gsw.presentation.SwitchFeedback;
 import io.github.slimjar.app.builder.SpigotApplicationBuilder;
+import art.arcane.volmlib.util.update.BukkitUpdateService;
 import org.bukkit.GameMode;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
@@ -51,9 +52,11 @@ public final class GamemodeSwitcher extends JavaPlugin {
     private ConfigReloader reloader;
     private MetricsService metricsService;
     private ExecutorService reloadWorker;
+    private BukkitUpdateService updates;
     private volatile boolean closing;
 
     public GamemodeSwitcher() {
+        SupportedRuntime.requireSupported(getServer().getBukkitVersion(), Runtime.version().feature());
         getLogger().info("Loading libraries...");
         new SpigotApplicationBuilder(this).build();
         getLogger().info("Libraries loaded.");
@@ -88,6 +91,9 @@ public final class GamemodeSwitcher extends JavaPlugin {
                                             .untrusted("setting", change.key())
                                             .untrusted("old", compact(change.before()))
                                             .untrusted("new", compact(change.after())).build()))));
+            updates = BukkitUpdateService.register(this, new BukkitUpdateService.Options(
+                    "VolmitSoftware", "GamemodeSwitcher", "gamemodeswitcher.update",
+                    () -> configService.runtime().updateNotifications()));
             configEditor = BukkitConfigEditor.register(this, new BukkitConfigEditor.Options(
                     this::loadConfigurationDocument, this::saveConfiguration,
                     new BukkitConfigEditor.Presentation("gamemodeswitcher.config", ChatMenuStyle.theme(),
@@ -129,6 +135,7 @@ public final class GamemodeSwitcher extends JavaPlugin {
             languageService.setSelfWriteListener(null);
         }
         closeService("configuration watcher", reloader);
+        closeService("update notifier", updates);
         stopReloadWorker();
         closeService("bStats metrics", metricsService);
         closeService("game mode selector", selector);
@@ -219,6 +226,7 @@ public final class GamemodeSwitcher extends JavaPlugin {
             languageService.install(language);
             languageService.reloadInstalledLocales();
             metricsService.reload(configuration.runtime().metricsEnabled());
+            updates.reconfigure();
             switchService.clear();
             return true;
         }
@@ -247,6 +255,7 @@ public final class GamemodeSwitcher extends JavaPlugin {
             configService.save(edit.original().source(), prepared.source());
             languageService.install(language);
             metricsService.reload(configuration.metricsEnabled());
+            updates.reconfigure();
             switchService.clear();
             return configService.editorDocument(configService.source());
         }

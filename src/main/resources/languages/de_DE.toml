@@ -40,6 +40,8 @@
 #   {plugin}  Plugin Name
 #   {prefix}  der globale Wert runtime.prefix. Entferne {prefix} aus einer einzelnen Nachricht, um es dort auszublenden
 #   {reason}  Fehlergrund
+#   {java}  Required Java version
+#   {minecraft}  Supported Minecraft version range
 #   {scheduler}  Scheduler-Implementierung
 #   {seconds}  Verbleibende Abkling- oder Bestätigungszeit in Sekunden
 #   {section}  Abschnitt des Spracheneditors
@@ -83,7 +85,7 @@ mode = "Überleben, Kreativ, Abenteuer, Zuschauer"
 upload = "Den Bericht hochladen, wenn öffentliche Uploads aktiviert sind"
 
 [command.status]
-compatibility = "&7Artefakt:&r &fJava 25 / Bukkit 26.1+&r &8|&r &7Planer:&r &f{scheduler}&r"
+compatibility = "&7Artefakt:&r &fJava {java} / Minecraft {minecraft}&r &8|&r &7Planer:&r &f{scheduler}&r"
 config = "&7Spielmodus:&r {enabled} &8|&r &7Sprache:&r {language} &8|&r &7Konfiguration und Sprachen neu laden:&r {hot_reload}"
 header = "&6&lGamemodeSwitcher&r"
 player = "&7Gesten:&r {state} &8|&r &7Spielmodus:&r {mode}"
@@ -557,3 +559,7 @@ description = "Vor dem Verlassen einer Plugin-Zuschauersitzung zur gespeicherten
 [gui.config.spectator.allow-unsafe-return]
 name = "Unsichere Rückkehr erlauben"
 description = "Ohne Boden- und Freiraumprüfung zurückkehren. Standardmäßig an; ausschalten für sichere Ziele. Gilt auch für laufende Sitzungen."
+
+[gui.config.general.update-notifications]
+name = "Update-Benachrichtigungen"
+description = "GitHub-Releases prüfen und berechtigte Spieler über die gemeinsame Volmit-Meldung benachrichtigen. Es werden keine Updates installiert."

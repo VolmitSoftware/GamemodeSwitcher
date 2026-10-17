@@ -41,6 +41,8 @@
 #   {prefix}  全局 runtime.prefix 值。从某条消息中删除 {prefix}，即可只在该消息中隐藏前缀
 #   {reason}  失败原因
 #   {sound}  声音标识符
+#   {java}  Required Java version
+#   {minecraft}  Supported Minecraft version range
 #   {scheduler}  调度器
 #   {seconds}  剩余冷却或确认时间（秒）
 #   {section}  语言编辑器分区
@@ -82,7 +84,7 @@ mode = "生存, 创造, 冒险, 旁观"
 upload = "启用公开上传时上传报告"
 
 [command.status]
-compatibility = "&7工件:&r&fJava 25+ / Minecraft 26.1+&r&8|&r&7调度程序:&r&f{scheduler}&r"
+compatibility = "&7工件:&r&fJava {java} / Minecraft {minecraft}&r&8|&r&7调度程序:&r&f{scheduler}&r"
 config = "&7游戏模式:&r {enabled} &8|&r &7语言:&r {language} &8|&r &7重新加载配置和语言:&r {hot_reload}"
 header = "&6&lGamemodeSwitcher&r"
 player = "&7手势:&r {state} &8|&r &7游戏模式:&r {mode}"
@@ -556,3 +558,7 @@ click = "<gray>按钮点击</gray>"
 [gui.config.spectator.allow-unsafe-return]
 name = "允许不安全返回"
 description = "不检查地面或净空即可返回。默认开启；关闭后要求目标安全。也适用于正在进行的会话。"
+
+[gui.config.general.update-notifications]
+name = "更新通知"
+description = "检查 GitHub 发布版本，并通过 Volmit 合并通知提醒有权限的玩家。不会安装更新。"

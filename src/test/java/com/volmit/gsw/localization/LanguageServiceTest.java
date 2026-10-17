@@ -42,7 +42,7 @@ class LanguageServiceTest {
         assertThat(service.availableLocales()).hasSize(18).contains("en_US", "ja-JP", "zh_TW");
         assertThat(service.languageDirectory().list()).containsExactly("en_US.toml");
         assertThat(service.remoteCatalogFailure()).isEmpty();
-        assertThat(service.remoteCatalogReference()).contains("main");
+        assertThat(service.remoteCatalogReference()).contains("fe6047e14d87e10da3b45b6e196da741496979d8");
         String content = Files.readString(service.languageFile("en_US").toPath());
         assertThat(content).contains("=== Variables ===", "MiniMessage", "{mode}", "{world}", "GitHub");
         assertVariableHeader(content, SwitcherMessages.catalog());
@@ -96,7 +96,7 @@ class LanguageServiceTest {
         });
         Path installed = service.languageFile("de_DE").toPath();
         RemoteLanguageCatalog.DownloadResult result = new RemoteLanguageCatalog.DownloadResult("de_DE",
-                URI.create("https://raw.githubusercontent.com/VolmitSoftware/GamemodeSwitcher/main/"
+                URI.create("https://raw.githubusercontent.com/VolmitSoftware/GamemodeSwitcher/fe6047e14d87e10da3b45b6e196da741496979d8/"
                         + "src/main/resources/languages/de_DE.toml"), installed, null);
         AtomicReference<RemoteLanguageCatalog.DownloadResult> completed = new AtomicReference<>();
 
@@ -131,6 +131,21 @@ class LanguageServiceTest {
         assertThat(service.render(SwitcherMessages.MODE_CREATIVE)).isEqualTo("Creative");
         assertThat(service.render(SwitcherMessages.MODE_ADVENTURE)).isEqualTo("Adventure");
         assertThat(Files.readString(service.languageFile("fr_FR").toPath())).isEqualTo(original);
+    }
+
+    @Test
+    void compatibilityRequiresVersionPlaceholdersAndPreservesLocalText() throws IOException {
+        LanguageService service = service();
+        write("fr_FR", "[command.status]\ncompatibility = \"Custom requirements: {scheduler}\"\n");
+        String original = Files.readString(service.languageFile("fr_FR").toPath());
+        service.reload("fr_FR");
+
+        String rendered = service.render(SwitcherMessages.STATUS_COMPATIBILITY, MessageArgs.builder()
+                .untrusted("java", "25").untrusted("minecraft", "26.1-26.3")
+                .untrusted("scheduler", "Folia").build());
+        assertThat(rendered).contains("Java 25 / Minecraft 26.1-26.3", "Folia");
+        assertThat(Files.readString(service.languageFile("fr_FR").toPath())).isEqualTo(original);
+        service.close();
     }
 
     @Test

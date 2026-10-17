@@ -40,6 +40,8 @@
 #   {plugin}  Plugin 이름
 #   {prefix}  전역 runtime.prefix 값입니다. 개별 메시지에서 {prefix}를 제거하면 그 메시지에서만 숨겨집니다
 #   {reason}  실패 이유
+#   {java}  Required Java version
+#   {minecraft}  Supported Minecraft version range
 #   {scheduler}  스케줄러
 #   {seconds}  남은 재사용 대기 또는 확인 시간(초)
 #   {section}  언어 편집기 섹션
@@ -83,7 +85,7 @@ mode = "서바이벌, 크리에이티브, 모험, 관전자"
 upload = "공개 업로드가 활성화된 경우 보고서 업로드"
 
 [command.status]
-compatibility = "&7아티팩트:&r&fJava 25 / Bukkit 26.1+&r&8|&r&7스케줄러:&r&f{scheduler}&r"
+compatibility = "&7아티팩트:&r&fJava {java} / Minecraft {minecraft}&r&8|&r&7스케줄러:&r&f{scheduler}&r"
 config = "&7게임 모드:&r {enabled} &8|&r &7언어:&r {language} &8|&r &7설정 및 언어 다시 불러오기:&r {hot_reload}"
 header = "&6&lGamemodeSwitcher&r"
 player = "&7동작:&r {state} &8|&r &7게임 모드:&r {mode}"
@@ -557,3 +559,7 @@ description = "플러그인으로 시작한 관전자 세션을 종료하기 전
 [gui.config.spectator.allow-unsafe-return]
 name = "안전 확인 없는 복귀 허용"
 description = "바닥과 빈 공간을 확인하지 않고 복귀합니다. 기본값은 켜짐이며 끄면 안전한 위치만 허용합니다. 진행 중인 세션에도 적용됩니다."
+
+[gui.config.general.update-notifications]
+name = "업데이트 알림"
+description = "GitHub 릴리스를 확인하고 Volmit 통합 알림으로 권한이 있는 플레이어에게 알립니다. 업데이트를 설치하지 않습니다."

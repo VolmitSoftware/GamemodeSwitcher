@@ -40,6 +40,8 @@
 #   {plugin}  Liitännäisen nimi
 #   {prefix}  yleinen runtime.prefix-arvo. Poista {prefix} yksittäisestä viestistä piilottaaksesi sen siinä
 #   {reason}  virheen syy
+#   {java}  Required Java version
+#   {minecraft}  Supported Minecraft version range
 #   {scheduler}  ajastin
 #   {seconds}  Jäljellä oleva odotus- tai vahvistusaika sekunteina
 #   {section}  Kielieditorin osio
@@ -83,7 +85,7 @@ mode = "Selviytyminen, Luova, Seikkailu, Katsoja"
 upload = "Lähetä raportti, kun julkiset lähetykset ovat käytössä"
 
 [command.status]
-compatibility = "&7Artefakti:&r &fJava 25 / Bukkit 26.1+&r &8|&r &7Ajastin:&r &f{scheduler}&r"
+compatibility = "&7Artefakti:&r &fJava {java} / Minecraft {minecraft}&r &8|&r &7Ajastin:&r &f{scheduler}&r"
 config = "&7Pelimuoto:&r {enabled} &8|&r &7Kieli:&r {language} &8|&r &7Lataa asetukset ja kielet uudelleen:&r {hot_reload}"
 header = "&6&lGamemodeSwitcher&r"
 player = "&7Eleet:&r {state} &8|&r &7Pelimuoto:&r {mode}"
@@ -557,3 +559,7 @@ description = "Palaa tallennettuun aloituspaikkaan ennen lisäosan aloittaman ta
 [gui.config.spectator.allow-unsafe-return]
 name = "Salli turvaton paluu"
 description = "Palaa tarkistamatta lattiaa tai vapaata tilaa. Oletuksena päällä; poista käytöstä vaatiaksesi turvallisen kohteen. Koskee myös käynnissä olevia istuntoja."
+
+[gui.config.general.update-notifications]
+name = "Päivitysilmoitukset"
+description = "Tarkista GitHub-julkaisut ja ilmoita oikeutetuille pelaajille Volmitin yhteisessä ilmoituksessa. Päivityksiä ei asenneta."

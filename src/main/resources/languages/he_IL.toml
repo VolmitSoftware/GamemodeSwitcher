@@ -40,6 +40,8 @@
 #   {plugin}  שם Plugin
 #   {prefix}  הערך הגלובלי runtime.prefix. הסירו את {prefix} מהודעה מסוימת כדי להסתיר אותה רק שם
 #   {reason}  סיבת כשל
+#   {java}  Required Java version
+#   {minecraft}  Supported Minecraft version range
 #   {scheduler}  מתזמן
 #   {seconds}  זמן ההמתנה או האישור שנותר בשניות
 #   {section}  מקטע בעורך השפות
@@ -83,7 +85,7 @@ mode = "הישרדות, יצירתי, הרפתקה, צופה"
 upload = "העלאת הדוח כאשר העלאות ציבוריות מופעלות"
 
 [command.status]
-compatibility = "&7קובץ בנוי:&r &fJava 25 / Bukkit 26.1+&r &8|&r &7מתזמן:&r &f{scheduler}&r"
+compatibility = "&7קובץ בנוי:&r &fJava {java} / Minecraft {minecraft}&r &8|&r &7מתזמן:&r &f{scheduler}&r"
 config = "&7מצב משחק:&r {enabled} &8|&r &7שפה:&r {language} &8|&r &7טעינה מחדש של הגדרות ושפות:&r {hot_reload}"
 header = "&6&lGamemodeSwitcher&r"
 player = "&7מחוות:&r {state} &8|&r &7מצב משחק:&r {mode}"
@@ -557,3 +559,7 @@ description = "חזרה למיקום ההתחלה השמור לפני יציאה
 [gui.config.spectator.allow-unsafe-return]
 name = "אפשר חזרה לא בטוחה"
 description = "חזרה ללא בדיקת הקרקע והמרחב הפנוי. פעיל כברירת מחדל; כבה כדי לדרוש יעד בטוח. חל גם על הפעלות פעילות."
+
+[gui.config.general.update-notifications]
+name = "התראות עדכון"
+description = "בדיקת גרסאות GitHub והודעה לשחקנים מורשים דרך ההתראה המשותפת של Volmit. לא מתבצעת התקנת עדכונים."

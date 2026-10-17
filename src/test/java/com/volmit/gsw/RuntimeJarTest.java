@@ -1,5 +1,6 @@
 package com.volmit.gsw;
 
+import org.bukkit.plugin.Plugin;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
@@ -12,8 +13,12 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.List;
 import java.util.Objects;
+import java.util.logging.Logger;
+import java.util.stream.Stream;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
 final class RuntimeJarTest {
     private static final String PLUGIN_PACKAGE = "com.volmit.gsw.";
@@ -51,6 +56,31 @@ final class RuntimeJarTest {
     void packagedBootstrapIsAvailable() throws Exception {
         assertThat(loader.loadClass(LIBRARY_PACKAGE + "slimjar.app.builder.SpigotApplicationBuilder")
                 .getDeclaredConstructors()).isNotEmpty();
+    }
+
+    @Test
+    void downloadedMetricsLibraryLoads() throws Exception {
+        Class<?> metricsType = loader.loadClass(LIBRARY_PACKAGE + "bstats.bukkit.Metrics");
+        Plugin plugin = mock(Plugin.class);
+        when(plugin.getDataFolder()).thenReturn(temporaryDirectory.resolve("GamemodeSwitcher").toFile());
+        when(plugin.getLogger()).thenReturn(Logger.getLogger("RuntimeJarTest"));
+        Object metrics = metricsType.getConstructor(Plugin.class, int.class).newInstance(plugin, 33967);
+        try {
+            assertThat(temporaryDirectory.resolve("bStats/config.yml")).exists();
+        } finally {
+            metricsType.getMethod("shutdown").invoke(metrics);
+        }
+    }
+
+    @Test
+    void packagedLanguagesCreateOnlyEnglish() throws Exception {
+        Class<?> serviceType = loader.loadClass(PLUGIN_PACKAGE + "localization.LanguageService");
+        Object service = serviceType.getConstructor(File.class, Logger.class)
+                .newInstance(temporaryDirectory.toFile(), Logger.getLogger("RuntimeJarTest"));
+        serviceType.getMethod("initialize", String.class).invoke(service, "en_US");
+        try (Stream<Path> files = Files.list(temporaryDirectory.resolve("languages"))) {
+            assertThat(files.map(path -> path.getFileName().toString()).toList()).containsExactly("en_US.toml");
+        }
     }
 
     @Test

@@ -40,6 +40,8 @@
 #   {plugin}  Nome del plugin
 #   {prefix}  il valore globale runtime.prefix. Rimuovi {prefix} da un singolo messaggio per nasconderlo solo lì
 #   {reason}  motivo errore
+#   {java}  Required Java version
+#   {minecraft}  Supported Minecraft version range
 #   {scheduler}  scheduler
 #   {seconds}  Tempo di attesa o conferma rimanente in secondi
 #   {section}  Sezione dell’editor delle lingue
@@ -83,7 +85,7 @@ mode = "Sopravvivenza, Creativa, Avventura, Spettatore"
 upload = "Carica il rapporto quando i caricamenti pubblici sono abilitati"
 
 [command.status]
-compatibility = "&7Artefatto:&r &fJava 25 / Bukkit 26.1+&r &8|&r &7Pianificatore:&r &f{scheduler}&r"
+compatibility = "&7Artefatto:&r &fJava {java} / Minecraft {minecraft}&r &8|&r &7Pianificatore:&r &f{scheduler}&r"
 config = "&7Modalità di gioco:&r {enabled} &8|&r &7Lingua:&r {language} &8|&r &7Ricarica configurazione e lingue:&r {hot_reload}"
 header = "&6&lGamemodeSwitcher&r"
 player = "&7Gesti:&r {state} &8|&r &7Modalità di gioco:&r {mode}"
@@ -557,3 +559,7 @@ description = "Torna alla posizione iniziale salvata prima di uscire da una sess
 [gui.config.spectator.allow-unsafe-return]
 name = "Consenti ritorni non sicuri"
 description = "Torna senza controllare il terreno o lo spazio libero. Attivo per impostazione predefinita; disattiva per richiedere una destinazione sicura. Vale anche per sessioni attive."
+
+[gui.config.general.update-notifications]
+name = "Notifiche degli aggiornamenti"
+description = "Controlla le versioni su GitHub e avvisa i giocatori autorizzati tramite la notifica condivisa di Volmit. Nessun aggiornamento viene installato."

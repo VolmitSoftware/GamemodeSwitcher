@@ -39,9 +39,9 @@ public final class SpectatorOrigin {
 
     private CompletableFuture<Boolean> checkChunk(Location destination, Dimensions dimensions, Footprint footprint) {
         World world = destination.getWorld();
-        return WorldChunks.loadExisting(plugin, world, footprint.chunkX(), footprint.chunkZ()).thenCompose(loaded -> {
+        return WorldChunks.load(plugin, world, footprint.chunkX(), footprint.chunkZ(), false).thenCompose(loaded -> {
             CompletableFuture<Boolean> result = new CompletableFuture<>();
-            if (!loaded || !FoliaScheduler.runRegion(plugin, world, footprint.chunkX(), footprint.chunkZ(), () -> {
+            if (loaded == null || !FoliaScheduler.runRegion(plugin, world, footprint.chunkX(), footprint.chunkZ(), () -> {
                 try {
                     result.complete(inspect(destination, dimensions, footprint));
                 } catch (RuntimeException failure) {

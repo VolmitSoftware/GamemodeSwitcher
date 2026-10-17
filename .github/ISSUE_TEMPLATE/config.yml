@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Help with setup or configuration
+    url: https://volmitsoftware.com/discord
+    about: Ask on the Volmit Discord. Setup questions get answered faster there than in issues.
+  - name: "GamemodeSwitcher documentation"
+    url: https://docs.volmitsoftware.com/gamemodeswitcher
+    about: Installation, commands, permissions, and configuration reference.

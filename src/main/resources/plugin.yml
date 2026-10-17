@@ -12,6 +12,9 @@ commands:
     description: GamemodeSwitcher help and controls
     usage: /gsw
 permissions:
+  gamemodeswitcher.update:
+    description: View GamemodeSwitcher updates in shared Volmit notifications and reports
+    default: op
   gamemodeswitcher.command:
     description: View help and status
     default: true

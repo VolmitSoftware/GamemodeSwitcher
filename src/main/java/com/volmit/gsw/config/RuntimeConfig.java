@@ -7,6 +7,7 @@ import java.util.Set;
 
 public record RuntimeConfig(
         boolean enabled,
+        boolean updateNotifications,
         String language,
         boolean debugUpload,
         boolean metricsEnabled,

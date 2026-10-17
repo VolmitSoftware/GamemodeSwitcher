@@ -4,6 +4,8 @@
 # "Swap Item With Offhand" defaults to F; "Sneak" defaults to Left Shift.
 
 [general]
+# Check GitHub releases and join the shared Volmit update notice. No updates are installed.
+update-notifications = true
 # Allow gestures, commands, and the menu to change game modes.
 enabled = true
 # Default message language for players without a personal choice. Missing messages use English.

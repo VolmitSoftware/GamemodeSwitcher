@@ -16,6 +16,18 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class ConfigServiceTest {
+    @Test
+    void updateNotificationsDefaultOnAndReloadWithoutLosingOptOut() throws IOException {
+        assertThat(ConfigService.parse("[general]\nenabled = true").updateNotifications()).isTrue();
+        ConfigService service = new ConfigService(directory.toFile());
+        service.initialize();
+        Files.writeString(service.file(), service.source().replace("update-notifications = true", "update-notifications = false"));
+        service.reload();
+        assertThat(service.runtime().updateNotifications()).isFalse();
+        assertThatThrownBy(() -> ConfigService.parse("[general]\nupdate-notifications = 'yes'"))
+                .isInstanceOf(IOException.class);
+    }
+
     @TempDir
     Path directory;
 

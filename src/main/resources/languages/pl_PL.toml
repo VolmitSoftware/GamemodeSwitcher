@@ -41,6 +41,8 @@
 #   {prefix}  globalna wartość runtime.prefix. Usuń {prefix} z pojedynczej wiadomości, aby ukryć go tylko tam
 #   {reason}  powód błędu
 #   {sound}  Identyfikator dźwięku
+#   {java}  Required Java version
+#   {minecraft}  Supported Minecraft version range
 #   {scheduler}  planista
 #   {seconds}  Pozostały czas oczekiwania lub potwierdzenia w sekundach
 #   {section}  Sekcja edytora języków
@@ -82,7 +84,7 @@ mode = "Przetrwanie, Kreatywny, Przygoda, Widz"
 upload = "Prześlij raport, gdy publiczne przesyłanie jest włączone"
 
 [command.status]
-compatibility = "&7Artefakt:&r &fJava 25+ / Minecraft 26.1+&r &8|&r &7Harmonogram:&r &f{scheduler}&r"
+compatibility = "&7Artefakt:&r &fJava {java} / Minecraft {minecraft}&r &8|&r &7Harmonogram:&r &f{scheduler}&r"
 config = "&7Tryb gry:&r {enabled} &8|&r &7Język:&r {language} &8|&r &7Wczytaj ponownie konfigurację i języki:&r {hot_reload}"
 header = "&6&lGamemodeSwitcher&r"
 player = "&7Gesty:&r {state} &8|&r &7Tryb gry:&r {mode}"
@@ -556,3 +558,7 @@ click = "<gray>Kliknięcie przycisku</gray>"
 [gui.config.spectator.allow-unsafe-return]
 name = "Zezwalaj na niebezpieczny powrót"
 description = "Powracaj bez sprawdzania podłoża i wolnego miejsca. Domyślnie włączone; wyłącz, aby wymagać bezpiecznego celu. Dotyczy też aktywnych sesji."
+
+[gui.config.general.update-notifications]
+name = "Powiadomienia o aktualizacjach"
+description = "Sprawdzaj wydania na GitHub i powiadamiaj uprawnionych graczy we wspólnym komunikacie Volmit. Aktualizacje nie są instalowane."

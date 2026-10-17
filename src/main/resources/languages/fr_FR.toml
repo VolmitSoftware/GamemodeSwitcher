@@ -40,6 +40,8 @@
 #   {plugin}  Nom du greffon
 #   {prefix}  la valeur globale runtime.prefix. Retirez {prefix} d’un message pour le masquer uniquement à cet endroit
 #   {reason}  motif de l’échec
+#   {java}  Required Java version
+#   {minecraft}  Supported Minecraft version range
 #   {scheduler}  planificateur
 #   {seconds}  Temps restant de recharge ou de confirmation en secondes
 #   {section}  Section de l’éditeur de langues
@@ -83,7 +85,7 @@ mode = "Survie, Créatif, Aventure, Spectateur"
 upload = "Téléverser le rapport lorsque les envois publics sont activés"
 
 [command.status]
-compatibility = "&7Artefact :&r &fJava 25 / Bukkit 26.1+&r &8|&r &7Planificateur :&r &f{scheduler}&r"
+compatibility = "&7Artefact :&r &fJava {java} / Minecraft {minecraft}&r &8|&r &7Planificateur :&r &f{scheduler}&r"
 config = "&7Mode de jeu:&r {enabled} &8|&r &7Langue:&r {language} &8|&r &7Recharger la configuration et les langues:&r {hot_reload}"
 header = "&6&lGamemodeSwitcher&r"
 player = "&7Gestes:&r {state} &8|&r &7Mode de jeu:&r {mode}"
@@ -557,3 +559,7 @@ description = "Revenir à la position de départ enregistrée avant de quitter u
 [gui.config.spectator.allow-unsafe-return]
 name = "Autoriser les retours non sécurisés"
 description = "Revenir sans vérifier le sol ni l’espace libre. Activé par défaut ; désactivez pour exiger une destination sûre. S’applique aussi aux sessions actives."
+
+[gui.config.general.update-notifications]
+name = "Notifications de mise à jour"
+description = "Vérifier les versions GitHub et prévenir les joueurs autorisés dans la notification commune de Volmit. Aucune mise à jour ne sera installée."

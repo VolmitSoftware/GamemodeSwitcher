@@ -39,6 +39,7 @@ public final class ConfigMenu {
         add(entries, "spectator.return-to-origin", Material.COMPASS, 1);
         add(entries, "spectator.allow-unsafe-return", Material.ENDER_PEARL, 2);
         add(entries, "general.enabled", Material.LEVER, 0);
+        add(entries, "general.update-notifications", Material.SPYGLASS, 2);
         entries.put("general.language", new BukkitConfigEditor.EntryPresentation(
                 GuiMessages.name("general.language"), GuiMessages.description("general.language"),
                 Material.WRITABLE_BOOK, 1, null, null,

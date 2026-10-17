@@ -23,7 +23,7 @@ public final class SwitcherMessages {
     public static final TextKey STATUS_HEADER = TextKey.of("command.status.header", "&6&lGamemodeSwitcher&r");
     public static final TextKey STATUS_CONFIG = TextKey.of("command.status.config", "&7Switching:&r {enabled} &8|&r &7Language:&r &f{language}&r &8|&r &7Hot reload:&r {hot_reload}");
     public static final TextKey STATUS_PLAYER = TextKey.of("command.status.player", "&7Gestures:&r {state} &8|&r &7Game mode:&r {mode}");
-    public static final TextKey STATUS_COMPATIBILITY = TextKey.of("command.status.compatibility", "&7Requires:&r &fJava 25+ / Minecraft 26.1+&r &8|&r &7Scheduler:&r &f{scheduler}&r");
+    public static final TextKey STATUS_COMPATIBILITY = TextKey.of("command.status.compatibility", "&7Requires:&r &fJava {java} / Minecraft {minecraft}&r &8|&r &7Scheduler:&r &f{scheduler}&r");
     public static final TextKey STATE_ENABLED = TextKey.of("state.enabled", "&aEnabled&r");
     public static final TextKey STATE_DISABLED = TextKey.of("state.disabled", "&cDisabled&r");
     public static final TextKey MODE_SURVIVAL = TextKey.of("mode.survival", "Survival");

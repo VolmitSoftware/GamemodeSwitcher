@@ -41,6 +41,8 @@
 #   {prefix}  genel runtime.prefix değeri. Yalnızca belirli bir iletide gizlemek için o iletiden {prefix} öğesini kaldırın
 #   {reason}  hata nedeni
 #   {sound}  Ses kimliği
+#   {java}  Required Java version
+#   {minecraft}  Supported Minecraft version range
 #   {scheduler}  zamanlayıcı
 #   {seconds}  Saniye cinsinden kalan bekleme veya onay süresi
 #   {section}  Dil düzenleyicisi bölümü
@@ -82,7 +84,7 @@ mode = "Hayatta Kalma, Yaratıcı, Macera, İzleyici"
 upload = "Herkese açık yüklemeler etkinse raporu yükle"
 
 [command.status]
-compatibility = "&7Derleme:&r &fJava 25+ / Minecraft 26.1+&r &8|&r &7Zamanlayıcı:&r &f{scheduler}&r"
+compatibility = "&7Derleme:&r &fJava {java} / Minecraft {minecraft}&r &8|&r &7Zamanlayıcı:&r &f{scheduler}&r"
 config = "&7Oyun modu:&r {enabled} &8|&r &7Dil:&r {language} &8|&r &7Yapılandırmayı ve dilleri yeniden yükle:&r {hot_reload}"
 header = "&6&lGamemodeSwitcher&r"
 player = "&7Hareketler:&r {state} &8|&r &7Oyun modu:&r {mode}"
@@ -556,3 +558,7 @@ click = "<gray>Düğme tıklaması</gray>"
 [gui.config.spectator.allow-unsafe-return]
 name = "Güvensiz dönüşlere izin ver"
 description = "Zemini ve boş alanı kontrol etmeden dön. Varsayılan olarak açık; güvenli hedef zorunluluğu için kapat. Etkin oturumlara da uygulanır."
+
+[gui.config.general.update-notifications]
+name = "Güncelleme bildirimleri"
+description = "GitHub sürümlerini kontrol eder ve yetkili oyunculara ortak Volmit bildirimiyle haber verir. Güncellemeler yüklenmez."

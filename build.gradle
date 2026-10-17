@@ -1,3 +1,4 @@
+import art.arcane.volmit.packaging.PackagingMode
 import org.gradle.api.attributes.Usage
 import org.gradle.api.attributes.java.TargetJvmVersion
 import org.gradle.api.tasks.compile.JavaCompile
@@ -27,7 +28,7 @@ tasks.named('slimJar').get()
 group = 'com.volmit'
 version = '2.0.0'
 
-String languageSourceReference = 'main'
+String languageSourceReference = 'fe6047e14d87e10da3b45b6e196da741496979d8'
 List<File> languageSourceFiles = fileTree('src/main/resources/languages') {
     include('*.toml')
 }.files.toList().sort { File left, File right -> left.name <=> right.name }
@@ -100,8 +101,9 @@ dependencies {
     slimApi('net.kyori:adventure-text-minimessage:4.26.1')
     slimApi('net.kyori:adventure-text-serializer-legacy:4.26.1')
     slimApi('net.kyori:adventure-text-serializer-plain:4.26.1')
-    currentPaperCompatibility('io.papermc.paper:paper-api:26.1.2.build.74-stable')
-    currentSpigotCompatibility('org.spigotmc:spigot-api:26.2-R0.1-SNAPSHOT')
+    slimApi('org.bstats:bstats-bukkit:3.2.1')
+    currentPaperCompatibility('io.papermc.paper:paper-api:26.3.build.178-stable')
+    currentSpigotCompatibility('org.spigotmc:spigot-api:26.3-R0.1-SNAPSHOT')
     testImplementation(platform('org.junit:junit-bom:5.13.4'))
     testImplementation('org.junit.jupiter:junit-jupiter')
     testImplementation('org.assertj:assertj-core:3.27.4')
@@ -135,6 +137,7 @@ slimJar {
     relocate('com.google.gson', 'com.volmit.gsw.libs.gson')
     relocate('com.moandjiezana.toml', 'com.volmit.gsw.libs.toml')
     relocate('net.kyori', 'com.volmit.gsw.libs.kyori')
+    relocate('org.bstats', 'com.volmit.gsw.libs.bstats')
 }
 
 tasks.named('shadowJar').configure {
@@ -148,10 +151,12 @@ tasks.named('shadowJar').configure {
     relocate('com.google.gson', 'com.volmit.gsw.libs.gson')
     relocate('com.moandjiezana.toml', 'com.volmit.gsw.libs.toml')
     relocate('net.kyori', 'com.volmit.gsw.libs.kyori') { skipStringConstants = true }
+    relocate('org.bstats', 'com.volmit.gsw.libs.bstats')
 }
 
 tasks.named('test').configure {
     useJUnitPlatform()
+    systemProperty('bstats.relocatecheck', 'false')
     systemProperty('gamemodeswitcher.projectDir', layout.projectDirectory.asFile.absolutePath)
     exclude('com/volmit/gsw/RuntimeJarTest.class')
 }
@@ -164,6 +169,7 @@ def runtimeLibraryTestJar = tasks.register('runtimeLibraryTestJar', com.github.j
     relocate('com.google.gson', "com.volmit.gsw.libs.gson")
     relocate('com.moandjiezana.toml', "com.volmit.gsw.libs.toml")
     relocate('net.kyori', "com.volmit.gsw.libs.kyori")
+    relocate('org.bstats', 'com.volmit.gsw.libs.bstats')
 }
 
 def packagingTest = tasks.register('packagingTest', Test) {
@@ -190,7 +196,6 @@ tasks.register('verifyJava25Artifact') {
         File artifact = tasks.named('shadowJar').get().archiveFile.get().asFile
         int metadataCount = 0
         int localeCount = 0
-        boolean metricsPresent = false
         Properties languageManifest = null
         new java.util.zip.ZipFile(artifact).withCloseable { java.util.zip.ZipFile archive ->
             if (archive.getEntry('slimjar.dat') == null
@@ -202,7 +207,8 @@ tasks.register('verifyJava25Artifact') {
                 String path = entry.name
                 if (path.startsWith('com/volmit/gsw/libs/gson/')
                         || path.startsWith('com/volmit/gsw/libs/toml/')
-                        || path.startsWith('com/volmit/gsw/libs/kyori/')) {
+                        || path.startsWith('com/volmit/gsw/libs/kyori/')
+                        || path.startsWith('com/volmit/gsw/libs/bstats/')) {
                     throw new GradleException("Runtime-downloaded library is bundled in artifact: ${path}")
                 }
                 if (path == 'plugin.yml') {
@@ -215,7 +221,6 @@ tasks.register('verifyJava25Artifact') {
                     }
                 }
                 if (path.startsWith('languages/') && path.endsWith('.toml')) { localeCount++ }
-                if (path == 'com/volmit/gsw/metrics/Metrics.class') { metricsPresent = true }
                 if (path == 'gamemodeswitcher-language-source.properties') {
                     languageManifest = new Properties()
                     archive.getInputStream(entry).withCloseable { InputStream input -> languageManifest.load(input) }
@@ -239,8 +244,8 @@ tasks.register('verifyJava25Artifact') {
                 }
             }
         }
-        if (metadataCount != 1 || localeCount != 0 || !metricsPresent) {
-            throw new GradleException("Expected one plugin.yml, no bundled translations, and packaged bStats; found ${metadataCount}, ${localeCount}, ${metricsPresent}")
+        if (metadataCount != 1 || localeCount != 0) {
+            throw new GradleException("Expected one plugin.yml and no bundled translations; found ${metadataCount} and ${localeCount}")
         }
         if (languageManifest == null || languageManifest.getProperty('revision') != languageSourceReference
                 || languageManifest.getProperty('locales') != languageSourceLocales.join(',')) {
@@ -249,17 +254,39 @@ tasks.register('verifyJava25Artifact') {
     }
 }
 
+tasks.register('verifyJava25Libraries') {
+    inputs.files(configurations.runtimeLibraryTest)
+    doLast {
+        configurations.runtimeLibraryTest.files.each { File library ->
+            new java.util.zip.ZipFile(library).withCloseable { java.util.zip.ZipFile archive ->
+                archive.entries().each { java.util.zip.ZipEntry entry ->
+                    if (!entry.directory && entry.name.endsWith('.class')) {
+                        new DataInputStream(archive.getInputStream(entry)).withCloseable { DataInputStream input ->
+                            int magic = input.readInt()
+                            input.readUnsignedShort()
+                            int major = input.readUnsignedShort()
+                            if (Integer.toUnsignedLong(magic) != 0xCAFEBABEL || major > 69) {
+                                throw new GradleException("Library ${library.name} contains a class incompatible with Java 25: ${entry.name} (major ${major})")
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
 tasks.named('check').configure {
     dependsOn(packagingTest)
-    dependsOn('compileCurrentPaperCompatibility', 'compileCurrentSpigotCompatibility', 'verifyJava25Artifact')
+    dependsOn('compileCurrentPaperCompatibility', 'compileCurrentSpigotCompatibility', 'verifyJava25Artifact', 'verifyJava25Libraries')
 }
 
 tasks.register('buildSwiftSwamp', Copy) {
     group = 'development'
     description = 'Builds, verifies, and stages GamemodeSwitcher in the workspace BUILDS directory.'
-    dependsOn('check', 'shadowJar')
+    dependsOn('check', 'packedJar')
     outputs.upToDateWhen { false }
-    from(tasks.named('shadowJar').flatMap { it.archiveFile })
+    from({ tasks.named('packedJar').get().outputJar })
     into(providers.gradleProperty('buildsDirectory').orElse('../BUILDS'))
     rename { String ignored -> 'GamemodeSwitcher.jar' }
 }
@@ -269,7 +296,9 @@ publishing {
     publications {
         gamemodeSwitcher(MavenPublication) {
             artifactId = 'gamemodeswitcher'
-            artifact(tasks.named('shadowJar'))
+            artifact(layout.buildDirectory.file("libs/${rootProject.name}-${project.version}-packed.jar")) {
+                builtBy('packedJar')
+            }
             artifact(tasks.named('sourcesJar'))
             pom {
                 name = 'GamemodeSwitcher'
@@ -285,14 +314,34 @@ pluginPackaging {
         create('distribution') {
             taskName = 'shadowJar'
             shrink = true
+            stripDirectories = true
+            stripLocalVariables = true
+            releaseCompression = providers.gradleProperty('compactRelease').map { String value -> value.toBoolean() }
+                    .getOrElse(!PackagingMode.resolve(providers).development())
+            packed = true
             shrinkRelocations = [
                 'com.google.gson': 'com.volmit.gsw.libs.gson',
                 'com.moandjiezana.toml': 'com.volmit.gsw.libs.toml',
-                'net.kyori': 'com.volmit.gsw.libs.kyori'
+                'net.kyori': 'com.volmit.gsw.libs.kyori',
+                'org.bstats': 'com.volmit.gsw.libs.bstats'
             ]
             maximumBytes = 1100000
             prunePrefixes = ['com/volmit/gsw/libs/volmlib/']
-            requiredEntries = ['plugin.yml', 'com/volmit/gsw/GamemodeSwitcher.class']
+            requiredEntries = [
+                'plugin.yml',
+                'com/volmit/gsw/GamemodeSwitcher.class',
+                'gamemodeswitcher-language-source.properties',
+                'slimjar.dat',
+                'slimjar-resolutions.dat',
+                'com/volmit/gsw/libs/slimjar/app/builder/SpigotApplicationBuilder.class'
+            ]
+            forbiddenPrefixes = [
+                'org/bukkit/', 'io/papermc/', 'net/minecraft/',
+                'org/gradle/', 'art/arcane/volmit/packaging/', 'art/arcane/volmlib/',
+                'com/google/gson/', 'com/moandjiezana/toml/', 'net/kyori/', 'org/bstats/',
+                'com/volmit/gsw/libs/gson/', 'com/volmit/gsw/libs/toml/',
+                'com/volmit/gsw/libs/kyori/', 'com/volmit/gsw/libs/bstats/'
+            ]
         }
     }
 }

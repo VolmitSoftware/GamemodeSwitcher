@@ -40,6 +40,8 @@
 #   {plugin}  プラグイン名
 #   {prefix}  グローバルな runtime.prefix の値です。個別のメッセージから {prefix} を削除すると、その場所だけ非表示になります
 #   {reason}  失敗理由
+#   {java}  Required Java version
+#   {minecraft}  Supported Minecraft version range
 #   {scheduler}  スケジューラー
 #   {seconds}  残りのクールダウンまたは確認時間（秒）
 #   {section}  言語エディターのセクション
@@ -83,7 +85,7 @@ mode = "サバイバル, クリエイティブ, アドベンチャー, スペク
 upload = "公開アップロードが有効な場合にレポートをアップロード"
 
 [command.status]
-compatibility = "&7成果物:&r&fJava 25 / Bukkit 26.1+&r&8|&r&7スケジューラ:&r&f{scheduler}&r"
+compatibility = "&7成果物:&r&fJava {java} / Minecraft {minecraft}&r&8|&r&7スケジューラ:&r&f{scheduler}&r"
 config = "&7ゲームモード:&r {enabled} &8|&r &7言語:&r {language} &8|&r &7設定と言語を再読み込み:&r {hot_reload}"
 header = "&6&lGamemodeSwitcher&r"
 player = "&7ジェスチャー:&r {state} &8|&r &7ゲームモード:&r {mode}"
@@ -557,3 +559,7 @@ description = "プラグインから開始した観戦セッションを終了�
 [gui.config.spectator.allow-unsafe-return]
 name = "安全確認なしの帰還を許可"
 description = "床や空間を確認せずに帰還します。初期設定は有効です。安全な場所のみ許可するには無効にしてください。進行中のセッションにも適用されます。"
+
+[gui.config.general.update-notifications]
+name = "更新通知"
+description = "GitHubのリリースを確認し、Volmitの共通通知で権限のあるプレイヤーに知らせます。更新はインストールされません。"

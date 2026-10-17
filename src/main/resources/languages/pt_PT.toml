@@ -41,6 +41,8 @@
 #   {prefix}  o valor global runtime.prefix. Remove {prefix} de uma mensagem para o ocultar apenas aí
 #   {reason}  motivo da falha
 #   {sound}  Identificador do som
+#   {java}  Required Java version
+#   {minecraft}  Supported Minecraft version range
 #   {scheduler}  agendador
 #   {seconds}  Tempo de espera ou confirmação restante em segundos
 #   {section}  Secção do editor de idiomas
@@ -82,7 +84,7 @@ mode = "Sobrevivência, Criativo, Aventura, Espetador"
 upload = "Carregar o relatório quando os carregamentos públicos estão ativados"
 
 [command.status]
-compatibility = "&7Artefacto:&r &fJava 25+ / Minecraft 26.1+&r &8|&r &7Agendador:&r &f{scheduler}&r"
+compatibility = "&7Artefacto:&r &fJava {java} / Minecraft {minecraft}&r &8|&r &7Agendador:&r &f{scheduler}&r"
 config = "&7Modo de jogo:&r {enabled} &8|&r &7Idioma:&r {language} &8|&r &7Recarregar configuração e idiomas:&r {hot_reload}"
 header = "&6&lGamemodeSwitcher&r"
 player = "&7Gestos:&r {state} &8|&r &7Modo de jogo:&r {mode}"
@@ -556,3 +558,7 @@ click = "<gray>Clique de botão</gray>"
 [gui.config.spectator.allow-unsafe-return]
 name = "Permitir regressos inseguros"
 description = "Regressa sem verificar o chão ou o espaço livre. Ativo por predefinição; desativa para exigir um destino seguro. Aplica-se também a sessões ativas."
+
+[gui.config.general.update-notifications]
+name = "Notificações de atualização"
+description = "Verificar versões no GitHub e avisar os jogadores autorizados através da notificação conjunta do Volmit. Não são instaladas atualizações."
