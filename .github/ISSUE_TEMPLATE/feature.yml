@@ -1,49 +1,26 @@
 name: Suggestion
-description: Propose a new feature or a change to how GamemodeSwitcher works.
+description: Suggest a new feature or a change to GamemodeSwitcher.
 labels: [enhancement]
 body:
   - type: markdown
     attributes:
       value: |
-        Check the [GamemodeSwitcher docs](https://docs.volmitsoftware.com/gamemodeswitcher) and [existing suggestions](https://github.com/VolmitSoftware/GamemodeSwitcher/issues?q=is%3Aissue+label%3Aenhancement) first; if someone already asked, add a thumbs-up and your use case there. One idea per issue.
-  - type: dropdown
-    id: kind
-    attributes:
-      label: Kind of change
-      options:
-        - New feature
-        - Change to existing behavior
-        - New configuration option
-        - Support for another plugin
-        - Remove something
-    validations:
-      required: true
+        Check the [existing suggestions](https://github.com/VolmitSoftware/GamemodeSwitcher/issues?q=is%3Aissue+label%3Aenhancement) first. If yours is already there, add a thumbs-up to it instead. One idea per issue.
   - type: textarea
     id: problem
     attributes:
-      label: What you are trying to do
-      description: Describe the situation on your server and what gets in the way today. Leave the solution for the next field.
-      placeholder: Players on my survival server ... but GamemodeSwitcher currently ...
+      label: What problem would this solve?
     validations:
       required: true
   - type: textarea
     id: proposal
     attributes:
-      label: How it could work
-      description: Commands, permissions, config keys, or menu changes you have in mind. Sketches and screenshots help.
+      label: How should it work?
+      description: Commands, settings, or menus you have in mind.
     validations:
       required: true
-  - type: dropdown
-    id: audience
-    attributes:
-      label: Who it is for
-      multiple: true
-      options:
-        - Players
-        - Server operators and staff
-        - Developers using the API
   - type: textarea
-    id: alternatives
+    id: extra
     attributes:
-      label: Workarounds you have tried
-      description: Other plugins, settings, or commands you use today to get close to this.
+      label: Anything else?
+      description: Workarounds you use today, examples, or screenshots.

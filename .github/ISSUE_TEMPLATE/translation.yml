@@ -1,13 +1,11 @@
-name: Translation or wording
-description: A message in GamemodeSwitcher is mistranslated, missing, unclear, or misspelled.
-labels: [translation]
+name: Translation
+description: A message in GamemodeSwitcher is wrong, missing, or unclear.
+labels: [bug]
 body:
   - type: markdown
     attributes:
       value: |
-        The catalogs live in [`src/main/resources/languages/`](https://github.com/VolmitSoftware/GamemodeSwitcher/tree/HEAD/src/main/resources/languages) in this repository. A pull request that edits the `<locale>.toml` file there is the fastest fix; use this form if you would rather describe the change.
-
-        Editing the language file on your own server changes only your copy. See [Languages](https://docs.volmitsoftware.com/languages) for how the files work.
+        The language files are in [`src/main/resources/languages/`](https://github.com/VolmitSoftware/GamemodeSwitcher/tree/HEAD/src/main/resources/languages). You can also fix the text with a pull request.
   - type: dropdown
     id: language
     attributes:
@@ -31,37 +29,24 @@ body:
         - Vietnamese (vi_VI)
         - Chinese, Simplified (zh_CN)
         - Chinese, Traditional (zh_TW)
-        - Another language (name it below)
+        - Other
     validations:
       required: true
-  - type: input
-    id: key
-    attributes:
-      label: Message key
-      description: The key from the language file, if you found it.
-      placeholder: command.feedback.version
   - type: textarea
     id: current
     attributes:
       label: Current text
-      description: Copy the text as it appears in game or in the file.
     validations:
       required: true
   - type: textarea
     id: suggested
     attributes:
       label: Suggested text
-      description: Keep placeholders such as `{player}` and MiniMessage tags such as `<gold>` exactly as they are.
+      description: Keep placeholders like `{player}` and tags like `<gold>` as they are.
     validations:
       required: true
-  - type: textarea
+  - type: input
     id: where
     attributes:
-      label: Where it appears
-      description: The command, menu, or event that shows the message. A screenshot helps.
-  - type: input
-    id: plugin-version
-    attributes:
-      label: "GamemodeSwitcher version"
-    validations:
-      required: true
+      label: Where does it appear?
+      description: The command or menu, or the message key if you know it.
