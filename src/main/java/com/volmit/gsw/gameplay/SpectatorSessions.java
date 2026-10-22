@@ -27,7 +27,7 @@ public final class SpectatorSessions implements AutoCloseable {
     public SpectatorSessions(Path file, Logger logger) throws IOException {
         this.file = file;
         this.logger = logger;
-        sessions = load(file);
+        sessions = load(file, logger);
         writer = Executors.newSingleThreadExecutor(Thread.ofPlatform().daemon().name("GamemodeSwitcher-Spectator-Sessions").factory());
     }
 
@@ -93,13 +93,14 @@ public final class SpectatorSessions implements AutoCloseable {
         }, writer);
     }
 
-    private static Map<UUID, SpectatorSession> load(Path file) throws IOException {
+    private static Map<UUID, SpectatorSession> load(Path file, Logger logger) throws IOException {
         Map<UUID, SpectatorSession> sessions = new HashMap<>();
         if (!Files.exists(file)) {
             return sessions;
         }
+        String source = Files.readString(file);
         try {
-            Toml table = new Toml().read(Files.readString(file)).getTable("sessions");
+            Toml table = new Toml().read(source).getTable("sessions");
             if (table == null) {
                 return sessions;
             }
@@ -111,8 +112,9 @@ public final class SpectatorSessions implements AutoCloseable {
                         GameMode.valueOf(session.getString("previous-mode")),
                         session.getBoolean("restore-previous-mode", false), session.getBoolean("return-to-origin", false)));
             }
-        } catch (IllegalArgumentException | ClassCastException | NullPointerException exception) {
-            throw new IOException("Invalid Spectator sessions at " + file, exception);
+        } catch (IllegalArgumentException | IllegalStateException | ClassCastException | NullPointerException exception) {
+            DataFiles.quarantine(file, logger, "Spectator sessions", exception);
+            return new HashMap<>();
         }
         return sessions;
     }

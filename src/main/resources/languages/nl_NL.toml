@@ -20,6 +20,7 @@
 #   {command}  opdrachtpad
 #   {count}  Aantal overeenkomstige vermeldingen
 #   {enabled}  Status van het wisselen van spelmodus
+#   {folder}  Naam van de wereldmap
 #   {group}  Categorie in de taaleditor
 #   {hot_reload}  hot-reloadstatus
 #   {key}  parametersleutel
@@ -476,8 +477,7 @@ description = "Bestemming bij sluipen en dubbel tikken op de handwisseltoets in 
 
 [gui.config.restrictions.disabled-worlds]
 name = "Uitgeschakelde werelden"
-description = "Wereldnamen waarin gebaren, opdrachten en het menu geen spelmoduswissels toestaan. Hoofdletters maken geen verschil."
-input = "Gebruik een lijst met wereldnamen, zoals [\"world_nether\", \"world_the_end\"]. Gebruik [] voor geen wereldbeperkingen."
+description = "Werelden waar gebaren, commando's en het menu de spelmodus niet kunnen wisselen. Klik om ze uit een lijst te kiezen."
 
 [gui.config.feedback.auto-fly-creative]
 name = "Vliegen bij Creatief"
@@ -523,6 +523,7 @@ description = "Toonhoogte van het wisselgeluid. Bereik: 0.5 tot 2; 1 gebruikt de
 [spectator]
 save-failed = "{prefix}&cJe sessie kon niet worden opgeslagen. Je spelmodus is niet gewijzigd.&r"
 return-failed = "{prefix}&cTerugkeren is mislukt. Je sessie is opgeslagen; probeer /gsw return opnieuw.&r"
+origin-missing = "{prefix} &eDe wereld waar je toeschouwer werd is niet meer geladen, dus je spelmodus is hier gewijzigd.&r"
 none = "{prefix}&cJe hebt geen actieve toeschouwersessie.&r"
 busy = "{prefix}&cEr loopt al een wisseling van toeschouwermodus.&r"
 
@@ -554,6 +555,18 @@ experience = "<gray>Ervaring oppakken</gray>"
 pling = "<gray>Plingtoon</gray>"
 chime = "<gray>Klank</gray>"
 click = "<gray>Knopklik</gray>"
+
+[world.menu]
+title = "<gradient:#634514:#2f523f>Uitgeschakelde werelden</gradient>"
+help = "<gold>Uitgeschakelde werelden</gold>"
+help-detail = "<gray>Klik op een wereld om het wisselen van spelmodus daar uit of aan te zetten. Werelden worden opgeslagen met hun dimensiesleutel, zoals minecraft:the_nether.</gray>"
+folder = "<gray>Wereldmap: {folder}</gray>"
+unloaded = "<gray>Niet geladen op deze server</gray>"
+disabled = "<red>Wisselen uit</red>"
+enabled = "<green>Wisselen aan</green>"
+disable = "<gray>Klik om wisselen hier uit te zetten.</gray>"
+enable = "<gray>Klik om wisselen hier weer aan te zetten.</gray>"
+remove = "<gray>Klik om deze uit de lijst te halen.</gray>"
 
 [gui.config.spectator.allow-unsafe-return]
 name = "Onveilig terugkeren toestaan"

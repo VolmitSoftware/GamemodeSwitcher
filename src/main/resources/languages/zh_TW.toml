@@ -20,6 +20,7 @@
 #   {command}  指令路徑
 #   {count}  匹配項目數量
 #   {enabled}  遊戲模式切換的啟用狀態
+#   {folder}  世界資料夾名稱
 #   {group}  語言編輯器類別
 #   {hot_reload}  熱重載狀態
 #   {key}  參數鍵
@@ -476,8 +477,7 @@ description = "在冒險下潛行並雙擊交換雙手鍵時的目標模式。"
 
 [gui.config.restrictions.disabled-worlds]
 name = "停用的世界"
-description = "手勢、指令和選單皆無法切換模式的世界名稱。不區分大小寫。"
-input = "輸入世界名稱清單，例如 [\"world_nether\", \"world_the_end\"]。使用 [] 表示沒有世界限制。"
+description = "手勢、指令和選單無法切換遊戲模式的世界。點擊從清單中選擇。"
 
 [gui.config.feedback.auto-fly-creative]
 name = "進入創造模式時飛行"
@@ -523,6 +523,7 @@ description = "切換音效的音高。範圍：0.5 至 2；1 使用原始音高
 [spectator]
 save-failed = "{prefix}&c無法儲存階段。遊戲模式未變更。&r"
 return-failed = "{prefix}&c無法返回。階段已儲存；請重試 /gsw return。&r"
+origin-missing = "{prefix} &e你進入旁觀模式時所在的世界已不再載入，因此已在目前位置切換遊戲模式。&r"
 none = "{prefix}&c你沒有進行中的旁觀階段。&r"
 busy = "{prefix}&c旁觀模式切換正在進行。&r"
 
@@ -554,6 +555,18 @@ experience = "<gray>拾取經驗</gray>"
 pling = "<gray>清脆音符</gray>"
 chime = "<gray>風鈴</gray>"
 click = "<gray>按鈕點擊</gray>"
+
+[world.menu]
+title = "<gradient:#634514:#2f523f>停用的世界</gradient>"
+help = "<gold>停用的世界</gold>"
+help-detail = "<gray>點擊一個世界即可在那裡關閉或開啟遊戲模式切換。世界依維度鍵儲存，例如 minecraft:the_nether。</gray>"
+folder = "<gray>世界資料夾：{folder}</gray>"
+unloaded = "<gray>此伺服器未載入</gray>"
+disabled = "<red>切換已關閉</red>"
+enabled = "<green>切換已開啟</green>"
+disable = "<gray>點擊以關閉此處的切換。</gray>"
+enable = "<gray>點擊以重新開啟此處的切換。</gray>"
+remove = "<gray>點擊以將其從清單中移除。</gray>"
 
 [gui.config.spectator.allow-unsafe-return]
 name = "允許不安全返回"

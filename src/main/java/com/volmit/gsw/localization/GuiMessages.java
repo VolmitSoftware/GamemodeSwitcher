@@ -10,8 +10,6 @@ import java.util.Map;
 import java.util.Objects;
 
 public final class GuiMessages {
-    public static final TextKey DISABLED_WORLDS_INPUT = TextKey.of("gui.config.restrictions.disabled-worlds.input",
-            "Use a list of world names, such as [\"world_nether\", \"world_the_end\"]. Use [] for no world restrictions.");
     public static final TextKey SOUND_INPUT = TextKey.of("gui.config.feedback.sound.input",
             "Enter a namespaced sound key, such as minecraft:ui.button.click or minecraft:entity.experience_orb.pickup. Custom resource-pack keys are allowed.");
     private static final Map<String, Entry> ENTRIES = entries();
@@ -28,12 +26,11 @@ public final class GuiMessages {
     }
 
     public static List<TextKey> keys() {
-        List<TextKey> keys = new ArrayList<>(ENTRIES.size() * 2 + 2);
+        List<TextKey> keys = new ArrayList<>(ENTRIES.size() * 2 + 1);
         for (Entry entry : ENTRIES.values()) {
             keys.add(entry.name());
             keys.add(entry.description());
         }
-        keys.add(DISABLED_WORLDS_INPUT);
         keys.add(SOUND_INPUT);
         return List.copyOf(keys);
     }
@@ -72,7 +69,7 @@ public final class GuiMessages {
         add(entries, "gestures.sneaking.survival", "From Survival", "Destination when you sneak and double-tap the swap-hands key in Survival.");
         add(entries, "gestures.sneaking.creative", "From Creative", "Destination when you sneak and double-tap the swap-hands key in Creative.");
         add(entries, "gestures.sneaking.adventure", "From Adventure", "Destination when you sneak and double-tap the swap-hands key in Adventure.");
-        add(entries, "restrictions.disabled-worlds", "Disabled worlds", "World names where gestures, commands, and the menu cannot change game modes. Names ignore letter case.");
+        add(entries, "restrictions.disabled-worlds", "Disabled worlds", "Worlds where gestures, commands, and the menu cannot change game modes. Click to choose them from a list.");
         add(entries, "feedback.auto-fly-creative", "Fly on entering Creative", "Start flying after entering Creative when the player is allowed to fly.");
         add(entries, "feedback.chat-enabled", "Chat messages", "Show successful changes and Spectator hints in chat. When off, failure reasons appear in the action bar.");
         add(entries, "feedback.action-bar-enabled", "Action bar popup", "Show the new mode above the hotbar, with an exit hint in Spectator.");

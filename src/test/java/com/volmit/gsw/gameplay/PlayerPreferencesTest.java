@@ -3,6 +3,7 @@ package com.volmit.gsw.gameplay;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
+import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.UUID;
 import java.util.concurrent.TimeUnit;
@@ -70,6 +71,24 @@ class PlayerPreferencesTest {
             preferences.setFeedback(player, PersonalFeedback.DEFAULT);
             preferences.toggleFeedback(player, PersonalFeedback.Channel.SOUND).get(5, TimeUnit.SECONDS);
             assertThat(preferences.feedback(player)).isEqualTo(PersonalFeedback.DEFAULT.toggle(PersonalFeedback.Channel.SOUND));
+        }
+    }
+
+    @Test
+    void corruptFileIsSetAsideAndDefaultsApply() throws Exception {
+        Path file = directory.resolve("preferences.toml");
+        Files.writeString(file, "disabled = [\"not-a-uuid\"]\n");
+        UUID player = UUID.randomUUID();
+        try (PlayerPreferences preferences = new PlayerPreferences(file, Logger.getAnonymousLogger())) {
+            assertThat(preferences.enabled(player)).isTrue();
+            preferences.setEnabled(player, false).get(5, TimeUnit.SECONDS);
+        }
+        try (PlayerPreferences reloaded = new PlayerPreferences(file, Logger.getAnonymousLogger())) {
+            assertThat(reloaded.enabled(player)).isFalse();
+        }
+        try (var listing = Files.list(directory)) {
+            assertThat(listing.map(path -> path.getFileName().toString()))
+                    .anyMatch(name -> name.startsWith("preferences.toml.broken-"));
         }
     }
 }

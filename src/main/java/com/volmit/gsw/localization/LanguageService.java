@@ -816,6 +816,7 @@ public final class LanguageService {
                         Map.entry("command", "Command path"),
                         Map.entry("count", "Number of matching entries"),
                         Map.entry("enabled", "Game mode switching state"),
+                        Map.entry("folder", "World folder name"),
                         Map.entry("group", "Message category name"),
                         Map.entry("hot_reload", "Automatic file reload state"),
                         Map.entry("java", "Required Java version"),

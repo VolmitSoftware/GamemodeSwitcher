@@ -59,7 +59,7 @@ public final class ConfigMenu {
         }
         entries.put("restrictions.disabled-worlds", new BukkitConfigEditor.EntryPresentation(
                 GuiMessages.name("restrictions.disabled-worlds"), GuiMessages.description("restrictions.disabled-worlds"),
-                Material.FILLED_MAP, 0, null, GuiMessages.DISABLED_WORLDS_INPUT, null));
+                Material.FILLED_MAP, 0, null, null, player -> plugin.getWorldPicker().open(player)));
         add(entries, "feedback.chat-enabled", Material.PAPER, 0);
         add(entries, "feedback.action-bar-enabled", Material.NAME_TAG, 1);
         add(entries, "feedback.title-enabled", Material.OAK_SIGN, 2);

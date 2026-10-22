@@ -20,6 +20,7 @@
 #   {command}  נתיב פקודה
 #   {count}  מספר הערכים
 #   {enabled}  מצב החלפת מצבי המשחק
+#   {folder}  שם תיקיית העולם
 #   {group}  קטגוריה בעורך השפה
 #   {hot_reload}  מצב טעינה חמה
 #   {key}  מפתח פרמטר
@@ -477,8 +478,7 @@ description = "היעד בהתכופפות ולחיצה כפולה על מקש �
 
 [gui.config.restrictions.disabled-worlds]
 name = "עולמות חסומים"
-description = "שמות עולמות שבהם מחוות, פקודות והתפריט לא יכולים להחליף מצב משחק. אין הבדל בין אותיות גדולות לקטנות."
-input = "הזן רשימת שמות עולמות, למשל [\"world_nether\", \"world_the_end\"]. השתמש ב-[] ללא הגבלות עולמות."
+description = "עולמות שבהם מחוות, פקודות והתפריט לא יכולים לשנות את מצב המשחק. לחצו כדי לבחור אותם מרשימה."
 
 [gui.config.feedback.auto-fly-creative]
 name = "תעופה בכניסה ליצירתי"
@@ -538,10 +538,23 @@ pling = "<gold>פלינג</gold>"
 experience = "<gold>איסוף ניסיון</gold>"
 bell = "<gold>פעמון</gold>"
 
+[world.menu]
+title = "<gradient:#634514:#2f523f>עולמות חסומים</gradient>"
+help = "<gold>עולמות חסומים</gold>"
+help-detail = "<gray>לחצו על עולם כדי לכבות או להפעיל בו את החלפת מצב המשחק. עולמות נשמרים לפי מפתח המימד, למשל minecraft:the_nether.</gray>"
+folder = "<gray>תיקיית העולם: {folder}</gray>"
+unloaded = "<gray>לא טעון בשרת הזה</gray>"
+disabled = "<red>החלפה כבויה</red>"
+enabled = "<green>החלפה פעילה</green>"
+disable = "<gray>לחצו כדי לכבות כאן את ההחלפה.</gray>"
+enable = "<gray>לחצו כדי להפעיל כאן את ההחלפה מחדש.</gray>"
+remove = "<gray>לחצו כדי להסיר אותו מהרשימה.</gray>"
+
 [spectator]
 busy = "{prefix} &eמעבר מצב צופה כבר מתבצע.&r"
 none = "{prefix} &eאין לך הפעלת מצב צופה פעילה.&r"
 return-failed = "{prefix}&cהחזרה נכשלה. ההפעלה נשמרה; נסה שוב עם /gsw return.&r"
+origin-missing = "{prefix} &eהעולם שבו נכנסת למצב צופה כבר לא טעון, לכן מצב המשחק שלך הוחלף כאן.&r"
 save-failed = "{prefix} &cלא ניתן לשמור את הפעלת מצב הצופה. מצב המשחק שלך לא השתנה.&r"
 
 [gui.config.spectator]

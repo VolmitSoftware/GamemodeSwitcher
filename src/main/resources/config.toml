@@ -48,7 +48,8 @@ adventure = "SURVIVAL"
 # Remember the previous mode for triple-Sneak and /gsw return. Only GSW entries are tracked.
 restore-previous-mode = false
 # Return to the entry location before leaving a tracked Spectator session through GSW.
-# Blocked or missing-world destinations keep you in Spectator; retry with /gsw return.
+# Blocked or unsafe destinations keep you in Spectator; retry with /gsw return.
+# If the entry world is no longer loaded, you leave Spectator where you are.
 # Sessions survive reconnects/restarts; death or another plugin's mode change ends the session.
 return-to-origin = false
 # Return even without solid ground or clear space, or outside the world border.
@@ -56,9 +57,11 @@ return-to-origin = false
 allow-unsafe-return = true
 
 [restrictions]
-# World names where gestures, commands, and the menu cannot change game modes.
-# Use your server's world names, for example ["world_nether", "world_the_end"].
-# Letter case does not matter. Use [] for no world restrictions.
+# Worlds where gestures, commands, and the menu cannot change game modes.
+# Use dimension keys, for example ["minecraft:the_nether", "minecraft:the_end"].
+# The default worlds are minecraft:overworld, minecraft:the_nether, and minecraft:the_end.
+# /gsw config lists every loaded world's key. World folder names such as "world_nether" also work.
+# Use [] for no world restrictions.
 disabled-worlds = []
 
 [feedback]

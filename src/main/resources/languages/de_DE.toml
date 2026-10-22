@@ -20,6 +20,7 @@
 #   {command}  Befehlspfad
 #   {count}  Anzahl übereinstimmender Einträge
 #   {enabled}  Status des Spielmoduswechsels
+#   {folder}  Ordnername der Welt
 #   {group}  Kategorie des Spracheneditors
 #   {hot_reload}  Hot-Reload-Status
 #   {key}  Parameterschlüssel
@@ -477,8 +478,7 @@ description = "Ziel beim Schleichen und Doppeltippen der Handtausch-Taste im Mod
 
 [gui.config.restrictions.disabled-worlds]
 name = "Gesperrte Welten"
-description = "Weltnamen, in denen Gesten, Befehle und das Menü keinen Spielmoduswechsel erlauben. Groß- und Kleinschreibung ist egal."
-input = "Eine Liste von Weltnamen verwenden, zum Beispiel [\"world_nether\", \"world_the_end\"]. [] bedeutet keine Weltbeschränkungen."
+description = "Welten, in denen Gesten, Befehle und das Menü keinen Spielmoduswechsel erlauben. Zum Auswählen aus einer Liste klicken."
 
 [gui.config.feedback.auto-fly-creative]
 name = "Beim Kreativwechsel fliegen"
@@ -538,10 +538,23 @@ pling = "<gold>Pling</gold>"
 experience = "<gold>Erfahrung aufsammeln</gold>"
 bell = "<gold>Glocke</gold>"
 
+[world.menu]
+title = "<gradient:#634514:#2f523f>Gesperrte Welten</gradient>"
+help = "<gold>Gesperrte Welten</gold>"
+help-detail = "<gray>Eine Welt anklicken, um den Spielmoduswechsel dort aus- oder einzuschalten. Welten werden mit ihrem Dimensionsschlüssel gespeichert, zum Beispiel minecraft:the_nether.</gray>"
+folder = "<gray>Weltordner: {folder}</gray>"
+unloaded = "<gray>Auf diesem Server nicht geladen</gray>"
+disabled = "<red>Wechsel aus</red>"
+enabled = "<green>Wechsel an</green>"
+disable = "<gray>Klicken, um den Wechsel hier auszuschalten.</gray>"
+enable = "<gray>Klicken, um den Wechsel hier wieder einzuschalten.</gray>"
+remove = "<gray>Klicken, um sie aus der Liste zu entfernen.</gray>"
+
 [spectator]
 busy = "{prefix} &eEin Wechsel des Zuschauermodus läuft bereits.&r"
 none = "{prefix} &eDu hast keine aktive Zuschauersitzung.&r"
 return-failed = "{prefix}&cRückkehr fehlgeschlagen. Deine Sitzung ist gespeichert; versuche /gsw return erneut.&r"
+origin-missing = "{prefix} &eDeine Zuschauer-Startwelt ist nicht mehr geladen, daher wurde dein Spielmodus hier gewechselt.&r"
 save-failed = "{prefix} &cDeine Zuschauersitzung konnte nicht gespeichert werden. Dein Spielmodus wurde nicht geändert.&r"
 
 [gui.config.spectator]

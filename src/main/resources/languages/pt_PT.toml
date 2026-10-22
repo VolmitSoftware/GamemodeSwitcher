@@ -20,6 +20,7 @@
 #   {command}  caminho do comando
 #   {count}  Número de itens correspondentes
 #   {enabled}  Estado da mudança de modo de jogo
+#   {folder}  Nome da pasta do mundo
 #   {group}  Categoria do editor de idiomas
 #   {hot_reload}  estado do recarregamento
 #   {key}  chave do parâmetro
@@ -476,8 +477,7 @@ description = "Destino ao agachar e premir duas vezes a tecla de troca de mãos 
 
 [gui.config.restrictions.disabled-worlds]
 name = "Mundos desativados"
-description = "Nomes dos mundos onde gestos, comandos e o menu não podem mudar o modo. Maiúsculas e minúsculas são equivalentes."
-input = "Usa uma lista de nomes de mundos, como [\"world_nether\", \"world_the_end\"]. Usa [] para não restringir mundos."
+description = "Mundos onde os gestos, os comandos e o menu não podem mudar o modo de jogo. Clica para os escolher numa lista."
 
 [gui.config.feedback.auto-fly-creative]
 name = "Voar ao entrar em Criativo"
@@ -523,6 +523,7 @@ description = "Tom do som de mudança. Intervalo: 0.5 a 2; 1 usa o tom original.
 [spectator]
 save-failed = "{prefix}&cNão foi possível guardar a sessão. O modo de jogo não foi alterado.&r"
 return-failed = "{prefix}&cNão foi possível regressar. A sessão está guardada; tenta /gsw return novamente.&r"
+origin-missing = "{prefix} &eO mundo onde entraste em espectador já não está carregado, por isso o modo de jogo mudou aqui.&r"
 none = "{prefix}&cNão tens uma sessão de espetador ativa.&r"
 busy = "{prefix}&cJá está em curso uma mudança de modo de espetador.&r"
 
@@ -554,6 +555,18 @@ experience = "<gray>Recolha de experiência</gray>"
 pling = "<gray>Nota aguda</gray>"
 chime = "<gray>Carrilhão</gray>"
 click = "<gray>Clique de botão</gray>"
+
+[world.menu]
+title = "<gradient:#634514:#2f523f>Mundos desativados</gradient>"
+help = "<gold>Mundos desativados</gold>"
+help-detail = "<gray>Clica num mundo para desativar ou ativar aí a mudança de modo de jogo. Os mundos são guardados pela chave de dimensão, como minecraft:the_nether.</gray>"
+folder = "<gray>Pasta do mundo: {folder}</gray>"
+unloaded = "<gray>Não carregado neste servidor</gray>"
+disabled = "<red>Mudança desativada</red>"
+enabled = "<green>Mudança ativada</green>"
+disable = "<gray>Clica para desativar a mudança aqui.</gray>"
+enable = "<gray>Clica para voltar a ativar a mudança aqui.</gray>"
+remove = "<gray>Clica para o remover da lista.</gray>"
 
 [gui.config.spectator.allow-unsafe-return]
 name = "Permitir regressos inseguros"

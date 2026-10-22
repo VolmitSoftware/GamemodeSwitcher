@@ -20,6 +20,7 @@
 #   {command}  ścieżka polecenia
 #   {count}  Liczba pasujących wpisów
 #   {enabled}  Stan przełączania trybu gry
+#   {folder}  Nazwa folderu świata
 #   {group}  Kategoria edytora języka
 #   {hot_reload}  stan przeładowania
 #   {key}  klucz parametru
@@ -476,8 +477,7 @@ description = "Cel po dwukrotnym naciśnięciu klawisza zamiany rąk podczas skr
 
 [gui.config.restrictions.disabled-worlds]
 name = "Wyłączone światy"
-description = "Nazwy światów, w których gesty, polecenia i menu nie mogą zmieniać trybu. Wielkość liter nie ma znaczenia."
-input = "Podaj listę nazw światów, na przykład [\"world_nether\", \"world_the_end\"]. Użyj [], aby nie ograniczać światów."
+description = "Światy, w których gesty, komendy i menu nie mogą zmieniać trybu gry. Kliknij, aby wybrać je z listy."
 
 [gui.config.feedback.auto-fly-creative]
 name = "Lot po wejściu w Kreatywny"
@@ -523,6 +523,7 @@ description = "Wysokość dźwięku zmiany. Zakres: od 0.5 do 2; 1 oznacza orygi
 [spectator]
 save-failed = "{prefix}&cNie udało się zapisać sesji. Tryb gry nie został zmieniony.&r"
 return-failed = "{prefix}&cPowrót nie powiódł się. Sesja jest zapisana; ponów /gsw return.&r"
+origin-missing = "{prefix} &eŚwiat, w którym włączono tryb obserwatora, nie jest już wczytany, więc tryb gry zmieniono tutaj.&r"
 none = "{prefix}&cNie masz aktywnej sesji obserwatora.&r"
 busy = "{prefix}&cZmiana trybu obserwatora już trwa.&r"
 
@@ -554,6 +555,18 @@ experience = "<gray>Zebranie doświadczenia</gray>"
 pling = "<gray>Brzęk</gray>"
 chime = "<gray>Dzwonki</gray>"
 click = "<gray>Kliknięcie przycisku</gray>"
+
+[world.menu]
+title = "<gradient:#634514:#2f523f>Wyłączone światy</gradient>"
+help = "<gold>Wyłączone światy</gold>"
+help-detail = "<gray>Kliknij świat, aby wyłączyć lub włączyć w nim zmianę trybu gry. Światy są zapisywane według klucza wymiaru, na przykład minecraft:the_nether.</gray>"
+folder = "<gray>Folder świata: {folder}</gray>"
+unloaded = "<gray>Niezaładowany na tym serwerze</gray>"
+disabled = "<red>Zmiana wyłączona</red>"
+enabled = "<green>Zmiana włączona</green>"
+disable = "<gray>Kliknij, aby wyłączyć tutaj zmianę.</gray>"
+enable = "<gray>Kliknij, aby ponownie włączyć tutaj zmianę.</gray>"
+remove = "<gray>Kliknij, aby usunąć go z listy.</gray>"
 
 [gui.config.spectator.allow-unsafe-return]
 name = "Zezwalaj na niebezpieczny powrót"

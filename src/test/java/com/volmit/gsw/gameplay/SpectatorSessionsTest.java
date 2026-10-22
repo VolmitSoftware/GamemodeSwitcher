@@ -4,6 +4,7 @@ import org.bukkit.GameMode;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
+import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.UUID;
 import java.util.concurrent.TimeUnit;
@@ -58,5 +59,19 @@ class SpectatorSessionsTest {
                 0, 0, GameMode.SURVIVAL, true, true)).isInstanceOf(IllegalArgumentException.class);
         assertThatThrownBy(() -> new SpectatorSession(UUID.randomUUID(), 0, 64, 0,
                 0, 0, GameMode.SPECTATOR, true, true)).isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @Test
+    void corruptFileIsSetAsideAndSessionsStartEmpty() throws Exception {
+        Path file = directory.resolve("spectator-sessions.toml");
+        Files.writeString(file, "[sessions.not-a-uuid\nworld = 1");
+        try (SpectatorSessions sessions = new SpectatorSessions(file, Logger.getAnonymousLogger())) {
+            assertThat(sessions.get(UUID.randomUUID())).isNull();
+        }
+        assertThat(file).doesNotExist();
+        try (var listing = Files.list(directory)) {
+            assertThat(listing.map(path -> path.getFileName().toString()))
+                    .singleElement().asString().startsWith("spectator-sessions.toml.broken-");
+        }
     }
 }

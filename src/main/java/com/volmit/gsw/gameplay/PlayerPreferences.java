@@ -30,7 +30,7 @@ public final class PlayerPreferences implements AutoCloseable {
     public PlayerPreferences(Path file, Logger logger) throws IOException {
         this.file = file;
         this.logger = logger;
-        snapshot = load(file);
+        snapshot = load(file, logger);
         writer = Executors.newSingleThreadExecutor(task -> {
             Thread thread = new Thread(task, "GamemodeSwitcher-Player-Preferences");
             thread.setDaemon(true);
@@ -117,12 +117,13 @@ public final class PlayerPreferences implements AutoCloseable {
         }
     }
 
-    private static Snapshot load(Path file) throws IOException {
+    private static Snapshot load(Path file, Logger logger) throws IOException {
         if (!Files.exists(file)) {
             return new Snapshot(Set.of(), Map.of());
         }
+        String source = Files.readString(file, StandardCharsets.UTF_8);
         try {
-            Toml toml = new Toml().read(Files.readString(file, StandardCharsets.UTF_8));
+            Toml toml = new Toml().read(source);
             List<?> values = toml.getList("disabled", List.of());
             Set<UUID> disabled = new HashSet<>();
             for (Object value : values) {
@@ -146,8 +147,9 @@ public final class PlayerPreferences implements AutoCloseable {
                 }
             }
             return new Snapshot(Set.copyOf(disabled), Map.copyOf(feedback));
-        } catch (IllegalArgumentException | ClassCastException exception) {
-            throw new IOException("Invalid player preferences at " + file, exception);
+        } catch (IllegalArgumentException | IllegalStateException | ClassCastException exception) {
+            DataFiles.quarantine(file, logger, "player preferences", exception);
+            return new Snapshot(Set.of(), Map.of());
         }
     }
 

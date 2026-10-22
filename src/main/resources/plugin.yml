@@ -4,7 +4,7 @@ main: com.volmit.gsw.GamemodeSwitcher
 api-version: '26.1'
 folia-supported: true
 authors: [Volmit Software]
-website: https://volmit.com
+website: https://volmitsoftware.com
 description: Permission-aware gamemode switching with configurable gestures and in-game menus.
 commands:
   gamemodeswitcher:

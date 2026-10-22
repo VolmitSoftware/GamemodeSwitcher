@@ -20,6 +20,7 @@
 #   {command}  percorso del comando
 #   {count}  Numero di voci corrispondenti
 #   {enabled}  Stato del cambio di modalità
+#   {folder}  Nome della cartella del mondo
 #   {group}  Categoria dell’editor di lingua
 #   {hot_reload}  stato ricaricamento
 #   {key}  chiave parametro
@@ -477,8 +478,7 @@ description = "Destinazione premendo due volte il tasto di scambio delle mani da
 
 [gui.config.restrictions.disabled-worlds]
 name = "Mondi disabilitati"
-description = "Nomi dei mondi in cui gesti, comandi e menu non possono cambiare modalità. Maiuscole e minuscole sono equivalenti."
-input = "Usa un elenco di nomi di mondi, come [\"world_nether\", \"world_the_end\"]. Usa [] per nessuna restrizione sui mondi."
+description = "Mondi in cui gesti, comandi e menu non possono cambiare la modalità di gioco. Clicca per sceglierli da un elenco."
 
 [gui.config.feedback.auto-fly-creative]
 name = "Vola entrando in Creativa"
@@ -538,10 +538,23 @@ pling = "<gold>Pling</gold>"
 experience = "<gold>Raccolta esperienza</gold>"
 bell = "<gold>Campana</gold>"
 
+[world.menu]
+title = "<gradient:#634514:#2f523f>Mondi disabilitati</gradient>"
+help = "<gold>Mondi disabilitati</gold>"
+help-detail = "<gray>Clicca su un mondo per disattivare o riattivare lì il cambio di modalità di gioco. I mondi vengono salvati con la chiave di dimensione, ad esempio minecraft:the_nether.</gray>"
+folder = "<gray>Cartella del mondo: {folder}</gray>"
+unloaded = "<gray>Non caricato su questo server</gray>"
+disabled = "<red>Cambio disattivato</red>"
+enabled = "<green>Cambio attivo</green>"
+disable = "<gray>Clicca per disattivare il cambio qui.</gray>"
+enable = "<gray>Clicca per riattivare il cambio qui.</gray>"
+remove = "<gray>Clicca per rimuoverlo dall'elenco.</gray>"
+
 [spectator]
 busy = "{prefix} &eÈ già in corso una transizione della modalità spettatore.&r"
 none = "{prefix} &eNon hai una sessione spettatore attiva.&r"
 return-failed = "{prefix}&cImpossibile tornare. La sessione è salvata; riprova con /gsw return.&r"
+origin-missing = "{prefix} &eIl mondo da cui sei entrato in Spettatore non è più caricato, quindi la modalità è cambiata qui.&r"
 save-failed = "{prefix} &cImpossibile salvare la sessione spettatore. La modalità di gioco non è cambiata.&r"
 
 [gui.config.spectator]

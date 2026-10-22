@@ -20,6 +20,7 @@
 #   {command}  komentopolku
 #   {count}  Täsmäytysten lukumäärä
 #   {enabled}  Pelitilan vaihtamisen tila
+#   {folder}  Maailmakansion nimi
 #   {group}  Kielieditorin luokka
 #   {hot_reload}  pikalatauksen tila
 #   {key}  parametriavain
@@ -477,8 +478,7 @@ description = "Kohde hiivittäessä ja painettaessa käsien vaihtonäppäintä k
 
 [gui.config.restrictions.disabled-worlds]
 name = "Estetyt maailmat"
-description = "Maailmat, joissa eleet, komennot ja valikko eivät voi vaihtaa pelitilaa. Kirjainkoolla ei ole väliä."
-input = "Anna maailmanimien luettelo, esimerkiksi [\"world_nether\", \"world_the_end\"]. [] poistaa maailmarajoitukset."
+description = "Maailmat, joissa eleet, komennot ja valikko eivät voi vaihtaa pelitilaa. Napsauta valitaksesi ne listasta."
 
 [gui.config.feedback.auto-fly-creative]
 name = "Lennä luovaan siirryttäessä"
@@ -538,10 +538,23 @@ pling = "<gold>Pling</gold>"
 experience = "<gold>Kokemuspisteen keräys</gold>"
 bell = "<gold>Kello</gold>"
 
+[world.menu]
+title = "<gradient:#634514:#2f523f>Estetyt maailmat</gradient>"
+help = "<gold>Estetyt maailmat</gold>"
+help-detail = "<gray>Napsauta maailmaa ottaaksesi pelitilan vaihdon siellä pois käytöstä tai käyttöön. Maailmat tallennetaan ulottuvuusavaimella, esimerkiksi minecraft:the_nether.</gray>"
+folder = "<gray>Maailmakansio: {folder}</gray>"
+unloaded = "<gray>Ei ladattu tällä palvelimella</gray>"
+disabled = "<red>Vaihto pois</red>"
+enabled = "<green>Vaihto päällä</green>"
+disable = "<gray>Napsauta ottaaksesi vaihdon pois käytöstä tässä.</gray>"
+enable = "<gray>Napsauta ottaaksesi vaihdon taas käyttöön tässä.</gray>"
+remove = "<gray>Napsauta poistaaksesi sen listasta.</gray>"
+
 [spectator]
 busy = "{prefix} &eTarkkailutilan vaihto on jo käynnissä.&r"
 none = "{prefix} &eSinulla ei ole aktiivista tarkkailuistuntoa.&r"
 return-failed = "{prefix}&cPaluu epäonnistui. Istuntosi on tallennettu; yritä /gsw return uudelleen.&r"
+origin-missing = "{prefix} &eKatsojatilan aloitusmaailma ei ole enää ladattuna, joten pelitilasi vaihtui tässä.&r"
 save-failed = "{prefix} &cTarkkailuistuntoa ei voitu tallentaa. Pelitilaasi ei muutettu.&r"
 
 [gui.config.spectator]

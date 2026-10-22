@@ -20,6 +20,7 @@
 #   {command}  chemin de commande
 #   {count}  Nombre d'entrées correspondantes
 #   {enabled}  État du changement de mode de jeu
+#   {folder}  Nom du dossier du monde
 #   {group}  Catégorie de l’éditeur de langue
 #   {hot_reload}  état du rechargement
 #   {key}  clé du paramètre
@@ -477,8 +478,7 @@ description = "Destination après un double appui sur la touche d'échange des m
 
 [gui.config.restrictions.disabled-worlds]
 name = "Mondes désactivés"
-description = "Noms des mondes où les gestes, commandes et le menu ne peuvent pas changer le mode. La casse est ignorée."
-input = "Utiliser une liste de noms de mondes, comme [\"world_nether\", \"world_the_end\"]. Utiliser [] pour ne restreindre aucun monde."
+description = "Mondes où les gestes, les commandes et le menu ne peuvent pas changer le mode de jeu. Cliquez pour les choisir dans une liste."
 
 [gui.config.feedback.auto-fly-creative]
 name = "Voler en passant en Créatif"
@@ -538,10 +538,23 @@ pling = "<gold>Pling</gold>"
 experience = "<gold>Ramassage d'expérience</gold>"
 bell = "<gold>Cloche</gold>"
 
+[world.menu]
+title = "<gradient:#634514:#2f523f>Mondes désactivés</gradient>"
+help = "<gold>Mondes désactivés</gold>"
+help-detail = "<gray>Cliquez sur un monde pour y désactiver ou réactiver le changement de mode de jeu. Les mondes sont enregistrés par clé de dimension, par exemple minecraft:the_nether.</gray>"
+folder = "<gray>Dossier du monde : {folder}</gray>"
+unloaded = "<gray>Non chargé sur ce serveur</gray>"
+disabled = "<red>Changement désactivé</red>"
+enabled = "<green>Changement activé</green>"
+disable = "<gray>Cliquez pour désactiver le changement ici.</gray>"
+enable = "<gray>Cliquez pour réactiver le changement ici.</gray>"
+remove = "<gray>Cliquez pour le retirer de la liste.</gray>"
+
 [spectator]
 busy = "{prefix} &eUne transition du mode spectateur est déjà en cours.&r"
 none = "{prefix} &eVous n'avez aucune session spectateur active.&r"
 return-failed = "{prefix}&cRetour impossible. Votre session est enregistrée ; réessayez /gsw return.&r"
+origin-missing = "{prefix} &eVotre monde d'entrée en spectateur n'est plus chargé ; votre mode de jeu a donc changé ici.&r"
 save-failed = "{prefix} &cImpossible d'enregistrer votre session spectateur. Votre mode de jeu n'a pas changé.&r"
 
 [gui.config.spectator]

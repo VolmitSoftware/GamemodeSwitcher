@@ -95,6 +95,7 @@ public final class SwitcherMessages {
     public static final TextKey SPECTATOR_BUSY = prefixed("spectator.busy", "&eA Spectator transition is already in progress.&r");
     public static final TextKey SPECTATOR_NONE = prefixed("spectator.none", "&eYou do not have an active Spectator session.&r");
     public static final TextKey SPECTATOR_RETURN_FAILED = prefixed("spectator.return-failed", "&cCould not return. Your session is saved; try /gsw return again.&r");
+    public static final TextKey SPECTATOR_ORIGIN_MISSING = prefixed("spectator.origin-missing", "&eYour Spectator entry world is no longer loaded, so you changed game mode where you are.&r");
     public static final TextKey SPECTATOR_SAVE_FAILED = prefixed("spectator.save-failed", "&cCould not save your Spectator session. Your game mode was not changed.&r");
     public static final TextKey COMMAND_TOGGLE = TextKey.of("command.description.toggle", "Enable or disable your game mode gestures");
     public static final TextKey COMMAND_STATUS = TextKey.of("command.description.status", "Show switching settings and your game mode");
@@ -115,6 +116,7 @@ public final class SwitcherMessages {
         builder.addAll(productKeys());
         builder.addAll(GuiMessages.keys());
         builder.addAll(SoundMessages.keys());
+        builder.addAll(WorldMessages.keys());
         builder.addAll(DirectorMessages.keys());
         builder.addAll(BukkitLanguageMessages.keys());
         builder.addAll(BukkitDebugMessages.keys());
@@ -153,7 +155,7 @@ public final class SwitcherMessages {
                 MENU_SELECTED, MENU_SURVIVAL_HELP, MENU_CREATIVE_HELP, MENU_ADVENTURE_HELP, MENU_SPECTATOR_HELP,
                 MENU_CONFIG_HELP, MENU_LANGUAGE_HELP, MENU_CLOSE, GUI_ROOT_TITLE, COMMAND_ROOT, COMMAND_MENU, COMMAND_SET, COMMAND_TOGGLE,
                 COMMAND_STATUS, COMMAND_CONFIG, COMMAND_LANGUAGE, COMMAND_DEBUG, COMMAND_VERSION,
-                COMMAND_RETURN, SPECTATOR_BUSY, SPECTATOR_NONE, SPECTATOR_RETURN_FAILED, SPECTATOR_SAVE_FAILED,
+                COMMAND_RETURN, SPECTATOR_BUSY, SPECTATOR_NONE, SPECTATOR_RETURN_FAILED, SPECTATOR_ORIGIN_MISSING, SPECTATOR_SAVE_FAILED,
                 COMMAND_DEBUG_DUMP, PARAMETER_MODE, PARAMETER_ENABLED, PARAMETER_UPLOAD);
     }
 }

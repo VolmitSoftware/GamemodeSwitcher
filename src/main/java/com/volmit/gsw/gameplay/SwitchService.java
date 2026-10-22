@@ -189,6 +189,9 @@ public final class SwitchService implements Listener, AutoCloseable {
         }
         SpectatorSession session = sessions.get(player.getUniqueId());
         if (player.getGameMode() == GameMode.SPECTATOR && session != null && session.returnToOrigin()) {
+            if (plugin.getServer().getWorld(session.world()) == null) {
+                return exitWithoutOrigin(player, target);
+            }
             returnToOrigin(player, target, session);
             return false;
         }
@@ -332,7 +335,7 @@ public final class SwitchService implements Listener, AutoCloseable {
         if (!settings.enabled()) {
             return new Eligibility(SwitcherMessages.SWITCH_DISABLED, MessageArgs.empty());
         }
-        if (settings.disabledWorlds().contains(player.getWorld().getName().toLowerCase(Locale.ROOT))) {
+        if (settings.disabled(player.getWorld())) {
             return new Eligibility(SwitcherMessages.SWITCH_BLOCKED_WORLD,
                     MessageArgs.builder().untrusted("world", player.getWorld().getName()).build());
         }
@@ -396,7 +399,7 @@ public final class SwitchService implements Listener, AutoCloseable {
 
     private void returnToOrigin(Player player, GameMode target, SpectatorSession session) {
         World world = plugin.getServer().getWorld(session.world());
-        if (world == null || config.runtime().disabledWorlds().contains(world.getName().toLowerCase(Locale.ROOT))) {
+        if (world == null || config.runtime().disabled(world)) {
             fail(player, SwitcherMessages.SPECTATOR_RETURN_FAILED);
             return;
         }
@@ -417,7 +420,7 @@ public final class SwitchService implements Listener, AutoCloseable {
                 }
                 Eligibility current = eligibility(player, target, config.runtime(), true);
                 if (!Boolean.TRUE.equals(safe) || checkFailure != null || !current.allowed()
-                        || config.runtime().disabledWorlds().contains(world.getName().toLowerCase(Locale.ROOT))) {
+                        || config.runtime().disabled(world)) {
                     transitions.remove(id, token);
                     if (!current.allowed()) {
                         feedback.failure(player, current.reason(), current.arguments(), preferences.feedback(id));
@@ -438,6 +441,14 @@ public final class SwitchService implements Listener, AutoCloseable {
                 transitions.remove(id, token);
             }
         });
+    }
+
+    private boolean exitWithoutOrigin(Player player, GameMode target) {
+        if (!applyMode(player, target)) {
+            return false;
+        }
+        language.send(player, SwitcherMessages.SPECTATOR_ORIGIN_MISSING);
+        return true;
     }
 
     private void finishReturn(Player player, GameMode target, SpectatorSession session, ReturnResult result) {
@@ -571,7 +582,7 @@ public final class SwitchService implements Listener, AutoCloseable {
 
     private boolean canGesture(Player player, RuntimeConfig settings) {
         return settings.enabled() && enabled(player) && player.hasPermission("gamemodeswitcher.use")
-                && !player.isDead() && !settings.disabledWorlds().contains(player.getWorld().getName().toLowerCase(Locale.ROOT))
+                && !player.isDead() && !settings.disabled(player.getWorld())
                 && (!settings.requireEmptyHands() || (player.getInventory().getItemInMainHand().getType().isAir()
                 && player.getInventory().getItemInOffHand().getType().isAir()));
     }

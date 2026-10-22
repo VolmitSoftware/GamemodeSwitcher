@@ -20,6 +20,7 @@
 #   {command}  komandos kelias
 #   {count}  Atitinkamų įrašų skaičius
 #   {enabled}  Žaidimo režimo keitimo būsena
+#   {folder}  Pasaulio aplanko pavadinimas
 #   {group}  Kalbos rengyklės kategorija
 #   {hot_reload}  karštojo įkėlimo būsena
 #   {key}  parametro raktas
@@ -476,8 +477,7 @@ description = "Tikslas sėlinant ir dukart paspaudus rankų sukeitimo klavišą 
 
 [gui.config.restrictions.disabled-worlds]
 name = "Išjungti pasauliai"
-description = "Pasaulių pavadinimai, kuriuose gestai, komandos ir meniu negali keisti režimo. Didžiosios ir mažosios raidės nesvarbios."
-input = "Įveskite pasaulių pavadinimų sąrašą, pavyzdžiui, [\"world_nether\", \"world_the_end\"]. [] pašalina pasaulių apribojimus."
+description = "Pasauliai, kuriuose gestai, komandos ir meniu negali pakeisti žaidimo režimo. Spustelėkite, kad pasirinktumėte iš sąrašo."
 
 [gui.config.feedback.auto-fly-creative]
 name = "Skristi įjungus Kūrybinį"
@@ -523,6 +523,7 @@ description = "Keitimo garso aukštis. Ribos: nuo 0.5 iki 2; 1 naudoja pradinį 
 [spectator]
 save-failed = "{prefix}&cNepavyko išsaugoti sesijos. Žaidimo režimas nepakeistas.&r"
 return-failed = "{prefix}&cNepavyko grįžti. Sesija išsaugota; bandykite /gsw return dar kartą.&r"
+origin-missing = "{prefix} &ePasaulis, kuriame įjungėte stebėtojo režimą, nebeįkeltas, todėl žaidimo režimas pakeistas čia.&r"
 none = "{prefix}&cNeturite aktyvios stebėtojo sesijos.&r"
 busy = "{prefix}&cStebėtojo režimo keitimas jau vyksta.&r"
 
@@ -554,6 +555,18 @@ experience = "<gray>Patirties surinkimas</gray>"
 pling = "<gray>Natų skambesys</gray>"
 chime = "<gray>Skambesys</gray>"
 click = "<gray>Mygtuko paspaudimas</gray>"
+
+[world.menu]
+title = "<gradient:#634514:#2f523f>Išjungti pasauliai</gradient>"
+help = "<gold>Išjungti pasauliai</gold>"
+help-detail = "<gray>Spustelėkite pasaulį, kad jame išjungtumėte arba įjungtumėte žaidimo režimo keitimą. Pasauliai įrašomi pagal dimensijos raktą, pavyzdžiui, minecraft:the_nether.</gray>"
+folder = "<gray>Pasaulio aplankas: {folder}</gray>"
+unloaded = "<gray>Šiame serveryje neįkeltas</gray>"
+disabled = "<red>Keitimas išjungtas</red>"
+enabled = "<green>Keitimas įjungtas</green>"
+disable = "<gray>Spustelėkite, kad čia išjungtumėte keitimą.</gray>"
+enable = "<gray>Spustelėkite, kad čia vėl įjungtumėte keitimą.</gray>"
+remove = "<gray>Spustelėkite, kad pašalintumėte iš sąrašo.</gray>"
 
 [gui.config.spectator.allow-unsafe-return]
 name = "Leisti nesaugų grįžimą"

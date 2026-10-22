@@ -20,6 +20,7 @@
 #   {command}  명령 경로
 #   {count}  일치하는 항목의 수
 #   {enabled}  게임 모드 전환 활성화 상태
+#   {folder}  월드 폴더 이름
 #   {group}  언어 편집기 분류
 #   {hot_reload}  핫 리로드 상태
 #   {key}  매개변수 키
@@ -477,8 +478,7 @@ description = "모험에서 웅크린 채 손 바꾸기 키를 두 번 눌렀을
 
 [gui.config.restrictions.disabled-worlds]
 name = "차단된 월드"
-description = "제스처, 명령어와 메뉴로 게임 모드를 바꿀 수 없는 월드 이름입니다. 대소문자를 구분하지 않습니다."
-input = "[\"world_nether\", \"world_the_end\"]처럼 월드 이름 목록을 입력하세요. []는 월드 제한이 없음을 뜻합니다."
+description = "제스처, 명령어, 메뉴로 게임 모드를 바꿀 수 없는 월드입니다. 클릭해서 목록에서 고르세요."
 
 [gui.config.feedback.auto-fly-creative]
 name = "크리에이티브 진입 시 비행"
@@ -538,10 +538,23 @@ pling = "<gold>플링</gold>"
 experience = "<gold>경험치 획득</gold>"
 bell = "<gold>종</gold>"
 
+[world.menu]
+title = "<gradient:#634514:#2f523f>차단된 월드</gradient>"
+help = "<gold>차단된 월드</gold>"
+help-detail = "<gray>월드를 클릭하면 그 월드의 게임 모드 전환을 끄거나 켭니다. 월드는 minecraft:the_nether 같은 차원 키로 저장됩니다.</gray>"
+folder = "<gray>월드 폴더: {folder}</gray>"
+unloaded = "<gray>이 서버에 로드되지 않음</gray>"
+disabled = "<red>전환 꺼짐</red>"
+enabled = "<green>전환 켜짐</green>"
+disable = "<gray>클릭해서 이곳의 전환을 끕니다.</gray>"
+enable = "<gray>클릭해서 이곳의 전환을 다시 켭니다.</gray>"
+remove = "<gray>클릭해서 목록에서 제거합니다.</gray>"
+
 [spectator]
 busy = "{prefix} &e관전자 모드 전환이 이미 진행 중입니다.&r"
 none = "{prefix} &e활성 관전자 세션이 없습니다.&r"
 return-failed = "{prefix}&c복귀하지 못했습니다. 세션은 저장되어 있습니다. /gsw return 으로 다시 시도하세요.&r"
+origin-missing = "{prefix} &e관전자 모드에 들어간 월드가 더 이상 로드되어 있지 않아 현재 위치에서 게임 모드를 변경했습니다.&r"
 save-failed = "{prefix} &c관전자 세션을 저장할 수 없습니다. 게임 모드는 변경되지 않았습니다.&r"
 
 [gui.config.spectator]

@@ -18,6 +18,7 @@ import com.volmit.gsw.gameplay.SwitchService;
 import com.volmit.gsw.gui.ConfigMenu;
 import com.volmit.gsw.gui.ModeSelector;
 import com.volmit.gsw.gui.SoundPicker;
+import com.volmit.gsw.gui.WorldPicker;
 import com.volmit.gsw.localization.LanguageService;
 import com.volmit.gsw.localization.SwitcherMessages;
 import com.volmit.gsw.metrics.MetricsService;
@@ -49,6 +50,7 @@ public final class GamemodeSwitcher extends JavaPlugin {
     private BukkitDebugDump debugDump;
     private ModeSelector selector;
     private SoundPicker soundPicker;
+    private WorldPicker worldPicker;
     private ConfigReloader reloader;
     private MetricsService metricsService;
     private ExecutorService reloadWorker;
@@ -107,6 +109,7 @@ public final class GamemodeSwitcher extends JavaPlugin {
                     (player, key, arguments) -> ComponentText.markup(languageService.render(player, SwitcherMessages.PREFIX)
                             + languageService.renderWithoutPrefix(player, key, arguments))));
             soundPicker = new SoundPicker(this);
+            worldPicker = new WorldPicker(this);
             ConfigMenu.configure(this);
             debugDump = BukkitDebugDump.create(this, new BukkitDebugDump.Options(
                     () -> configService.runtime().debugUpload(), new SwitcherDebugContributor(this),
@@ -140,6 +143,7 @@ public final class GamemodeSwitcher extends JavaPlugin {
         closeService("bStats metrics", metricsService);
         closeService("game mode selector", selector);
         closeService("sound picker", soundPicker);
+        closeService("world picker", worldPicker);
         closeService("configuration editor", configEditor);
         closeService("language editor", languageSwitcher);
         closeService("diagnostics", debugDump);
@@ -184,6 +188,10 @@ public final class GamemodeSwitcher extends JavaPlugin {
 
     public SoundPicker getSoundPicker() {
         return soundPicker;
+    }
+
+    public WorldPicker getWorldPicker() {
+        return worldPicker;
     }
 
     public ModeSelector getSelector() {

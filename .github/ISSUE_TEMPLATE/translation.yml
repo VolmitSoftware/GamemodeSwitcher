@@ -1,11 +1,15 @@
 name: Translation
 description: A message in GamemodeSwitcher is wrong, missing, or unclear.
 labels: [bug]
+type: Bug
+assignees: [SwiftSwamp]
 body:
   - type: markdown
     attributes:
       value: |
-        The language files are in [`src/main/resources/languages/`](https://github.com/VolmitSoftware/GamemodeSwitcher/tree/HEAD/src/main/resources/languages). You can also fix the text with a pull request.
+        The language files are in [`src/main/resources/languages/`](https://github.com/VolmitSoftware/GamemodeSwitcher/tree/HEAD/src/main/resources/languages).
+
+        You can create a pull request to modify the files directly.
   - type: dropdown
     id: language
     attributes:
@@ -29,7 +33,7 @@ body:
         - Vietnamese (vi_VI)
         - Chinese, Simplified (zh_CN)
         - Chinese, Traditional (zh_TW)
-        - Other
+        - Another language (name it below)
     validations:
       required: true
   - type: textarea
@@ -42,11 +46,10 @@ body:
     id: suggested
     attributes:
       label: Suggested text
-      description: Keep placeholders like `{player}` and tags like `<gold>` as they are.
     validations:
       required: true
   - type: input
     id: where
     attributes:
       label: Where does it appear?
-      description: The command or menu, or the message key if you know it.
+      description: The command used or message key where it is appearing.

@@ -1,7 +1,9 @@
 package com.volmit.gsw.config;
 
 import org.bukkit.GameMode;
+import org.bukkit.World;
 
+import java.util.Locale;
 import java.util.Map;
 import java.util.Set;
 
@@ -29,6 +31,11 @@ public record RuntimeConfig(
         disabledWorlds = Set.copyOf(disabledWorlds);
         normalModes = Map.copyOf(normalModes);
         sneakingModes = Map.copyOf(sneakingModes);
+    }
+
+    public boolean disabled(World world) {
+        return disabledWorlds.contains(world.getKey().toString())
+                || disabledWorlds.contains(world.getName().toLowerCase(Locale.ROOT));
     }
 
     public GameMode target(GameMode current, boolean sneaking) {

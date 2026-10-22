@@ -12,6 +12,8 @@ import com.volmit.gsw.presentation.SwitchFeedback;
 import org.bukkit.GameMode;
 import org.bukkit.Location;
 import org.bukkit.Material;
+import org.bukkit.NamespacedKey;
+import org.bukkit.Server;
 import org.bukkit.SoundCategory;
 import org.bukkit.World;
 import org.bukkit.entity.Player;
@@ -78,6 +80,28 @@ class SwitchServiceTest {
     }
 
     @Test
+    void returnSessionWhoseWorldIsGoneExitsInPlaceAndEndsTheSession() throws Exception {
+        Fixture fixture = fixture();
+        acceptChanges(fixture);
+        fixture.service().close();
+        Server server = mock(Server.class);
+        when(fixture.plugin().getServer()).thenReturn(server);
+        try (SpectatorSessions sessions = new SpectatorSessions(directory.resolve("data/spectator-sessions.toml"), Logger.getAnonymousLogger())) {
+            sessions.put(fixture.player().getUniqueId(), new SpectatorSession(UUID.randomUUID(),
+                    0, 64, 0, 0, 0, GameMode.ADVENTURE, true, true)).get(5, TimeUnit.SECONDS);
+        }
+        SwitchFeedback feedback = new SwitchFeedback(new SwitchFeedback.Dependencies(fixture.plugin(), fixture.config(), fixture.language()));
+        try (SwitchService service = new SwitchService(new SwitchService.Dependencies(fixture.plugin(), fixture.config(), fixture.language(), feedback))) {
+            fixture.mode().set(GameMode.SPECTATOR);
+            assertThat(service.returnFromSpectator(fixture.player())).isTrue();
+            assertThat(fixture.mode().get()).isEqualTo(GameMode.ADVENTURE);
+            verify(fixture.language()).send(fixture.player(), SwitcherMessages.SPECTATOR_ORIGIN_MISSING);
+            verify(fixture.player(), never()).teleport(any(Location.class));
+            assertThat(service.spectatorExit(fixture.player())).isEqualTo(GameMode.CREATIVE);
+        }
+    }
+
+    @Test
     void deathDiscardsRememberedModeWithoutRestoringIt() throws Exception {
         Fixture fixture = fixture();
         fixture.service().close();
@@ -108,7 +132,7 @@ class SwitchServiceTest {
             assertThat(service.switchMode(fixture.player(), GameMode.CREATIVE)).isTrue();
             assertThat(service.eligibility(fixture.player(), GameMode.SURVIVAL).reason()).isEqualTo(SwitcherMessages.SWITCH_COOLDOWN);
             String source = fixture.config().source();
-            fixture.config().save(source, source.replace("disabled-worlds = []", "disabled-worlds = [\"WORLD\"]"));
+            fixture.config().save(source, source.replace("disabled-worlds = []", "disabled-worlds = [\"MINECRAFT:OVERWORLD\"]"));
             assertThat(service.eligibility(fixture.player(), GameMode.SURVIVAL).reason()).isEqualTo(SwitcherMessages.SWITCH_BLOCKED_WORLD);
             source = fixture.config().source();
             fixture.config().save(source, source.replace("enabled = true", "enabled = false"));
@@ -372,6 +396,7 @@ class SwitchServiceTest {
         when(player.getUniqueId()).thenReturn(UUID.randomUUID());
         when(player.getWorld()).thenReturn(world);
         when(world.getName()).thenReturn("world");
+        when(world.getKey()).thenReturn(NamespacedKey.minecraft("overworld"));
         when(world.getUID()).thenReturn(UUID.randomUUID());
         when(player.getGameMode()).thenAnswer(ignored -> mode.get());
         when(player.hasPermission(anyString())).thenReturn(true);

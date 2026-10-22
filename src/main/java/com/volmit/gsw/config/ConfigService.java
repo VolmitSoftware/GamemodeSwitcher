@@ -21,9 +21,11 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.Set;
 import java.util.function.BiConsumer;
+import java.util.regex.Pattern;
 
 public final class ConfigService {
     private static final int MAXIMUM_BYTES = 256 * 1024;
+    private static final Pattern DIMENSION_KEY = Pattern.compile("[a-z0-9._-]+:[a-z0-9/._-]+");
 
     private final Path file;
     private String defaults;
@@ -118,10 +120,11 @@ public final class ConfigService {
             Set<String> disabledWorlds = new HashSet<>();
             List<?> worlds = toml.getList("restrictions.disabled-worlds", List.of());
             for (Object world : worlds) {
-                if (!(world instanceof String name) || name.isBlank()) {
-                    throw new IllegalArgumentException("restrictions.disabled-worlds must contain world names");
+                String key = world instanceof String text ? text.strip().toLowerCase(Locale.ROOT) : "";
+                if (key.isEmpty() || (key.indexOf(':') >= 0 && !DIMENSION_KEY.matcher(key).matches())) {
+                    throw new IllegalArgumentException("restrictions.disabled-worlds must contain dimension keys such as minecraft:the_nether or world folder names");
                 }
-                disabledWorlds.add(name.toLowerCase(Locale.ROOT));
+                disabledWorlds.add(key);
             }
             return new RuntimeConfig(
                     toml.getBoolean("general.enabled", true), toml.getBoolean("general.update-notifications", true), language,
@@ -139,7 +142,7 @@ public final class ConfigService {
                     toml.getBoolean("spectator.return-to-origin", false),
                     toml.getBoolean("spectator.allow-unsafe-return", true)
             );
-        } catch (IllegalArgumentException | ClassCastException exception) {
+        } catch (IllegalArgumentException | IllegalStateException | ClassCastException exception) {
             throw new IOException("Invalid config.toml: " + exception.getMessage(), exception);
         }
     }

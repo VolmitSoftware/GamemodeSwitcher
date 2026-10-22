@@ -20,6 +20,7 @@
 #   {command}  コマンド経路
 #   {count}  マッチングエントリー件数
 #   {enabled}  ゲームモード切り替えの有効状態
+#   {folder}  ワールドフォルダー名
 #   {group}  言語エディターのカテゴリ
 #   {hot_reload}  ホットリロード状態
 #   {key}  パラメーターキー
@@ -477,8 +478,7 @@ description = "アドベンチャーでスニークしながら持ち替えキ�
 
 [gui.config.restrictions.disabled-worlds]
 name = "無効なワールド"
-description = "ジェスチャー、コマンド、メニューで切り替えられないワールド名です。大文字と小文字を区別しません。"
-input = "[\"world_nether\", \"world_the_end\"]のようにワールド名のリストを入力します。[]でワールド制限をなくします。"
+description = "ジェスチャー、コマンド、メニューでゲームモードを変更できないワールド。クリックして一覧から選択します。"
 
 [gui.config.feedback.auto-fly-creative]
 name = "クリエイティブで飛行開始"
@@ -538,10 +538,23 @@ pling = "<gold>プリング</gold>"
 experience = "<gold>経験値の取得</gold>"
 bell = "<gold>鐘</gold>"
 
+[world.menu]
+title = "<gradient:#634514:#2f523f>無効なワールド</gradient>"
+help = "<gold>無効なワールド</gold>"
+help-detail = "<gray>ワールドをクリックすると、そのワールドでのゲームモード切り替えをオフまたはオンにします。ワールドは minecraft:the_nether のようなディメンションキーで保存されます。</gray>"
+folder = "<gray>ワールドフォルダー: {folder}</gray>"
+unloaded = "<gray>このサーバーでは読み込まれていません</gray>"
+disabled = "<red>切り替えオフ</red>"
+enabled = "<green>切り替えオン</green>"
+disable = "<gray>クリックしてここでの切り替えをオフにします。</gray>"
+enable = "<gray>クリックしてここでの切り替えを再びオンにします。</gray>"
+remove = "<gray>クリックして一覧から削除します。</gray>"
+
 [spectator]
 busy = "{prefix} &eスペクテイターの切り替え処理中です。&r"
 none = "{prefix} &e有効なスペクテイターセッションがありません。&r"
 return-failed = "{prefix}&c帰還できませんでした。セッションは保存されています。/gsw return を再試行してください。&r"
+origin-missing = "{prefix} &eスペクテイターに入ったワールドが読み込まれていないため、この場所でゲームモードを変更しました。&r"
 save-failed = "{prefix} &cスペクテイターセッションを保存できませんでした。ゲームモードは変更されていません。&r"
 
 [gui.config.spectator]

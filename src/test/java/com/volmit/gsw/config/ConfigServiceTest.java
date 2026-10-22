@@ -1,6 +1,8 @@
 package com.volmit.gsw.config;
 
 import org.bukkit.GameMode;
+import org.bukkit.NamespacedKey;
+import org.bukkit.World;
 import art.arcane.volmlib.util.config.ConfigEditorDocument;
 import art.arcane.volmlib.util.config.TomlDocumentEditor;
 import com.google.gson.JsonPrimitive;
@@ -14,6 +16,8 @@ import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
 class ConfigServiceTest {
     @Test
@@ -106,6 +110,40 @@ class ConfigServiceTest {
                 .isInstanceOf(IOException.class);
         assertThatThrownBy(() -> ConfigService.parse("[restrictions]\ndisabled-worlds = [42]"))
                 .isInstanceOf(IOException.class);
+    }
+
+    @Test
+    void disabledWorldsAreNormalizedDimensionKeysOrLegacyFolderNames() throws IOException {
+        assertThat(ConfigService.parse("[restrictions]\ndisabled-worlds = [\" Minecraft:The_Nether \", \"iris:overworld/custom\", \"World_Nether\"]")
+                .disabledWorlds()).containsExactlyInAnyOrder("minecraft:the_nether", "iris:overworld/custom", "world_nether");
+        assertThatThrownBy(() -> ConfigService.parse("[restrictions]\ndisabled-worlds = [\"minecraft:\"]"))
+                .isInstanceOf(IOException.class).hasMessageContaining("minecraft:the_nether");
+        assertThatThrownBy(() -> ConfigService.parse("[restrictions]\ndisabled-worlds = [\"  \"]"))
+                .isInstanceOf(IOException.class);
+        assertThatThrownBy(() -> ConfigService.parse("[restrictions]\ndisabled-worlds = [1]"))
+                .isInstanceOf(IOException.class);
+    }
+
+    @Test
+    void disabledWorldsMatchByDimensionKeyOrFolderName() throws IOException {
+        World nether = mock(World.class);
+        when(nether.getKey()).thenReturn(NamespacedKey.minecraft("the_nether"));
+        when(nether.getName()).thenReturn("World_Nether");
+        World overworld = mock(World.class);
+        when(overworld.getKey()).thenReturn(NamespacedKey.minecraft("overworld"));
+        when(overworld.getName()).thenReturn("world");
+        RuntimeConfig byName = ConfigService.parse("[restrictions]\ndisabled-worlds = [\"world_nether\"]");
+        RuntimeConfig byKey = ConfigService.parse("[restrictions]\ndisabled-worlds = [\"minecraft:the_nether\"]");
+        assertThat(byName.disabled(nether)).isTrue();
+        assertThat(byKey.disabled(nether)).isTrue();
+        assertThat(byName.disabled(overworld)).isFalse();
+        assertThat(byKey.disabled(overworld)).isFalse();
+    }
+
+    @Test
+    void tomlSyntaxErrorsAreReportedAsInvalidConfiguration() {
+        assertThatThrownBy(() -> ConfigService.parse("[general\nenabled = true"))
+                .isInstanceOf(IOException.class).hasMessageStartingWith("Invalid config.toml");
     }
 
     @Test
