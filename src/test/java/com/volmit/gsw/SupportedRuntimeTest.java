@@ -28,9 +28,12 @@ class SupportedRuntimeTest {
     }
 
     @Test
-    void requiresJava25() {
-        for (int javaFeature : List.of(17, 21, 24, 26)) {
+    void requiresJava25OrNewer() {
+        for (int javaFeature : List.of(17, 21, 24)) {
             assertThrows(IllegalStateException.class, () -> SupportedRuntime.requireSupported("26.3", javaFeature));
+        }
+        for (int javaFeature : List.of(25, 26, 27)) {
+            assertDoesNotThrow(() -> SupportedRuntime.requireSupported("26.3", javaFeature));
         }
     }
 }

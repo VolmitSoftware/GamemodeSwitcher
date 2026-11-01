@@ -28,7 +28,7 @@ tasks.named('slimJar').get()
 group = 'com.volmit'
 version = '2.0.0'
 
-String languageSourceReference = 'fe6047e14d87e10da3b45b6e196da741496979d8'
+String languageSourceReference = '724b670d9c9fcecb6ca600b8ab99c6a088ad2dfc'
 List<File> languageSourceFiles = fileTree('src/main/resources/languages') {
     include('*.toml')
 }.files.toList().sort { File left, File right -> left.name <=> right.name }
@@ -325,7 +325,7 @@ pluginPackaging {
                 'net.kyori': 'com.volmit.gsw.libs.kyori',
                 'org.bstats': 'com.volmit.gsw.libs.bstats'
             ]
-            maximumBytes = 1100000
+            maximumBytes = 1200000
             prunePrefixes = ['com/volmit/gsw/libs/volmlib/']
             requiredEntries = [
                 'plugin.yml',

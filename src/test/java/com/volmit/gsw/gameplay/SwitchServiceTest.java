@@ -3,24 +3,30 @@ package com.volmit.gsw.gameplay;
 import art.arcane.volmlib.util.config.TomlDocumentEditor;
 import art.arcane.volmlib.util.localization.MessageArgs;
 import art.arcane.volmlib.util.localization.TextKey;
+import art.arcane.volmlib.util.scheduling.EntityTeleports;
 import art.arcane.volmlib.util.scheduling.FoliaScheduler;
 import com.google.gson.JsonPrimitive;
 import com.volmit.gsw.config.ConfigService;
 import com.volmit.gsw.localization.LanguageService;
 import com.volmit.gsw.localization.SwitcherMessages;
 import com.volmit.gsw.presentation.SwitchFeedback;
+import org.bukkit.Bukkit;
 import org.bukkit.GameMode;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
+import org.bukkit.Registry;
 import org.bukkit.Server;
 import org.bukkit.SoundCategory;
 import org.bukkit.World;
+import org.bukkit.attribute.Attribute;
+import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.event.player.PlayerChangedWorldEvent;
 import org.bukkit.event.player.PlayerGameModeChangeEvent;
 import org.bukkit.event.player.PlayerSwapHandItemsEvent;
+import org.bukkit.event.player.PlayerTeleportEvent;
 import org.bukkit.event.player.PlayerToggleSneakEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.PlayerInventory;
@@ -33,23 +39,29 @@ import org.mockito.MockedStatic;
 import org.mockito.ArgumentCaptor;
 
 import java.io.IOException;
+import java.lang.reflect.InvocationHandler;
+import java.lang.reflect.Proxy;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
+import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.TimeUnit;
+import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.atomic.AtomicReference;
 import java.util.logging.Logger;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyFloat;
+import static org.mockito.ArgumentMatchers.anyLong;
 import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.doAnswer;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.mockStatic;
 import static org.mockito.Mockito.never;
+import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
@@ -231,15 +243,18 @@ class SwitchServiceTest {
                     });
             when(fixture.inventory().getItemInMainHand()).thenReturn(occupied);
             service.onSwap(swap(fixture.player()));
+            verify(fixture.language(), never()).send(eq(fixture.player()), eq(SwitcherMessages.SWITCH_EMPTY_HANDS), any(MessageArgs.class));
             service.onSwap(swap(fixture.player()));
             assertThat(scheduled).isEmpty();
             assertThat(service.stateCount()).isZero();
+            verify(fixture.language()).send(eq(fixture.player()), eq(SwitcherMessages.SWITCH_EMPTY_HANDS), any(MessageArgs.class));
 
             when(fixture.inventory().getItemInMainHand()).thenReturn(empty);
             when(fixture.inventory().getItemInOffHand()).thenReturn(occupied);
             service.onSwap(swap(fixture.player()));
             service.onSwap(swap(fixture.player()));
             assertThat(scheduled).isEmpty();
+            verify(fixture.language(), times(2)).send(eq(fixture.player()), eq(SwitcherMessages.SWITCH_EMPTY_HANDS), any(MessageArgs.class));
 
             when(fixture.inventory().getItemInOffHand()).thenReturn(empty);
             service.onSwap(swap(fixture.player()));
@@ -248,6 +263,86 @@ class SwitchServiceTest {
             when(fixture.inventory().getItemInOffHand()).thenReturn(occupied);
             scheduled.get(0).run();
             verify(fixture.player(), never()).setGameMode(any(GameMode.class));
+        }
+    }
+
+    @Test
+    void emptyHandsRequirementDoesNotTrapAHoldingPlayerInSpectator() throws IOException {
+        Fixture fixture = fixture();
+        acceptChanges(fixture);
+        String previous = fixture.config().source();
+        fixture.config().save(previous, previous.replace("require-empty-hands = false", "require-empty-hands = true"));
+        fixture.mode().set(GameMode.SPECTATOR);
+        ItemStack occupied = heldItem(false);
+        when(fixture.inventory().getItemInMainHand()).thenReturn(occupied);
+        List<Runnable> scheduled = new ArrayList<>();
+        try (SwitchService service = fixture.service(); MockedStatic<FoliaScheduler> scheduler = mockStatic(FoliaScheduler.class)) {
+            scheduler.when(() -> FoliaScheduler.runEntity(eq(fixture.plugin()), eq(fixture.player()), any(Runnable.class), eq(1L)))
+                    .thenAnswer(invocation -> {
+                        scheduled.add(invocation.getArgument(2, Runnable.class));
+                        return true;
+                    });
+            service.onSneak(new PlayerToggleSneakEvent(fixture.player(), true));
+            service.onSneak(new PlayerToggleSneakEvent(fixture.player(), true));
+            service.onSneak(new PlayerToggleSneakEvent(fixture.player(), true));
+            assertThat(scheduled).hasSize(1);
+            scheduled.get(0).run();
+
+            assertThat(fixture.mode().get()).isEqualTo(GameMode.CREATIVE);
+            verify(fixture.language(), never()).send(eq(fixture.player()), eq(SwitcherMessages.SWITCH_EMPTY_HANDS), any(MessageArgs.class));
+        }
+    }
+
+    @Test
+    void returnToOriginPutsAPlayerWhoMovedDuringVerificationBackBeforeChangingMode() throws Exception {
+        Fixture fixture = fixture();
+        acceptChanges(fixture);
+        fixture.service().close();
+        World world = fixture.player().getWorld();
+        Server server = mock(Server.class);
+        when(fixture.plugin().getServer()).thenReturn(server);
+        when(server.getWorld(world.getUID())).thenReturn(world);
+        when(fixture.player().isOnline()).thenReturn(true);
+        Location origin = new Location(world, 10, 64, 10);
+        AtomicReference<Location> location = new AtomicReference<>(new Location(world, 0, 64, 0));
+        AtomicInteger teleports = new AtomicInteger();
+        AtomicInteger readsSinceTeleport = new AtomicInteger();
+        when(fixture.player().getLocation()).thenAnswer(ignored -> {
+            if (teleports.get() == 1 && readsSinceTeleport.incrementAndGet() == 2) {
+                location.set(location.get().clone().add(1.5, 0, 0));
+            }
+            return location.get().clone();
+        });
+        try (SpectatorSessions sessions = new SpectatorSessions(directory.resolve("data/spectator-sessions.toml"), Logger.getAnonymousLogger())) {
+            sessions.put(fixture.player().getUniqueId(), new SpectatorSession(world.getUID(),
+                    origin.getX(), origin.getY(), origin.getZ(), 0, 0, GameMode.ADVENTURE, true, true)).get(5, TimeUnit.SECONDS);
+        }
+        SwitchFeedback feedback = new SwitchFeedback(new SwitchFeedback.Dependencies(fixture.plugin(), fixture.config(), fixture.language()));
+        try (MockedStatic<Bukkit> bukkit = mockStatic(Bukkit.class);
+             SwitchService service = new SwitchService(new SwitchService.Dependencies(fixture.plugin(), fixture.config(), fixture.language(), feedback));
+             MockedStatic<FoliaScheduler> scheduler = mockStatic(FoliaScheduler.class);
+             MockedStatic<EntityTeleports> teleporter = mockStatic(EntityTeleports.class)) {
+            bukkit.when(() -> Bukkit.getRegistry(any())).thenAnswer(ignored -> stub(Registry.class,
+                    (proxy, method, arguments) -> method.getName().equals("getOrThrow") ? stub(Attribute.class, (attribute, call, values) -> null) : null));
+            scheduler.when(() -> FoliaScheduler.runEntity(any(Plugin.class), any(Entity.class), any(Runnable.class), anyLong(), any(Runnable.class)))
+                    .thenAnswer(invocation -> {
+                        invocation.getArgument(2, Runnable.class).run();
+                        return true;
+                    });
+            teleporter.when(() -> EntityTeleports.teleport(any(Plugin.class), any(Entity.class), any(Location.class),
+                    eq(PlayerTeleportEvent.TeleportCause.PLUGIN))).thenAnswer(invocation -> {
+                teleports.incrementAndGet();
+                readsSinceTeleport.set(0);
+                location.set(invocation.getArgument(2, Location.class).clone());
+                return CompletableFuture.completedFuture(true);
+            });
+            fixture.mode().set(GameMode.SPECTATOR);
+            service.returnFromSpectator(fixture.player());
+
+            assertThat(teleports.get()).isEqualTo(2);
+            assertThat(location.get().distanceSquared(origin)).isZero();
+            assertThat(fixture.mode().get()).isEqualTo(GameMode.ADVENTURE);
+            verify(fixture.language(), never()).send(eq(fixture.player()), eq(SwitcherMessages.SPECTATOR_RETURN_FAILED), any(MessageArgs.class));
         }
     }
 
@@ -432,6 +527,10 @@ class SwitchServiceTest {
     private record Fixture(Plugin plugin, Player player, PlayerInventory inventory, ConfigService config,
                            LanguageService language, SwitchService service, AtomicReference<GameMode> mode) {
     }
+    private static Object stub(Class<?> type, InvocationHandler handler) {
+        return Proxy.newProxyInstance(type.getClassLoader(), new Class<?>[]{type}, handler);
+    }
+
     private ItemStack heldItem(boolean empty) {
         Material material = mock(Material.class);
         when(material.isAir()).thenReturn(empty);

@@ -9,7 +9,7 @@ body:
       value: |
         Make sure you're on the [latest release](https://github.com/VolmitSoftware/GamemodeSwitcher/releases/latest) and that it hasn't [already been reported](https://github.com/VolmitSoftware/GamemodeSwitcher/issues?q=is%3Aissue).
 
-        GamemodeSwitcher supports Minecraft 26.1 through 26.3 on Spigot, Paper, Purpur, Leaf, Folia, and Canvas, with Java 25.
+        GamemodeSwitcher supports Minecraft 26.1 through 26.3 on Spigot, Paper, Purpur, Leaf, Folia, and Canvas, with Java 25 or newer.
   - type: textarea
     id: issue
     attributes:

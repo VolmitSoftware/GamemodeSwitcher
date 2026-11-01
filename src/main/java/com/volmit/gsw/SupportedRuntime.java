@@ -9,8 +9,8 @@ final class SupportedRuntime {
     }
 
     static void requireSupported(String bukkitVersion, int javaFeature) {
-        if (javaFeature != 25 || bukkitVersion == null || !MINECRAFT_VERSION.matcher(bukkitVersion).matches()) {
-            throw new IllegalStateException("GamemodeSwitcher requires Minecraft 26.1 through 26.3 (including patch releases) and Java 25; found Minecraft "
+        if (javaFeature < 25 || bukkitVersion == null || !MINECRAFT_VERSION.matcher(bukkitVersion).matches()) {
+            throw new IllegalStateException("GamemodeSwitcher requires Minecraft 26.1 through 26.3 (including patch releases) and Java 25 or newer; found Minecraft "
                     + bukkitVersion + " and Java " + javaFeature + ".");
         }
     }

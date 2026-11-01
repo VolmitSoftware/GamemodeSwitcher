@@ -2,7 +2,7 @@
 
 Switch between Survival, Creative, Adventure, and Spectator with gestures, `/gsw menu`, or `/gsw set <mode>`.
 
-Requires **Minecraft 26.1–26.3** (including patch releases) and **Java 25**. Targets Spigot, Paper, Purpur, Leaf, Folia, and Canvas.
+Requires **Minecraft 26.1–26.3** (including patch releases) and **Java 25 or newer**. Targets Spigot, Paper, Purpur, Leaf, Folia, and Canvas.
 
 Run `/gsw` for help. Configuration and installed translations reload automatically. First startup downloads runtime libraries; VolmLib is included and needs no separate installation.
 

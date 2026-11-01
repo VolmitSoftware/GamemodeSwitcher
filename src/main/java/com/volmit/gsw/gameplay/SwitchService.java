@@ -82,6 +82,11 @@ public final class SwitchService implements Listener, AutoCloseable {
         boolean sneaking = player.isSneaking();
         String action = current.name() + (sneaking ? ":sneaking" : ":normal");
         if (swaps.tap(player.getUniqueId(), action, System.nanoTime(), settings.doubleTapMillis() * 1_000_000L, 2)) {
+            if (!handsReady(player, settings)) {
+                resetGestures(player.getUniqueId());
+                fail(player, SwitcherMessages.SWITCH_EMPTY_HANDS);
+                return;
+            }
             scheduleGesture(player, settings.target(current, sneaking), current, event, expectedGeneration);
         }
     }
@@ -242,7 +247,7 @@ public final class SwitchService implements Listener, AutoCloseable {
             addGestureHelp(lines, player, SwitcherMessages.GESTURE_NORMAL, settings.target(player.getGameMode(), false));
             addGestureHelp(lines, player, SwitcherMessages.GESTURE_SNEAKING, settings.target(player.getGameMode(), true));
         }
-        if (settings.requireEmptyHands()) {
+        if (settings.requireEmptyHands() && player.getGameMode() != GameMode.SPECTATOR) {
             lines.add(language.renderWithoutPrefix(player, SwitcherMessages.GESTURE_EMPTY_HANDS, MessageArgs.empty()));
         }
         lines.add(language.renderWithoutPrefix(player, SwitcherMessages.GESTURE_REBIND, MessageArgs.empty()));
@@ -434,7 +439,7 @@ public final class SwitchService implements Listener, AutoCloseable {
                         .whenComplete((success, failure) -> {
                             returnTeleports.remove(id, destination);
                             finishReturn(player, target, session,
-                                    new ReturnResult(token, expectedGeneration, destination, Boolean.TRUE.equals(success), failure));
+                                    new ReturnResult(token, expectedGeneration, destination, Boolean.TRUE.equals(success), failure), false);
                         });
             }, 0L, () -> transitions.remove(id, token));
             if (!entityScheduled) {
@@ -451,7 +456,7 @@ public final class SwitchService implements Listener, AutoCloseable {
         return true;
     }
 
-    private void finishReturn(Player player, GameMode target, SpectatorSession session, ReturnResult result) {
+    private void finishReturn(Player player, GameMode target, SpectatorSession session, ReturnResult result, boolean verified) {
         UUID id = player.getUniqueId();
         if (result.failure() != null) {
             plugin.getLogger().log(Level.SEVERE, "Spectator return teleport failed for " + id, result.failure());
@@ -467,6 +472,11 @@ public final class SwitchService implements Listener, AutoCloseable {
                     || actual.distanceSquared(result.destination()) > 0.01) {
                 transitions.remove(id, result.token());
                 fail(player, SwitcherMessages.SPECTATOR_RETURN_FAILED);
+                return;
+            }
+            if (verified) {
+                transitions.remove(id, result.token());
+                completeReturn(player, target);
                 return;
             }
             verifyReturn(player, target, session, result);
@@ -494,26 +504,40 @@ public final class SwitchService implements Listener, AutoCloseable {
                     transitions.remove(id, result.token());
                     return;
                 }
-                transitions.remove(id, result.token());
                 Location actual = player.getLocation();
                 if (!Boolean.TRUE.equals(safe) || failure != null
                         || !actual.getWorld().getUID().equals(session.world())
-                        || actual.distanceSquared(result.destination()) > 0.01
                         || (!config.runtime().allowUnsafeReturn() && !dimensions(player).equals(expectedDimensions))) {
+                    transitions.remove(id, result.token());
                     fail(player, SwitcherMessages.SPECTATOR_RETURN_FAILED);
                     return;
                 }
-                Eligibility current = eligibility(player, target);
-                if (!current.allowed()) {
-                    feedback.failure(player, current.reason(), current.arguments(), preferences.feedback(id));
+                if (actual.distanceSquared(result.destination()) <= 0.01) {
+                    transitions.remove(id, result.token());
+                    completeReturn(player, target);
                     return;
                 }
-                applyMode(player, target);
+                returnTeleports.put(id, result.destination());
+                EntityTeleports.teleport(plugin, player, result.destination(), PlayerTeleportEvent.TeleportCause.PLUGIN)
+                        .whenComplete((success, teleportFailure) -> {
+                            returnTeleports.remove(id, result.destination());
+                            finishReturn(player, target, session, new ReturnResult(result.token(), result.generation(),
+                                    result.destination(), Boolean.TRUE.equals(success), teleportFailure), true);
+                        });
             }, 0L, () -> transitions.remove(id, result.token()));
             if (!scheduled) {
                 transitions.remove(id, result.token());
             }
         });
+    }
+
+    private void completeReturn(Player player, GameMode target) {
+        Eligibility current = eligibility(player, target);
+        if (!current.allowed()) {
+            feedback.failure(player, current.reason(), current.arguments(), preferences.feedback(player.getUniqueId()));
+            return;
+        }
+        applyMode(player, target);
     }
 
     private SpectatorOrigin.Dimensions dimensions(Player player) {
@@ -574,7 +598,8 @@ public final class SwitchService implements Listener, AutoCloseable {
         FoliaScheduler.runEntity(plugin, player, () -> {
             if (pendingGestures.remove(player.getUniqueId(), pending) && !event.isCancelled()
                     && expectedGeneration == generation.get() && player.getGameMode() == expected
-                    && player.getWorld().getUID().equals(world) && canGesture(player, config.runtime())) {
+                    && player.getWorld().getUID().equals(world) && canGesture(player, config.runtime())
+                    && handsReady(player, config.runtime())) {
                 switchMode(player, target);
             }
         }, 1L);
@@ -582,9 +607,12 @@ public final class SwitchService implements Listener, AutoCloseable {
 
     private boolean canGesture(Player player, RuntimeConfig settings) {
         return settings.enabled() && enabled(player) && player.hasPermission("gamemodeswitcher.use")
-                && !player.isDead() && !settings.disabled(player.getWorld())
-                && (!settings.requireEmptyHands() || (player.getInventory().getItemInMainHand().getType().isAir()
-                && player.getInventory().getItemInOffHand().getType().isAir()));
+                && !player.isDead() && !settings.disabled(player.getWorld());
+    }
+
+    private boolean handsReady(Player player, RuntimeConfig settings) {
+        return !settings.requireEmptyHands() || (player.getInventory().getItemInMainHand().getType().isAir()
+                && player.getInventory().getItemInOffHand().getType().isAir());
     }
 
     private MessageArgs modeArgs(Player player, GameMode mode) {

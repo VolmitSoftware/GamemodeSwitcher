@@ -42,7 +42,7 @@ class LanguageServiceTest {
         assertThat(service.availableLocales()).hasSize(18).contains("en_US", "ja-JP", "zh_TW");
         assertThat(service.languageDirectory().list()).containsExactly("en_US.toml");
         assertThat(service.remoteCatalogFailure()).isEmpty();
-        assertThat(service.remoteCatalogReference()).contains("fe6047e14d87e10da3b45b6e196da741496979d8");
+        assertThat(service.remoteCatalogReference()).contains("724b670d9c9fcecb6ca600b8ab99c6a088ad2dfc");
         String content = Files.readString(service.languageFile("en_US").toPath());
         assertThat(content).contains("=== Variables ===", "MiniMessage", "{mode}", "{world}", "GitHub");
         assertVariableHeader(content, SwitcherMessages.catalog());
@@ -96,7 +96,7 @@ class LanguageServiceTest {
         });
         Path installed = service.languageFile("de_DE").toPath();
         RemoteLanguageCatalog.DownloadResult result = new RemoteLanguageCatalog.DownloadResult("de_DE",
-                URI.create("https://raw.githubusercontent.com/VolmitSoftware/GamemodeSwitcher/fe6047e14d87e10da3b45b6e196da741496979d8/"
+                URI.create("https://raw.githubusercontent.com/VolmitSoftware/GamemodeSwitcher/724b670d9c9fcecb6ca600b8ab99c6a088ad2dfc/"
                         + "src/main/resources/languages/de_DE.toml"), installed, null);
         AtomicReference<RemoteLanguageCatalog.DownloadResult> completed = new AtomicReference<>();
 
