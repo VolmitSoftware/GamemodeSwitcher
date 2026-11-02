@@ -14,79 +14,81 @@
 #
 # === Değişkenler ===
 # Değişken adlarını değiştirmeyin ve yalnızca ilgili iletinin değişkenlerini kullanın.
-#   {after}  Değişim sonrası Değer
-#   {argument}  beklenmeyen argüman
-#   {before}  Değişim öncesinde değer
-#   {command}  komut yolu
-#   {count}  eşleşen giriş sayısı sayısı
+#   {added}  Dil güncellemesiyle eklenen mesajlar
+#   {after}  Değişiklikten sonraki değer
+#   {argument}  Beklenmeyen komut argümanı
+#   {before}  Değişiklikten önceki değer
+#   {command}  Komut yolu
+#   {count}  Eşleşen giriş sayısı
 #   {enabled}  Oyun modu değiştirme durumu
 #   {folder}  Dünya klasörü adı
-#   {group}  Dil düzenleyicisi kategorisi
-#   {hot_reload}  yeniden yükleme durumu
-#   {key}  parametre anahtarı
-#   {language}  etkin dil
-#   {line}  Source line or line number
-#   {locale}  yerel ayar
-#   {maximum}  Maksimum izin verilen değer
+#   {group}  Mesaj kategorisi adı
+#   {hot_reload}  Otomatik dosya yeniden yükleme durumu
+#   {java}  Gerekli Java sürümü
+#   {kept}  Dil güncellemesinde korunan yerel düzenlemeler
+#   {key}  Parametre veya mesaj anahtarı
+#   {language}  Sunucu dili
+#   {line}  Mesaj satır numarası
+#   {locale}  Yerel ayar kimliği
+#   {maximum}  Kabul edilen en yüksek değer
+#   {minecraft}  Desteklenen Minecraft sürüm aralığı
 #   {mode}  Oyun modu adı
-#   {new}  yeni değer
-#   {number}  Kayıt numarası
-#   {old}  önceki değer
+#   {new}  Yeni ayar değeri
+#   {number}  Liste girişi numarası
+#   {old}  Önceki ayar değeri
 #   {page}  Geçerli sayfa numarası
 #   {pages}  Toplam sayfa sayısı
-#   {parameter}  parametre adı
-#   {path}  yerel rapor yolu
-#   {permission}  gerekli izin
-#   {personal}  kişisel yerel ayar
-#   {plugin}  Plugin name
-#   {prefix}  genel runtime.prefix değeri. Yalnızca belirli bir iletide gizlemek için o iletiden {prefix} öğesini kaldırın
-#   {reason}  hata nedeni
-#   {sound}  Ses kimliği
-#   {java}  Required Java version
-#   {minecraft}  Supported Minecraft version range
-#   {scheduler}  zamanlayıcı
+#   {parameter}  Parametre adı
+#   {path}  Yerel tanılama raporu yolu
+#   {permission}  Gerekli izin
+#   {personal}  Sunucu varsayılanından farklıysa kişisel dil
+#   {plugin}  Eklenti adı
+#   {prefix}  Genel runtime.prefix değeri; her mesajda isteğe bağlı
+#   {reason}  Hata nedeni
+#   {remaining}  Bir sonraki dil denetimine izin verilene kadar kalan süre
+#   {scheduler}  Zamanlayıcı uygulaması
 #   {seconds}  Saniye cinsinden kalan bekleme veya onay süresi
 #   {section}  Dil düzenleyicisi bölümü
-#   {setting}  ayar adı
+#   {setting}  Ayar adı
+#   {sound}  Ad alanlı ses kimliği
+#   {state}  Oyuncu hareketi veya bildirim ayarı
 #   {step}  Tek bir normal tıklamayla sayısal ayarda yapılan değişiklik
-#   {state}  Kişisel hareket veya bildirim durumu
-#   {target}  Hedef oyuncu, varlık veya değer
-#   {type}  tür
-#   {url}  genel URL
-#   {value}  geçerli, varsayılan veya ham değer
-#   {variables}  geçerli yer tutucular
-#   {version}  eklenti sürümü
-#   {world}  dünya
+#   {target}  Dil seçimi hedefi
+#   {type}  Parametre türü
+#   {updated}  Dil güncellemesiyle değiştirilen mesajlar
+#   {url}  Herkese açık tanılama raporu URL'si
+#   {value}  Geçerli, varsayılan veya ham değer
+#   {variables}  Seçilen mesaj için geçerli yer tutucular
+#   {version}  Eklenti sürümü
+#   {world}  Dünya adı
 
 [command.description]
-return = "İzleyici oturumundan dön"
+return = "Seyirci oturumundan dön"
 version = "GamemodeSwitcher sürümünü göster"
-config = "Yapılandırma"
-debug = "GamemodeSwitcher tanı araçları"
-debug_dump = "Kapsamlı bir GamemodeSwitcher tanı raporu oluştur"
-language = "Dil"
-menu = "Oyun modları"
-root = "Oyun modları"
-set = "Oyun modu"
-status = "Oyun modu"
-toggle = "Hareketler"
+config = "Yapılandırma düzenleyicisini aç"
+debug = "Tanılamayı incele"
+debug_dump = "GamemodeSwitcher tanılama raporu oluştur"
+language = "Kişisel dili seç veya sunucu çevirilerini düzenle"
+menu = "Oyun modu seçicisini aç"
+root = "Oyun modu değiştirme, kişisel hareketler ve yapılandırma"
+set = "Oyun modunu değiştir"
+status = "Değiştirme ayarlarını ve oyun modunu göster"
+toggle = "Oyun modu hareketlerini aç veya kapat"
 
 [command.feedback]
 failed = "{prefix}&cKomut tamamlanamadı. Ayrıntılar için konsola bakın.&r"
 
 [command.feedback.config]
-opened = "{prefix}&aEksiksiz oyun içi yapılandırma düzenleyicisi açıldı.&r"
-save_failed = "{prefix}&c&f{setting}&r&c uygulanamadı: {reason}&r"
 saved = "{prefix}&a{setting}&r &7değeri &f{old}&r &7yerine &f{new}&r &7olarak değiştirildi.&r"
 
 [command.parameter]
-enabled = "Etkin / Devre dışı"
-mode = "Hayatta Kalma, Yaratıcı, Macera, İzleyici"
+enabled = "Hareketleri aç veya kapat; geçiş yapmak için boş bırakın"
+mode = "Hayatta Kalma, Yaratıcı, Macera veya Seyirci"
 upload = "Herkese açık yüklemeler etkinse raporu yükle"
 
 [command.status]
-compatibility = "&7Derleme:&r &fJava {java} / Minecraft {minecraft}&r &8|&r &7Zamanlayıcı:&r &f{scheduler}&r"
-config = "&7Oyun modu:&r {enabled} &8|&r &7Dil:&r {language} &8|&r &7Yapılandırmayı ve dilleri yeniden yükle:&r {hot_reload}"
+compatibility = "&7Gereksinimler:&r &fJava {java} / Minecraft {minecraft}&r &8|&r &7Zamanlayıcı:&r &f{scheduler}&r"
+config = "&7Değiştirme:&r {enabled} &8|&r &7Dil:&r &f{language}&r &8|&r &7Otomatik yeniden yükleme:&r {hot_reload}"
 header = "&6&lGamemodeSwitcher&r"
 player = "&7Hareketler:&r {state} &8|&r &7Oyun modu:&r {mode}"
 
@@ -120,7 +122,7 @@ too-long = "En fazla {maximum} karakter girin."
 decimal = "0.25 gibi bir sayı girin."
 integer = "Bir tam sayı girin."
 list = "[\"stone\", \"deepslate\"] gibi bir TOML listesi kullanın."
-text = "Metni başına ve sonuna tırnak koymadan girin."
+text = "Metin; çevreleyen tırnak işareti gerekmez."
 
 [debug]
 preparing = "{plugin} tanılama raporu hazırlanıyor..."
@@ -181,19 +183,19 @@ conversion_failed = "\"{value}\", {parameter} için {type} türüne dönüştür
 default_parse_failed = "{parameter} parametresinin varsayılan değeri ayrıştırılamıyor"
 execution_failed = "{command} komutu çalıştırılamadı: {reason}"
 invalid_origin = "Bu komut bu kaynaktan çalıştırılamaz."
-missing_argument = "Eksik bağımsız değişken \"{parameter}\" ({type})"
+missing_argument = "Eksik argüman \"{parameter}\" ({type})"
 unclosed_group = "{key} parametresi için kapanış \"]\" karakteri eksik"
-unexpected_argument = "Beklenmeyen bağımsız değişken \"{argument}\". İsteğe bağlı parametreler anahtarla belirtilmelidir, ör. seed=123"
+unexpected_argument = "Beklenmeyen argüman \"{argument}\". İsteğe bağlı parametreler anahtarla belirtilmelidir, ör. seed=123"
 unknown_parameter = "Bilinmeyen parametre anahtarı: {key}"
 
 [gesture]
-normal = "&7İkinci el değiştirme tuşuna iki kez basın: {mode}&r"
-sneaking = "&7Eğilmeyi basılı tutup ikinci el tuşuna iki kez basın: {mode}&r"
-spectator = "&7Eğilme tuşuna ayrı ayrı üç kez basın: {mode}&r"
-rebind = "&7İkinci el (varsayılan F) ve Eğilme (sol Shift) tuşlarını Seçenekler > Kontroller > Tuş Atamaları bölümünden değiştirin.&r"
-personal_disabled = "&eHareketleriniz kapalı. Buradan veya /gsw toggle true ile açın.&r"
+normal = "&7Eşyayı Elden Ele Değiştirme tuşuna iki kez basın: &f{mode}&r"
+sneaking = "&7Eğilme tuşunu basılı tutup Eşyayı Elden Ele Değiştirme tuşuna iki kez basın: &f{mode}&r"
+spectator = "&7Eğilme tuşuna ayrı ayrı üç kez basın: &f{mode}&r"
+rebind = "&7Eşyayı Elden Ele Değiştirme (varsayılan F) ve Eğilme (varsayılan Sol Shift) tuşlarını Ayarlar > Kontroller > Tuş Atamaları bölümünden yeniden atayın.&r"
+personal_disabled = "&eHareketleriniz devre dışı. Bu menüden veya /gsw toggle true ile etkinleştirin.&r"
 empty_hands = "&7Hareketler için iki el de boş olmalıdır.&r"
-help = "&7Mod değiştirmek için el değiştirme tuşuna (varsayılan F) iki kez basın. Alternatif işlem için bunu eğilerek yapın; izleyiciden çıkmak için eğilme tuşuna üç kez basın. Hedef modlar sunucu ayarlarına bağlıdır.&r"
+help = "&7Mod değiştirmek için Eşyayı Elden Ele Değiştirme tuşuna (varsayılan F) iki kez basın. Alternatif işlem için bunu yaparken eğilin; Seyirci modundan çıkmak için Eğilme tuşuna üç kez basın. Hedef modlar sunucu ayarlarına bağlıdır.&r"
 
 [gui.title]
 root = "<gradient:#634514:#2f523f>GSW</gradient> <color:#404040>Yapılandırma</color>"
@@ -219,7 +221,7 @@ unable-to-save = "Kaydedilemedi: {reason}"
 open = "&8Bu dili açmak için tıklayın.&r"
 
 [language.editor.message]
-current-value = "&7Mevcut Değer:&r"
+current-value = "&7Geçerli değer:&r"
 edit-chat = "&7Sohbette düzenlemek için tıklayın.&r"
 edit-lines = "&7Satırları ayrı ayrı düzenlemek için tıklayın.&r"
 edit-plural = "&7Bir çoğul biçimini düzenlemek için tıklayın.&r"
@@ -229,7 +231,7 @@ variables = "&8{variables}&r"
 back = "&eGeri&r"
 close = "&cKapat&r"
 next-page = "&eSonraki sayfa&r"
-previous-page = "&eÖnceki Sayfa&r"
+previous-page = "&eÖnceki sayfa&r"
 
 [language.editor.part]
 line = "Satır {line}"
@@ -261,19 +263,19 @@ empty = "(boş)"
 none = "Yok"
 
 [language.error]
-editor-player-only = "Oyundaki dil editörü açın."
+editor-player-only = "Dil düzenleyicisini oyun içinde açın."
 no-providers = "Kullanılabilir Volmit dil sağlayıcısı yok."
-numeric-page = "Sayfa numarasını rakamla girin."
+numeric-page = "Sayısal bir dil sayfası kullanın."
 personal-permission = "Dilinizi seçmek için izniniz yok."
 personal-player-only = "Oyuncu dili tercihleri oyunda seçilmelidir."
 plugin-personal-permission = "{plugin} için kendi dilinizi seçme izniniz yok."
 plugin-server-permission = "{plugin} için sunucu dilini değiştirme izniniz yok."
 server-locale-required = "Sunucunun varsayılan dili için en_US gibi bir dil kodu seçin."
-stopping = "Dil seçimi, eklenti durdurulduğunda kullanılamaz."
+stopping = "Eklenti durdurulurken dil seçimi kullanılamaz."
 unavailable-for-all = "{locale} dili, seçilen eklentilerin tümünde kullanılamıyor."
 
 [language.menu]
-all-volmit-plugins = "Tüm Volmit eklentileri"
+all-volmit-plugins = "tüm Volmit eklentileri"
 command = "Komut: {command}"
 current = "Geçerli: {locale}"
 current_with_personal = "Geçerli: {locale} (Sizin: {personal})"
@@ -284,29 +286,38 @@ remove_personal_description = "Kişisel dil seçiminizi kaldırın."
 reset_description = "Sunucunun varsayılan dilini kullanın."
 reset_your_language = "Dil seçiminizi sıfırla"
 select_description = "Bu dili seçmek için tıklayın."
-selected = "Seçili"
+selected = "seçili"
 server_default = "Sunucu varsayılanı"
-server_description = "Sunucunun varsayılan dilini değiştirin."
+server_description = "Sunucunun varsayılan dilini değiştirin"
 use_server_default = "Sunucu varsayılanını kullan"
 your_description = "Yalnızca gördüğünüz mesajları değiştirin."
 your_language = "Diliniz"
 
 [language.selection]
 english-fallback = "{plugin}: {locale} kullanılamıyor; İngilizce (en_US) kullanılıyor."
-personal-selected = "{plugin}: Diliniz şimdi {locale}."
+personal-selected = "{plugin}: diliniz artık {locale}."
 preparing = "{target} için {locale} dili hazırlanıyor..."
 save-failed = "{plugin}: dil seçimi kaydedilemedi; sunucu konsolunu kontrol edin."
 server-default-selected = "{plugin}: diliniz artık sunucunun varsayılan dilini kullanıyor."
-server-selected = "{plugin}: sunucu dili şimdi {locale}."
+server-selected = "{plugin}: sunucu dili artık {locale}."
 
 [language.usage]
 editor = "Kullanım: /{command} language server edit [locale]"
-selection = "Kullanım: /{command} language self [locale|reset] or server [locale]"
+selection = "Kullanım: /{command} language self [locale|reset] veya server [locale]"
 volmit-selection = "Kullanım: /volmit plugins languages [locale]"
+update = "Kullanım: /{command} language update"
+
+[language.update]
+checking = "{plugin}: dil deposundaki değişiklikler denetleniyor..."
+unchanged = "{plugin}: yüklü diller zaten depoyla eşleşiyor."
+applied = "{plugin}: {locale} güncellendi ({added} eklendi, {updated} değiştirildi, {kept} yerel düzenleme korundu)."
+cooldown = "{plugin}: dil deposu kısa süre önce denetlendi; {remaining} sonra yeniden deneyin."
+locale-failed = "{plugin}: {locale} güncellenmedi: {reason}"
+failed = "{plugin}: dil güncellemesi başarısız oldu: {reason}"
 
 [menu]
 feedback = "&6Kişisel bildirimler&r"
-feedback_help = "&7Geçiş mesajlarını, başlıklarını veya seslerini kendiniz için kapatın.&r"
+feedback_help = "&7Geçiş mesajlarını, bildirimlerini veya seslerini kendiniz için susturun.&r"
 back = "&7Oyun modlarına dön&r"
 selected = "&aSeçili&r"
 survival_help = "&7Kaynak toplayın, sağlık ve açlığınızı yönetin.&r"
@@ -314,44 +325,43 @@ creative_help = "&7Sınırsız kaynaklarla ve Yaratıcı uçuşuyla inşa edin.&
 adventure_help = "&7Blok kırma ve yerleştirmenin kısıtlandığı haritaları keşfedin.&r"
 spectator_help = "&7Dünyayı gözlemleyin ve blokların içinden geçin.&r"
 config_help = "&7Sunucu ayarlarını düzenleyin. Değişiklikler hemen uygulanır.&r"
-language_help = "&7Mesajlarınızın ve menülerinizin dilini seçin.&r"
-close = "Kapat"
+language_help = "&7Mesajlarınız ve menüleriniz için kullanılacak dili seçin.&r"
+close = "&cKapat&r"
 config = "&6Yapılandırma&r"
-current = "&7Oyun modu: &f{mode}&r"
-gestures = "&6Hareketler&r"
+current = "&7Geçerli oyun modu: &f{mode}&r"
+gestures = "&6Hareket kontrolleri&r"
 language = "&aDil&r"
 select = "&7Seçmek için tıklayın.&r"
 title = "<gradient:#634514:#2f523f>Oyun modları</gradient>"
-toggle_disabled = "&7Hareketler: &cDevre dışı&r"
-toggle_enabled = "&7Hareketler: &aEtkin&r"
+toggle_disabled = "&cHareketler devre dışı&r"
+toggle_enabled = "&aHareketler etkin&r"
 toggle_help = "&7Hareketleri açmak veya kapatmak için tıklayın.&r"
-unavailable = "&cBu oyun modunu seçemezsiniz.&r"
 
 [mode]
 adventure = "Macera"
 creative = "Yaratıcı"
-spectator = "İzleyici"
+spectator = "Seyirci"
 survival = "Hayatta Kalma"
 
 [preferences]
 title = "<gradient:#634514:#2f523f>Kişisel bildirimler</gradient>"
 chat = "&6Sohbet mesajları&r"
 action_bar = "&6Eylem çubuğu&r"
-screen_title = "&6Ekran başlıkları&r"
+screen_title = "&6Başlık bildirimleri&r"
 sound = "&6Geçiş sesleri&r"
 muted = "&cSizin için kapalı&r"
-inherit = "&7Sunucu ayarları kullanılıyor: {state}&r"
-toggle = "&7Kapalı ve sunucu ayarları arasında geçmek için tıklayın.&r"
+inherit = "&7Sunucu ayarlarını izliyor: {state}&r"
+toggle = "&7Susturma ile sunucu ayarları arasında geçiş yapmak için tıklayın.&r"
 silence = "&6Tümünü sustur&r"
-silence_help = "&7Başarılı geçişlerin mesajlarını, başlıklarını ve seslerini kapatın.&r"
+silence_help = "&7Başarılı geçiş mesajlarını, bildirimlerini ve seslerini susturun.&r"
 reset = "&aSunucu ayarlarını kullan&r"
-reset_help = "&7Tüm kişisel susturmaları kaldırın.&r"
-failures = "&7Sohbet susturulduğunda engellenen geçişlerin nedeni eylem çubuğunda gösterilir.&r"
+reset_help = "&7Tüm kanallar için kişisel susturmalarınızı kaldırın.&r"
+failures = "&7Sohbet susturulduğunda engellenen geçişlerin nedeni yine eylem çubuğunda gösterilir.&r"
 failed = "{prefix}&cTercihiniz kaydedilemedi. Ayrıntılar için konsola bakın.&r"
 
 [runtime]
 player_only = "{prefix}&cBu komut yalnızca bir oyuncu tarafından kullanılabilir.&r"
-prefix = "<gradient:#e9bd68:#85d6b0><bold>GamemodeSwitcher</bold></gradient> &8â€º&r "
+prefix = "<gradient:#e9bd68:#85d6b0><bold>GamemodeSwitcher</bold></gradient> &8›&r "
 
 [runtime.hot_reload]
 failed = "{prefix}&cDosya değişiklikleri reddedildi; son geçerli ayarlar etkin kalmaya devam ediyor.&r"
@@ -368,19 +378,19 @@ enabled = "&aEtkin&r"
 title = "<gradient:#e9bd68:#85d6b0>{mode}</gradient>"
 subtitle = "&7Oyun modu değiştirildi.&r"
 overlay = "&7Oyun modu: &f{mode}&r"
-spectator_overlay_hint = "&7İzleyiciden çıkmak için üç kez eğilin.&r"
-already = "{prefix}&eOyun modunuz zaten {mode}.&r"
+spectator_overlay_hint = "&7Seyirci modundan çıkmak için üç kez eğilin.&r"
+already = "{prefix}&7Oyun modunuz zaten &f{mode}&r&7.&r"
 cancelled = "{prefix}&eBaşka bir eklenti oyun modu değişikliğini engelledi.&r"
-changed = "{prefix}&aOyun modu {mode} olarak değiştirildi.&r"
-cooldown = "{prefix}&eYeniden değiştirmeden önce {seconds} saniye bekleyin.&r"
+changed = "{prefix}&aOyun modu &f{mode}&r&a olarak değiştirildi.&r"
+cooldown = "{prefix}&eYeniden değiştirmeden önce &f{seconds}&r&e saniye bekleyin.&r"
 disabled = "{prefix}&eOyun modu değiştirme devre dışı.&r"
-empty_hands = "{prefix}&eHareketleri kullanmak için iki elinizi de boşaltın.&r"
-no_permission = "{prefix}&eBu oyun modunu kullanma izniniz yok.&r"
-spectator_hint = "{prefix}&eİzleyici modundan çıkmak için /gsw menu veya /gsw set survival kullanın.&r"
-world_blocked = "{prefix}&e{world} dünyasında oyun modu değiştirilemez.&r"
+empty_hands = "{prefix}&eOyun modu hareketlerini kullanmak için iki elinizi de boşaltın.&r"
+no_permission = "{prefix}&cBu oyun modunu kullanma izniniz yok.&r"
+spectator_hint = "{prefix}&7Seyirci modundan çıkmak için &f/gsw menu&r&7 veya &f/gsw set survival&r&7 kullanın.&r"
+world_blocked = "{prefix}&eOyun modu değiştirme &f{world}&r&e dünyasında kullanılamıyor.&r"
 
 [toggle]
-disabled = "{prefix}&eHareketler devre dışı. Komutlar ve menü kullanılabilir durumda.&r"
+disabled = "{prefix}&eOyun modu hareketleri devre dışı bırakıldı. Komutlar ve menü kullanılabilir durumda.&r"
 enabled = "{prefix}&aOyun modu hareketleri etkinleştirildi.&r"
 
 [gui.config.general]
@@ -389,27 +399,27 @@ description = "Oyun modu değiştirmeyi etkinleştirin ve sunucu dilini seçin."
 
 [gui.config.metrics]
 name = "İstatistikler"
-description = "Anonim bStats istatistiklerini yönetin."
+description = "Anonim bStats raporlamasını yönetin."
 
 [gui.config.gestures]
 name = "Hareket kontrolleri"
-description = "Basma sürelerini, beklemeyi ve hareket hedeflerini ayarlayın."
+description = "Basma zamanlamasını, bekleme sürelerini ve hareket hedeflerini ayarlayın."
 
 [gui.config.gestures.normal]
 name = "Çift basma hedefleri"
-description = "El değiştirme tuşuna iki kez basıldığında her oyun modunun hedefini seçin."
+description = "Eşyayı Elden Ele Değiştirme tuşuna iki kez basmanın her oyun modundan hangi moda geçireceğini seçin."
 
 [gui.config.gestures.sneaking]
-name = "Eğilme hedefleri"
-description = "Eğilirken el değiştirme tuşuna iki kez basıldığında her oyun modunun hedefini seçin."
+name = "Eğilerek geçiş hedefleri"
+description = "Eğilirken Eşyayı Elden Ele Değiştirme tuşuna iki kez basmanın her oyun modundan hangi moda geçireceğini seçin."
 
 [gui.config.restrictions]
 name = "Dünya kısıtlamaları"
 description = "Oyun modunun değiştirilemeyeceği dünyaları seçin."
 
 [gui.config.feedback]
-name = "Değiştirme bildirimleri"
-description = "Değiştirme mesajlarını, bildirimleri, sesleri ve Yaratıcı uçuşunu seçin."
+name = "Geçiş bildirimleri"
+description = "Geçiş mesajlarını, bildirimleri, sesleri ve Yaratıcı uçuş davranışını seçin."
 
 [gui.config.diagnostics]
 name = "Tanılama"
@@ -421,87 +431,87 @@ description = "Sunucu çevirilerini ve biçimlendirmelerini düzenleyin."
 
 [gui.config.general.enabled]
 name = "Oyun modu değiştirme"
-description = "Hareketler, komutlar ve menü aracılığıyla değişikliklere izin verin."
+description = "Hareketler, komutlar ve menü aracılığıyla oyun modu değiştirmeye izin verin."
 
 [gui.config.general.language]
 name = "Sunucu dili"
-description = "Kişisel seçim yapmayan oyuncuların varsayılan dili. Eksik çeviriler İngilizce kullanır."
+description = "Kişisel seçim yapmamış oyuncular için varsayılan dil. Eksik çevirilerde İngilizce kullanılır."
 
 [gui.config.metrics.enabled]
 name = "Anonim istatistikler"
-description = "bStats'a anonim istatistikler gönderin. Genel bStats devre dışı bırakma ayarı da geçerlidir."
+description = "Anonim bStats istatistikleri gönderin. Genel bStats devre dışı bırakma ayarı da geçerlidir."
 
 [gui.config.gestures.double-tap-millis]
 name = "Çift basma süresi"
-description = "El değiştirme basışları arasındaki en uzun süre, milisaniye olarak. Aralık: 100 ile 3000."
+description = "Eşyayı Elden Ele Değiştirme tuşuna basışlar arasındaki en uzun süre (milisaniye). Aralık: 100 ile 3000."
 
 [gui.config.gestures.sneak-tap-millis]
-name = "İzleyici basma süresi"
-description = "İzleyicide eğilme basışları arasındaki en uzun süre, milisaniye olarak. Aralık: 100 ile 3000."
+name = "Seyirci basma süresi"
+description = "Seyirci modunda Eğilme tuşuna basışlar arasındaki en uzun süre (milisaniye). Aralık: 100 ile 3000."
 
 [gui.config.gestures.cooldown-millis]
-name = "Değiştirme bekleme süresi"
-description = "Başarılı değişiklik sonrası bekleme, milisaniye olarak. Aralık: 0 ile 60000; 0 beklemeyi kaldırır."
+name = "Geçiş bekleme süresi"
+description = "Başarılı bir mod değişikliğinden sonraki bekleme süresi (milisaniye). Aralık: 0 ile 60000; 0 beklemeyi kaldırır."
 
 [gui.config.gestures.require-empty-hands]
-name = "Boş eller gerekli"
-description = "Bir hareketin modu değiştirebilmesi için iki elin de boş olmasını isteyin."
+name = "Boş el gerektir"
+description = "Bir hareketin modunuzu değiştirebilmesi için iki elin de boş olmasını gerektirin."
 
 [gui.config.gestures.spectator-exit]
-name = "İzleyiciden çıkış modu"
-description = "İzleyicide üç ayrı eğilme basışından sonraki hedef."
+name = "Seyirciden çıkış modu"
+description = "Seyirci modunda Eğilme tuşuna üç ayrı basıştan sonraki hedef."
 
 [gui.config.gestures.normal.survival]
-name = "Hayatta Kalmadan"
-description = "Hayatta Kalma modunda el değiştirme tuşuna iki kez basıldığında geçilecek hedef."
+name = "Hayatta Kalma modundan"
+description = "Hayatta Kalma modunda Eşyayı Elden Ele Değiştirme tuşuna iki kez bastığınızda geçilecek hedef."
 
 [gui.config.gestures.normal.creative]
-name = "Yaratıcıdan"
-description = "Yaratıcı modunda el değiştirme tuşuna iki kez basıldığında geçilecek hedef."
+name = "Yaratıcı moddan"
+description = "Yaratıcı modda Eşyayı Elden Ele Değiştirme tuşuna iki kez bastığınızda geçilecek hedef."
 
 [gui.config.gestures.normal.adventure]
-name = "Maceradan"
-description = "Macera modunda el değiştirme tuşuna iki kez basıldığında geçilecek hedef."
+name = "Macera modundan"
+description = "Macera modunda Eşyayı Elden Ele Değiştirme tuşuna iki kez bastığınızda geçilecek hedef."
 
 [gui.config.gestures.sneaking.survival]
-name = "Hayatta Kalmadan"
-description = "Hayatta Kalma modunda eğilirken el değiştirme tuşuna iki kez basıldığında geçilecek hedef."
+name = "Hayatta Kalma modundan"
+description = "Hayatta Kalma modunda eğilip Eşyayı Elden Ele Değiştirme tuşuna iki kez bastığınızda geçilecek hedef."
 
 [gui.config.gestures.sneaking.creative]
-name = "Yaratıcıdan"
-description = "Yaratıcı modunda eğilirken el değiştirme tuşuna iki kez basıldığında geçilecek hedef."
+name = "Yaratıcı moddan"
+description = "Yaratıcı modda eğilip Eşyayı Elden Ele Değiştirme tuşuna iki kez bastığınızda geçilecek hedef."
 
 [gui.config.gestures.sneaking.adventure]
-name = "Maceradan"
-description = "Macera modunda eğilirken el değiştirme tuşuna iki kez basıldığında geçilecek hedef."
+name = "Macera modundan"
+description = "Macera modunda eğilip Eşyayı Elden Ele Değiştirme tuşuna iki kez bastığınızda geçilecek hedef."
 
 [gui.config.restrictions.disabled-worlds]
 name = "Devre dışı dünyalar"
 description = "Hareketlerin, komutların ve menünün oyun modunu değiştiremediği dünyalar. Listeden seçmek için tıklayın."
 
 [gui.config.feedback.auto-fly-creative]
-name = "Yaratıcıya geçince uç"
-description = "Oyuncunun uçmasına izin veriliyorsa Yaratıcıya girdikten sonra uçmaya başlayın."
+name = "Yaratıcıya girince uç"
+description = "Oyuncunun uçmasına izin veriliyorsa Yaratıcı moda girdikten sonra uçmaya başlayın."
 
 [gui.config.feedback.sound-enabled]
-name = "Değiştirme sesi"
+name = "Geçiş sesi"
 description = "Başarılı bir oyun modu değişikliğinden sonra onay sesi çalın."
 
 [gui.config.diagnostics.upload-enabled]
-name = "Herkese açık raporlar"
-description = "Tanılama raporlarının herkese açık yüklenmesine izin verin. Yerel kayıt için upload=false kullanın."
+name = "Herkese açık tanılama yüklemeleri"
+description = "Tanılama raporlarının herkese açık yüklenmesine izin verin. Raporu yerel olarak kaydetmek için upload=false kullanın."
 
 [gui.config.feedback.chat-enabled]
 name = "Sohbet mesajları"
-description = "Başarılı değişiklikleri ve İzleyici ipuçlarını sohbette gösterin. Kapalıyken hata nedenleri eylem çubuğunda görünür."
+description = "Başarılı değişiklikleri ve Seyirci ipuçlarını sohbette gösterin. Kapalıyken hata nedenleri eylem çubuğunda görünür."
 
 [gui.config.feedback.action-bar-enabled]
 name = "Eylem çubuğu bildirimi"
-description = "Yeni modu hızlı erişim çubuğunun üstünde, İzleyicide çıkış ipucuyla gösterin."
+description = "Yeni modu hızlı erişim çubuğunun üstünde, Seyirci modunda çıkış ipucuyla gösterin."
 
 [gui.config.feedback.title-enabled]
 name = "Başlık bildirimi"
-description = "Yeni modu ekranın ortasında, İzleyicide çıkış ipucuyla gösterin."
+description = "Yeni modu ekranın ortasında, Seyirci modunda çıkış ipucuyla gösterin."
 
 [gui.config.feedback.popup-duration-ticks]
 name = "Bildirim süresi"
@@ -514,53 +524,53 @@ input = "minecraft:ui.button.click veya minecraft:entity.experience_orb.pickup g
 
 [gui.config.feedback.sound-volume]
 name = "Ses düzeyi"
-description = "Değiştirme sesinin düzeyi. Aralık: 0 ile 1; 0 sessizdir."
+description = "Geçiş sesinin düzeyi. Aralık: 0 ile 1; 0 sessizdir."
 
 [gui.config.feedback.sound-pitch]
 name = "Ses perdesi"
-description = "Değiştirme sesinin perdesi. Aralık: 0.5 ile 2; 1 özgün perdeyi kullanır."
+description = "Geçiş sesinin perdesi. Aralık: 0.5 ile 2; 1 özgün perdeyi kullanır."
 
 [spectator]
-save-failed = "{prefix}&cOturum kaydedilemedi. Oyun modun değiştirilmedi.&r"
-return-failed = "{prefix}&cDönülemedi. Oturumun kayıtlı; /gsw return ile tekrar dene.&r"
-origin-missing = "{prefix} &eİzleyici moduna girdiğin dünya artık yüklü değil, bu yüzden oyun modun burada değiştirildi.&r"
-none = "{prefix}&cEtkin bir İzleyici oturumun yok.&r"
-busy = "{prefix}&cBir İzleyici geçişi zaten sürüyor.&r"
+save-failed = "{prefix}&cSeyirci oturumunuz kaydedilemedi. Oyun modunuz değiştirilmedi.&r"
+return-failed = "{prefix}&cDönülemedi. Oturumunuz kaydedildi; /gsw return komutunu yeniden deneyin.&r"
+origin-missing = "{prefix}&eSeyirci moduna girdiğiniz dünya artık yüklü değil, bu yüzden oyun modunuz bulunduğunuz yerde değiştirildi.&r"
+none = "{prefix}&eEtkin bir Seyirci oturumunuz yok.&r"
+busy = "{prefix}&eBir Seyirci geçişi zaten sürüyor.&r"
 
 [gui.config.spectator]
-description = "Önceki moda ve başlangıç konumuna dönüşü ayarla."
-name = "İzleyici oturumları"
+description = "Bu eklenti bir Seyirci oturumu başlattığında kaydedilen modu veya konumu geri yükleyin."
+name = "Seyirci dönüşü"
 
 [gui.config.spectator.restore-previous-mode]
-description = "İzleyici oturumundan çıkarken önceki moda dön."
+description = "Seyirci moduna girdiğiniz modu geri yüklemek için Eğilme tuşuna üç kez basın veya /gsw return kullanın. Geçerli izinler ve dünya kısıtlamaları yine de uygulanır."
 name = "Önceki modu geri yükle"
 
 [gui.config.spectator.return-to-origin]
-description = "Eklentinin başlattığı İzleyici oturumundan çıkmadan önce kayıtlı başlangıç konumuna dön."
-name = "Başlangıca dön"
+description = "Eklentinin başlattığı bir Seyirci oturumundan çıkmadan önce kaydedilmiş giriş konumunuza dönün."
+name = "Başlangıç konumuna dön"
 
 [sound.menu]
-custom-help = "<gray>Minecraft veya kaynak paketi ses kimliğini gir.</gray>"
-custom = "<gray>Özel ses kimliği</gray>"
-preview-help = "<gray>Geçiş sesleri susturulsa bile sunucunun ses düzeyi ve perdesiyle dinle.</gray>"
-preview = "<gray>Geçerli sesi dinle</gray>"
-selected = "<gray>Seçili ses</gray>"
-select = "<gray>Seçmek için sol, dinlemek için sağ tıkla.</gray>"
-current = "<gray>Geçerli ses: {sound}</gray>"
+custom-help = "<gray>Bir Minecraft veya kaynak paketi ses anahtarı girin.</gray>"
+custom = "<gold>Özel ses anahtarı</gold>"
+preview-help = "<gray>Bu sesi sunucunun geçerli ses düzeyi ve perdesiyle dinleyin. Önizleme, geçiş sesleri susturulmuş olsa bile çalışır.</gray>"
+preview = "<gold>Geçerli sesi önizle</gold>"
+selected = "<green>Seçili ses</green>"
+select = "<gray>Kullanmak için sol tıklayın. Önizlemek için sağ tıklayın.</gray>"
+current = "<gray>Geçerli ses: <white>{sound}</white></gray>"
 title = "<gradient:#634514:#2f523f>Geçiş sesi</gradient>"
 
 [sound.preset]
-bell = "<gray>Çan</gray>"
-experience = "<gray>Deneyim toplama</gray>"
-pling = "<gray>İnce nota</gray>"
-chime = "<gray>Çınlama</gray>"
-click = "<gray>Düğme tıklaması</gray>"
+bell = "<gold>Çan</gold>"
+experience = "<gold>Deneyim toplama</gold>"
+pling = "<gold>İnce nota</gold>"
+chime = "<gold>Çınlama</gold>"
+click = "<gold>Düğme tıklaması</gold>"
 
 [world.menu]
 title = "<gradient:#634514:#2f523f>Devre dışı dünyalar</gradient>"
 help = "<gold>Devre dışı dünyalar</gold>"
 help-detail = "<gray>Bir dünyaya tıklayarak oradaki oyun modu değiştirmeyi kapatın veya açın. Dünyalar minecraft:the_nether gibi boyut anahtarıyla kaydedilir.</gray>"
-folder = "<gray>Dünya klasörü: {folder}</gray>"
+folder = "<gray>Dünya klasörü: <white>{folder}</white></gray>"
 unloaded = "<gray>Bu sunucuda yüklü değil</gray>"
 disabled = "<red>Değiştirme kapalı</red>"
 enabled = "<green>Değiştirme açık</green>"
@@ -570,8 +580,8 @@ remove = "<gray>Listeden kaldırmak için tıklayın.</gray>"
 
 [gui.config.spectator.allow-unsafe-return]
 name = "Güvensiz dönüşlere izin ver"
-description = "Zemini ve boş alanı kontrol etmeden dön. Varsayılan olarak açık; güvenli hedef zorunluluğu için kapat. Etkin oturumlara da uygulanır."
+description = "Zemini veya boş alanı kontrol etmeden dönüşlere izin verin. Varsayılan olarak açıktır; güvenli bir hedef gerektirmek için kapatın. Etkin oturumlara da uygulanır."
 
 [gui.config.general.update-notifications]
 name = "Güncelleme bildirimleri"
-description = "GitHub sürümlerini kontrol eder ve yetkili oyunculara ortak Volmit bildirimiyle haber verir. Güncellemeler yüklenmez."
+description = "GitHub sürümlerini kontrol edin ve yetkili oyuncuları ortak Volmit güncelleme bildirimiyle bilgilendirin. Güncelleme yüklenmez."

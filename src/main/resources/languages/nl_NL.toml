@@ -14,79 +14,81 @@
 #
 # === Variabelen ===
 # Behoud de namen van variabelen en gebruik alleen de variabelen die bij het bericht horen.
+#   {added}  Berichten toegevoegd door een taalupdate
 #   {after}  Waarde na de wijziging
-#   {argument}  onverwacht argument
+#   {argument}  Onverwacht opdrachtargument
 #   {before}  Waarde vóór de wijziging
-#   {command}  opdrachtpad
+#   {command}  Opdrachtpad
 #   {count}  Aantal overeenkomstige vermeldingen
 #   {enabled}  Status van het wisselen van spelmodus
 #   {folder}  Naam van de wereldmap
-#   {group}  Categorie in de taaleditor
-#   {hot_reload}  hot-reloadstatus
-#   {key}  parametersleutel
-#   {language}  actieve taal
-#   {line}  Bronregel of regelnummer
-#   {locale}  landinstelling
+#   {group}  Naam van de berichtcategorie
+#   {hot_reload}  Status van het automatisch herladen van bestanden
+#   {java}  Vereiste Java-versie
+#   {kept}  Lokale bewerkingen behouden door een taalupdate
+#   {key}  Parameter- of berichtsleutel
+#   {language}  Servertaal
+#   {line}  Regelnummer van het bericht
+#   {locale}  Taalcode
 #   {maximum}  Maximaal toegestane waarde
+#   {minecraft}  Ondersteund Minecraft-versiebereik
 #   {mode}  Naam van de spelmodus
-#   {new}  nieuwe waarde
-#   {number}  Nummer van de vermelding
-#   {old}  vorige waarde
-#   {page}  Huidige pagina
+#   {new}  Nieuwe waarde van de instelling
+#   {number}  Nummer van de lijstvermelding
+#   {old}  Vorige waarde van de instelling
+#   {page}  Huidig paginanummer
 #   {pages}  Totaal aantal pagina’s
-#   {parameter}  parameternaam
-#   {path}  lokaal rapportpad
-#   {permission}  vereiste machtiging
-#   {personal}  persoonlijke landinstelling
+#   {parameter}  Parameternaam
+#   {path}  Lokaal pad van het diagnoserapport
+#   {permission}  Vereiste machtiging
+#   {personal}  Persoonlijke taal, als die afwijkt van de serverstandaard
 #   {plugin}  Pluginnaam
-#   {prefix}  de globale waarde runtime.prefix. Verwijder {prefix} uit één bericht om het alleen daar te verbergen
-#   {reason}  foutreden
-#   {sound}  Geluidsleutel
-#   {java}  Required Java version
-#   {minecraft}  Supported Minecraft version range
-#   {scheduler}  planner
+#   {prefix}  Globale waarde van runtime.prefix; optioneel per bericht
+#   {reason}  Reden van de fout
+#   {remaining}  Resterende tijd tot de volgende taalcontrole
+#   {scheduler}  Implementatie van de planner
 #   {seconds}  Resterende wacht- of bevestigingstijd in seconden
 #   {section}  Onderdeel van de taaleditor
-#   {setting}  instellingsnaam
+#   {setting}  Naam van de instelling
+#   {sound}  Geluidssleutel met naamruimte
+#   {state}  Gebaren- of meldingsinstelling van de speler
 #   {step}  Verandering van een getal door één gewone klik
-#   {state}  Persoonlijke gebaren- of meldingsstatus
-#   {target}  Doelspeler, entiteit of waarde
-#   {type}  type
-#   {url}  openbare URL
-#   {value}  huidige, standaard- of ruwe waarde
-#   {variables}  geldige tijdelijke aanduidingen
-#   {version}  pluginversie
-#   {world}  wereld
+#   {target}  Doel van de taalkeuze
+#   {type}  Parametertype
+#   {updated}  Berichten gewijzigd door een taalupdate
+#   {url}  Openbare URL van het diagnoserapport
+#   {value}  Huidige, standaard- of ruwe waarde
+#   {variables}  Geldige variabelen voor het geselecteerde bericht
+#   {version}  Pluginversie
+#   {world}  Wereldnaam
 
 [command.description]
-return = "Terugkeren uit je toeschouwersessie"
+return = "Keer terug uit je toeschouwersessie"
 version = "Toon de versie van GamemodeSwitcher"
-config = "Configuratie"
-debug = "Diagnosehulpmiddelen voor GamemodeSwitcher"
-debug_dump = "Een uitgebreid diagnostisch rapport voor GamemodeSwitcher maken"
-language = "Taal"
-menu = "Spelmodi"
-root = "Spelmodi"
-set = "Spelmodus"
-status = "Spelmodus"
-toggle = "Gebaren"
+config = "Open de configuratie-editor"
+debug = "Bekijk diagnostische gegevens"
+debug_dump = "Maak een diagnoserapport voor GamemodeSwitcher"
+language = "Kies je taal of bewerk serververtalingen"
+menu = "Open de spelmoduskiezer"
+root = "Wisselen van spelmodus, persoonlijke gebaren en configuratie"
+set = "Wijzig je spelmodus"
+status = "Toon de wisselinstellingen en je spelmodus"
+toggle = "Schakel je spelmodusgebaren in of uit"
 
 [command.feedback]
 failed = "{prefix}&cDe opdracht kon niet worden uitgevoerd. Bekijk de console voor meer informatie.&r"
 
 [command.feedback.config]
-opened = "{prefix}&aDe volledige configuratie-editor in het spel is geopend.&r"
-save_failed = "{prefix}&c&f{setting}&r&c kon niet worden toegepast: {reason}&r"
 saved = "{prefix}&a{setting}&r &7is gewijzigd van &f{old}&r &7naar &f{new}&r&7.&r"
 
 [command.parameter]
-enabled = "Ingeschakeld / Uitgeschakeld"
-mode = "Overleven, Creatief, Avontuur, Toeschouwer"
+enabled = "Schakel gebaren in of uit; laat weg om te wisselen"
+mode = "Spelmodus: survival, creative, adventure of spectator"
 upload = "Het rapport uploaden wanneer openbare uploads zijn ingeschakeld"
 
 [command.status]
-compatibility = "&7Artefact:&r &fJava {java} / Minecraft {minecraft}&r &8|&r &7Planner:&r &f{scheduler}&r"
-config = "&7Spelmodus:&r {enabled} &8|&r &7Taal:&r {language} &8|&r &7Configuratie en talen herladen:&r {hot_reload}"
+compatibility = "&7Vereist:&r &fJava {java} / Minecraft {minecraft}&r &8|&r &7Planner:&r &f{scheduler}&r"
+config = "&7Wisselen:&r {enabled} &8|&r &7Taal:&r &f{language}&r &8|&r &7Automatisch herladen:&r {hot_reload}"
 header = "&6&lGamemodeSwitcher&r"
 player = "&7Gebaren:&r {state} &8|&r &7Spelmodus:&r {mode}"
 
@@ -150,7 +152,7 @@ failed = "Het uploaden van het diagnoserapport is mislukt. Het lokale rapport is
 interrupted = "Het uploaden van het diagnoserapport is onderbroken. Het lokale rapport is opgeslagen."
 
 [director.help]
-category = "Commandocategorie"
+category = "Opdrachtcategorie"
 command_group = "Opdrachtgroep. Klik om te openen."
 no_description = "Geen beschrijving opgegeven"
 no_parameters = "Geen parameters. Klik om de opdracht vooraf in te vullen."
@@ -187,13 +189,13 @@ unexpected_argument = "Onverwacht argument \"{argument}\". Optionele parameters 
 unknown_parameter = "Onbekende parametersleutel: {key}"
 
 [gesture]
-normal = "&7Druk tweemaal op Wisselen met tweede hand: {mode}&r"
-sneaking = "&7Houd Sluipen vast en druk tweemaal op Wisselen: {mode}&r"
-spectator = "&7Druk Sluipen drie keer afzonderlijk in: {mode}&r"
-rebind = "&7Wijzig Wisselen met tweede hand (F) en Sluipen (linker Shift) via Opties > Besturing > Toetsen.&r"
-personal_disabled = "&eJe gebaren staan uit. Schakel ze hier in of met /gsw toggle true.&r"
-empty_hands = "&7Beide handen moeten leeg zijn voor gebaren.&r"
-help = "&7Druk tweemaal op de toets om handen te wisselen (standaard F) om van modus te wisselen. Doe dit sluipend voor de andere actie; druk driemaal op sluipen om toeschouwer te verlaten. De doelmodi volgen de serverinstellingen.&r"
+normal = "&7Tik twee keer op Voorwerp van hand wisselen: &f{mode}&r"
+sneaking = "&7Houd Sluipen ingedrukt + tik twee keer op Voorwerp van hand wisselen: &f{mode}&r"
+spectator = "&7Druk drie afzonderlijke keren op Sluipen: &f{mode}&r"
+rebind = "&7Wijs Voorwerp van hand wisselen (standaard F) en Sluipen (standaard Linkershift) opnieuw toe via Instellingen > Besturing > Toegewezen toetsen.&r"
+personal_disabled = "&eJe gebaren zijn uitgeschakeld. Schakel ze in via dit menu of met /gsw toggle true.&r"
+empty_hands = "&7Beide handen moeten leeg zijn om gebaren te gebruiken.&r"
+help = "&7Tik twee keer op de toets Voorwerp van hand wisselen (standaard F) om van spelmodus te wisselen. Sluip tegelijk voor de alternatieve actie; sluip drie keer om Toeschouwer te verlaten. De bestemmingen volgen de serverinstellingen.&r"
 
 [gui.title]
 root = "<gradient:#634514:#2f523f>GSW</gradient> <color:#404040>Configuratie</color>"
@@ -211,7 +213,7 @@ no-permission = "Je hebt geen toestemming om de talen van {plugin} te bewerken."
 unable-to-edit = "Bewerken mislukt: {reason}"
 
 [language.editor.input]
-expired = "De invoer voor de taalbewerker is verlopen."
+expired = "De invoer voor de taaleditor is verlopen."
 too-long = "De invoer mag maximaal {maximum} tekens bevatten."
 unable-to-save = "Opslaan mislukt: {reason}"
 
@@ -261,11 +263,11 @@ empty = "(leeg)"
 none = "Geen"
 
 [language.error]
-editor-player-only = "Open de taalbewerker in het spel."
+editor-player-only = "Open de taaleditor in het spel."
 no-providers = "Er zijn geen Volmit-taalaanbieders beschikbaar."
-numeric-page = "Voer een paginanummer in."
-personal-permission = "U hebt geen toestemming om uw taal te selecteren."
-personal-player-only = "Spelertaalvoorkeuren moeten in het spel worden geselecteerd."
+numeric-page = "Gebruik een numerieke taalpagina."
+personal-permission = "Je hebt geen toestemming om je taal te kiezen."
+personal-player-only = "Persoonlijke taalvoorkeuren moeten in het spel worden gekozen."
 plugin-personal-permission = "Je hebt geen toestemming om je taal voor {plugin} te kiezen."
 plugin-server-permission = "Je hebt geen toestemming om de servertaal voor {plugin} te wijzigen."
 server-locale-required = "Kies een taalcode zoals en_US voor de standaardtaal van de server."
@@ -273,16 +275,16 @@ stopping = "Taalselectie is niet beschikbaar terwijl de plugin stopt."
 unavailable-for-all = "De taal {locale} is niet voor alle geselecteerde plugins beschikbaar."
 
 [language.menu]
-all-volmit-plugins = "Alle Volmit-plugins"
-command = "Commando: {command}"
+all-volmit-plugins = "alle Volmit-plugins"
+command = "Opdracht: {command}"
 current = "Huidig: {locale}"
 current_with_personal = "Huidig: {locale} (Jouw keuze: {personal})"
-edit_description = "Open de berichteneditor voor elke taal."
+edit_description = "Open de berichteneditor per taal."
 edit_messages = "Taalberichten bewerken"
 no_controls = "Je hebt geen toegang tot taalinstellingen."
 remove_personal_description = "Verwijder jouw persoonlijke taalkeuze."
 reset_description = "Gebruik de standaardtaal van de server."
-reset_your_language = "Jouw taalkeuze herstellen"
+reset_your_language = "Jouw taal herstellen"
 select_description = "Klik om deze taal te selecteren."
 selected = "geselecteerd"
 server_default = "Standaardtaal van de server"
@@ -293,39 +295,47 @@ your_language = "Jouw taal"
 
 [language.selection]
 english-fallback = "{plugin}: {locale} is niet beschikbaar; Engels (en_US) wordt gebruikt."
-personal-selected = "{plugin}: uw taal is nu {locale}."
+personal-selected = "{plugin}: je taal is nu {locale}."
 preparing = "Taal {locale} wordt voorbereid voor {target}..."
 save-failed = "{plugin}: de taalkeuze kon niet worden opgeslagen; controleer de serverconsole."
 server-default-selected = "{plugin}: je taal volgt nu de standaardtaal van de server."
-server-selected = "{plugin}: servertaal is nu {locale}."
+server-selected = "{plugin}: de servertaal is nu {locale}."
 
 [language.usage]
 editor = "Gebruik: /{command} language server edit [locale]"
-selection = "Gebruik: /{command} language self [locale|reset] or server [locale]"
+selection = "Gebruik: /{command} language self [locale|reset] of server [locale]"
 volmit-selection = "Gebruik: /volmit plugins languages [locale]"
+update = "Gebruik: /{command} language update"
+
+[language.update]
+checking = "{plugin}: de taalrepository wordt gecontroleerd op wijzigingen..."
+unchanged = "{plugin}: de geïnstalleerde talen komen al overeen met de repository."
+applied = "{plugin}: {locale} bijgewerkt ({added} toegevoegd, {updated} gewijzigd, {kept} lokale bewerkingen behouden)."
+cooldown = "{plugin}: de taalrepository is onlangs gecontroleerd; probeer het over {remaining} opnieuw."
+locale-failed = "{plugin}: {locale} is niet bijgewerkt: {reason}"
+failed = "{plugin}: taalupdate mislukt: {reason}"
 
 [menu]
 feedback = "&6Persoonlijke meldingen&r"
-feedback_help = "&7Demp wisselberichten, titels of geluiden voor jezelf.&r"
+feedback_help = "&7Demp wisselberichten, meldingen of geluiden voor jezelf.&r"
 back = "&7Terug naar spelmodi&r"
 selected = "&aGeselecteerd&r"
 survival_help = "&7Verzamel grondstoffen en let op gezondheid en honger.&r"
-creative_help = "&7Bouw met onbeperkte grondstoffen en Creatief vliegen.&r"
+creative_help = "&7Bouw met onbeperkte grondstoffen en vlieg in Creatief.&r"
 adventure_help = "&7Verken kaarten met beperkingen voor het breken en plaatsen van blokken.&r"
-spectator_help = "&7Bekijk de wereld en vlieg door blokken.&r"
-config_help = "&7Bewerk serverinstellingen. Wijzigingen gelden direct.&r"
+spectator_help = "&7Bekijk de wereld en ga door blokken heen.&r"
+config_help = "&7Bewerk serverinstellingen. Wijzigingen gelden meteen.&r"
 language_help = "&7Kies de taal voor je berichten en menu's.&r"
-close = "Sluiten"
+close = "&cSluiten&r"
 config = "&6Configuratie&r"
-current = "&7Spelmodus: &f{mode}&r"
-gestures = "&6Gebaren&r"
+current = "&7Huidige spelmodus: &f{mode}&r"
+gestures = "&6Gebarenbediening&r"
 language = "&aTaal&r"
 select = "&7Klik om te selecteren.&r"
 title = "<gradient:#634514:#2f523f>Spelmodi</gradient>"
-toggle_disabled = "&7Gebaren: &cUitgeschakeld&r"
-toggle_enabled = "&7Gebaren: &aIngeschakeld&r"
+toggle_disabled = "&cGebaren uitgeschakeld&r"
+toggle_enabled = "&aGebaren ingeschakeld&r"
 toggle_help = "&7Klik om gebaren in of uit te schakelen.&r"
-unavailable = "&cJe kunt deze spelmodus niet selecteren.&r"
 
 [mode]
 adventure = "Avontuur"
@@ -337,21 +347,21 @@ survival = "Overleven"
 title = "<gradient:#634514:#2f523f>Persoonlijke meldingen</gradient>"
 chat = "&6Chatberichten&r"
 action_bar = "&6Actiebalk&r"
-screen_title = "&6Schermtitels&r"
+screen_title = "&6Titelmeldingen&r"
 sound = "&6Wisselgeluiden&r"
 muted = "&cVoor jou gedempt&r"
 inherit = "&7Serverinstellingen volgen: {state}&r"
 toggle = "&7Klik om te wisselen tussen gedempt en serverinstellingen.&r"
 silence = "&6Alles dempen&r"
-silence_help = "&7Demp berichten, titels en geluiden van geslaagde wissels.&r"
+silence_help = "&7Demp berichten, meldingen en geluiden van geslaagde wissels.&r"
 reset = "&aServerinstellingen gebruiken&r"
-reset_help = "&7Verwijder al je persoonlijke dempingen.&r"
+reset_help = "&7Verwijder je persoonlijke dempingen voor alle kanalen.&r"
 failures = "&7Bij gedempte chat blijft de reden van een geblokkeerde wissel in de actiebalk zichtbaar.&r"
-failed = "{prefix}&cJe voorkeur kon niet worden opgeslagen. Bekijk de console.&r"
+failed = "{prefix}&cJe voorkeur kon niet worden opgeslagen. Bekijk de console voor meer informatie.&r"
 
 [runtime]
 player_only = "{prefix}&cDeze opdracht kan alleen door een speler worden gebruikt.&r"
-prefix = "<gradient:#e9bd68:#85d6b0><bold>GamemodeSwitcher</bold></gradient> &8â€º&r "
+prefix = "<gradient:#e9bd68:#85d6b0><bold>GamemodeSwitcher</bold></gradient> &8›&r "
 
 [runtime.hot_reload]
 failed = "{prefix}&cDe bestandswijzigingen zijn geweigerd; de laatst geldige instellingen blijven actief.&r"
@@ -368,40 +378,40 @@ enabled = "&aIngeschakeld&r"
 title = "<gradient:#e9bd68:#85d6b0>{mode}</gradient>"
 subtitle = "&7Spelmodus gewijzigd.&r"
 overlay = "&7Spelmodus: &f{mode}&r"
-spectator_overlay_hint = "&7Druk driemaal op sluipen om Toeschouwer te verlaten.&r"
-already = "{prefix}&eJe spelmodus is al {mode}.&r"
-cancelled = "{prefix}&eEen andere plugin heeft de wijziging tegengehouden.&r"
-changed = "{prefix}&aSpelmodus gewijzigd naar {mode}.&r"
-cooldown = "{prefix}&eWacht {seconds} seconden voordat je opnieuw wisselt.&r"
-disabled = "{prefix}&eSpelmodus wisselen is uitgeschakeld.&r"
-empty_hands = "{prefix}&eMaak beide handen leeg om gebaren te gebruiken.&r"
-no_permission = "{prefix}&eJe hebt geen toestemming om deze spelmodus te gebruiken.&r"
-spectator_hint = "{prefix}&eGebruik /gsw menu of /gsw set survival om de toeschouwermodus te verlaten.&r"
-world_blocked = "{prefix}&eJe kunt niet van spelmodus wisselen in {world}.&r"
+spectator_overlay_hint = "&7Sluip drie keer om Toeschouwer te verlaten.&r"
+already = "{prefix}&7Je spelmodus is al &f{mode}&r&7.&r"
+cancelled = "{prefix}&eEen andere plugin heeft de wijziging van spelmodus tegengehouden.&r"
+changed = "{prefix}&aSpelmodus gewijzigd naar &f{mode}&r&a.&r"
+cooldown = "{prefix}&eWacht &f{seconds}&r&e seconden voordat je opnieuw wisselt.&r"
+disabled = "{prefix}&eWisselen van spelmodus is uitgeschakeld.&r"
+empty_hands = "{prefix}&eMaak beide handen leeg om spelmodusgebaren te gebruiken.&r"
+no_permission = "{prefix}&cJe hebt geen toestemming om deze spelmodus te gebruiken.&r"
+spectator_hint = "{prefix}&7Gebruik &f/gsw menu&r&7 of &f/gsw set survival&r&7 om de toeschouwermodus te verlaten.&r"
+world_blocked = "{prefix}&eWisselen van spelmodus is niet beschikbaar in &f{world}&r&e.&r"
 
 [toggle]
-disabled = "{prefix}&eGebaren uitgeschakeld. Commando's en het menu blijven beschikbaar.&r"
+disabled = "{prefix}&eSpelmodusgebaren uitgeschakeld. Opdrachten en het menu blijven beschikbaar.&r"
 enabled = "{prefix}&aSpelmodusgebaren ingeschakeld.&r"
 
 [gui.config.general]
 name = "Algemeen"
-description = "Schakel spelmoduswissels in en kies de servertaal."
+description = "Schakel het wisselen van spelmodus in en kies de servertaal."
 
 [gui.config.metrics]
 name = "Statistieken"
-description = "Beheer anonieme bStats-statistieken."
+description = "Beheer anonieme bStats-rapportage."
 
 [gui.config.gestures]
 name = "Gebarenbediening"
-description = "Stel tiktijden, wachttijden en bestemmingen van gebaren in."
+description = "Stel de tiktiming, wachttijden en bestemmingen van gebaren in."
 
 [gui.config.gestures.normal]
 name = "Bestemmingen bij dubbel tikken"
-description = "Kies de bestemming van elke spelmodus bij dubbel tikken op de handwisseltoets."
+description = "Kies waar dubbel tikken op de handwisseltoets elke spelmodus naartoe brengt."
 
 [gui.config.gestures.sneaking]
 name = "Bestemmingen tijdens sluipen"
-description = "Kies de bestemming van elke spelmodus bij sluipen en dubbel tikken op de handwisseltoets."
+description = "Kies waar sluipen en dubbel tikken op de handwisseltoets elke spelmodus naartoe brengt."
 
 [gui.config.restrictions]
 name = "Wereldbeperkingen"
@@ -409,7 +419,7 @@ description = "Kies werelden waarin wisselen van spelmodus niet beschikbaar is."
 
 [gui.config.feedback]
 name = "Wisselmeldingen"
-description = "Kies berichten, meldingen, geluiden en Creatief vliegen bij wisselen."
+description = "Kies wisselberichten, meldingen, geluiden en het vliegen in Creatief."
 
 [gui.config.diagnostics]
 name = "Diagnostiek"
@@ -421,7 +431,7 @@ description = "Bewerk serververtalingen en hun opmaak."
 
 [gui.config.general.enabled]
 name = "Spelmodus wisselen"
-description = "Sta wisselen via gebaren, opdrachten en het menu toe."
+description = "Sta wisselen toe via gebaren, opdrachten en het menu."
 
 [gui.config.general.language]
 name = "Servertaal"
@@ -429,7 +439,7 @@ description = "Standaardtaal voor spelers zonder persoonlijke keuze. Ontbrekende
 
 [gui.config.metrics.enabled]
 name = "Anonieme statistieken"
-description = "Verstuur anonieme bStats-statistieken. De algemene uitschakeling van bStats geldt ook."
+description = "Verstuur anonieme bStats-statistieken. De globale bStats-opt-out geldt ook."
 
 [gui.config.gestures.double-tap-millis]
 name = "Tijd voor dubbel tikken"
@@ -444,12 +454,12 @@ name = "Wachttijd na wisselen"
 description = "Wachttijd na een geslaagde wissel in milliseconden. Bereik: 0 tot 60000; 0 verwijdert de wachttijd."
 
 [gui.config.gestures.require-empty-hands]
-name = "Lege handen vereist"
-description = "Vereis twee lege handen voordat een gebaar de spelmodus kan wijzigen."
+name = "Lege handen vereisen"
+description = "Vereis dat beide handen leeg zijn voordat een gebaar je spelmodus kan wijzigen."
 
 [gui.config.gestures.spectator-exit]
-name = "Toeschouwer verlaten"
-description = "Bestemming na drie afzonderlijke sluiptoetsdrukken in Toeschouwer."
+name = "Modus bij verlaten van Toeschouwer"
+description = "Bestemming na drie afzonderlijke keren sluipen in Toeschouwer."
 
 [gui.config.gestures.normal.survival]
 name = "Vanuit Overleven"
@@ -477,31 +487,31 @@ description = "Bestemming bij sluipen en dubbel tikken op de handwisseltoets in 
 
 [gui.config.restrictions.disabled-worlds]
 name = "Uitgeschakelde werelden"
-description = "Werelden waar gebaren, commando's en het menu de spelmodus niet kunnen wisselen. Klik om ze uit een lijst te kiezen."
+description = "Werelden waar gebaren, opdrachten en het menu de spelmodus niet kunnen wijzigen. Klik om ze uit een lijst te kiezen."
 
 [gui.config.feedback.auto-fly-creative]
-name = "Vliegen bij Creatief"
-description = "Begin met vliegen na het inschakelen van Creatief als de speler mag vliegen."
+name = "Vliegen bij overschakelen naar Creatief"
+description = "Begin met vliegen na het overschakelen naar Creatief als de speler mag vliegen."
 
 [gui.config.feedback.sound-enabled]
-name = "Geluid bij wisselen"
+name = "Wisselgeluid"
 description = "Speel een bevestigingsgeluid na een geslaagde spelmoduswissel."
 
 [gui.config.diagnostics.upload-enabled]
-name = "Openbare debugrapporten"
-description = "Sta openbare diagnoserapporten toe. Gebruik upload=false om een rapport lokaal op te slaan."
+name = "Openbare debuguploads"
+description = "Sta toe dat diagnoserapporten openbaar worden geüpload. Gebruik upload=false om een rapport lokaal op te slaan."
 
 [gui.config.feedback.chat-enabled]
 name = "Chatberichten"
-description = "Toon geslaagde wissels en Toeschouwer-tips in de chat. Wanneer uitgeschakeld verschijnen foutredenen in de actiebalk."
+description = "Toon geslaagde wissels en Toeschouwer-tips in de chat. Wanneer uitgeschakeld, verschijnen foutredenen in de actiebalk."
 
 [gui.config.feedback.action-bar-enabled]
 name = "Actiebalkmelding"
-description = "Toon de nieuwe modus boven de snelbalk, met een uitstaptip in Toeschouwer."
+description = "Toon de nieuwe modus boven de werkbalk, met een tip om Toeschouwer te verlaten."
 
 [gui.config.feedback.title-enabled]
 name = "Titelmelding"
-description = "Toon de nieuwe modus midden op het scherm, met een uitstaptip in Toeschouwer."
+description = "Toon de nieuwe modus midden in het scherm, met een tip om Toeschouwer te verlaten."
 
 [gui.config.feedback.popup-duration-ticks]
 name = "Duur van meldingen"
@@ -509,11 +519,11 @@ description = "Duur van titel en actiebalk in ticks; 20 ticks = 1 seconde. Berei
 
 [gui.config.feedback.sound]
 name = "Geluidssleutel"
-description = "Geluid na een geslaagde spelmoduswissel."
+description = "Geluid dat na een geslaagde spelmoduswissel wordt afgespeeld."
 input = "Voer een geluidssleutel met naamruimte in, zoals minecraft:ui.button.click of minecraft:entity.experience_orb.pickup. Sleutels van aangepaste resourcepacks zijn toegestaan."
 
 [gui.config.feedback.sound-volume]
-name = "Volume"
+name = "Geluidsvolume"
 description = "Volume van het wisselgeluid. Bereik: 0 tot 1; 0 is stil."
 
 [gui.config.feedback.sound-pitch]
@@ -521,57 +531,57 @@ name = "Toonhoogte"
 description = "Toonhoogte van het wisselgeluid. Bereik: 0.5 tot 2; 1 gebruikt de oorspronkelijke toonhoogte."
 
 [spectator]
-save-failed = "{prefix}&cJe sessie kon niet worden opgeslagen. Je spelmodus is niet gewijzigd.&r"
+save-failed = "{prefix}&cJe toeschouwersessie kon niet worden opgeslagen. Je spelmodus is niet gewijzigd.&r"
 return-failed = "{prefix}&cTerugkeren is mislukt. Je sessie is opgeslagen; probeer /gsw return opnieuw.&r"
-origin-missing = "{prefix} &eDe wereld waar je toeschouwer werd is niet meer geladen, dus je spelmodus is hier gewijzigd.&r"
-none = "{prefix}&cJe hebt geen actieve toeschouwersessie.&r"
-busy = "{prefix}&cEr loopt al een wisseling van toeschouwermodus.&r"
+origin-missing = "{prefix}&eDe wereld waarin je Toeschouwer werd, is niet meer geladen, dus je spelmodus is gewijzigd waar je nu bent.&r"
+none = "{prefix}&eJe hebt geen actieve toeschouwersessie.&r"
+busy = "{prefix}&eEr is al een overgang van of naar Toeschouwer bezig.&r"
 
 [gui.config.spectator]
-description = "Kies terugkeer naar de vorige modus en beginlocatie."
-name = "Toeschouwersessies"
+description = "Herstel de modus of locatie die is vastgelegd wanneer deze plugin een toeschouwersessie start."
+name = "Terugkeer uit Toeschouwer"
 
 [gui.config.spectator.restore-previous-mode]
-description = "Keer bij het verlaten van je toeschouwersessie terug naar je vorige modus."
+description = "Sluip drie keer of gebruik /gsw return om de modus te herstellen van waaruit je Toeschouwer bent binnengegaan. Huidige machtigingen en wereldbeperkingen blijven gelden."
 name = "Vorige modus herstellen"
 
 [gui.config.spectator.return-to-origin]
-description = "Keer terug naar de opgeslagen beginlocatie voordat je een door de plugin gestarte toeschouwersessie verlaat."
+description = "Keer terug naar je opgeslagen beginlocatie voordat je een door de plugin gestarte toeschouwersessie verlaat."
 name = "Terug naar beginlocatie"
 
 [sound.menu]
-custom-help = "<gray>Voer een geluidsleutel van Minecraft of een resourcepack in.</gray>"
-custom = "<gray>Aangepaste geluidsleutel</gray>"
-preview-help = "<gray>Luister met het huidige servervolume en de toonhoogte, ook als wisselgeluiden gedempt zijn.</gray>"
-preview = "<gray>Huidig geluid beluisteren</gray>"
-selected = "<gray>Geselecteerd geluid</gray>"
-select = "<gray>Linksklik om te kiezen. Rechtsklik om te beluisteren.</gray>"
-current = "<gray>Huidig geluid: {sound}</gray>"
+custom-help = "<gray>Voer een geluidssleutel van Minecraft of een resourcepack in.</gray>"
+custom = "<gold>Aangepaste geluidssleutel</gold>"
+preview-help = "<gray>Beluister dit geluid met het huidige volume en de huidige toonhoogte van de server. Beluisteren werkt ook als wisselgeluiden gedempt zijn.</gray>"
+preview = "<gold>Huidig geluid beluisteren</gold>"
+selected = "<green>Geselecteerd geluid</green>"
+select = "<gray>Linksklik om te gebruiken. Rechtsklik om te beluisteren.</gray>"
+current = "<gray>Huidig geluid: <white>{sound}</white></gray>"
 title = "<gradient:#634514:#2f523f>Wisselgeluid</gradient>"
 
 [sound.preset]
-bell = "<gray>Bel</gray>"
-experience = "<gray>Ervaring oppakken</gray>"
-pling = "<gray>Plingtoon</gray>"
-chime = "<gray>Klank</gray>"
-click = "<gray>Knopklik</gray>"
+bell = "<gold>Bel</gold>"
+experience = "<gold>Ervaring oprapen</gold>"
+pling = "<gold>Pling</gold>"
+chime = "<gold>Klokkenspel</gold>"
+click = "<gold>Knopklik</gold>"
 
 [world.menu]
 title = "<gradient:#634514:#2f523f>Uitgeschakelde werelden</gradient>"
 help = "<gold>Uitgeschakelde werelden</gold>"
 help-detail = "<gray>Klik op een wereld om het wisselen van spelmodus daar uit of aan te zetten. Werelden worden opgeslagen met hun dimensiesleutel, zoals minecraft:the_nether.</gray>"
-folder = "<gray>Wereldmap: {folder}</gray>"
+folder = "<gray>Wereldmap: <white>{folder}</white></gray>"
 unloaded = "<gray>Niet geladen op deze server</gray>"
 disabled = "<red>Wisselen uit</red>"
 enabled = "<green>Wisselen aan</green>"
 disable = "<gray>Klik om wisselen hier uit te zetten.</gray>"
 enable = "<gray>Klik om wisselen hier weer aan te zetten.</gray>"
-remove = "<gray>Klik om deze uit de lijst te halen.</gray>"
+remove = "<gray>Klik om hem uit de lijst te verwijderen.</gray>"
 
 [gui.config.spectator.allow-unsafe-return]
 name = "Onveilig terugkeren toestaan"
-description = "Keer terug zonder vloer of vrije ruimte te controleren. Standaard aan; zet uit om een veilige bestemming te eisen. Geldt ook voor actieve sessies."
+description = "Sta terugkeer toe zonder de vloer of vrije ruimte te controleren. Standaard ingeschakeld; schakel uit om een veilige bestemming te vereisen. Geldt ook voor actieve sessies."
 
 [gui.config.general.update-notifications]
 name = "Updatemeldingen"
-description = "Controleer GitHub-releases en waarschuw bevoegde spelers via de gezamenlijke Volmit-melding. Er worden geen updates geïnstalleerd."
+description = "Controleer GitHub-releases en meld updates aan bevoegde spelers via de gedeelde Volmit-updatemelding. Er worden geen updates geïnstalleerd."

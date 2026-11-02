@@ -6,7 +6,6 @@ import art.arcane.volmlib.util.diagnostics.BukkitDebugDump;
 import art.arcane.volmlib.util.localization.BukkitLanguageSwitcher;
 import art.arcane.volmlib.util.localization.LocalizationSnapshot;
 import art.arcane.volmlib.util.localization.MessageArgs;
-import art.arcane.volmlib.util.localization.RemoteLanguageCatalog;
 import art.arcane.volmlib.util.plugin.ComponentText;
 import art.arcane.volmlib.util.scheduling.FoliaScheduler;
 import com.volmit.gsw.command.CommandService;
@@ -33,6 +32,8 @@ import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.io.IOException;
+import java.util.Set;
+import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.RejectedExecutionException;
@@ -41,6 +42,7 @@ import java.util.logging.Level;
 
 public final class GamemodeSwitcher extends JavaPlugin {
     private final Object configurationLock = new Object();
+    private final Set<String> pendingLanguageInstalls = ConcurrentHashMap.newKeySet();
 
     private ConfigService configService;
     private LanguageService languageService;
@@ -71,8 +73,9 @@ public final class GamemodeSwitcher extends JavaPlugin {
             configService = new ConfigService(getDataFolder());
             configService.initialize();
             languageService = new LanguageService(getDataFolder(), getLogger());
-            languageService.remoteCatalogFailure().ifPresent(failure -> getLogger().log(Level.WARNING,
-                    "Could not load GamemodeSwitcher language download sources", failure));
+            languageService.sourceFailure().ifPresent(failure -> getLogger().log(Level.WARNING,
+                    "Language source is unavailable; built-in English and installed language files remain active",
+                    failure));
             languageService.initialize(configService.runtime().language());
             languageService.initializeSelections(() -> configService.runtime().language(), this::selectDefaultLanguage);
             reloadWorker = Executors.newSingleThreadExecutor(task -> {
@@ -92,7 +95,8 @@ public final class GamemodeSwitcher extends JavaPlugin {
                                     SwitcherMessages.CONFIG_SAVED, MessageArgs.builder()
                                             .untrusted("setting", change.key())
                                             .untrusted("old", compact(change.before()))
-                                            .untrusted("new", compact(change.after())).build()))));
+                                            .untrusted("new", compact(change.after())).build())),
+                            languageService.updateAction(), languageService.displayNames()));
             updates = BukkitUpdateService.register(this, new BukkitUpdateService.Options(
                     "VolmitSoftware", "GamemodeSwitcher", "gamemodeswitcher.update",
                     () -> configService.runtime().updateNotifications()));
@@ -122,6 +126,7 @@ public final class GamemodeSwitcher extends JavaPlugin {
                     this::hotReload, metricsService.configFile()));
             languageService.setSelfWriteListener(reloader::noteSelfWrite);
             reloader.start();
+            languageService.startUpstreamCheck();
             requestConfiguredLanguage();
             SplashScreen.print(this);
             getLogger().info("GamemodeSwitcher enabled with " + schedulerName() + " scheduling.");
@@ -298,25 +303,36 @@ public final class GamemodeSwitcher extends JavaPlugin {
     }
 
     private void requestConfiguredLanguage() {
-        if (!closing) {
-            languageService.requestRemote(configService.runtime().language(), this::scheduleLanguageReload);
-        }
-    }
-
-    private void scheduleLanguageReload(RemoteLanguageCatalog.DownloadResult result) {
-        if (closing || reloadWorker == null) {
+        if (closing) {
             return;
         }
-        if (!result.successful()) {
-            getLogger().log(Level.WARNING, "Could not download GamemodeSwitcher language " + result.locale()
-                    + " from " + result.source() + "; English remains available", result.failure());
+        String locale = configService.runtime().language();
+        if (languageService.languageFile(locale).isFile() || !languageService.isRepositoryLocale(locale)) {
+            return;
+        }
+        if (!pendingLanguageInstalls.add(locale)) {
+            return;
+        }
+        languageService.requestInstall(locale).whenComplete((content, failure) -> {
+            pendingLanguageInstalls.remove(locale);
+            if (failure != null) {
+                getLogger().log(Level.WARNING, "Could not install GamemodeSwitcher language " + locale
+                        + " from " + languageService.sourceDescription() + "; English remains available", failure);
+                return;
+            }
+            scheduleLanguageReload(locale);
+        });
+    }
+
+    private void scheduleLanguageReload(String locale) {
+        if (closing || reloadWorker == null || !locale.equalsIgnoreCase(configService.runtime().language())) {
             return;
         }
         try {
             reloadWorker.execute(this::hotReload);
         } catch (RejectedExecutionException failure) {
             if (!closing) {
-                getLogger().log(Level.WARNING, "Could not apply downloaded GamemodeSwitcher language", failure);
+                getLogger().log(Level.WARNING, "Could not apply installed GamemodeSwitcher language " + locale, failure);
             }
         }
     }

@@ -14,89 +14,91 @@
 #
 # === Variables ===
 # Conservez les noms des variables et utilisez uniquement celles du message concerné.
+#   {added}  Messages ajoutés par une mise à jour de langue
 #   {after}  Valeur après le changement
-#   {argument}  argument inattendu
-#   {before}  Valeur avant la variation
-#   {command}  chemin de commande
-#   {count}  Nombre d'entrées correspondantes
+#   {argument}  Argument de commande inattendu
+#   {before}  Valeur avant le changement
+#   {command}  Chemin de la commande
+#   {count}  Nombre d’entrées correspondantes
 #   {enabled}  État du changement de mode de jeu
 #   {folder}  Nom du dossier du monde
-#   {group}  Catégorie de l’éditeur de langue
-#   {hot_reload}  état du rechargement
-#   {key}  clé du paramètre
-#   {language}  langue active
-#   {line}  Ligne source ou numéro de ligne
-#   {locale}  code régional
+#   {group}  Nom de la catégorie de messages
+#   {hot_reload}  État du rechargement automatique des fichiers
+#   {java}  Version de Java requise
+#   {kept}  Modifications locales conservées par une mise à jour de langue
+#   {key}  Clé de paramètre ou de message
+#   {language}  Langue du serveur
+#   {line}  Numéro de ligne du message
+#   {locale}  Identifiant de langue
 #   {maximum}  Valeur maximale autorisée
+#   {minecraft}  Plage de versions de Minecraft prises en charge
 #   {mode}  Nom du mode de jeu
-#   {new}  nouvelle valeur
+#   {new}  Nouvelle valeur du réglage
 #   {number}  Numéro de l’entrée
-#   {old}  ancienne valeur
+#   {old}  Ancienne valeur du réglage
 #   {page}  Page actuelle
 #   {pages}  Nombre total de pages
-#   {parameter}  nom du paramètre
-#   {path}  chemin du rapport local
-#   {permission}  permission requise
-#   {personal}  code régional personnel
-#   {plugin}  Nom du greffon
-#   {prefix}  la valeur globale runtime.prefix. Retirez {prefix} d’un message pour le masquer uniquement à cet endroit
-#   {reason}  motif de l’échec
-#   {java}  Required Java version
-#   {minecraft}  Supported Minecraft version range
-#   {scheduler}  planificateur
+#   {parameter}  Nom du paramètre
+#   {path}  Chemin local du rapport de diagnostic
+#   {permission}  Permission requise
+#   {personal}  Langue personnelle si elle diffère de celle du serveur
+#   {plugin}  Nom du plugin
+#   {prefix}  Valeur globale de runtime.prefix ; facultative pour chaque message
+#   {reason}  Motif de l’échec
+#   {remaining}  Délai restant avant la prochaine vérification des langues
+#   {scheduler}  Implémentation du planificateur
 #   {seconds}  Temps restant de recharge ou de confirmation en secondes
 #   {section}  Section de l’éditeur de langues
-#   {setting}  nom du réglage
-#   {step}  Variation d'un réglage numérique lors d'un clic normal
-#   {sound}  identifiant du son
-#   {state}  État personnel des gestes ou des notifications
-#   {target}  Lecteur cible, entité ou valeur
-#   {type}  type
-#   {url}  URL publique
-#   {value}  valeur actuelle, par défaut ou brute
-#   {variables}  variables valides
-#   {version}  version du plugin
-#   {world}  monde
+#   {setting}  Nom du réglage
+#   {sound}  Identifiant de son avec espace de noms
+#   {state}  Réglage de gestes ou de notifications du joueur
+#   {step}  Variation d’un réglage numérique lors d’un clic normal
+#   {target}  Cible de la sélection de langue
+#   {type}  Type de paramètre
+#   {updated}  Messages modifiés par une mise à jour de langue
+#   {url}  URL publique du rapport de diagnostic
+#   {value}  Valeur actuelle, par défaut ou brute
+#   {variables}  Variables valides pour le message sélectionné
+#   {version}  Version du plugin
+#   {world}  Nom du monde
 
 [command.description]
 version = "Afficher la version de GamemodeSwitcher"
-config = "Configuration"
-debug = "Outils de diagnostic de GamemodeSwitcher"
-debug_dump = "Créer un rapport de diagnostic GamemodeSwitcher complet"
-language = "Langue"
-menu = "Modes de jeu"
-root = "Modes de jeu"
-set = "Mode de jeu"
-status = "Mode de jeu"
-toggle = "Gestes"
+config = "Ouvrir l’éditeur de configuration"
+debug = "Consulter les diagnostics"
+debug_dump = "Créer un rapport de diagnostic GamemodeSwitcher"
+language = "Choisir votre langue ou modifier les traductions du serveur"
+menu = "Ouvrir le sélecteur de mode de jeu"
+root = "Changement de mode de jeu, gestes personnels et configuration"
+set = "Changer votre mode de jeu"
+status = "Afficher les réglages de changement et votre mode de jeu"
+toggle = "Activer ou désactiver vos gestes de mode de jeu"
 
 return = "Revenir de votre session spectateur"
 
 [command.feedback]
-failed = "{prefix}&cLa commande n'a pas pu être exécutée. Consultez la console pour plus de détails.&r"
+failed = "{prefix}&cLa commande n’a pas pu être exécutée. Consultez la console pour plus de détails.&r"
 
 [command.feedback.config]
-opened = "{prefix}&aL'éditeur complet de configuration en jeu a été ouvert.&r"
-save_failed = "{prefix}&cImpossible d'appliquer &f{setting}&r&c : {reason}&r"
 saved = "{prefix}&a{setting}&r &7est passé de &f{old}&r &7à &f{new}&r&7.&r"
 
 [command.parameter]
-enabled = "Activé / Désactivé"
-mode = "Survie, Créatif, Aventure, Spectateur"
+enabled = "Activer ou désactiver les gestes ; omettre pour basculer"
+mode = "Survie, créatif, aventure ou spectateur"
 upload = "Téléverser le rapport lorsque les envois publics sont activés"
 
 [command.status]
-compatibility = "&7Artefact :&r &fJava {java} / Minecraft {minecraft}&r &8|&r &7Planificateur :&r &f{scheduler}&r"
-config = "&7Mode de jeu:&r {enabled} &8|&r &7Langue:&r {language} &8|&r &7Recharger la configuration et les langues:&r {hot_reload}"
+compatibility = "&7Requiert :&r &fJava {java} / Minecraft {minecraft}&r &8|&r &7Planificateur :&r &f{scheduler}&r"
+config = "&7Changement de mode :&r {enabled} &8|&r &7Langue :&r &f{language}&r &8|&r &7Rechargement automatique :&r {hot_reload}"
 header = "&6&lGamemodeSwitcher&r"
-player = "&7Gestes:&r {state} &8|&r &7Mode de jeu:&r {mode}"
+player = "&7Gestes :&r {state} &8|&r &7Mode de jeu :&r {mode}"
 
 [config.editor]
-adjust = "Gauche +{step}, droite -{step}, Maj x10, Q pour saisir une valeur exacte."
+adjust = "Clic gauche +{step}, clic droit -{step}, Maj x10, Q pour saisir une valeur exacte."
 back = "Retour"
 close = "Fermer"
 current = "Valeur actuelle : {value}"
-edit = "Cliquez pour saisir une nouvelle valeur dans le chat."
+edit = "Cliquez pour saisir une nouvelle valeur dans le tchat."
 empty = "Cette section ne contient aucun paramètre."
 entry = "Entrée {number}"
 expired = "Le délai de saisie de la configuration a expiré."
@@ -113,7 +115,7 @@ refresh = "Actualiser"
 saved = "{path} enregistré. Les modifications s’appliquent automatiquement."
 saving = "Enregistrement de la configuration..."
 section = "Section : {path}"
-title = "{plugin} / Configuration"
+title = "{plugin} / Réglages"
 toggle = "Cliquez pour basculer entre true et false."
 too-long = "Saisissez au maximum {maximum} caractères."
 
@@ -138,17 +140,17 @@ already-preparing = "Un rapport de diagnostic pour {plugin} est déjà en cours 
 already-preparing-short = "Un rapport de diagnostic est déjà en cours de préparation."
 capture-failed = "Impossible de collecter les données du rapport de diagnostic. Consultez la console du serveur."
 closed-before-capture = "Le fournisseur de diagnostics a été fermé avant la collecte des données du rapport."
-closed-before-write = "Le fournisseur de diagnostics a été fermé avant l'écriture du rapport."
+closed-before-write = "Le fournisseur de diagnostics a été fermé avant l’écriture du rapport."
 missing-permission = "Permission manquante : {permission}"
 provider-closed = "Le fournisseur de diagnostics est fermé."
 schedule-failed = "Impossible de planifier la création du rapport de diagnostic."
-write-failed = "Impossible d'écrire le rapport de diagnostic. Consultez la console du serveur."
-writer-schedule-failed = "Impossible de planifier l'écriture du rapport de diagnostic."
+write-failed = "Impossible d’écrire le rapport de diagnostic. Consultez la console du serveur."
+writer-schedule-failed = "Impossible de planifier l’écriture du rapport de diagnostic."
 
 [debug.upload]
 completed = "Envoyé sous le nom VolmitSoftware - {plugin} - v{version}."
-failed = "L'envoi du rapport de diagnostic a échoué. Le rapport local est enregistré."
-interrupted = "L'envoi du rapport de diagnostic a été interrompu. Le rapport local est enregistré."
+failed = "L’envoi du rapport de diagnostic a échoué. Le rapport local est enregistré."
+interrupted = "L’envoi du rapport de diagnostic a été interrompu. Le rapport local est enregistré."
 
 [director.help]
 category = "Catégorie de commandes"
@@ -179,8 +181,8 @@ type = "Ce paramètre est de type {type}."
 
 [director.runtime.error]
 conversion_failed = "Impossible de convertir \"{value}\" en {type} pour {parameter}"
-default_parse_failed = "Impossible d'analyser la valeur par défaut du paramètre {parameter}"
-execution_failed = "Échec de l'exécution de la commande {command} : {reason}"
+default_parse_failed = "Impossible d’analyser la valeur par défaut du paramètre {parameter}"
+execution_failed = "Échec de l’exécution de la commande {command} : {reason}"
 invalid_origin = "Cette commande ne peut pas être exécutée depuis cette origine."
 missing_argument = "Argument manquant \"{parameter}\" ({type})"
 unclosed_group = "Crochet fermant \"]\" manquant pour le paramètre {key}"
@@ -188,23 +190,23 @@ unexpected_argument = "Argument inattendu \"{argument}\". Les paramètres facult
 unknown_parameter = "Clé de paramètre inconnue : {key}"
 
 [gesture]
-normal = "&7Appuyez deux fois sur Échanger avec la main secondaire : {mode}&r"
-sneaking = "&7Maintenez S’accroupir et appuyez deux fois sur Échanger : {mode}&r"
-spectator = "&7Appuyez sur S’accroupir trois fois séparément : {mode}&r"
-rebind = "&7Modifiez Échanger avec la main secondaire (F) et S’accroupir (Maj gauche) dans Options > Contrôles > Touches.&r"
-personal_disabled = "&eVos gestes sont désactivés. Activez-les ici ou avec /gsw toggle true.&r"
+normal = "&7Appuyez deux fois sur Échanger avec la main secondaire : &f{mode}&r"
+sneaking = "&7Maintenez S’accroupir et appuyez deux fois sur Échanger avec la main secondaire : &f{mode}&r"
+spectator = "&7Appuyez trois fois séparément sur S’accroupir : &f{mode}&r"
+rebind = "&7Réassignez Échanger avec la main secondaire (F par défaut) et S’accroupir (Maj. gauche par défaut) dans Options > Contrôles > Assignation des touches.&r"
+personal_disabled = "&eVos gestes sont désactivés. Activez-les dans ce menu ou avec /gsw toggle true.&r"
 empty_hands = "&7Les deux mains doivent être vides pour utiliser les gestes.&r"
-help = "&7Appuyez deux fois sur la touche d'échange des mains (F par défaut) pour changer de mode. Accroupissez-vous en même temps pour l'action alternative ; appuyez trois fois sur accroupir pour quitter le mode spectateur. Les modes dépendent des réglages du serveur.&r"
+help = "&7Appuyez deux fois sur la touche d’échange des mains (F par défaut) pour changer de mode. Faites-le en étant accroupi pour l’action alternative ; appuyez trois fois sur S’accroupir pour quitter le mode Spectateur. Les destinations suivent les réglages du serveur.&r"
 
 [gui.title]
-root = "<gradient:#634514:#2f523f>GSW</gradient> <color:#404040>Configuration</color>"
+root = "<gradient:#634514:#2f523f>GSW</gradient> <color:#404040>Réglages</color>"
 
 [language.editor]
 title = "{plugin} › {section}"
 loading = "Chargement des messages en {locale}..."
 
 [language.editor.category]
-message-count = "&7{count} messages disponibles&r"
+message-count = "&7Messages : {count}&r"
 open = "&8Cliquez pour ouvrir cette catégorie.&r"
 
 [language.editor.error]
@@ -220,8 +222,8 @@ unable-to-save = "Impossible d’enregistrer : {reason}"
 open = "&8Cliquez pour ouvrir cette langue.&r"
 
 [language.editor.message]
-current-value = "&7Valeur actuelle:&r"
-edit-chat = "&7Cliquez pour modifier dans le chat.&r"
+current-value = "&7Valeur actuelle :&r"
+edit-chat = "&7Cliquez pour modifier dans le tchat.&r"
 edit-lines = "&7Cliquez pour modifier les lignes individuellement.&r"
 edit-plural = "&7Cliquez pour modifier une forme plurielle.&r"
 variables = "&8{variables}&r"
@@ -239,8 +241,8 @@ line = "Ligne {line}"
 current = "Valeur actuelle : {value}"
 guidance = "Utilisez \\n pour un saut de ligne, \\\\ pour une barre oblique inverse, ou saisissez cancel pour revenir."
 search = "Recherchez une clé de message ou du texte. Saisissez cancel pour revenir."
-value = "Saisissez une nouvelle valeur pour {key} dans le chat."
-variables = "Variables disponibles : {variables}"
+value = "Saisissez une nouvelle valeur pour {key} dans le tchat."
+variables = "Variables : {variables}"
 
 [language.editor.saved]
 change = "{key} : « {before} » remplacé par « {after} »."
@@ -262,20 +264,20 @@ empty = "(vide)"
 none = "Aucune"
 
 [language.error]
-editor-player-only = "Ouvrez l'éditeur de langue dans le jeu."
+editor-player-only = "Ouvrez l’éditeur de langue dans le jeu."
 no-providers = "Aucun fournisseur de langue Volmit n’est disponible."
 numeric-page = "Saisissez un numéro de page."
-personal-permission = "Vous n'avez pas la permission de sélectionner votre langue."
+personal-permission = "Vous n’avez pas la permission de sélectionner votre langue."
 personal-player-only = "Les préférences linguistiques du joueur doivent être sélectionnées dans le jeu."
 plugin-personal-permission = "Vous n’avez pas la permission de choisir votre langue pour {plugin}."
 plugin-server-permission = "Vous n’avez pas la permission de changer la langue du serveur pour {plugin}."
 server-locale-required = "Choisissez un code de langue comme en_US pour la langue par défaut du serveur."
-stopping = "La sélection de la langue est indisponible pendant que le plugin s'arrête."
+stopping = "La sélection de la langue est indisponible pendant que le plugin s’arrête."
 unavailable-for-all = "La langue {locale} n’est pas disponible pour tous les plugins sélectionnés."
 
 [language.menu]
-all-volmit-plugins = "Tous les plugins Volmit"
-command = "Commande: {command}"
+all-volmit-plugins = "tous les plugins Volmit"
+command = "Commande : {command}"
 current = "Langue actuelle : {locale}"
 current_with_personal = "Langue actuelle : {locale} (La vôtre : {personal})"
 edit_description = "Ouvrez l’éditeur de messages pour chaque langue."
@@ -285,7 +287,7 @@ remove_personal_description = "Supprimez votre choix de langue personnel."
 reset_description = "Utilisez la langue par défaut du serveur."
 reset_your_language = "Réinitialiser votre langue"
 select_description = "Cliquez pour sélectionner cette langue."
-selected = "sélectionné"
+selected = "sélectionnée"
 server_default = "Langue par défaut du serveur"
 server_description = "Modifiez la langue par défaut du serveur."
 use_server_default = "Utiliser la langue par défaut du serveur"
@@ -293,40 +295,48 @@ your_description = "Modifiez uniquement les messages que vous voyez."
 your_language = "Votre langue"
 
 [language.selection]
-english-fallback = "{plugin} : {locale} est indisponible ; l’anglais (en_US) est utilisé."
+english-fallback = "{plugin}: {locale} est indisponible ; l’anglais (en_US) est utilisé."
 personal-selected = "{plugin}: votre langue est maintenant {locale}."
 preparing = "Préparation de la langue {locale} pour {target}..."
-save-failed = "{plugin} : impossible d’enregistrer le choix de langue ; consultez la console du serveur."
-server-default-selected = "{plugin} : votre langue suit désormais la langue par défaut du serveur."
+save-failed = "{plugin}: impossible d’enregistrer le choix de langue ; consultez la console du serveur."
+server-default-selected = "{plugin}: votre langue suit désormais la langue par défaut du serveur."
 server-selected = "{plugin}: la langue du serveur est maintenant {locale}."
 
 [language.usage]
-editor = "Utilisation: /{command} language server edit [locale]"
-selection = "Utilisation: /{command} language self [locale|reset] or server [locale]"
-volmit-selection = "Utilisation: /volmit plugins languages [locale]"
+editor = "Utilisation : /{command} language server edit [locale]"
+selection = "Utilisation : /{command} language self [locale|reset] ou server [locale]"
+volmit-selection = "Utilisation : /volmit plugins languages [locale]"
+update = "Utilisation : /{command} language update"
+
+[language.update]
+checking = "{plugin}: recherche de modifications dans le dépôt de langues..."
+unchanged = "{plugin}: les langues installées correspondent déjà au dépôt."
+applied = "{plugin}: {locale} mis à jour ({added} ajoutés, {updated} modifiés, {kept} modifications locales conservées)."
+cooldown = "{plugin}: le dépôt de langues a été vérifié récemment ; réessayez dans {remaining}."
+locale-failed = "{plugin}: {locale} n’a pas été mis à jour : {reason}"
+failed = "{plugin}: la mise à jour des langues a échoué : {reason}"
 
 [menu]
 feedback = "&6Notifications personnelles&r"
-feedback_help = "&7Masquez vos messages, titres ou sons de changement.&r"
+feedback_help = "&7Masquez pour vous seul les messages, alertes ou sons de changement.&r"
 back = "&7Retour aux modes de jeu&r"
 selected = "&aSélectionné&r"
 survival_help = "&7Récoltez des ressources et gérez votre santé et votre faim.&r"
-creative_help = "&7Construisez avec des ressources illimitées et le vol créatif.&r"
+creative_help = "&7Construisez avec des ressources illimitées et le vol du mode Créatif.&r"
 adventure_help = "&7Explorez des cartes où casser et poser des blocs est limité.&r"
 spectator_help = "&7Observez le monde et traversez les blocs.&r"
-config_help = "&7Modifiez les réglages du serveur. Les changements s'appliquent immédiatement.&r"
+config_help = "&7Modifiez les réglages du serveur. Les changements s’appliquent immédiatement.&r"
 language_help = "&7Choisissez la langue de vos messages et menus.&r"
-close = "Fermer"
-config = "&6Configuration&r"
-current = "&7Mode de jeu: &f{mode}&r"
-gestures = "&6Gestes&r"
+close = "&cFermer&r"
+config = "&6Réglages&r"
+current = "&7Mode de jeu actuel : &f{mode}&r"
+gestures = "&6Commandes gestuelles&r"
 language = "&aLangue&r"
 select = "&7Cliquez pour sélectionner.&r"
 title = "<gradient:#634514:#2f523f>Modes de jeu</gradient>"
-toggle_disabled = "&7Gestes: &cDésactivé&r"
-toggle_enabled = "&7Gestes: &aActivé&r"
+toggle_disabled = "&cGestes désactivés&r"
+toggle_enabled = "&aGestes activés&r"
 toggle_help = "&7Cliquez pour activer ou désactiver les gestes.&r"
-unavailable = "&cVous ne pouvez pas sélectionner ce mode de jeu.&r"
 
 [mode]
 adventure = "Aventure"
@@ -336,30 +346,30 @@ survival = "Survie"
 
 [preferences]
 title = "<gradient:#634514:#2f523f>Notifications personnelles</gradient>"
-chat = "&6Messages du chat&r"
+chat = "&6Messages du tchat&r"
 action_bar = "&6Barre d’action&r"
-screen_title = "&6Titres à l’écran&r"
+screen_title = "&6Alertes de titre&r"
 sound = "&6Sons de changement&r"
 muted = "&cMasqué pour vous&r"
-inherit = "&7Réglages du serveur : {state}&r"
+inherit = "&7Selon les réglages du serveur : {state}&r"
 toggle = "&7Cliquez pour alterner entre masqué et réglages du serveur.&r"
 silence = "&6Tout masquer&r"
-silence_help = "&7Masquez les messages, titres et sons des changements réussis.&r"
+silence_help = "&7Masquez les messages, alertes et sons des changements réussis.&r"
 reset = "&aUtiliser les réglages du serveur&r"
-reset_help = "&7Supprimez tous vos réglages personnels de masquage.&r"
-failures = "&7Si le chat est masqué, les changements bloqués indiquent toujours la raison dans la barre d’action.&r"
-failed = "{prefix}&cImpossible d'enregistrer votre préférence. Consultez la console.&r"
+reset_help = "&7Supprimez vos masquages personnels pour tous les canaux.&r"
+failures = "&7Si le tchat est masqué, les changements bloqués indiquent toujours la raison dans la barre d’action.&r"
+failed = "{prefix}&cImpossible d’enregistrer votre préférence. Consultez la console.&r"
 
 [runtime]
 player_only = "{prefix}&cCette commande ne peut être utilisée que par un joueur.&r"
-prefix = "<gradient:#e9bd68:#85d6b0><bold>GamemodeSwitcher</bold></gradient> &8â€º&r "
+prefix = "<gradient:#e9bd68:#85d6b0><bold>GamemodeSwitcher</bold></gradient> &8›&r "
 
 [runtime.hot_reload]
 failed = "{prefix}&cLes modifications de fichiers ont été refusées ; les derniers paramètres valides restent actifs.&r"
 success = "{prefix}&aLes modifications de la configuration et des fichiers de langue ont été appliquées.&r"
 
 [runtime.permission]
-denied = "{prefix}&cVous n'avez pas la permission d'effectuer cette action.&r"
+denied = "{prefix}&cVous n’avez pas la permission d’effectuer cette action.&r"
 
 [state]
 disabled = "&cDésactivé&r"
@@ -369,16 +379,16 @@ enabled = "&aActivé&r"
 title = "<gradient:#e9bd68:#85d6b0>{mode}</gradient>"
 subtitle = "&7Mode de jeu modifié.&r"
 overlay = "&7Mode de jeu : &f{mode}&r"
-spectator_overlay_hint = "&7Accroupissez-vous trois fois pour quitter Spectateur.&r"
-already = "{prefix}&eVotre mode de jeu est déjà {mode}.&r"
+spectator_overlay_hint = "&7Accroupissez-vous trois fois pour quitter le mode Spectateur.&r"
+already = "{prefix}&7Votre mode de jeu est déjà &f{mode}&r&7.&r"
 cancelled = "{prefix}&eUn autre plugin a empêché le changement de mode de jeu.&r"
-changed = "{prefix}&aMode de jeu changé en {mode}.&r"
-cooldown = "{prefix}&eAttendez {seconds} secondes avant de changer à nouveau.&r"
+changed = "{prefix}&aMode de jeu changé en &f{mode}&r&a.&r"
+cooldown = "{prefix}&eAttendez &f{seconds}&r&e secondes avant de changer à nouveau.&r"
 disabled = "{prefix}&eLe changement de mode de jeu est désactivé.&r"
 empty_hands = "{prefix}&eVidez vos deux mains pour utiliser les gestes de mode de jeu.&r"
-no_permission = "{prefix}&eVous ne pouvez pas utiliser ce mode de jeu.&r"
-spectator_hint = "{prefix}&eUtilisez /gsw menu ou /gsw set survival pour quitter le mode spectateur.&r"
-world_blocked = "{prefix}&eLe changement de mode de jeu est indisponible dans {world}.&r"
+no_permission = "{prefix}&cVous n’avez pas la permission d’utiliser ce mode de jeu.&r"
+spectator_hint = "{prefix}&7Utilisez &f/gsw menu&r&7 ou &f/gsw set survival&r&7 pour quitter le mode Spectateur.&r"
+world_blocked = "{prefix}&eLe changement de mode de jeu est indisponible dans &f{world}&r&e.&r"
 
 [toggle]
 disabled = "{prefix}&eGestes désactivés. Les commandes et le menu restent disponibles.&r"
@@ -386,23 +396,23 @@ enabled = "{prefix}&aGestes de mode de jeu activés.&r"
 
 [gui.config.general]
 name = "Général"
-description = "Activer les changements de mode et choisir la langue du serveur."
+description = "Activer le changement de mode de jeu et choisir la langue du serveur."
 
 [gui.config.metrics]
 name = "Statistiques"
-description = "Gérer les statistiques anonymes bStats."
+description = "Gérer les rapports anonymes bStats."
 
 [gui.config.gestures]
 name = "Commandes gestuelles"
-description = "Régler les délais, les temps d'attente et les destinations des gestes."
+description = "Régler les délais d’appui, les temps d’attente et les destinations des gestes."
 
 [gui.config.gestures.normal]
 name = "Destinations du double appui"
-description = "Choisir la destination de chaque mode après un double appui sur la touche d'échange des mains."
+description = "Choisir où mène un double appui sur la touche d’échange des mains depuis chaque mode de jeu."
 
 [gui.config.gestures.sneaking]
-name = "Destinations accroupies"
-description = "Choisir la destination de chaque mode après un double appui sur la touche d'échange des mains en étant accroupi."
+name = "Destinations en étant accroupi"
+description = "Choisir où mène un double appui sur la touche d’échange des mains en étant accroupi, depuis chaque mode de jeu."
 
 [gui.config.restrictions]
 name = "Restrictions par monde"
@@ -410,11 +420,11 @@ description = "Choisir les mondes où le changement de mode est indisponible."
 
 [gui.config.feedback]
 name = "Retours de changement"
-description = "Choisir les messages, alertes, sons et le vol créatif lors des changements."
+description = "Choisir les messages, alertes, sons et le vol en mode Créatif lors des changements."
 
 [gui.config.diagnostics]
 name = "Diagnostic"
-description = "Gérer la publication des rapports de diagnostic."
+description = "Gérer l’envoi public des rapports de diagnostic."
 
 [gui.config.languages]
 name = "Langues"
@@ -426,92 +436,92 @@ description = "Autoriser les changements par gestes, commandes et menu."
 
 [gui.config.general.language]
 name = "Langue du serveur"
-description = "Langue par défaut des joueurs sans choix personnel. Les traductions manquantes utilisent l'anglais."
+description = "Langue par défaut des joueurs sans choix personnel. Les traductions manquantes utilisent l’anglais."
 
 [gui.config.metrics.enabled]
 name = "Statistiques anonymes"
-description = "Envoyer des statistiques anonymes à bStats. La désactivation globale de bStats s'applique aussi."
+description = "Envoyer des statistiques anonymes à bStats. La désactivation globale de bStats s’applique aussi."
 
 [gui.config.gestures.double-tap-millis]
 name = "Délai du double appui"
-description = "Délai maximal entre les appuis d'échange des mains, en millisecondes. Plage : 100 à 3000."
+description = "Délai maximal entre les appuis sur la touche d’échange des mains, en millisecondes. Plage : 100 à 3000."
 
 [gui.config.gestures.sneak-tap-millis]
-name = "Délai des appuis Spectateur"
-description = "Délai maximal entre les appuis d'accroupissement en Spectateur, en millisecondes. Plage : 100 à 3000."
+name = "Délai des appuis en Spectateur"
+description = "Délai maximal entre les appuis sur S’accroupir en mode Spectateur, en millisecondes. Plage : 100 à 3000."
 
 [gui.config.gestures.cooldown-millis]
 name = "Attente entre changements"
-description = "Attente après un changement réussi, en millisecondes. Plage : 0 à 60000 ; 0 supprime l'attente."
+description = "Attente après un changement de mode réussi, en millisecondes. Plage : 0 à 60000 ; 0 supprime l’attente."
 
 [gui.config.gestures.require-empty-hands]
 name = "Exiger les mains vides"
-description = "Exiger que les deux mains soient vides pour changer de mode par un geste."
+description = "Exiger que les deux mains soient vides avant qu’un geste puisse changer votre mode."
 
 [gui.config.gestures.spectator-exit]
-name = "Sortie du mode Spectateur"
-description = "Destination après trois appuis distincts sur la touche d'accroupissement en Spectateur."
+name = "Mode en quittant Spectateur"
+description = "Destination après trois appuis distincts sur S’accroupir en mode Spectateur."
 
 [gui.config.gestures.normal.survival]
 name = "Depuis Survie"
-description = "Destination après un double appui sur la touche d'échange des mains en mode Survie."
+description = "Destination quand vous appuyez deux fois sur la touche d’échange des mains en mode Survie."
 
 [gui.config.gestures.normal.creative]
 name = "Depuis Créatif"
-description = "Destination après un double appui sur la touche d'échange des mains en mode Créatif."
+description = "Destination quand vous appuyez deux fois sur la touche d’échange des mains en mode Créatif."
 
 [gui.config.gestures.normal.adventure]
 name = "Depuis Aventure"
-description = "Destination après un double appui sur la touche d'échange des mains en mode Aventure."
+description = "Destination quand vous appuyez deux fois sur la touche d’échange des mains en mode Aventure."
 
 [gui.config.gestures.sneaking.survival]
 name = "Depuis Survie"
-description = "Destination après un double appui sur la touche d'échange des mains en étant accroupi en mode Survie."
+description = "Destination quand vous êtes accroupi et appuyez deux fois sur la touche d’échange des mains en mode Survie."
 
 [gui.config.gestures.sneaking.creative]
 name = "Depuis Créatif"
-description = "Destination après un double appui sur la touche d'échange des mains en étant accroupi en mode Créatif."
+description = "Destination quand vous êtes accroupi et appuyez deux fois sur la touche d’échange des mains en mode Créatif."
 
 [gui.config.gestures.sneaking.adventure]
 name = "Depuis Aventure"
-description = "Destination après un double appui sur la touche d'échange des mains en étant accroupi en mode Aventure."
+description = "Destination quand vous êtes accroupi et appuyez deux fois sur la touche d’échange des mains en mode Aventure."
 
 [gui.config.restrictions.disabled-worlds]
 name = "Mondes désactivés"
 description = "Mondes où les gestes, les commandes et le menu ne peuvent pas changer le mode de jeu. Cliquez pour les choisir dans une liste."
 
 [gui.config.feedback.auto-fly-creative]
-name = "Voler en passant en Créatif"
-description = "Commencer à voler en passant en Créatif si le joueur est autorisé à voler."
+name = "Voler en passant en mode Créatif"
+description = "Commencer à voler en passant en mode Créatif si le joueur est autorisé à voler."
 
 [gui.config.feedback.sound-enabled]
 name = "Son du changement"
 description = "Jouer un son de confirmation après un changement de mode réussi."
 
 [gui.config.diagnostics.upload-enabled]
-name = "Rapports publics"
-description = "Autoriser les rapports de diagnostic publics. Utiliser upload=false pour enregistrer un rapport localement."
+name = "Envois publics de diagnostic"
+description = "Autoriser l’envoi public des rapports de diagnostic. Utilisez upload=false pour enregistrer un rapport localement."
 
 [gui.config.feedback.chat-enabled]
-name = "Messages du chat"
-description = "Afficher les changements réussis et conseils Spectateur dans le chat. Sinon, les erreurs apparaissent dans la barre d'action."
+name = "Messages du tchat"
+description = "Afficher les changements réussis et les indications Spectateur dans le tchat. Si désactivé, les raisons des échecs apparaissent dans la barre d’action."
 
 [gui.config.feedback.action-bar-enabled]
-name = "Alerte de barre d'action"
-description = "Afficher le nouveau mode au-dessus de la barre rapide, avec un conseil de sortie en Spectateur."
+name = "Alerte de barre d’action"
+description = "Afficher le nouveau mode au-dessus de la barre rapide, avec une indication de sortie en mode Spectateur."
 
 [gui.config.feedback.title-enabled]
 name = "Alerte de titre"
-description = "Afficher le nouveau mode au centre de l'écran, avec un conseil de sortie en Spectateur."
+description = "Afficher le nouveau mode au centre de l’écran, avec une indication de sortie en mode Spectateur."
 
 [gui.config.feedback.popup-duration-ticks]
 name = "Durée des alertes"
-description = "Durée du titre et de la barre d'action en ticks ; 20 ticks = 1 seconde. Plage : 1 à 200."
+description = "Durée du titre et de la barre d’action en ticks ; 20 ticks = 1 seconde. Plage : 1 à 200."
 
 [gui.config.feedback.sound]
-name = "Clé du son"
+name = "Clé de son"
 description = "Son joué après un changement de mode réussi."
-input = "Saisir une clé de son avec espace de noms, comme minecraft:ui.button.click ou minecraft:entity.experience_orb.pickup. Les clés de packs de ressources personnalisés sont autorisées."
+input = "Saisissez une clé de son avec espace de noms, comme minecraft:ui.button.click ou minecraft:entity.experience_orb.pickup. Les clés personnalisées de packs de ressources sont autorisées."
 
 [gui.config.feedback.sound-volume]
 name = "Volume"
@@ -519,30 +529,30 @@ description = "Volume du son de changement. Plage : 0 à 1 ; 0 est silencieux."
 
 [gui.config.feedback.sound-pitch]
 name = "Hauteur du son"
-description = "Hauteur du son de changement. Plage : 0.5 à 2 ; 1 utilise la hauteur d'origine."
+description = "Hauteur du son de changement. Plage : 0.5 à 2 ; 1 utilise la hauteur d’origine."
 
 [sound.menu]
 title = "<gradient:#634514:#2f523f>Son de changement</gradient>"
-current = "<gray>Son actuel : {sound}</gray>"
-select = "<gray>Clic gauche pour choisir. Clic droit pour écouter.</gray>"
+current = "<gray>Son actuel : <white>{sound}</white></gray>"
+select = "<gray>Clic gauche pour utiliser. Clic droit pour écouter.</gray>"
 selected = "<green>Son sélectionné</green>"
 preview = "<gold>Écouter le son actuel</gold>"
-preview-help = "<gray>Écouter avec le volume et la hauteur actuels du serveur, même si les sons de changement sont désactivés.</gray>"
-custom = "<gold>Son personnalisé</gold>"
+preview-help = "<gray>Écoutez ce son avec le volume et la hauteur actuels du serveur. L’aperçu fonctionne même si les sons de changement sont masqués.</gray>"
+custom = "<gold>Clé de son personnalisée</gold>"
 custom-help = "<gray>Saisissez une clé de son Minecraft ou de pack de ressources.</gray>"
 
 [sound.preset]
 click = "<gold>Clic de bouton</gold>"
 chime = "<gold>Carillon</gold>"
 pling = "<gold>Pling</gold>"
-experience = "<gold>Ramassage d'expérience</gold>"
+experience = "<gold>Ramassage d’expérience</gold>"
 bell = "<gold>Cloche</gold>"
 
 [world.menu]
 title = "<gradient:#634514:#2f523f>Mondes désactivés</gradient>"
 help = "<gold>Mondes désactivés</gold>"
 help-detail = "<gray>Cliquez sur un monde pour y désactiver ou réactiver le changement de mode de jeu. Les mondes sont enregistrés par clé de dimension, par exemple minecraft:the_nether.</gray>"
-folder = "<gray>Dossier du monde : {folder}</gray>"
+folder = "<gray>Dossier du monde : <white>{folder}</white></gray>"
 unloaded = "<gray>Non chargé sur ce serveur</gray>"
 disabled = "<red>Changement désactivé</red>"
 enabled = "<green>Changement activé</green>"
@@ -551,28 +561,28 @@ enable = "<gray>Cliquez pour réactiver le changement ici.</gray>"
 remove = "<gray>Cliquez pour le retirer de la liste.</gray>"
 
 [spectator]
-busy = "{prefix} &eUne transition du mode spectateur est déjà en cours.&r"
-none = "{prefix} &eVous n'avez aucune session spectateur active.&r"
+busy = "{prefix}&eUne transition Spectateur est déjà en cours.&r"
+none = "{prefix}&eVous n’avez aucune session spectateur active.&r"
 return-failed = "{prefix}&cRetour impossible. Votre session est enregistrée ; réessayez /gsw return.&r"
-origin-missing = "{prefix} &eVotre monde d'entrée en spectateur n'est plus chargé ; votre mode de jeu a donc changé ici.&r"
-save-failed = "{prefix} &cImpossible d'enregistrer votre session spectateur. Votre mode de jeu n'a pas changé.&r"
+origin-missing = "{prefix}&eVotre monde d’entrée en Spectateur n’est plus chargé ; votre mode de jeu a donc changé à votre position actuelle.&r"
+save-failed = "{prefix}&cImpossible d’enregistrer votre session spectateur. Votre mode de jeu n’a pas changé.&r"
 
 [gui.config.spectator]
-name = "Retour de spectateur"
+name = "Retour du mode Spectateur"
 description = "Rétablir le mode ou la position enregistrés lorsque ce plugin lance une session spectateur."
 
 [gui.config.spectator.restore-previous-mode]
 name = "Rétablir le mode précédent"
-description = "Appuyez trois fois sur S'accroupir ou utilisez /gsw return pour rétablir le mode précédent. Les permissions et restrictions de mondes actuelles restent applicables."
+description = "Appuyez trois fois sur S’accroupir ou utilisez /gsw return pour rétablir le mode depuis lequel vous êtes passé en Spectateur. Les permissions et restrictions de mondes actuelles s’appliquent toujours."
 
 [gui.config.spectator.return-to-origin]
 name = "Revenir au point de départ"
-description = "Revenir à la position de départ enregistrée avant de quitter une session spectateur lancée par le plugin."
+description = "Revenir à la position d’entrée enregistrée avant de quitter une session spectateur lancée par le plugin."
 
 [gui.config.spectator.allow-unsafe-return]
 name = "Autoriser les retours non sécurisés"
-description = "Revenir sans vérifier le sol ni l’espace libre. Activé par défaut ; désactivez pour exiger une destination sûre. S’applique aussi aux sessions actives."
+description = "Autoriser les retours sans vérifier le sol ni l’espace libre. Activé par défaut ; désactivez-le pour exiger une destination sûre. S’applique aussi aux sessions actives."
 
 [gui.config.general.update-notifications]
 name = "Notifications de mise à jour"
-description = "Vérifier les versions GitHub et prévenir les joueurs autorisés dans la notification commune de Volmit. Aucune mise à jour ne sera installée."
+description = "Vérifier les versions publiées sur GitHub et prévenir les joueurs autorisés via la notification de mise à jour commune de Volmit. Aucune mise à jour n’est installée."

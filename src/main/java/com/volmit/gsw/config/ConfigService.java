@@ -114,7 +114,7 @@ public final class ConfigService {
         try {
             Toml toml = new Toml().read(source);
             String language = toml.getString("general.language", "en_US");
-            if (!language.matches("[a-zA-Z]{2,3}[-_][a-zA-Z]{2,3}")) {
+            if (!language.matches("[A-Za-z0-9_-]{2,32}")) {
                 throw new IllegalArgumentException("general.language must be a locale code such as en_US");
             }
             Set<String> disabledWorlds = new HashSet<>();

@@ -16,10 +16,8 @@ public final class SwitcherMessages {
     public static final TextKey PLAYER_ONLY = prefixed("runtime.player_only", "&cThis command can only be used by a player.&r");
     public static final TextKey HOT_RELOAD_SUCCESS = prefixed("runtime.hot_reload.success", "&aApplied configuration and language file changes.&r");
     public static final TextKey HOT_RELOAD_FAILED = prefixed("runtime.hot_reload.failed", "&cRejected file changes; the last known good settings remain active.&r");
-    public static final TextKey COMMAND_CONFIG_OPENED = prefixed("command.feedback.config.opened", "&aOpened the configuration editor.&r");
     public static final TextKey COMMAND_FAILED = prefixed("command.feedback.failed", "&cThe command could not be completed. See the console for details.&r");
     public static final TextKey CONFIG_SAVED = prefixed("command.feedback.config.saved", "&a{setting}&r &7changed from &f{old}&r &7to &f{new}&r&7.&r");
-    public static final TextKey CONFIG_SAVE_FAILED = prefixed("command.feedback.config.save_failed", "&cCould not apply &f{setting}&r&c: {reason}&r");
     public static final TextKey STATUS_HEADER = TextKey.of("command.status.header", "&6&lGamemodeSwitcher&r");
     public static final TextKey STATUS_CONFIG = TextKey.of("command.status.config", "&7Switching:&r {enabled} &8|&r &7Language:&r &f{language}&r &8|&r &7Hot reload:&r {hot_reload}");
     public static final TextKey STATUS_PLAYER = TextKey.of("command.status.player", "&7Gestures:&r {state} &8|&r &7Game mode:&r {mode}");
@@ -79,7 +77,6 @@ public final class SwitcherMessages {
     public static final TextKey MENU_SPECTATOR_HELP = TextKey.of("menu.spectator_help", "&7Observe the world and pass through blocks.&r");
     public static final TextKey MENU_GESTURES = TextKey.of("menu.gestures", "&6Gesture controls&r");
     public static final TextKey MENU_TOGGLE_HELP = TextKey.of("menu.toggle_help", "&7Click to toggle gestures.&r");
-    public static final TextKey MENU_UNAVAILABLE = TextKey.of("menu.unavailable", "&cYou cannot select this game mode.&r");
     public static final TextKey MENU_TOGGLE_ENABLED = TextKey.of("menu.toggle_enabled", "&aGestures enabled&r");
     public static final TextKey MENU_TOGGLE_DISABLED = TextKey.of("menu.toggle_disabled", "&cGestures disabled&r");
     public static final TextKey MENU_CONFIG = TextKey.of("menu.config", "&6Configuration&r");
@@ -140,7 +137,7 @@ public final class SwitcherMessages {
 
     private static List<TextKey> productKeys() {
         return List.of(PREFIX, NO_PERMISSION, PLAYER_ONLY, HOT_RELOAD_SUCCESS, HOT_RELOAD_FAILED,
-                COMMAND_CONFIG_OPENED, COMMAND_FAILED, CONFIG_SAVED, CONFIG_SAVE_FAILED,
+                COMMAND_FAILED, CONFIG_SAVED,
                 STATUS_HEADER, STATUS_CONFIG, STATUS_PLAYER, STATUS_COMPATIBILITY,
                 STATE_ENABLED, STATE_DISABLED, MODE_SURVIVAL, MODE_CREATIVE, MODE_ADVENTURE, MODE_SPECTATOR,
                 SWITCH_SUCCESS, SWITCH_TITLE, SWITCH_SUBTITLE, SWITCH_OVERLAY, SWITCH_SPECTATOR_OVERLAY_HINT,
@@ -151,7 +148,7 @@ public final class SwitcherMessages {
                 FEEDBACK_TITLE, FEEDBACK_CHAT, FEEDBACK_ACTION_BAR, FEEDBACK_SCREEN_TITLE, FEEDBACK_SOUND,
                 FEEDBACK_MUTED, FEEDBACK_INHERIT, FEEDBACK_TOGGLE, FEEDBACK_SILENCE, FEEDBACK_SILENCE_HELP,
                 FEEDBACK_RESET, FEEDBACK_RESET_HELP, FEEDBACK_FAILURES, MENU_BACK, MENU_TITLE, MENU_CURRENT, MENU_SELECT,
-                MENU_UNAVAILABLE, MENU_GESTURES, MENU_TOGGLE_HELP, MENU_TOGGLE_ENABLED, MENU_TOGGLE_DISABLED, MENU_CONFIG, MENU_LANGUAGE,
+                MENU_GESTURES, MENU_TOGGLE_HELP, MENU_TOGGLE_ENABLED, MENU_TOGGLE_DISABLED, MENU_CONFIG, MENU_LANGUAGE,
                 MENU_SELECTED, MENU_SURVIVAL_HELP, MENU_CREATIVE_HELP, MENU_ADVENTURE_HELP, MENU_SPECTATOR_HELP,
                 MENU_CONFIG_HELP, MENU_LANGUAGE_HELP, MENU_CLOSE, GUI_ROOT_TITLE, COMMAND_ROOT, COMMAND_MENU, COMMAND_SET, COMMAND_TOGGLE,
                 COMMAND_STATUS, COMMAND_CONFIG, COMMAND_LANGUAGE, COMMAND_DEBUG, COMMAND_VERSION,

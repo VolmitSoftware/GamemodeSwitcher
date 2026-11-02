@@ -1,10 +1,14 @@
 package com.volmit.gsw.debug;
 
 import art.arcane.volmlib.util.diagnostics.DebugDumpContributor;
+import art.arcane.volmlib.util.localization.LanguageUpstreamSync;
 import com.volmit.gsw.GamemodeSwitcher;
 import com.volmit.gsw.config.RuntimeConfig;
+import com.volmit.gsw.localization.LanguageService;
 
+import java.time.Instant;
 import java.util.List;
+import java.util.Optional;
 
 public final class SwitcherDebugContributor implements DebugDumpContributor {
     private final GamemodeSwitcher plugin;
@@ -15,8 +19,10 @@ public final class SwitcherDebugContributor implements DebugDumpContributor {
 
     @Override
     public Report capture() {
+        LanguageService languages = plugin.getLanguageService();
         Snapshot snapshot = new Snapshot(plugin.schedulerName(), plugin.getConfigService().runtime(),
-                plugin.getLanguageService().availableLocales(), plugin.getSwitchService().stateCount(),
+                languages.availableLocales(), languages.sourceDescription(), languageSourceState(languages),
+                plugin.getSwitchService().stateCount(),
                 plugin.getMetricsService().initialized(), plugin.getMetricsService().reportingEnabled());
         return () -> render(snapshot);
     }
@@ -28,6 +34,8 @@ public final class SwitcherDebugContributor implements DebugDumpContributor {
                 + "Enabled: " + config.enabled() + "\n"
                 + "Language: " + config.language() + "\n"
                 + "Available languages: " + snapshot.languages() + "\n"
+                + "Language source: " + snapshot.languageSource() + "\n"
+                + "Language source state: " + snapshot.languageSourceState() + "\n"
                 + "Hot reload: always enabled\n"
                 + "Debug uploads enabled: " + config.debugUpload() + "\n"
                 + "bStats enabled: " + config.metricsEnabled() + "\n"
@@ -49,8 +57,28 @@ public final class SwitcherDebugContributor implements DebugDumpContributor {
                 + "Spectator unsafe returns allowed: " + config.allowUnsafeReturn() + "\n";
     }
 
-    private record Snapshot(String scheduler, RuntimeConfig config, List<String> languages, int states,
-                            boolean metricsInitialized, boolean metricsReporting) {
+    private String languageSourceState(LanguageService languages) {
+        Optional<Throwable> failure = languages.sourceFailure();
+        if (failure.isPresent()) {
+            return "unavailable (" + failure.get().getClass().getSimpleName() + ")";
+        }
+        Optional<LanguageUpstreamSync.Status> status = languages.upstreamStatus();
+        if (status.isEmpty()) {
+            return "unavailable";
+        }
+        LanguageUpstreamSync.Status current = status.get();
+        StringBuilder state = new StringBuilder();
+        state.append(current.revision().map(sha -> "revision " + sha.substring(0, 7)).orElse("not checked"));
+        if (current.checkedMillis() > 0L) {
+            state.append(", checked ").append(Instant.ofEpochMilli(current.checkedMillis()));
+        }
+        current.lastError().ifPresent(error -> state.append(", last error: ").append(error));
+        return state.toString();
+    }
+
+    private record Snapshot(String scheduler, RuntimeConfig config, List<String> languages, String languageSource,
+                            String languageSourceState, int states, boolean metricsInitialized,
+                            boolean metricsReporting) {
         private Snapshot {
             languages = List.copyOf(languages);
         }

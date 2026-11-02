@@ -28,8 +28,29 @@ tasks.named('slimJar').get()
 group = 'com.volmit'
 version = '2.0.0'
 
-String languageSourceReference = '724b670d9c9fcecb6ca600b8ab99c6a088ad2dfc'
-List<File> languageSourceFiles = fileTree('src/main/resources/languages') {
+String languageSourceRepository = providers.gradleProperty('languageSourceRepository').orElse('VolmitSoftware/GamemodeSwitcher').get()
+String languageSourceBranch = providers.gradleProperty('languageSourceBranch').orElse(providers.provider {
+    try {
+        Process process = new ProcessBuilder('git', 'symbolic-ref', '--short', 'refs/remotes/origin/HEAD')
+                .directory(projectDir)
+                .redirectErrorStream(true)
+                .start()
+        String output = process.inputStream.text.trim()
+        if (process.waitFor() == 0 && output.startsWith('origin/')) {
+            return output.substring('origin/'.length())
+        }
+    } catch (IOException | InterruptedException ignored) {
+    }
+    return 'master'
+}).get()
+if (!(languageSourceRepository ==~ /[A-Za-z0-9_.-]+\/[A-Za-z0-9_.-]+/)) {
+    throw new GradleException('languageSourceRepository must be a GitHub owner/repository')
+}
+if (!(languageSourceBranch ==~ /[A-Za-z0-9][A-Za-z0-9._\/-]{0,127}/) || languageSourceBranch.contains('..')) {
+    throw new GradleException('languageSourceBranch must be a Git branch name')
+}
+String languageSourcePath = 'src/main/resources/languages'
+List<File> languageSourceFiles = fileTree(languageSourcePath) {
     include('*.toml')
 }.files.toList().sort { File left, File right -> left.name <=> right.name }
 List<String> languageSourceLocales = languageSourceFiles.collect { File file ->
@@ -37,7 +58,10 @@ List<String> languageSourceLocales = languageSourceFiles.collect { File file ->
 }
 TaskProvider<WriteProperties> languageSourceManifestTask = tasks.register('generateLanguageSourceManifest', WriteProperties) {
     destinationFile.set(layout.buildDirectory.file('generated/language-source/gamemodeswitcher-language-source.properties'))
-    property('revision', languageSourceReference)
+    property('repository', languageSourceRepository)
+    property('branch', languageSourceBranch)
+    property('path', languageSourcePath)
+    property('extension', '.toml')
     property('locales', languageSourceLocales.join(','))
 }
 
@@ -247,9 +271,20 @@ tasks.register('verifyJava25Artifact') {
         if (metadataCount != 1 || localeCount != 0) {
             throw new GradleException("Expected one plugin.yml and no bundled translations; found ${metadataCount} and ${localeCount}")
         }
-        if (languageManifest == null || languageManifest.getProperty('revision') != languageSourceReference
+        if (languageManifest == null) {
+            throw new GradleException('Runtime artifact is missing gamemodeswitcher-language-source.properties')
+        }
+        if (languageManifest.getProperty('repository') != languageSourceRepository
+                || languageManifest.getProperty('branch') != languageSourceBranch
+                || languageManifest.getProperty('path') != languageSourcePath
+                || languageManifest.getProperty('extension') != '.toml'
                 || languageManifest.getProperty('locales') != languageSourceLocales.join(',')) {
             throw new GradleException('Runtime language source manifest does not match the repository catalogs')
+        }
+        if (languageManifest.stringPropertyNames().any { String key ->
+            key == 'revision' || key == 'mode' || key.startsWith('sha256.')
+        }) {
+            throw new GradleException('Runtime language source manifest must track the repository branch, not a pinned revision')
         }
     }
 }

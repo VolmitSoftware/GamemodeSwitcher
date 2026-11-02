@@ -14,80 +14,82 @@
 #
 # === Variabili ===
 # Mantieni i nomi delle variabili e usa solo quelle previste dal singolo messaggio.
-#   {after}  Valore dopo il cambiamento
-#   {argument}  argomento inatteso
+#   {added}  Messaggi aggiunti da un aggiornamento della lingua
+#   {after}  Valore dopo la modifica
+#   {argument}  Argomento del comando inatteso
 #   {before}  Valore prima della modifica
-#   {command}  percorso del comando
+#   {command}  Percorso del comando
 #   {count}  Numero di voci corrispondenti
-#   {enabled}  Stato del cambio di modalità
+#   {enabled}  Stato del cambio di modalità di gioco
 #   {folder}  Nome della cartella del mondo
-#   {group}  Categoria dell’editor di lingua
-#   {hot_reload}  stato ricaricamento
-#   {key}  chiave parametro
-#   {language}  lingua attiva
-#   {line}  Linea di origine o numero di linea
-#   {locale}  codice locale
-#   {maximum}  Valore massimo consentito
+#   {group}  Nome della categoria di messaggi
+#   {hot_reload}  Stato del ricaricamento automatico dei file
+#   {java}  Versione di Java richiesta
+#   {kept}  Modifiche locali conservate da un aggiornamento della lingua
+#   {key}  Chiave del parametro o del messaggio
+#   {language}  Lingua del server
+#   {line}  Numero di riga del messaggio
+#   {locale}  Identificatore della lingua
+#   {maximum}  Valore massimo accettato
+#   {minecraft}  Intervallo di versioni di Minecraft supportate
 #   {mode}  Nome della modalità di gioco
-#   {new}  valore nuovo
-#   {number}  Numero della voce
-#   {old}  valore precedente
-#   {page}  Pagina attuale
+#   {new}  Nuovo valore dell’impostazione
+#   {number}  Numero della voce dell’elenco
+#   {old}  Valore precedente dell’impostazione
+#   {page}  Numero della pagina attuale
 #   {pages}  Numero totale di pagine
-#   {parameter}  nome parametro
-#   {path}  percorso rapporto locale
-#   {permission}  permesso richiesto
-#   {personal}  codice locale personale
+#   {parameter}  Nome del parametro
+#   {path}  Percorso locale del rapporto diagnostico
+#   {permission}  Permesso richiesto
+#   {personal}  Lingua personale, se diversa da quella predefinita del server
 #   {plugin}  Nome del plugin
-#   {prefix}  il valore globale runtime.prefix. Rimuovi {prefix} da un singolo messaggio per nasconderlo solo lì
-#   {reason}  motivo errore
-#   {java}  Required Java version
-#   {minecraft}  Supported Minecraft version range
-#   {scheduler}  scheduler
-#   {seconds}  Tempo di attesa o conferma rimanente in secondi
+#   {prefix}  Valore globale di runtime.prefix; facoltativo in ogni messaggio
+#   {reason}  Motivo dell’errore
+#   {remaining}  Tempo prima che sia consentito il prossimo controllo delle lingue
+#   {scheduler}  Implementazione dello scheduler
+#   {seconds}  Tempo di attesa o di conferma rimanente in secondi
 #   {section}  Sezione dell’editor delle lingue
-#   {setting}  nome impostazione
-#   {step}  Variazione di un valore numerico con un clic normale
-#   {sound}  identificatore del suono
-#   {state}  Stato personale dei gesti o delle notifiche
-#   {target}  Giocatore di destinazione, entità o valore
-#   {type}  tipo
-#   {url}  URL pubblico
-#   {value}  valore corrente, predefinito o grezzo
-#   {variables}  segnaposto validi
-#   {version}  versione del plugin
-#   {world}  mondo
+#   {setting}  Nome dell’impostazione
+#   {sound}  Identificatore del suono con spazio dei nomi
+#   {state}  Impostazione dei gesti o delle notifiche del giocatore
+#   {step}  Variazione numerica di un clic normale
+#   {target}  Destinazione della scelta della lingua
+#   {type}  Tipo del parametro
+#   {updated}  Messaggi modificati da un aggiornamento della lingua
+#   {url}  URL pubblico del rapporto diagnostico
+#   {value}  Valore attuale, predefinito o grezzo
+#   {variables}  Segnaposto validi per il messaggio selezionato
+#   {version}  Versione del plugin
+#   {world}  Nome del mondo
 
 [command.description]
 version = "Mostra la versione di GamemodeSwitcher"
-config = "Configurazione"
-debug = "Strumenti diagnostici di GamemodeSwitcher"
-debug_dump = "Crea un rapporto diagnostico completo di GamemodeSwitcher"
-language = "Lingua"
-menu = "Modalità di gioco"
-root = "Modalità di gioco"
-set = "Modalità di gioco"
-status = "Modalità di gioco"
-toggle = "Gesti"
+config = "Apri l’editor di configurazione"
+debug = "Esamina la diagnostica"
+debug_dump = "Crea un rapporto diagnostico di GamemodeSwitcher"
+language = "Scegli la tua lingua o modifica le traduzioni del server"
+menu = "Apri il selettore delle modalità di gioco"
+root = "Cambio della modalità di gioco, gesti personali e configurazione"
+set = "Cambia la tua modalità di gioco"
+status = "Mostra le impostazioni del cambio e la tua modalità di gioco"
+toggle = "Attiva o disattiva i tuoi gesti della modalità di gioco"
 
-return = "Ritorna dalla sessione spettatore"
+return = "Ritorna dalla tua sessione Spettatore"
 
 [command.feedback]
 failed = "{prefix}&cImpossibile completare il comando. Consulta la console per i dettagli.&r"
 
 [command.feedback.config]
-opened = "{prefix}&aÈ stato aperto l'editor completo della configurazione in gioco.&r"
-save_failed = "{prefix}&cImpossibile applicare &f{setting}&r&c: {reason}&r"
 saved = "{prefix}&a{setting}&r &7è cambiato da &f{old}&r &7a &f{new}&r&7.&r"
 
 [command.parameter]
-enabled = "Attivato / Disattivato"
-mode = "Sopravvivenza, Creativa, Avventura, Spettatore"
+enabled = "Attiva o disattiva i gesti; omettilo per alternare"
+mode = "Sopravvivenza, creativa, avventura o spettatore"
 upload = "Carica il rapporto quando i caricamenti pubblici sono abilitati"
 
 [command.status]
-compatibility = "&7Artefatto:&r &fJava {java} / Minecraft {minecraft}&r &8|&r &7Pianificatore:&r &f{scheduler}&r"
-config = "&7Modalità di gioco:&r {enabled} &8|&r &7Lingua:&r {language} &8|&r &7Ricarica configurazione e lingue:&r {hot_reload}"
+compatibility = "&7Requisiti:&r &fJava {java} / Minecraft {minecraft}&r &8|&r &7Scheduler:&r &f{scheduler}&r"
+config = "&7Cambio modalità:&r {enabled} &8|&r &7Lingua:&r &f{language}&r &8|&r &7Ricaricamento automatico:&r {hot_reload}"
 header = "&6&lGamemodeSwitcher&r"
 player = "&7Gesti:&r {state} &8|&r &7Modalità di gioco:&r {mode}"
 
@@ -188,13 +190,13 @@ unexpected_argument = "Argomento imprevisto \"{argument}\". I parametri opzional
 unknown_parameter = "Chiave di parametro sconosciuta: {key}"
 
 [gesture]
-normal = "&7Premi due volte Scambia con la mano secondaria: {mode}&r"
-sneaking = "&7Tieni premuto Accovacciati e premi due volte Scambia: {mode}&r"
-spectator = "&7Premi Accovacciati tre volte separate: {mode}&r"
-rebind = "&7Cambia Scambia con la mano secondaria (F) e Accovacciati (Maiusc sinistro) in Opzioni > Comandi > Tasti.&r"
-personal_disabled = "&eI tuoi gesti sono disattivati. Attivali qui o con /gsw toggle true.&r"
+normal = "&7Premi due volte Scambia gli oggetti tra le mani: &f{mode}&r"
+sneaking = "&7Tieni premuto Accovacciati + premi due volte Scambia gli oggetti tra le mani: &f{mode}&r"
+spectator = "&7Premi Accovacciati tre volte separate: &f{mode}&r"
+rebind = "&7Riassegna Scambia gli oggetti tra le mani (predefinito F) e Accovacciati (predefinito Maiusc sinistro) in Opzioni > Comandi > Assegnazione dei tasti.&r"
+personal_disabled = "&eI tuoi gesti sono disattivati. Attivali in questo menu o con /gsw toggle true.&r"
 empty_hands = "&7Entrambe le mani devono essere vuote per usare i gesti.&r"
-help = "&7Premi due volte il tasto di scambio delle mani (F predefinito) per cambiare modalità. Fallo accovacciato per l'azione alternativa; premi accovacciati tre volte per uscire da spettatore. Le modalità dipendono dalle impostazioni del server.&r"
+help = "&7Premi due volte il tasto di scambio delle mani (F per impostazione predefinita) per cambiare modalità. Fallo da accovacciato per l’azione alternativa; premi Accovacciati tre volte per uscire da Spettatore. Le destinazioni seguono le impostazioni del server.&r"
 
 [gui.title]
 root = "<gradient:#634514:#2f523f>GSW</gradient> <color:#404040>Configurazione</color>"
@@ -244,7 +246,7 @@ variables = "Variabili: {variables}"
 
 [language.editor.saved]
 change = "{key}: «{before}» è stato cambiato in «{after}»."
-summary = "{locale} salvato. Le lingue selezionate restano invariate."
+summary = "{locale} salvata. Le lingue selezionate restano invariate."
 
 [language.editor.search]
 clear = "Cancella la ricerca"
@@ -264,29 +266,29 @@ none = "Nessuno"
 [language.error]
 editor-player-only = "Apri l’editor di lingua nel gioco."
 no-providers = "Non sono disponibili fornitori di lingue Volmit."
-numeric-page = "Inserisci un numero di pagina."
+numeric-page = "Usa un numero di pagina della lingua."
 personal-permission = "Non hai il permesso di selezionare la tua lingua."
 personal-player-only = "Le preferenze della lingua del giocatore devono essere selezionate in gioco."
 plugin-personal-permission = "Non hai il permesso di scegliere la tua lingua per {plugin}."
 plugin-server-permission = "Non hai il permesso di cambiare la lingua del server per {plugin}."
-server-locale-required = "Scegli un codice come en_US per la lingua predefinita del server."
+server-locale-required = "Scegli un codice lingua come en_US per la lingua predefinita del server."
 stopping = "La scelta della lingua non è disponibile durante l’arresto del plugin."
 unavailable-for-all = "La lingua {locale} non è disponibile per tutti i plugin selezionati."
 
 [language.menu]
-all-volmit-plugins = "Tutti i plugin Volmit"
+all-volmit-plugins = "tutti i plugin Volmit"
 command = "Comando: {command}"
 current = "Attuale: {locale}"
 current_with_personal = "Attuale: {locale} (La tua: {personal})"
-edit_description = "Apri l'editor dei messaggi per ogni lingua."
+edit_description = "Apri l’editor dei messaggi per ogni lingua."
 edit_messages = "Modifica i messaggi della lingua"
 no_controls = "Non hai accesso alle impostazioni della lingua."
 remove_personal_description = "Rimuovi la tua scelta personale della lingua."
 reset_description = "Usa la lingua predefinita del server."
 reset_your_language = "Reimposta la tua lingua"
 select_description = "Fai clic per selezionare questa lingua."
-selected = "selezionato"
-server_default = "Lingua predefinita del server"
+selected = "selezionata"
+server_default = "Predefinita del server"
 server_description = "Cambia la lingua predefinita del server."
 use_server_default = "Usa la lingua predefinita del server"
 your_description = "Modifica solo i messaggi che vedi."
@@ -302,31 +304,39 @@ server-selected = "{plugin}: la lingua del server ora è {locale}."
 
 [language.usage]
 editor = "Uso: /{command} language server edit [locale]"
-selection = "Uso: /{command} language self [locale|reset] or server [locale]"
+selection = "Uso: /{command} language self [locale|reset] o server [locale]"
 volmit-selection = "Uso: /volmit plugins languages [locale]"
+update = "Uso: /{command} language update"
+
+[language.update]
+checking = "{plugin}: controllo delle modifiche nel repository delle lingue..."
+unchanged = "{plugin}: le lingue installate corrispondono già al repository."
+applied = "{plugin}: {locale} aggiornato ({added} aggiunti, {updated} modificati, {kept} modifiche locali conservate)."
+cooldown = "{plugin}: il repository delle lingue è stato controllato di recente; riprova tra {remaining}."
+locale-failed = "{plugin}: {locale} non è stato aggiornato: {reason}"
+failed = "{plugin}: aggiornamento delle lingue non riuscito: {reason}"
 
 [menu]
 feedback = "&6Notifiche personali&r"
-feedback_help = "&7Disattiva messaggi, titoli o suoni solo per te.&r"
+feedback_help = "&7Silenzia solo per te messaggi, titoli a comparsa o suoni del cambio.&r"
 back = "&7Torna alle modalità di gioco&r"
 selected = "&aSelezionato&r"
 survival_help = "&7Raccogli risorse e gestisci salute e fame.&r"
-creative_help = "&7Costruisci con risorse illimitate e volo creativo.&r"
+creative_help = "&7Costruisci con risorse illimitate e il volo della Creativa.&r"
 adventure_help = "&7Esplora mappe con limiti alla rottura e al posizionamento dei blocchi.&r"
 spectator_help = "&7Osserva il mondo e attraversa i blocchi.&r"
 config_help = "&7Modifica le impostazioni del server. Le modifiche si applicano subito.&r"
-language_help = "&7Scegli la lingua dei tuoi messaggi e menu.&r"
-close = "Chiudi"
+language_help = "&7Scegli la lingua usata per i tuoi messaggi e menu.&r"
+close = "&cChiudi&r"
 config = "&6Configurazione&r"
-current = "&7Modalità di gioco: &f{mode}&r"
-gestures = "&6Gesti&r"
+current = "&7Modalità di gioco attuale: &f{mode}&r"
+gestures = "&6Controlli dei gesti&r"
 language = "&aLingua&r"
 select = "&7Clicca per selezionare.&r"
 title = "<gradient:#634514:#2f523f>Modalità di gioco</gradient>"
-toggle_disabled = "&7Gesti: &cDisattivato&r"
-toggle_enabled = "&7Gesti: &aAttivato&r"
+toggle_disabled = "&cGesti disattivati&r"
+toggle_enabled = "&aGesti attivati&r"
 toggle_help = "&7Clicca per attivare o disattivare i gesti.&r"
-unavailable = "&cNon puoi selezionare questa modalità di gioco.&r"
 
 [mode]
 adventure = "Avventura"
@@ -338,21 +348,21 @@ survival = "Sopravvivenza"
 title = "<gradient:#634514:#2f523f>Notifiche personali</gradient>"
 chat = "&6Messaggi in chat&r"
 action_bar = "&6Barra delle azioni&r"
-screen_title = "&6Titoli sullo schermo&r"
-sound = "&6Suoni al cambio&r"
-muted = "&cDisattivato per te&r"
-inherit = "&7Impostazioni del server: {state}&r"
-toggle = "&7Clicca per alternare tra disattivato e impostazioni del server.&r"
-silence = "&6Disattiva tutto&r"
-silence_help = "&7Disattiva messaggi, titoli e suoni dei cambi riusciti.&r"
+screen_title = "&6Titoli a comparsa&r"
+sound = "&6Suoni del cambio&r"
+muted = "&cSilenziato per te&r"
+inherit = "&7Segue le impostazioni del server: {state}&r"
+toggle = "&7Clicca per alternare tra silenziato e impostazioni del server.&r"
+silence = "&6Silenzia tutto&r"
+silence_help = "&7Silenzia messaggi, titoli a comparsa e suoni dei cambi riusciti.&r"
 reset = "&aUsa le impostazioni del server&r"
-reset_help = "&7Rimuovi tutte le disattivazioni personali.&r"
-failures = "&7Se la chat è disattivata, il motivo dei cambi bloccati appare comunque nella barra delle azioni.&r"
-failed = "{prefix}&cImpossibile salvare la preferenza. Consulta la console.&r"
+reset_help = "&7Rimuovi i tuoi silenziamenti personali da ogni canale.&r"
+failures = "&7Se la chat è silenziata, i cambi bloccati mostrano comunque il motivo nella barra delle azioni.&r"
+failed = "{prefix}&cImpossibile salvare la preferenza. Consulta la console per i dettagli.&r"
 
 [runtime]
 player_only = "{prefix}&cQuesto comando può essere usato solo da un giocatore.&r"
-prefix = "<gradient:#e9bd68:#85d6b0><bold>GamemodeSwitcher</bold></gradient> &8â€º&r "
+prefix = "<gradient:#e9bd68:#85d6b0><bold>GamemodeSwitcher</bold></gradient> &8›&r "
 
 [runtime.hot_reload]
 failed = "{prefix}&cLe modifiche ai file sono state rifiutate; restano attive le ultime impostazioni valide.&r"
@@ -369,52 +379,52 @@ enabled = "&aAttivato&r"
 title = "<gradient:#e9bd68:#85d6b0>{mode}</gradient>"
 subtitle = "&7Modalità di gioco cambiata.&r"
 overlay = "&7Modalità di gioco: &f{mode}&r"
-spectator_overlay_hint = "&7Accovacciati tre volte per uscire da Spettatore.&r"
-already = "{prefix}&eLa tua modalità di gioco è già {mode}.&r"
-cancelled = "{prefix}&eUn altro plugin ha impedito il cambio di modalità.&r"
-changed = "{prefix}&aModalità di gioco cambiata in {mode}.&r"
-cooldown = "{prefix}&eAttendi {seconds} secondi prima di cambiare di nuovo.&r"
+spectator_overlay_hint = "&7Accovacciati tre volte per uscire dalla modalità Spettatore.&r"
+already = "{prefix}&7La tua modalità di gioco è già &f{mode}&r&7.&r"
+cancelled = "{prefix}&eUn altro plugin ha impedito il cambio di modalità di gioco.&r"
+changed = "{prefix}&aModalità di gioco cambiata in &f{mode}&r&a.&r"
+cooldown = "{prefix}&eAttendi &f{seconds}&r&e secondi prima di cambiare di nuovo.&r"
 disabled = "{prefix}&eIl cambio di modalità di gioco è disattivato.&r"
-empty_hands = "{prefix}&eSvuota entrambe le mani per usare i gesti.&r"
-no_permission = "{prefix}&eNon hai il permesso di usare questa modalità di gioco.&r"
-spectator_hint = "{prefix}&eUsa /gsw menu o /gsw set survival per uscire dalla modalità spettatore.&r"
-world_blocked = "{prefix}&eNon puoi cambiare modalità di gioco in {world}.&r"
+empty_hands = "{prefix}&eSvuota entrambe le mani per usare i gesti della modalità di gioco.&r"
+no_permission = "{prefix}&cNon hai il permesso di usare questa modalità di gioco.&r"
+spectator_hint = "{prefix}&7Usa &f/gsw menu&r&7 o &f/gsw set survival&r&7 per uscire dalla modalità Spettatore.&r"
+world_blocked = "{prefix}&eIl cambio di modalità di gioco non è disponibile in &f{world}&r&e.&r"
 
 [toggle]
-disabled = "{prefix}&eGesti disattivati. Comandi e menu restano disponibili.&r"
-enabled = "{prefix}&aGesti per la modalità di gioco attivati.&r"
+disabled = "{prefix}&eGesti della modalità di gioco disattivati. I comandi e il menu restano disponibili.&r"
+enabled = "{prefix}&aGesti della modalità di gioco attivati.&r"
 
 [gui.config.general]
 name = "Generale"
-description = "Attiva il cambio di modalità e scegli la lingua del server."
+description = "Attiva il cambio di modalità di gioco e scegli la lingua del server."
 
 [gui.config.metrics]
 name = "Statistiche"
-description = "Gestisci le statistiche anonime bStats."
+description = "Gestisci l’invio anonimo di statistiche a bStats."
 
 [gui.config.gestures]
-name = "Controlli gestuali"
-description = "Imposta tempi dei tocchi, attese e destinazioni dei gesti."
+name = "Controlli dei gesti"
+description = "Imposta i tempi dei tocchi, le attese e le destinazioni dei gesti."
 
 [gui.config.gestures.normal]
 name = "Destinazioni del doppio tocco"
-description = "Scegli la destinazione di ogni modalità premendo due volte il tasto di scambio delle mani."
+description = "Scegli dove porta ogni modalità di gioco premendo due volte il tasto di scambio delle mani."
 
 [gui.config.gestures.sneaking]
-name = "Destinazioni da accovacciati"
-description = "Scegli la destinazione di ogni modalità premendo due volte il tasto di scambio delle mani mentre sei accovacciato."
+name = "Destinazioni da accovacciato"
+description = "Scegli dove porta ogni modalità di gioco premendo due volte il tasto di scambio delle mani da accovacciato."
 
 [gui.config.restrictions]
 name = "Restrizioni dei mondi"
 description = "Scegli i mondi in cui il cambio di modalità non è disponibile."
 
 [gui.config.feedback]
-name = "Avvisi di cambio"
-description = "Scegli messaggi, avvisi, suoni e volo creativo durante i cambi."
+name = "Avvisi del cambio"
+description = "Scegli messaggi, avvisi a comparsa, suoni e volo in Creativa per i cambi."
 
 [gui.config.diagnostics]
 name = "Diagnostica"
-description = "Gestisci la pubblicazione dei rapporti diagnostici."
+description = "Gestisci il caricamento pubblico dei rapporti diagnostici."
 
 [gui.config.languages]
 name = "Lingue"
@@ -422,11 +432,11 @@ description = "Modifica le traduzioni del server e la loro formattazione."
 
 [gui.config.general.enabled]
 name = "Cambio modalità di gioco"
-description = "Consenti i cambi tramite gesti, comandi e menu."
+description = "Consenti il cambio tramite gesti, comandi e menu."
 
 [gui.config.general.language]
 name = "Lingua del server"
-description = "Lingua predefinita per i giocatori senza scelta personale. Le traduzioni mancanti usano l'inglese."
+description = "Lingua predefinita per i giocatori senza una scelta personale. Le traduzioni mancanti usano l’inglese."
 
 [gui.config.metrics.enabled]
 name = "Statistiche anonime"
@@ -438,43 +448,43 @@ description = "Tempo massimo tra pressioni del tasto di scambio delle mani, in m
 
 [gui.config.gestures.sneak-tap-millis]
 name = "Intervallo tocchi Spettatore"
-description = "Tempo massimo tra pressioni per accovacciarsi in Spettatore, in millisecondi. Intervallo: da 100 a 3000."
+description = "Tempo massimo tra le pressioni di Accovacciati in Spettatore, in millisecondi. Intervallo: da 100 a 3000."
 
 [gui.config.gestures.cooldown-millis]
 name = "Attesa tra i cambi"
-description = "Attesa dopo un cambio riuscito, in millisecondi. Intervallo: da 0 a 60000; 0 elimina l'attesa."
+description = "Attesa dopo un cambio di modalità riuscito, in millisecondi. Intervallo: da 0 a 60000; 0 elimina l’attesa."
 
 [gui.config.gestures.require-empty-hands]
 name = "Richiedi mani vuote"
-description = "Richiedi che entrambe le mani siano vuote per cambiare modalità con un gesto."
+description = "Richiedi che entrambe le mani siano vuote prima che un gesto possa cambiare la modalità."
 
 [gui.config.gestures.spectator-exit]
-name = "Uscita da Spettatore"
-description = "Destinazione dopo tre pressioni separate per accovacciarsi in Spettatore."
+name = "Modalità di uscita da Spettatore"
+description = "Destinazione dopo tre pressioni distinte di Accovacciati in Spettatore."
 
 [gui.config.gestures.normal.survival]
 name = "Da Sopravvivenza"
-description = "Destinazione premendo due volte il tasto di scambio delle mani in Sopravvivenza."
+description = "Destinazione quando premi due volte il tasto di scambio delle mani in Sopravvivenza."
 
 [gui.config.gestures.normal.creative]
 name = "Da Creativa"
-description = "Destinazione premendo due volte il tasto di scambio delle mani in Creativa."
+description = "Destinazione quando premi due volte il tasto di scambio delle mani in Creativa."
 
 [gui.config.gestures.normal.adventure]
 name = "Da Avventura"
-description = "Destinazione premendo due volte il tasto di scambio delle mani in Avventura."
+description = "Destinazione quando premi due volte il tasto di scambio delle mani in Avventura."
 
 [gui.config.gestures.sneaking.survival]
 name = "Da Sopravvivenza"
-description = "Destinazione premendo due volte il tasto di scambio delle mani da accovacciato in Sopravvivenza."
+description = "Destinazione quando ti accovacci e premi due volte il tasto di scambio delle mani in Sopravvivenza."
 
 [gui.config.gestures.sneaking.creative]
 name = "Da Creativa"
-description = "Destinazione premendo due volte il tasto di scambio delle mani da accovacciato in Creativa."
+description = "Destinazione quando ti accovacci e premi due volte il tasto di scambio delle mani in Creativa."
 
 [gui.config.gestures.sneaking.adventure]
 name = "Da Avventura"
-description = "Destinazione premendo due volte il tasto di scambio delle mani da accovacciato in Avventura."
+description = "Destinazione quando ti accovacci e premi due volte il tasto di scambio delle mani in Avventura."
 
 [gui.config.restrictions.disabled-worlds]
 name = "Mondi disabilitati"
@@ -482,96 +492,96 @@ description = "Mondi in cui gesti, comandi e menu non possono cambiare la modali
 
 [gui.config.feedback.auto-fly-creative]
 name = "Vola entrando in Creativa"
-description = "Inizia a volare entrando in Creativa se il giocatore può volare."
+description = "Inizia a volare dopo essere entrato in Creativa, se il giocatore può volare."
 
 [gui.config.feedback.sound-enabled]
 name = "Suono del cambio"
 description = "Riproduci un suono di conferma dopo un cambio di modalità riuscito."
 
 [gui.config.diagnostics.upload-enabled]
-name = "Rapporti pubblici"
-description = "Consenti rapporti diagnostici pubblici. Usa upload=false per salvare un rapporto localmente."
+name = "Caricamenti pubblici dei rapporti"
+description = "Consenti il caricamento pubblico dei rapporti diagnostici. Usa upload=false per salvare un rapporto localmente."
 
 [gui.config.feedback.chat-enabled]
 name = "Messaggi in chat"
-description = "Mostra i cambi riusciti e i suggerimenti Spettatore in chat. Se disattivato, gli errori appaiono sulla barra azioni."
+description = "Mostra in chat i cambi riusciti e i suggerimenti di Spettatore. Se disattivato, i motivi degli errori appaiono nella barra delle azioni."
 
 [gui.config.feedback.action-bar-enabled]
-name = "Avviso sulla barra azioni"
-description = "Mostra il nuovo modo sopra la barra rapida, con un suggerimento per uscire da Spettatore."
+name = "Avviso nella barra delle azioni"
+description = "Mostra la nuova modalità sopra la barra rapida, con un suggerimento per uscire in Spettatore."
 
 [gui.config.feedback.title-enabled]
-name = "Avviso nel titolo"
-description = "Mostra il nuovo modo al centro dello schermo, con un suggerimento per uscire da Spettatore."
+name = "Titolo a comparsa"
+description = "Mostra la nuova modalità al centro dello schermo, con un suggerimento per uscire in Spettatore."
 
 [gui.config.feedback.popup-duration-ticks]
 name = "Durata degli avvisi"
-description = "Durata del titolo e della barra azioni in tick; 20 tick = 1 secondo. Intervallo: da 1 a 200."
+description = "Durata del titolo e della barra delle azioni in tick; 20 tick = 1 secondo. Intervallo: da 1 a 200."
 
 [gui.config.feedback.sound]
 name = "Chiave del suono"
 description = "Suono riprodotto dopo un cambio di modalità riuscito."
-input = "Inserisci una chiave audio con spazio dei nomi, come minecraft:ui.button.click o minecraft:entity.experience_orb.pickup. Sono ammesse chiavi di pacchetti di risorse personalizzati."
+input = "Inserisci una chiave del suono con spazio dei nomi, come minecraft:ui.button.click o minecraft:entity.experience_orb.pickup. Sono ammesse chiavi di pacchetti di risorse personalizzati."
 
 [gui.config.feedback.sound-volume]
-name = "Volume"
+name = "Volume del suono"
 description = "Volume del suono di cambio. Intervallo: da 0 a 1; 0 è silenzioso."
 
 [gui.config.feedback.sound-pitch]
-name = "Tonalità"
+name = "Tonalità del suono"
 description = "Tonalità del suono di cambio. Intervallo: da 0.5 a 2; 1 usa la tonalità originale."
 
 [sound.menu]
 title = "<gradient:#634514:#2f523f>Suono del cambio</gradient>"
-current = "<gray>Suono attuale: {sound}</gray>"
-select = "<gray>Clic sinistro per scegliere. Clic destro per ascoltare.</gray>"
+current = "<gray>Suono attuale: <white>{sound}</white></gray>"
+select = "<gray>Clic sinistro per usarlo. Clic destro per l’anteprima.</gray>"
 selected = "<green>Suono selezionato</green>"
-preview = "<gold>Ascolta il suono attuale</gold>"
-preview-help = "<gray>Ascolta con volume e tonalità attuali del server, anche se i suoni del cambio sono silenziati.</gray>"
-custom = "<gold>Suono personalizzato</gold>"
-custom-help = "<gray>Inserisci una chiave sonora di Minecraft o di un pacchetto di risorse.</gray>"
+preview = "<gold>Anteprima del suono attuale</gold>"
+preview-help = "<gray>Ascolta questo suono con il volume e la tonalità attuali del server. L’anteprima funziona anche quando i suoni del cambio sono silenziati.</gray>"
+custom = "<gold>Chiave del suono personalizzata</gold>"
+custom-help = "<gray>Inserisci una chiave del suono di Minecraft o di un pacchetto di risorse.</gray>"
 
 [sound.preset]
 click = "<gold>Clic del pulsante</gold>"
-chime = "<gold>Carillon</gold>"
+chime = "<gold>Rintocco</gold>"
 pling = "<gold>Pling</gold>"
-experience = "<gold>Raccolta esperienza</gold>"
+experience = "<gold>Raccolta di esperienza</gold>"
 bell = "<gold>Campana</gold>"
 
 [world.menu]
 title = "<gradient:#634514:#2f523f>Mondi disabilitati</gradient>"
 help = "<gold>Mondi disabilitati</gold>"
 help-detail = "<gray>Clicca su un mondo per disattivare o riattivare lì il cambio di modalità di gioco. I mondi vengono salvati con la chiave di dimensione, ad esempio minecraft:the_nether.</gray>"
-folder = "<gray>Cartella del mondo: {folder}</gray>"
+folder = "<gray>Cartella del mondo: <white>{folder}</white></gray>"
 unloaded = "<gray>Non caricato su questo server</gray>"
 disabled = "<red>Cambio disattivato</red>"
 enabled = "<green>Cambio attivo</green>"
 disable = "<gray>Clicca per disattivare il cambio qui.</gray>"
 enable = "<gray>Clicca per riattivare il cambio qui.</gray>"
-remove = "<gray>Clicca per rimuoverlo dall'elenco.</gray>"
+remove = "<gray>Clicca per rimuoverlo dall’elenco.</gray>"
 
 [spectator]
-busy = "{prefix} &eÈ già in corso una transizione della modalità spettatore.&r"
-none = "{prefix} &eNon hai una sessione spettatore attiva.&r"
-return-failed = "{prefix}&cImpossibile tornare. La sessione è salvata; riprova con /gsw return.&r"
-origin-missing = "{prefix} &eIl mondo da cui sei entrato in Spettatore non è più caricato, quindi la modalità è cambiata qui.&r"
-save-failed = "{prefix} &cImpossibile salvare la sessione spettatore. La modalità di gioco non è cambiata.&r"
+busy = "{prefix}&eÈ già in corso una transizione Spettatore.&r"
+none = "{prefix}&eNon hai una sessione Spettatore attiva.&r"
+return-failed = "{prefix}&cImpossibile tornare. La sessione è salvata; riprova /gsw return.&r"
+origin-missing = "{prefix}&eIl mondo da cui sei entrato in Spettatore non è più caricato, quindi la modalità di gioco è stata cambiata dove ti trovi.&r"
+save-failed = "{prefix}&cImpossibile salvare la sessione Spettatore. La modalità di gioco non è stata cambiata.&r"
 
 [gui.config.spectator]
-name = "Ritorno da spettatore"
-description = "Ripristina la modalità o la posizione salvate quando questo plugin avvia una sessione spettatore."
+name = "Ritorno da Spettatore"
+description = "Ripristina la modalità o la posizione registrate quando questo plugin avvia una sessione Spettatore."
 
 [gui.config.spectator.restore-previous-mode]
 name = "Ripristina modalità precedente"
-description = "Premi Accovacciati tre volte o usa /gsw return per ripristinare la modalità precedente. Si applicano le autorizzazioni e le restrizioni dei mondi attuali."
+description = "Premi Accovacciati tre volte o usa /gsw return per ripristinare la modalità da cui sei entrato in Spettatore. I permessi e le restrizioni dei mondi attuali restano validi."
 
 [gui.config.spectator.return-to-origin]
-name = "Torna al punto di partenza"
-description = "Torna alla posizione iniziale salvata prima di uscire da una sessione spettatore avviata dal plugin."
+name = "Torna alla posizione di partenza"
+description = "Torna alla posizione di ingresso salvata prima di uscire da una sessione Spettatore avviata dal plugin."
 
 [gui.config.spectator.allow-unsafe-return]
 name = "Consenti ritorni non sicuri"
-description = "Torna senza controllare il terreno o lo spazio libero. Attivo per impostazione predefinita; disattiva per richiedere una destinazione sicura. Vale anche per sessioni attive."
+description = "Consenti ritorni senza controllare il pavimento o lo spazio libero. Attivo per impostazione predefinita; disattivalo per richiedere una destinazione sicura. Vale anche per le sessioni attive."
 
 [gui.config.general.update-notifications]
 name = "Notifiche degli aggiornamenti"

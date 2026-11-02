@@ -14,61 +14,65 @@
 #
 # === 変数 ===
 # 変数名を変更せず、各メッセージに元からある変数だけを使用してください。
+#   {added}  言語更新で追加されたメッセージ
 #   {after}  変更後の値
-#   {argument}  予期しない引数
+#   {argument}  予期しないコマンド引数
 #   {before}  変更前の値
-#   {command}  コマンド経路
-#   {count}  マッチングエントリー件数
-#   {enabled}  ゲームモード切り替えの有効状態
+#   {command}  コマンドパス
+#   {count}  一致した項目の数
+#   {enabled}  ゲームモード切り替えの状態
 #   {folder}  ワールドフォルダー名
-#   {group}  言語エディターのカテゴリ
-#   {hot_reload}  ホットリロード状態
-#   {key}  パラメーターキー
-#   {language}  使用中の言語
-#   {line}  ラインまたはライン番号
-#   {locale}  ロケール
-#   {maximum}  最大許容値
+#   {group}  メッセージカテゴリ名
+#   {hot_reload}  ファイル自動再読み込みの状態
+#   {java}  必要な Java バージョン
+#   {kept}  言語更新で保持されたローカル編集
+#   {key}  パラメーターまたはメッセージのキー
+#   {language}  サーバー言語
+#   {line}  メッセージの行番号
+#   {locale}  ロケール識別子
+#   {maximum}  受け付ける最大値
+#   {minecraft}  対応する Minecraft バージョン範囲
 #   {mode}  ゲームモード名
-#   {new}  変更後の値
-#   {number}  項目番号
-#   {old}  変更前の値
+#   {new}  新しい設定値
+#   {number}  リスト項目の番号
+#   {old}  以前の設定値
 #   {page}  現在のページ番号
-#   {pages}  ページの総数
+#   {pages}  総ページ数
 #   {parameter}  パラメーター名
-#   {path}  ローカル報告書のパス
+#   {path}  ローカル診断レポートのパス
 #   {permission}  必要な権限
-#   {personal}  個人設定のロケール
+#   {personal}  サーバーのデフォルトと異なる場合の個人言語
 #   {plugin}  プラグイン名
-#   {prefix}  グローバルな runtime.prefix の値です。個別のメッセージから {prefix} を削除すると、その場所だけ非表示になります
+#   {prefix}  グローバルな runtime.prefix の値。メッセージごとに省略可能
 #   {reason}  失敗理由
-#   {java}  Required Java version
-#   {minecraft}  Supported Minecraft version range
-#   {scheduler}  スケジューラー
+#   {remaining}  次の言語確認が可能になるまでの時間
+#   {scheduler}  スケジューラーの実装
 #   {seconds}  残りのクールダウンまたは確認時間（秒）
 #   {section}  言語エディターのセクション
 #   {setting}  設定名
-#   {step}  通常のクリック1回で変更する数値
-#   {sound}  サウンドの識別子
-#   {state}  個人のジェスチャーまたは通知の状態
-#   {target}  ターゲットプレーヤー、エンティティティティ、または値
-#   {type}  型
-#   {url}  公開 URL
-#   {value}  現在値、既定値、または入力値
-#   {variables}  使用可能なプレースホルダー
+#   {sound}  名前空間付きのサウンド識別子
+#   {state}  プレイヤーのジェスチャーまたは通知の設定
+#   {step}  通常のクリック1回で変わる数値設定の変化量
+#   {target}  言語選択の対象
+#   {type}  パラメーターの型
+#   {updated}  言語更新で変更されたメッセージ
+#   {url}  公開診断レポートの URL
+#   {value}  現在値、デフォルト値、または生の値
+#   {variables}  選択したメッセージで使えるプレースホルダー
 #   {version}  プラグインのバージョン
-#   {world}  ワールド
+#   {world}  ワールド名
 
 [command.description]
-version = "GamemodeSwitcher のバージョンを表示"
-config = "設定"
-debug = "GamemodeSwitcher診断ツール"
-debug_dump = "包括的なGamemodeSwitcher診断レポートを作成"
-language = "言語"
-menu = "ゲームモード"
-root = "ゲームモード"
-set = "ゲームモード"
-status = "ゲームモード"
-toggle = "ジェスチャー"
+version = "GamemodeSwitcher のバージョンを表示する"
+config = "設定エディターを開く"
+debug = "診断情報を確認する"
+debug_dump = "GamemodeSwitcher の診断レポートを作成する"
+language = "言語を選択するか、サーバーの翻訳を編集する"
+menu = "ゲームモード選択メニューを開く"
+root = "ゲームモードの切り替え、個人のジェスチャー、設定"
+set = "ゲームモードを変更する"
+status = "切り替え設定と現在のゲームモードを表示する"
+toggle = "ゲームモードのジェスチャーを有効または無効にする"
 
 return = "スペクテイターセッションから戻る"
 
@@ -76,18 +80,16 @@ return = "スペクテイターセッションから戻る"
 failed = "{prefix}&cコマンドを完了できませんでした。詳細はコンソールを参照してください。&r"
 
 [command.feedback.config]
-opened = "{prefix}&aゲーム内の完全な設定エディターを開きました。&r"
-save_failed = "{prefix}&c&f{setting}&r&cを適用できませんでした:{reason}&r"
 saved = "{prefix}&a{setting}&r &7を&f{old}&r &7から&f{new}&r &7に変更しました。&r"
 
 [command.parameter]
-enabled = "有効 / 無効"
-mode = "サバイバル, クリエイティブ, アドベンチャー, スペクテイター"
+enabled = "ジェスチャーを有効または無効にします。省略すると切り替えます"
+mode = "サバイバル、クリエイティブ、アドベンチャー、スペクテイター"
 upload = "公開アップロードが有効な場合にレポートをアップロード"
 
 [command.status]
-compatibility = "&7成果物:&r&fJava {java} / Minecraft {minecraft}&r&8|&r&7スケジューラ:&r&f{scheduler}&r"
-config = "&7ゲームモード:&r {enabled} &8|&r &7言語:&r {language} &8|&r &7設定と言語を再読み込み:&r {hot_reload}"
+compatibility = "&7動作要件:&r &fJava {java} / Minecraft {minecraft}&r &8|&r &7スケジューラー:&r &f{scheduler}&r"
+config = "&7切り替え:&r {enabled} &8|&r &7言語:&r &f{language}&r &8|&r &7ホットリロード:&r {hot_reload}"
 header = "&6&lGamemodeSwitcher&r"
 player = "&7ジェスチャー:&r {state} &8|&r &7ゲームモード:&r {mode}"
 
@@ -154,9 +156,9 @@ interrupted = "診断レポートのアップロードが中断されました�
 category = "コマンド分類"
 command_group = "コマンドグループ。クリックして開きます。"
 no_description = "説明はありません"
-no_parameters = "パラメーターはありません。クリックしてコマンドを入力します。"
+no_parameters = "パラメーターはありません。クリックしてコマンドを事前入力します。"
 no_subcommands = "このページにサブコマンドはありません。"
-parameters_hover = "パラメータにカーソルを合わせると詳細が表示されます。"
+parameters_hover = "パラメーターにカーソルを合わせると詳細が表示されます。"
 
 [director.help.navigation]
 back = "戻る"
@@ -172,10 +174,10 @@ hover = "親コマンドグループに戻る"
 hover = "前のページ"
 
 [director.help.parameter]
-default = "未指定の場合は \"{value}\" になります。"
-optional = "このパラメータは任意です。"
-required = "このパラメータは必須です。"
-type = "このパラメータの型は {type} です。"
+default = "未指定の場合のデフォルトは \"{value}\" です。"
+optional = "このパラメーターは任意です。"
+required = "このパラメーターは必須です。"
+type = "このパラメーターの型は {type} です。"
 
 [director.runtime.error]
 conversion_failed = "\"{value}\" を {parameter} 用の {type} に変換できません"
@@ -183,18 +185,18 @@ default_parse_failed = "パラメーター {parameter} のデフォルト値を�
 execution_failed = "コマンド {command} の実行に失敗しました: {reason}"
 invalid_origin = "この実行元からはコマンドを実行できません。"
 missing_argument = "引数 \"{parameter}\" ({type}) が必要です"
-unclosed_group = "パラメータ {key} の閉じかっこ \"]\" がありません"
+unclosed_group = "パラメーター {key} の閉じかっこ \"]\" がありません"
 unexpected_argument = "予期しない引数 \"{argument}\"。オプションのパラメーターはキー付きで指定してください。例: seed=123"
 unknown_parameter = "不明なパラメーターキー: {key}"
 
 [gesture]
-normal = "&7オフハンド交換キーを2回押す: {mode}&r"
-sneaking = "&7スニークしながらオフハンド交換キーを2回押す: {mode}&r"
-spectator = "&7スニークキーを別々に3回押す: {mode}&r"
-rebind = "&7設定 > 操作設定 > キー割り当てでオフハンド交換（初期値F）とスニーク（左Shift）を変更できます。&r"
+normal = "&7「アイテムをオフハンドと交換」を2回押す: &f{mode}&r"
+sneaking = "&7スニークを押しながら「アイテムをオフハンドと交換」を2回押す: &f{mode}&r"
+spectator = "&7スニークを別々に3回押す: &f{mode}&r"
+rebind = "&7「アイテムをオフハンドと交換」（デフォルトはF）と「スニーク」（デフォルトは左Shift）は、設定 > 操作設定 > キー割り当て で変更できます。&r"
 personal_disabled = "&eジェスチャーは無効です。このメニューまたは /gsw toggle true で有効にできます。&r"
 empty_hands = "&7ジェスチャーには両手を空にする必要があります。&r"
-help = "&7持ち替えキー（標準ではF）を2回押すとモードを切り替えます。スニークしながら行うと別の動作になります。スペクテイターを終了するにはスニークを3回押します。切り替え先はサーバー設定に従います。&r"
+help = "&7オフハンド交換キー（デフォルトはF）を2回押すとモードを切り替えます。スニークしながら行うと別の動作になり、スニークを3回押すとスペクテイターモードを終了します。切り替え先はサーバー設定に従います。&r"
 
 [gui.title]
 root = "<gradient:#634514:#2f523f>GSW</gradient> <color:#404040>設定</color>"
@@ -205,7 +207,7 @@ loading = "{locale}のメッセージを読み込んでいます..."
 
 [language.editor.category]
 message-count = "&7{count}件のメッセージ&r"
-open = "&8クリックしてこのグループを開きます。&r"
+open = "&8クリックしてこのカテゴリを開きます。&r"
 
 [language.editor.error]
 no-permission = "{plugin}の言語を編集する権限がありません。"
@@ -233,7 +235,7 @@ next-page = "&e次のページ&r"
 previous-page = "&e前のページ&r"
 
 [language.editor.part]
-line = "行{line}"
+line = "{line}行目"
 
 [language.editor.prompt]
 current = "現在の値: {value}"
@@ -265,11 +267,11 @@ none = "なし"
 editor-player-only = "ゲーム内で言語エディターを開いてください。"
 no-providers = "利用できるVolmit言語プロバイダーがありません。"
 numeric-page = "ページ番号を数字で入力してください。"
-personal-permission = "個人言語を選択する権限がありません。"
+personal-permission = "自分の言語を選択する権限がありません。"
 personal-player-only = "プレイヤーの個人言語はゲーム内で選択してください。"
 plugin-personal-permission = "{plugin}の個人言語を選択する権限がありません。"
 plugin-server-permission = "{plugin}のサーバー言語を変更する権限がありません。"
-server-locale-required = "サーバーの既定の言語としてen_USなどの言語コードを選択してください。"
+server-locale-required = "サーバーのデフォルトにはen_USなどのロケールを選択してください。"
 stopping = "プラグインを停止している間は言語を選択できません。"
 unavailable-for-all = "選択したすべてのプラグインで言語{locale}を利用できるわけではありません。"
 
@@ -294,39 +296,47 @@ your_language = "あなたの言語"
 
 [language.selection]
 english-fallback = "{plugin}: {locale}は利用できないため、英語（en_US）を使用します。"
-personal-selected = "{plugin}: 個人言語を{locale}に変更しました。"
+personal-selected = "{plugin}: あなたの言語を{locale}に変更しました。"
 preparing = "{target}の言語{locale}を準備しています..."
 save-failed = "{plugin}: 言語の選択を保存できませんでした。サーバーコンソールを確認してください。"
-server-default-selected = "{plugin}: 個人言語はサーバーの既定の言語に従うようになりました。"
+server-default-selected = "{plugin}: あなたの言語はサーバーのデフォルトを使うようになりました。"
 server-selected = "{plugin}: サーバー言語を{locale}に変更しました。"
 
 [language.usage]
 editor = "使い方: /{command} language server edit [locale]"
-selection = "使い方: /{command} language self [locale|reset] or server [locale]"
+selection = "使い方: /{command} language self [locale|reset] または server [locale]"
 volmit-selection = "使い方: /volmit plugins languages [locale]"
+update = "使い方: /{command} language update"
+
+[language.update]
+checking = "{plugin}: 言語リポジトリの変更を確認しています…"
+unchanged = "{plugin}: インストール済みの言語はすでにリポジトリと一致しています。"
+applied = "{plugin}: {locale}を更新しました（追加 {added}、変更 {updated}、保持したローカル編集 {kept}）。"
+cooldown = "{plugin}: 言語リポジトリは最近確認されたばかりです。{remaining}後にもう一度お試しください。"
+locale-failed = "{plugin}: {locale}は更新されませんでした：{reason}"
+failed = "{plugin}: 言語の更新に失敗しました：{reason}"
 
 [menu]
 feedback = "&6個人通知設定&r"
-feedback_help = "&7自分への切り替えメッセージ、タイトル、効果音を消します。&r"
+feedback_help = "&7自分に表示される切り替えメッセージ、タイトル、効果音をミュートします。&r"
 back = "&7ゲームモードに戻る&r"
 selected = "&a選択中&r"
 survival_help = "&7資源を集め、体力と空腹を管理します。&r"
-creative_help = "&7無制限の資源と飛行を使って建築します。&r"
+creative_help = "&7無制限の資源とクリエイティブ飛行で建築します。&r"
 adventure_help = "&7ブロックの破壊や設置が制限されたマップを探索します。&r"
 spectator_help = "&7ワールドを観察し、ブロックを通り抜けます。&r"
 config_help = "&7サーバー設定を編集します。変更はすぐに適用されます。&r"
-language_help = "&7メッセージとメニューの言語を選びます。&r"
-close = "閉じる"
+language_help = "&7自分のメッセージとメニューに使う言語を選びます。&r"
+close = "&c閉じる&r"
 config = "&6設定&r"
-current = "&7ゲームモード: &f{mode}&r"
-gestures = "&6ジェスチャー&r"
+current = "&7現在のゲームモード: &f{mode}&r"
+gestures = "&6ジェスチャー操作&r"
 language = "&a言語&r"
 select = "&7クリックして選択。&r"
 title = "<gradient:#634514:#2f523f>ゲームモード</gradient>"
-toggle_disabled = "&7ジェスチャー: &c無効&r"
-toggle_enabled = "&7ジェスチャー: &a有効&r"
+toggle_disabled = "&cジェスチャー無効&r"
+toggle_enabled = "&aジェスチャー有効&r"
 toggle_help = "&7クリックしてジェスチャーの有効・無効を切り替えます。&r"
-unavailable = "&cこのゲームモードは選べません。&r"
 
 [mode]
 adventure = "アドベンチャー"
@@ -338,28 +348,28 @@ survival = "サバイバル"
 title = "<gradient:#634514:#2f523f>個人通知設定</gradient>"
 chat = "&6チャットメッセージ&r"
 action_bar = "&6アクションバー&r"
-screen_title = "&6画面タイトル&r"
+screen_title = "&6タイトル表示&r"
 sound = "&6切り替え効果音&r"
-muted = "&c自分には表示しない&r"
+muted = "&cミュート中&r"
 inherit = "&7サーバー設定に従う: {state}&r"
-toggle = "&7クリックで非表示とサーバー設定を切り替えます。&r"
-silence = "&6すべて消す&r"
-silence_help = "&7切り替え成功時のメッセージ、タイトル、効果音を消します。&r"
+toggle = "&7クリックでミュートとサーバー設定を切り替えます。&r"
+silence = "&6すべてミュート&r"
+silence_help = "&7切り替え成功時のメッセージ、タイトル、効果音をミュートします。&r"
 reset = "&aサーバー設定を使う&r"
-reset_help = "&7すべての個人ミュート設定を解除します。&r"
-failures = "&7チャットを消していても、切り替えが拒否された理由はアクションバーに表示されます。&r"
-failed = "{prefix}&c設定を保存できませんでした。コンソールを確認してください。&r"
+reset_help = "&7すべてのチャンネルの個人ミュートを解除します。&r"
+failures = "&7チャットをミュートしていても、ブロックされた切り替えの理由はアクションバーに表示されます。&r"
+failed = "{prefix}&c設定を保存できませんでした。詳細はコンソールを確認してください。&r"
 
 [runtime]
 player_only = "{prefix}&cこのコマンドはプレイヤーのみ使用できます。&r"
-prefix = "<gradient:#e9bd68:#85d6b0><bold>GamemodeSwitcher</bold></gradient> &8â€º&r "
+prefix = "<gradient:#e9bd68:#85d6b0><bold>GamemodeSwitcher</bold></gradient> &8›&r "
 
 [runtime.hot_reload]
-failed = "{prefix}&cファイルの変更は拒否されました；最後に確認された正常な設定が有効のままです。&r"
-success = "{prefix}&a構成および言語ファイルの変更が適用されました。&r"
+failed = "{prefix}&cファイルの変更を拒否しました。最後に正常だった設定が引き続き有効です。&r"
+success = "{prefix}&a設定ファイルと言語ファイルの変更を適用しました。&r"
 
 [runtime.permission]
-denied = "{prefix}&cそれを行う権限がありません。&r"
+denied = "{prefix}&cその操作を行う権限がありません。&r"
 
 [state]
 disabled = "&c無効&r"
@@ -369,24 +379,24 @@ enabled = "&a有効&r"
 title = "<gradient:#e9bd68:#85d6b0>{mode}</gradient>"
 subtitle = "&7ゲームモードを切り替えました。&r"
 overlay = "&7ゲームモード: &f{mode}&r"
-spectator_overlay_hint = "&7スニークキーを3回押すと観戦モードを終了します。&r"
-already = "{prefix}&eゲームモードはすでに{mode}です。&r"
-cancelled = "{prefix}&e別のプラグインがゲームモードの変更を取り消しました。&r"
-changed = "{prefix}&aゲームモードを{mode}に変更しました。&r"
-cooldown = "{prefix}&e次の切り替えまで{seconds}秒待ってください。&r"
+spectator_overlay_hint = "&7スニークを3回押すとスペクテイターモードを終了します。&r"
+already = "{prefix}&7ゲームモードはすでに&f{mode}&r&7です。&r"
+cancelled = "{prefix}&e別のプラグインがゲームモードの変更を阻止しました。&r"
+changed = "{prefix}&aゲームモードを&f{mode}&r&aに変更しました。&r"
+cooldown = "{prefix}&e再び切り替えるまで&f{seconds}&r&e秒待ってください。&r"
 disabled = "{prefix}&eゲームモードの切り替えは無効です。&r"
-empty_hands = "{prefix}&eジェスチャーを使うには両手を空にしてください。&r"
-no_permission = "{prefix}&eこのゲームモードを使う権限がありません。&r"
-spectator_hint = "{prefix}&eスペクテイターモードを終了するには /gsw menu または /gsw set survival を使ってください。&r"
-world_blocked = "{prefix}&e{world}ではゲームモードを切り替えられません。&r"
+empty_hands = "{prefix}&eゲームモードのジェスチャーを使うには両手を空にしてください。&r"
+no_permission = "{prefix}&cこのゲームモードを使う権限がありません。&r"
+spectator_hint = "{prefix}&7スペクテイターモードを終了するには&f/gsw menu&r&7または&f/gsw set survival&r&7を使ってください。&r"
+world_blocked = "{prefix}&eゲームモードの切り替えは&f{world}&r&eでは利用できません。&r"
 
 [toggle]
-disabled = "{prefix}&eジェスチャーを無効にしました。コマンドとメニューは引き続き使えます。&r"
+disabled = "{prefix}&eゲームモードのジェスチャーを無効にしました。コマンドとメニューは引き続き使えます。&r"
 enabled = "{prefix}&aゲームモードのジェスチャーを有効にしました。&r"
 
 [gui.config.general]
 name = "一般"
-description = "ゲームモード切替を有効にし、サーバーの言語を選びます。"
+description = "ゲームモードの切り替えを有効にし、サーバーの言語を選びます。"
 
 [gui.config.metrics]
 name = "統計"
@@ -394,23 +404,23 @@ description = "bStatsへの匿名統計の送信を設定します。"
 
 [gui.config.gestures]
 name = "ジェスチャー操作"
-description = "タップの受付時間、クールダウン、ジェスチャーの切替先を設定します。"
+description = "タップの受付時間、クールダウン、ジェスチャーの切り替え先を設定します。"
 
 [gui.config.gestures.normal]
-name = "ダブルタップの切替先"
-description = "持ち替えキーを2回押したときの各ゲームモードの切替先を選びます。"
+name = "ダブルタップの切り替え先"
+description = "オフハンド交換キーを2回押したときの、各ゲームモードからの切り替え先を選びます。"
 
 [gui.config.gestures.sneaking]
-name = "スニーク時の切替先"
-description = "スニークしながら持ち替えキーを2回押したときの各ゲームモードの切替先を選びます。"
+name = "スニーク時の切り替え先"
+description = "スニークしながらオフハンド交換キーを2回押したときの、各ゲームモードからの切り替え先を選びます。"
 
 [gui.config.restrictions]
 name = "ワールド制限"
 description = "ゲームモードを切り替えられないワールドを選びます。"
 
 [gui.config.feedback]
-name = "切替時の通知"
-description = "切替時のメッセージ、ポップアップ、サウンド、クリエイティブ飛行を選びます。"
+name = "切り替え時の通知"
+description = "切り替え時のメッセージ、ポップアップ、効果音、クリエイティブ飛行の動作を選びます。"
 
 [gui.config.diagnostics]
 name = "診断"
@@ -421,60 +431,60 @@ name = "言語"
 description = "サーバーの翻訳と書式を編集します。"
 
 [gui.config.general.enabled]
-name = "ゲームモード切替"
-description = "ジェスチャー、コマンド、メニューでの切替を許可します。"
+name = "ゲームモードの切り替え"
+description = "ジェスチャー、コマンド、メニューでの切り替えを許可します。"
 
 [gui.config.general.language]
 name = "サーバーの言語"
-description = "個人の言語を選んでいないプレイヤーに使う言語です。翻訳がない項目は英語になります。"
+description = "個人の言語を選んでいないプレイヤーのデフォルト言語です。翻訳がない項目は英語になります。"
 
 [gui.config.metrics.enabled]
 name = "匿名統計"
-description = "匿名統計をbStatsに送信します。bStats全体の無効設定も適用されます。"
+description = "匿名統計をbStatsに送信します。bStats全体のオプトアウト設定も適用されます。"
 
 [gui.config.gestures.double-tap-millis]
 name = "ダブルタップ受付時間"
-description = "持ち替えキーの連続入力間隔の上限をミリ秒で指定します。範囲は100から3000です。"
+description = "オフハンド交換キーを押す間隔の上限（ミリ秒）です。範囲は100から3000です。"
 
 [gui.config.gestures.sneak-tap-millis]
-name = "観戦時のタップ受付時間"
-description = "観戦モードでのスニーク入力間隔の上限をミリ秒で指定します。範囲は100から3000です。"
+name = "スペクテイターのタップ受付時間"
+description = "スペクテイターでスニークを押す間隔の上限（ミリ秒）です。範囲は100から3000です。"
 
 [gui.config.gestures.cooldown-millis]
-name = "切替クールダウン"
-description = "切替成功後の待機時間をミリ秒で指定します。範囲は0から60000で、0は待機なしです。"
+name = "切り替えクールダウン"
+description = "モード変更に成功した後の待機時間（ミリ秒）です。範囲は0から60000で、0にすると待機しません。"
 
 [gui.config.gestures.require-empty-hands]
-name = "両手が空の場合のみ"
-description = "ジェスチャーで切り替える際に両手が空であることを必須にします。"
+name = "両手を空にする"
+description = "ジェスチャーでモードを変更するには両手が空であることを必須にします。"
 
 [gui.config.gestures.spectator-exit]
-name = "観戦モードの終了先"
-description = "観戦モードでスニークキーを3回押して離した後の切替先です。"
+name = "スペクテイター終了時のモード"
+description = "スペクテイターでスニークを別々に3回押した後の切り替え先です。"
 
 [gui.config.gestures.normal.survival]
 name = "サバイバルから"
-description = "サバイバルで持ち替えキーを2回押したときの切替先です。"
+description = "サバイバルでオフハンド交換キーを2回押したときの切り替え先です。"
 
 [gui.config.gestures.normal.creative]
 name = "クリエイティブから"
-description = "クリエイティブで持ち替えキーを2回押したときの切替先です。"
+description = "クリエイティブでオフハンド交換キーを2回押したときの切り替え先です。"
 
 [gui.config.gestures.normal.adventure]
 name = "アドベンチャーから"
-description = "アドベンチャーで持ち替えキーを2回押したときの切替先です。"
+description = "アドベンチャーでオフハンド交換キーを2回押したときの切り替え先です。"
 
 [gui.config.gestures.sneaking.survival]
 name = "サバイバルから"
-description = "サバイバルでスニークしながら持ち替えキーを2回押したときの切替先です。"
+description = "サバイバルでスニークしながらオフハンド交換キーを2回押したときの切り替え先です。"
 
 [gui.config.gestures.sneaking.creative]
 name = "クリエイティブから"
-description = "クリエイティブでスニークしながら持ち替えキーを2回押したときの切替先です。"
+description = "クリエイティブでスニークしながらオフハンド交換キーを2回押したときの切り替え先です。"
 
 [gui.config.gestures.sneaking.adventure]
 name = "アドベンチャーから"
-description = "アドベンチャーでスニークしながら持ち替えキーを2回押したときの切替先です。"
+description = "アドベンチャーでスニークしながらオフハンド交換キーを2回押したときの切り替え先です。"
 
 [gui.config.restrictions.disabled-worlds]
 name = "無効なワールド"
@@ -482,52 +492,52 @@ description = "ジェスチャー、コマンド、メニューでゲームモ�
 
 [gui.config.feedback.auto-fly-creative]
 name = "クリエイティブで飛行開始"
-description = "クリエイティブに切り替えた後、飛行が許可されている場合に飛び始めます。"
+description = "クリエイティブに入った後、飛行が許可されているプレイヤーは飛行を開始します。"
 
 [gui.config.feedback.sound-enabled]
-name = "切替サウンド"
-description = "ゲームモードの切替に成功したときに確認音を鳴らします。"
+name = "切り替え効果音"
+description = "ゲームモードの変更に成功したときに確認音を鳴らします。"
 
 [gui.config.diagnostics.upload-enabled]
-name = "診断レポートの公開"
-description = "診断レポートの公開を許可します。ローカルに保存するにはupload=falseを使います。"
+name = "診断レポートの公開アップロード"
+description = "診断レポートの公開アップロードを許可します。ローカルに保存するには upload=false を使います。"
 
 [gui.config.feedback.chat-enabled]
 name = "チャットメッセージ"
-description = "切替成功と観戦モードのヒントをチャットに表示します。無効の場合、失敗の理由はアクションバーに表示します。"
+description = "切り替えの成功とスペクテイターのヒントをチャットに表示します。無効にすると、失敗の理由はアクションバーに表示されます。"
 
 [gui.config.feedback.action-bar-enabled]
-name = "アクションバー表示"
-description = "新しいモードをホットバーの上に表示し、観戦時は終了方法も案内します。"
+name = "アクションバーのポップアップ"
+description = "新しいモードをホットバーの上に表示し、スペクテイターでは終了方法も表示します。"
 
 [gui.config.feedback.title-enabled]
-name = "タイトル表示"
-description = "新しいモードを画面中央に表示し、観戦時は終了方法も案内します。"
+name = "タイトルのポップアップ"
+description = "新しいモードを画面中央に表示し、スペクテイターでは終了方法も表示します。"
 
 [gui.config.feedback.popup-duration-ticks]
 name = "ポップアップ表示時間"
-description = "タイトルとアクションバーの表示時間をティックで指定します。20ティックは1秒で、範囲は1から200です。"
+description = "タイトルとアクションバーの表示時間（ティック）です。20ティック = 1秒。範囲は1から200です。"
 
 [gui.config.feedback.sound]
 name = "サウンドキー"
-description = "ゲームモードの切替成功後に鳴らすサウンドです。"
+description = "ゲームモードの変更に成功した後に鳴らすサウンドです。"
 input = "minecraft:ui.button.clickやminecraft:entity.experience_orb.pickupのような名前空間付きサウンドキーを入力します。独自のリソースパックのキーも使えます。"
 
 [gui.config.feedback.sound-volume]
 name = "音量"
-description = "切替音の音量です。範囲は0から1で、0は無音です。"
+description = "切り替え効果音の音量です。範囲は0から1で、0は無音です。"
 
 [gui.config.feedback.sound-pitch]
 name = "音の高さ"
-description = "切替音の高さです。範囲は0.5から2で、1は元の高さです。"
+description = "切り替え効果音の音の高さです。範囲は0.5から2で、1は元の高さです。"
 
 [sound.menu]
-title = "<gradient:#634514:#2f523f>切り替え音</gradient>"
-current = "<gray>現在の音: {sound}</gray>"
-select = "<gray>左クリックで選択、右クリックで試聴。</gray>"
-selected = "<green>選択中の音</green>"
-preview = "<gold>現在の音を試聴</gold>"
-preview-help = "<gray>サーバーの現在の音量と音程で試聴します。切り替え音をミュートしていても試聴できます。</gray>"
+title = "<gradient:#634514:#2f523f>切り替え効果音</gradient>"
+current = "<gray>現在のサウンド: <white>{sound}</white></gray>"
+select = "<gray>左クリックで使用、右クリックで試聴。</gray>"
+selected = "<green>選択中のサウンド</green>"
+preview = "<gold>現在のサウンドを試聴</gold>"
+preview-help = "<gray>サーバーの現在の音量と音の高さでこのサウンドを再生します。切り替え効果音をミュートしていても試聴できます。</gray>"
 custom = "<gold>カスタムサウンドキー</gold>"
 custom-help = "<gray>Minecraft またはリソースパックのサウンドキーを入力します。</gray>"
 
@@ -542,7 +552,7 @@ bell = "<gold>鐘</gold>"
 title = "<gradient:#634514:#2f523f>無効なワールド</gradient>"
 help = "<gold>無効なワールド</gold>"
 help-detail = "<gray>ワールドをクリックすると、そのワールドでのゲームモード切り替えをオフまたはオンにします。ワールドは minecraft:the_nether のようなディメンションキーで保存されます。</gray>"
-folder = "<gray>ワールドフォルダー: {folder}</gray>"
+folder = "<gray>ワールドフォルダー: <white>{folder}</white></gray>"
 unloaded = "<gray>このサーバーでは読み込まれていません</gray>"
 disabled = "<red>切り替えオフ</red>"
 enabled = "<green>切り替えオン</green>"
@@ -551,27 +561,27 @@ enable = "<gray>クリックしてここでの切り替えを再びオンにし�
 remove = "<gray>クリックして一覧から削除します。</gray>"
 
 [spectator]
-busy = "{prefix} &eスペクテイターの切り替え処理中です。&r"
-none = "{prefix} &e有効なスペクテイターセッションがありません。&r"
-return-failed = "{prefix}&c帰還できませんでした。セッションは保存されています。/gsw return を再試行してください。&r"
-origin-missing = "{prefix} &eスペクテイターに入ったワールドが読み込まれていないため、この場所でゲームモードを変更しました。&r"
-save-failed = "{prefix} &cスペクテイターセッションを保存できませんでした。ゲームモードは変更されていません。&r"
+busy = "{prefix}&eスペクテイターの切り替え処理がすでに進行中です。&r"
+none = "{prefix}&e有効なスペクテイターセッションがありません。&r"
+return-failed = "{prefix}&c戻れませんでした。セッションは保存されています。もう一度 /gsw return を試してください。&r"
+origin-missing = "{prefix}&eスペクテイターに入ったワールドが読み込まれていないため、現在の場所でゲームモードを変更しました。&r"
+save-failed = "{prefix}&cスペクテイターセッションを保存できませんでした。ゲームモードは変更されていません。&r"
 
 [gui.config.spectator]
 name = "スペクテイターからの復帰"
-description = "このプラグインがスペクテイターを開始したときに保存したモードや位置に戻します。"
+description = "このプラグインがスペクテイターセッションを開始したときに記録したモードや位置を復元します。"
 
 [gui.config.spectator.restore-previous-mode]
 name = "前のモードに戻す"
-description = "スニークを3回押すか /gsw return を使用して前のモードに戻ります。現在の権限とワールド制限は引き続き適用されます。"
+description = "スニークを3回押すか /gsw return を使うと、スペクテイターに入る前のモードに戻ります。現在の権限とワールド制限は引き続き適用されます。"
 
 [gui.config.spectator.return-to-origin]
 name = "開始位置に戻る"
-description = "プラグインから開始した観戦セッションを終了する前に、保存された開始位置へ戻ります。"
+description = "プラグインが開始したスペクテイターセッションを終了する前に、保存された開始位置へ戻ります。"
 
 [gui.config.spectator.allow-unsafe-return]
 name = "安全確認なしの帰還を許可"
-description = "床や空間を確認せずに帰還します。初期設定は有効です。安全な場所のみ許可するには無効にしてください。進行中のセッションにも適用されます。"
+description = "床や空きスペースを確認せずに帰還できるようにします。デフォルトで有効です。安全な帰還先を必須にするには無効にしてください。進行中のセッションにも適用されます。"
 
 [gui.config.general.update-notifications]
 name = "更新通知"

@@ -2,7 +2,7 @@
 #
 # === Editar o ficheiro ===
 # plugins/GamemodeSwitcher/languages/pt_PT.toml
-# Pode editar este ficheiro diretamente. As alterações locais são preservadas; as entradas em falta ou inválidas usam o inglês incorporado.
+# Podes editar este ficheiro diretamente. As alterações locais são preservadas; as entradas em falta ou inválidas usam o inglês incorporado.
 # /gsw language server edit pt_PT
 #
 # === Prefixo ===
@@ -13,80 +13,82 @@
 # Coloca uma barra inversa antes de & ou [ para apresentar o carácter literalmente.
 #
 # === Variáveis ===
-# Mantenha os nomes das variáveis e use apenas as que pertencem a cada mensagem.
+# Mantém os nomes das variáveis e usa apenas as que pertencem a cada mensagem.
+#   {added}  Mensagens adicionadas por uma atualização de idioma
 #   {after}  Valor após a alteração
-#   {argument}  argumento inesperado
+#   {argument}  Argumento de comando inesperado
 #   {before}  Valor antes da alteração
-#   {command}  caminho do comando
-#   {count}  Número de itens correspondentes
+#   {command}  Caminho do comando
+#   {count}  Número de entradas correspondentes
 #   {enabled}  Estado da mudança de modo de jogo
 #   {folder}  Nome da pasta do mundo
-#   {group}  Categoria do editor de idiomas
-#   {hot_reload}  estado do recarregamento
-#   {key}  chave do parâmetro
-#   {language}  idioma ativo
-#   {line}  Linha de origem ou número de linha
-#   {locale}  região
+#   {group}  Nome da categoria de mensagens
+#   {hot_reload}  Estado do recarregamento automático de ficheiros
+#   {java}  Versão do Java necessária
+#   {kept}  Edições locais mantidas por uma atualização de idioma
+#   {key}  Chave do parâmetro ou da mensagem
+#   {language}  Idioma do servidor
+#   {line}  Número da linha da mensagem
+#   {locale}  Identificador do idioma
 #   {maximum}  Valor máximo autorizado
+#   {minecraft}  Intervalo de versões do Minecraft suportadas
 #   {mode}  Nome do modo de jogo
-#   {new}  valor novo
-#   {number}  Número da entrada
-#   {old}  valor anterior
-#   {page}  Página atual
+#   {new}  Novo valor da definição
+#   {number}  Número da entrada da lista
+#   {old}  Valor anterior da definição
+#   {page}  Número da página atual
 #   {pages}  Número total de páginas
-#   {parameter}  nome do parâmetro
-#   {path}  caminho do relatório local
-#   {permission}  permissão necessária
-#   {personal}  região pessoal
-#   {plugin}  Nome do plug-in
-#   {prefix}  o valor global runtime.prefix. Remove {prefix} de uma mensagem para o ocultar apenas aí
-#   {reason}  motivo da falha
-#   {sound}  Identificador do som
-#   {java}  Required Java version
-#   {minecraft}  Supported Minecraft version range
-#   {scheduler}  agendador
+#   {parameter}  Nome do parâmetro
+#   {path}  Caminho local do relatório de diagnóstico
+#   {permission}  Permissão necessária
+#   {personal}  Idioma pessoal, quando diferente do predefinido do servidor
+#   {plugin}  Nome do plugin
+#   {prefix}  Valor global de runtime.prefix; opcional em cada mensagem
+#   {reason}  Motivo da falha
+#   {remaining}  Tempo restante até à próxima verificação de idiomas
+#   {scheduler}  Implementação do agendador
 #   {seconds}  Tempo de espera ou confirmação restante em segundos
 #   {section}  Secção do editor de idiomas
-#   {setting}  nome da definição
+#   {setting}  Nome da definição
+#   {sound}  Identificador de som com espaço de nomes
+#   {state}  Definição de gestos ou de avisos do jogador
 #   {step}  Alteração de um valor numérico com um clique normal
-#   {state}  Estado pessoal dos gestos ou notificações
-#   {target}  Jogador alvo, entidade ou valor
-#   {type}  tipo
-#   {url}  URL público
-#   {value}  valor atual, predefinido ou bruto
-#   {variables}  marcadores válidos
-#   {version}  versão do plugin
-#   {world}  mundo
+#   {target}  Destino da seleção de idioma
+#   {type}  Tipo do parâmetro
+#   {updated}  Mensagens alteradas por uma atualização de idioma
+#   {url}  URL público do relatório de diagnóstico
+#   {value}  Valor atual, predefinido ou bruto
+#   {variables}  Variáveis válidas para a mensagem selecionada
+#   {version}  Versão do plugin
+#   {world}  Nome do mundo
 
 [command.description]
-return = "Regressar da sessão de espetador"
+return = "Regressar da tua sessão de Espectador"
 version = "Mostrar a versão do GamemodeSwitcher"
-config = "Configuração"
-debug = "Ferramentas de diagnóstico do GamemodeSwitcher"
-debug_dump = "Criar um relatório de diagnóstico completo do GamemodeSwitcher"
-language = "Idioma"
-menu = "Modos de jogo"
-root = "Modos de jogo"
-set = "Modo de jogo"
-status = "Modo de jogo"
-toggle = "Gestos"
+config = "Abrir o editor de configuração"
+debug = "Inspecionar diagnósticos"
+debug_dump = "Criar um relatório de diagnóstico do GamemodeSwitcher"
+language = "Escolher o teu idioma ou editar as traduções do servidor"
+menu = "Abrir o seletor de modo de jogo"
+root = "Mudança de modo de jogo, gestos pessoais e configuração"
+set = "Mudar o teu modo de jogo"
+status = "Mostrar as definições de mudança e o teu modo de jogo"
+toggle = "Ativar ou desativar os teus gestos de modo de jogo"
 
 [command.feedback]
 failed = "{prefix}&cNão foi possível concluir o comando. Consulta a consola para obter detalhes.&r"
 
 [command.feedback.config]
-opened = "{prefix}&aO editor completo de configuração no jogo foi aberto.&r"
-save_failed = "{prefix}&cNão foi possível aplicar &f{setting}&r&c: {reason}&r"
-saved = "{prefix}&a{setting}&r &7foi alterada de &f{old}&r &7para &f{new}&r&7.&r"
+saved = "{prefix}&a{setting}&r &7mudou de &f{old}&r &7para &f{new}&r&7.&r"
 
 [command.parameter]
-enabled = "Ativado / Desativado"
-mode = "Sobrevivência, Criativo, Aventura, Espetador"
-upload = "Carregar o relatório quando os carregamentos públicos estão ativados"
+enabled = "Ativar ou desativar os gestos; omitir para alternar"
+mode = "Modo de jogo: survival, creative, adventure ou spectator"
+upload = "Enviar o relatório quando os envios públicos estiverem ativados"
 
 [command.status]
-compatibility = "&7Artefacto:&r &fJava {java} / Minecraft {minecraft}&r &8|&r &7Agendador:&r &f{scheduler}&r"
-config = "&7Modo de jogo:&r {enabled} &8|&r &7Idioma:&r {language} &8|&r &7Recarregar configuração e idiomas:&r {hot_reload}"
+compatibility = "&7Requer:&r &fJava {java} / Minecraft {minecraft}&r &8|&r &7Agendador:&r &f{scheduler}&r"
+config = "&7Mudança:&r {enabled} &8|&r &7Idioma:&r &f{language}&r &8|&r &7Recarregamento automático:&r {hot_reload}"
 header = "&6&lGamemodeSwitcher&r"
 player = "&7Gestos:&r {state} &8|&r &7Modo de jogo:&r {mode}"
 
@@ -95,31 +97,31 @@ adjust = "Esquerdo +{step}, direito -{step}, Shift x10, Q para escrever um valor
 back = "Voltar"
 close = "Fechar"
 current = "Valor atual: {value}"
-edit = "Clique para introduzir um novo valor no chat."
+edit = "Clica para introduzir um novo valor no chat."
 empty = "Esta secção não tem definições."
 entry = "Entrada {number}"
 expired = "O tempo para introduzir a configuração terminou."
 failed = "Não foi possível editar a configuração: {reason}"
 loading = "A carregar a configuração..."
 next = "Página seguinte"
-no-permission = "Não tem permissão para editar esta configuração."
-open = "Clique para abrir esta secção."
+no-permission = "Não tens permissão para editar esta configuração."
+open = "Clica para abrir esta secção."
 page = "Página {page} de {pages}"
-player-only = "Abra o editor de configuração dentro do jogo."
+player-only = "Abre o editor de configuração dentro do jogo."
 previous = "Página anterior"
-prompt = "Introduza um novo valor para {path}. Escreva cancel para voltar."
+prompt = "Introduz um novo valor para {path}. Escreve cancel para voltar."
 refresh = "Atualizar"
 saved = "{path} guardado. As alterações são aplicadas automaticamente."
 saving = "A guardar a configuração..."
 section = "Secção: {path}"
 title = "{plugin} / Configuração"
-toggle = "Clique para alternar entre true e false."
-too-long = "Introduza no máximo {maximum} caracteres."
+toggle = "Clica para alternar entre true e false."
+too-long = "Introduz no máximo {maximum} caracteres."
 
 [config.editor.type]
-decimal = "Introduza um número, como 0.25."
-integer = "Introduza um número inteiro."
-list = "Use uma lista TOML, como [\"stone\", \"deepslate\"]."
+decimal = "Introduz um número, como 0.25."
+integer = "Introduz um número inteiro."
+list = "Usa uma lista TOML, como [\"stone\", \"deepslate\"]."
 text = "Texto; não é necessário usar aspas."
 
 [debug]
@@ -151,11 +153,11 @@ interrupted = "O envio do relatório de diagnóstico foi interrompido. O relató
 
 [director.help]
 category = "Categoria de comandos"
-command_group = "Grupo de comandos. Clique para abrir."
+command_group = "Grupo de comandos. Clica para abrir."
 no_description = "Nenhuma descrição fornecida"
-no_parameters = "Sem parâmetros. Clique para preencher previamente o comando."
+no_parameters = "Sem parâmetros. Clica para preencher o comando."
 no_subcommands = "Não existem subcomandos nesta página."
-parameters_hover = "Passe o cursor sobre os parâmetros para saber mais."
+parameters_hover = "Passa o cursor sobre os parâmetros para saber mais."
 
 [director.help.navigation]
 back = "Voltar"
@@ -165,7 +167,7 @@ page = "Página"
 hover = "Página seguinte"
 
 [director.help.navigation.parent]
-hover = "Voltar ao grupo de comandos principal"
+hover = "Voltar ao grupo de comandos superior"
 
 [director.help.navigation.previous]
 hover = "Página anterior"
@@ -187,13 +189,13 @@ unexpected_argument = "Argumento inesperado \"{argument}\". Os parâmetros opcio
 unknown_parameter = "Chave de parâmetro desconhecida: {key}"
 
 [gesture]
-normal = "&7Prima duas vezes Trocar com a mão secundária: {mode}&r"
-sneaking = "&7Mantenha Agachar premido e prima Trocar duas vezes: {mode}&r"
-spectator = "&7Prima Agachar três vezes separadas: {mode}&r"
-rebind = "&7Altere Trocar com a mão secundária (F) e Agachar (Shift esquerdo) em Opções > Controlos > Teclas.&r"
-personal_disabled = "&eOs seus gestos estão desativados. Ative-os aqui ou com /gsw toggle true.&r"
+normal = "&7Prime duas vezes Trocar item com a mão secundária: &f{mode}&r"
+sneaking = "&7Mantém Agachar premido + prime duas vezes Trocar item com a mão secundária: &f{mode}&r"
+spectator = "&7Prime Agachar três vezes separadas: &f{mode}&r"
+rebind = "&7Altera Trocar item com a mão secundária (predefinição F) e Agachar (predefinição Shift esq.) em Opções > Controlos > Atalhos.&r"
+personal_disabled = "&eOs teus gestos estão desativados. Ativa-os neste menu ou com /gsw toggle true.&r"
 empty_hands = "&7As duas mãos têm de estar vazias para usar gestos.&r"
-help = "&7Prime duas vezes a tecla de trocar as mãos (F por predefinição) para mudar de modo. Fá-lo agachado para a ação alternativa; prime agachar três vezes para sair de espetador. Os modos de destino seguem as definições do servidor.&r"
+help = "&7Prime duas vezes a tecla Trocar item com a mão secundária (F por predefinição) para mudar de modo. Agacha-te enquanto o fazes para a ação alternativa; agacha-te três vezes para sair do modo Espectador. Os destinos seguem as definições do servidor.&r"
 
 [gui.title]
 root = "<gradient:#634514:#2f523f>GSW</gradient> <color:#404040>Configuração</color>"
@@ -204,10 +206,10 @@ loading = "A carregar as mensagens de {locale}..."
 
 [language.editor.category]
 message-count = "&7{count} mensagens&r"
-open = "&8Clique para abrir esta categoria.&r"
+open = "&8Clica para abrir esta categoria.&r"
 
 [language.editor.error]
-no-permission = "Não tem permissão para editar os idiomas de {plugin}."
+no-permission = "Não tens permissão para editar os idiomas de {plugin}."
 unable-to-edit = "Não foi possível editar: {reason}"
 
 [language.editor.input]
@@ -216,13 +218,13 @@ too-long = "O texto pode ter no máximo {maximum} caracteres."
 unable-to-save = "Não foi possível guardar: {reason}"
 
 [language.editor.locale]
-open = "&8Clique para abrir este idioma.&r"
+open = "&8Clica para abrir este idioma.&r"
 
 [language.editor.message]
 current-value = "&7Valor atual:&r"
-edit-chat = "&7Clique para editar no chat.&r"
-edit-lines = "&7Clique para editar linhas individuais.&r"
-edit-plural = "&7Clique para editar uma forma plural.&r"
+edit-chat = "&7Clica para editar no chat.&r"
+edit-lines = "&7Clica para editar linhas individuais.&r"
+edit-plural = "&7Clica para editar uma forma plural.&r"
 variables = "&8{variables}&r"
 
 [language.editor.navigation]
@@ -236,9 +238,9 @@ line = "Linha {line}"
 
 [language.editor.prompt]
 current = "Valor atual: {value}"
-guidance = "Use \\n para mudar de linha, \\\\ para uma barra invertida, ou escreva cancel para voltar."
-search = "Pesquise uma chave de mensagem ou texto. Escreva cancel para voltar."
-value = "Escreva um novo valor para {key} no chat."
+guidance = "Usa \\n para mudar de linha, \\\\ para uma barra invertida, ou escreve cancel para voltar."
+search = "Pesquisa uma chave de mensagem ou texto. Escreve cancel para voltar."
+value = "Escreve um novo valor para {key} no chat."
 variables = "Variáveis: {variables}"
 
 [language.editor.saved]
@@ -248,35 +250,35 @@ summary = "{locale} guardado. As escolhas de idioma não foram alteradas."
 [language.editor.search]
 clear = "Limpar a pesquisa"
 messages = "Pesquisar mensagens"
-messages-lore = "Clique para pesquisar todas as mensagens."
+messages-lore = "Clica para pesquisar todas as mensagens."
 
 [language.editor.section]
 group-title = "{locale} / {group}"
 languages = "Idiomas"
-search = "Procurar"
-search-title = "{locale} / Procurar"
+search = "Pesquisar"
+search-title = "{locale} / Pesquisar"
 
 [language.editor.value]
 empty = "(vazio)"
 none = "Nenhum"
 
 [language.error]
-editor-player-only = "Abra o editor de idiomas dentro do jogo."
+editor-player-only = "Abre o editor de idiomas dentro do jogo."
 no-providers = "Não há fornecedores de idiomas Volmit disponíveis."
-numeric-page = "Introduza um número de página."
-personal-permission = "Você não tem permissão para selecionar seu idioma."
-personal-player-only = "As preferências do idioma do jogador devem ser selecionadas no jogo."
-plugin-personal-permission = "Não tem permissão para escolher o seu idioma em {plugin}."
-plugin-server-permission = "Não tem permissão para alterar o idioma do servidor em {plugin}."
-server-locale-required = "Escolha um código como en_US para o idioma predefinido do servidor."
+numeric-page = "Introduz um número de página."
+personal-permission = "Não tens permissão para selecionar o teu idioma."
+personal-player-only = "As preferências pessoais de idioma têm de ser selecionadas no jogo."
+plugin-personal-permission = "Não tens permissão para escolher o teu idioma em {plugin}."
+plugin-server-permission = "Não tens permissão para alterar o idioma do servidor em {plugin}."
+server-locale-required = "Escolhe um código como en_US para o idioma predefinido do servidor."
 stopping = "A escolha de idioma não está disponível enquanto o plugin está a parar."
 unavailable-for-all = "O idioma {locale} não está disponível para todos os plugins selecionados."
 
 [language.menu]
-all-volmit-plugins = "Todos os plugins Volmit"
+all-volmit-plugins = "todos os plugins Volmit"
 command = "Comando: {command}"
 current = "Atual: {locale}"
-current_with_personal = "Atual: {locale} (O teu: {personal})"
+current_with_personal = "Atual: {locale} (o teu: {personal})"
 edit_description = "Abre o editor de mensagens de cada idioma."
 edit_messages = "Editar mensagens do idioma"
 no_controls = "Não tens acesso às opções de idioma."
@@ -292,45 +294,53 @@ your_description = "Altera apenas as mensagens que vês."
 your_language = "O teu idioma"
 
 [language.selection]
-english-fallback = "{plugin}: {locale} não está disponível; será usado inglês (en_US)."
-personal-selected = "{plugin}: o seu idioma agora é {locale}."
+english-fallback = "{plugin}: {locale} não está disponível; a usar inglês (en_US)."
+personal-selected = "{plugin}: o teu idioma é agora {locale}."
 preparing = "A preparar o idioma {locale} para {target}..."
-save-failed = "{plugin}: não foi possível guardar a escolha de idioma; consulte a consola do servidor."
-server-default-selected = "{plugin}: o seu idioma segue agora o idioma predefinido do servidor."
-server-selected = "{plugin}: o idioma do servidor agora é {locale}."
+save-failed = "{plugin}: não foi possível guardar a escolha de idioma; consulta a consola do servidor."
+server-default-selected = "{plugin}: o teu idioma segue agora o idioma predefinido do servidor."
+server-selected = "{plugin}: o idioma do servidor é agora {locale}."
 
 [language.usage]
-editor = "Uso: /{command} language server edit [locale]"
-selection = "Uso: /{command} language self [locale|reset] or server [locale]"
-volmit-selection = "Uso: /volmit plugins languages [locale]"
+editor = "Utilização: /{command} language server edit [locale]"
+selection = "Utilização: /{command} language self [locale|reset] ou server [locale]"
+volmit-selection = "Utilização: /volmit plugins languages [locale]"
+update = "Utilização: /{command} language update"
+
+[language.update]
+checking = "{plugin}: a verificar alterações no repositório de idiomas..."
+unchanged = "{plugin}: os idiomas instalados já correspondem ao repositório."
+applied = "{plugin}: {locale} atualizado ({added} adicionados, {updated} alterados, {kept} edições locais mantidas)."
+cooldown = "{plugin}: o repositório de idiomas foi verificado recentemente; tenta novamente dentro de {remaining}."
+locale-failed = "{plugin}: {locale} não foi atualizado: {reason}"
+failed = "{plugin}: a atualização de idiomas falhou: {reason}"
 
 [menu]
 feedback = "&6Notificações pessoais&r"
-feedback_help = "&7Silencie mensagens, títulos ou sons apenas para si.&r"
+feedback_help = "&7Silencia mensagens, títulos ou sons apenas para ti.&r"
 back = "&7Voltar aos modos de jogo&r"
 selected = "&aSelecionado&r"
 survival_help = "&7Recolhe recursos e cuida da saúde e da fome.&r"
-creative_help = "&7Constrói com recursos ilimitados e voo criativo.&r"
+creative_help = "&7Constrói com recursos ilimitados e voa em Criativo.&r"
 adventure_help = "&7Explora mapas com restrições para partir e colocar blocos.&r"
 spectator_help = "&7Observa o mundo e atravessa blocos.&r"
 config_help = "&7Edita as definições do servidor. As mudanças são aplicadas imediatamente.&r"
 language_help = "&7Escolhe o idioma das tuas mensagens e menus.&r"
-close = "Fechar"
+close = "&cFechar&r"
 config = "&6Configuração&r"
-current = "&7Modo de jogo: &f{mode}&r"
-gestures = "&6Gestos&r"
+current = "&7Modo de jogo atual: &f{mode}&r"
+gestures = "&6Controlos por gestos&r"
 language = "&aIdioma&r"
 select = "&7Clica para selecionar.&r"
 title = "<gradient:#634514:#2f523f>Modos de jogo</gradient>"
-toggle_disabled = "&7Gestos: &cDesativado&r"
-toggle_enabled = "&7Gestos: &aAtivado&r"
+toggle_disabled = "&cGestos desativados&r"
+toggle_enabled = "&aGestos ativados&r"
 toggle_help = "&7Clica para ativar ou desativar os gestos.&r"
-unavailable = "&cNão podes selecionar este modo de jogo.&r"
 
 [mode]
 adventure = "Aventura"
 creative = "Criativo"
-spectator = "Espetador"
+spectator = "Espectador"
 survival = "Sobrevivência"
 
 [preferences]
@@ -339,19 +349,19 @@ chat = "&6Mensagens do chat&r"
 action_bar = "&6Barra de ação&r"
 screen_title = "&6Títulos no ecrã&r"
 sound = "&6Sons de mudança&r"
-muted = "&cSilenciado para si&r"
-inherit = "&7A seguir definições do servidor: {state}&r"
-toggle = "&7Clique para alternar entre silêncio e definições do servidor.&r"
+muted = "&cSilenciado para ti&r"
+inherit = "&7A seguir as definições do servidor: {state}&r"
+toggle = "&7Clica para alternar entre silenciado e definições do servidor.&r"
 silence = "&6Silenciar tudo&r"
-silence_help = "&7Silencie mensagens, títulos e sons de mudanças bem-sucedidas.&r"
+silence_help = "&7Silencia mensagens, títulos e sons de mudanças bem-sucedidas.&r"
 reset = "&aUsar definições do servidor&r"
-reset_help = "&7Remova todos os silenciamentos pessoais.&r"
+reset_help = "&7Remove os teus silenciamentos pessoais de todos os canais.&r"
 failures = "&7Com o chat silenciado, as mudanças bloqueadas continuam a mostrar o motivo na barra de ação.&r"
-failed = "{prefix}&cNão foi possível guardar a tua preferência. Consulta a consola.&r"
+failed = "{prefix}&cNão foi possível guardar a tua preferência. Consulta a consola para obter detalhes.&r"
 
 [runtime]
 player_only = "{prefix}&cEste comando só pode ser utilizado por um jogador.&r"
-prefix = "<gradient:#e9bd68:#85d6b0><bold>GamemodeSwitcher</bold></gradient> &8â€º&r "
+prefix = "<gradient:#e9bd68:#85d6b0><bold>GamemodeSwitcher</bold></gradient> &8›&r "
 
 [runtime.hot_reload]
 failed = "{prefix}&cAs alterações aos ficheiros foram rejeitadas; as últimas definições válidas permanecem ativas.&r"
@@ -368,52 +378,52 @@ enabled = "&aAtivado&r"
 title = "<gradient:#e9bd68:#85d6b0>{mode}</gradient>"
 subtitle = "&7Modo de jogo alterado.&r"
 overlay = "&7Modo de jogo: &f{mode}&r"
-spectator_overlay_hint = "&7Agacha-te três vezes para sair de Espetador.&r"
-already = "{prefix}&eO teu modo de jogo já é {mode}.&r"
+spectator_overlay_hint = "&7Agacha-te três vezes para sair do modo Espectador.&r"
+already = "{prefix}&7O teu modo de jogo já é &f{mode}&r&7.&r"
 cancelled = "{prefix}&eOutro plugin impediu a mudança de modo de jogo.&r"
-changed = "{prefix}&aModo de jogo alterado para {mode}.&r"
-cooldown = "{prefix}&eEspera {seconds} segundos antes de mudares novamente.&r"
+changed = "{prefix}&aModo de jogo alterado para &f{mode}&r&a.&r"
+cooldown = "{prefix}&eEspera &f{seconds}&r&e segundos antes de mudares novamente.&r"
 disabled = "{prefix}&eA mudança de modo de jogo está desativada.&r"
-empty_hands = "{prefix}&eEsvazia ambas as mãos para usar gestos.&r"
-no_permission = "{prefix}&eNão tens permissão para usar esse modo de jogo.&r"
-spectator_hint = "{prefix}&eUsa /gsw menu ou /gsw set survival para sair do modo espetador.&r"
-world_blocked = "{prefix}&eNão podes mudar de modo de jogo em {world}.&r"
+empty_hands = "{prefix}&eEsvazia ambas as mãos para usar os gestos de modo de jogo.&r"
+no_permission = "{prefix}&cNão tens permissão para usar esse modo de jogo.&r"
+spectator_hint = "{prefix}&7Usa &f/gsw menu&r&7 ou &f/gsw set survival&r&7 para sair do modo Espectador.&r"
+world_blocked = "{prefix}&eA mudança de modo de jogo não está disponível em &f{world}&r&e.&r"
 
 [toggle]
-disabled = "{prefix}&eGestos desativados. Os comandos e o menu continuam disponíveis.&r"
+disabled = "{prefix}&eGestos de modo de jogo desativados. Os comandos e o menu continuam disponíveis.&r"
 enabled = "{prefix}&aGestos de modo de jogo ativados.&r"
 
 [gui.config.general]
 name = "Geral"
-description = "Ativar a mudança de modo e escolher o idioma do servidor."
+description = "Ativar a mudança de modo de jogo e escolher o idioma do servidor."
 
 [gui.config.metrics]
 name = "Estatísticas"
-description = "Controlar as estatísticas anónimas do bStats."
+description = "Controlar o envio de estatísticas anónimas ao bStats."
 
 [gui.config.gestures]
 name = "Controlos por gestos"
-description = "Definir os intervalos, a espera e os destinos dos gestos."
+description = "Definir os tempos de toque, as esperas e os destinos dos gestos."
 
 [gui.config.gestures.normal]
 name = "Destinos do toque duplo"
-description = "Escolher o destino de cada modo ao premir duas vezes a tecla de troca de mãos."
+description = "Escolher para onde o toque duplo na tecla de troca de mãos leva cada modo de jogo."
 
 [gui.config.gestures.sneaking]
 name = "Destinos ao agachar"
-description = "Escolher o destino de cada modo ao agachar e premir duas vezes a tecla de troca de mãos."
+description = "Escolher para onde agachar ao premir duas vezes a tecla de troca de mãos leva cada modo de jogo."
 
 [gui.config.restrictions]
 name = "Restrições de mundos"
-description = "Escolher os mundos onde não é possível mudar de modo."
+description = "Escolher os mundos onde a mudança de modo de jogo não está disponível."
 
 [gui.config.feedback]
 name = "Avisos de mudança"
-description = "Escolher mensagens, avisos, sons e voo criativo ao mudar."
+description = "Escolher mensagens, avisos, sons e o comportamento do voo em Criativo ao mudar."
 
 [gui.config.diagnostics]
 name = "Diagnóstico"
-description = "Controlar a publicação de relatórios de diagnóstico."
+description = "Controlar o envio público de relatórios de diagnóstico."
 
 [gui.config.languages]
 name = "Idiomas"
@@ -436,8 +446,8 @@ name = "Intervalo do toque duplo"
 description = "Tempo máximo entre pressões da tecla de troca de mãos, em milissegundos. Intervalo: 100 a 3000."
 
 [gui.config.gestures.sneak-tap-millis]
-name = "Intervalo em Espetador"
-description = "Tempo máximo entre pressões da tecla de agachar em Espetador, em milissegundos. Intervalo: 100 a 3000."
+name = "Intervalo em Espectador"
+description = "Tempo máximo entre pressões da tecla de agachar em Espectador, em milissegundos. Intervalo: 100 a 3000."
 
 [gui.config.gestures.cooldown-millis]
 name = "Espera entre mudanças"
@@ -448,8 +458,8 @@ name = "Exigir mãos vazias"
 description = "Exigir que ambas as mãos estejam vazias antes de um gesto poder mudar o modo."
 
 [gui.config.gestures.spectator-exit]
-name = "Saída de Espetador"
-description = "Destino após três pressões separadas da tecla de agachar em Espetador."
+name = "Modo de saída de Espectador"
+description = "Destino após três pressões separadas da tecla de agachar em Espectador."
 
 [gui.config.gestures.normal.survival]
 name = "De Sobrevivência"
@@ -481,27 +491,27 @@ description = "Mundos onde os gestos, os comandos e o menu não podem mudar o mo
 
 [gui.config.feedback.auto-fly-creative]
 name = "Voar ao entrar em Criativo"
-description = "Começar a voar ao entrar em Criativo se o jogador tiver permissão para voar."
+description = "Começar a voar após entrar em Criativo, se o jogador puder voar."
 
 [gui.config.feedback.sound-enabled]
 name = "Som de mudança"
 description = "Reproduzir um som de confirmação após uma mudança de modo bem-sucedida."
 
 [gui.config.diagnostics.upload-enabled]
-name = "Relatórios públicos"
-description = "Permitir relatórios de diagnóstico públicos. Usa upload=false para guardar um relatório localmente."
+name = "Envios públicos de diagnóstico"
+description = "Permitir que os relatórios de diagnóstico sejam enviados publicamente. Usa upload=false para guardar um relatório localmente."
 
 [gui.config.feedback.chat-enabled]
 name = "Mensagens no chat"
-description = "Mostrar mudanças bem-sucedidas e dicas de Espetador no chat. Quando desativado, os erros aparecem na barra de ação."
+description = "Mostrar mudanças bem-sucedidas e dicas de Espectador no chat. Quando desativado, os motivos de falha aparecem na barra de ação."
 
 [gui.config.feedback.action-bar-enabled]
 name = "Aviso na barra de ação"
-description = "Mostrar o novo modo acima da barra rápida, com uma dica para sair de Espetador."
+description = "Mostrar o novo modo acima da barra rápida, com uma dica de saída em Espectador."
 
 [gui.config.feedback.title-enabled]
 name = "Aviso de título"
-description = "Mostrar o novo modo no centro do ecrã, com uma dica para sair de Espetador."
+description = "Mostrar o novo modo no centro do ecrã, com uma dica de saída em Espectador."
 
 [gui.config.feedback.popup-duration-ticks]
 name = "Duração dos avisos"
@@ -509,58 +519,58 @@ description = "Duração do título e da barra de ação em ticks; 20 ticks = 1 
 
 [gui.config.feedback.sound]
 name = "Chave de som"
-description = "Som após uma mudança de modo bem-sucedida."
+description = "Som a reproduzir após uma mudança de modo bem-sucedida."
 input = "Introduz uma chave de som com espaço de nomes, como minecraft:ui.button.click ou minecraft:entity.experience_orb.pickup. São permitidas chaves de pacotes de recursos personalizados."
 
 [gui.config.feedback.sound-volume]
-name = "Volume"
+name = "Volume do som"
 description = "Volume do som de mudança. Intervalo: 0 a 1; 0 é silêncio."
 
 [gui.config.feedback.sound-pitch]
-name = "Tom"
+name = "Tom do som"
 description = "Tom do som de mudança. Intervalo: 0.5 a 2; 1 usa o tom original."
 
 [spectator]
-save-failed = "{prefix}&cNão foi possível guardar a sessão. O modo de jogo não foi alterado.&r"
+save-failed = "{prefix}&cNão foi possível guardar a tua sessão de Espectador. O teu modo de jogo não foi alterado.&r"
 return-failed = "{prefix}&cNão foi possível regressar. A sessão está guardada; tenta /gsw return novamente.&r"
-origin-missing = "{prefix} &eO mundo onde entraste em espectador já não está carregado, por isso o modo de jogo mudou aqui.&r"
-none = "{prefix}&cNão tens uma sessão de espetador ativa.&r"
-busy = "{prefix}&cJá está em curso uma mudança de modo de espetador.&r"
+origin-missing = "{prefix}&eO mundo onde entraste em Espectador já não está carregado, por isso o modo de jogo mudou onde estás.&r"
+none = "{prefix}&eNão tens uma sessão de Espectador ativa.&r"
+busy = "{prefix}&eJá está em curso uma transição de Espectador.&r"
 
 [gui.config.spectator]
-description = "Escolhe o regresso ao modo anterior e à posição inicial."
-name = "Sessões de espetador"
+description = "Restaurar o modo ou a posição registados quando este plugin inicia uma sessão de Espectador."
+name = "Regresso de Espectador"
 
 [gui.config.spectator.restore-previous-mode]
-description = "Ao sair da sessão de espetador, regressa ao modo anterior."
+description = "Agacha-te três vezes ou usa /gsw return para restaurar o modo a partir do qual entraste em Espectador. As permissões atuais e as restrições de mundos continuam a aplicar-se."
 name = "Restaurar modo anterior"
 
 [gui.config.spectator.return-to-origin]
-description = "Regressa à posição inicial guardada antes de sair de uma sessão de espetador iniciada pelo plugin."
-name = "Regressar à origem"
+description = "Regressar à posição de entrada guardada antes de sair de uma sessão de Espectador iniciada pelo plugin."
+name = "Regressar à posição inicial"
 
 [sound.menu]
-custom-help = "<gray>Introduz um identificador de som do Minecraft ou de um pacote de recursos.</gray>"
-custom = "<gray>Identificador de som personalizado</gray>"
-preview-help = "<gray>Ouve com o volume e tom do servidor, mesmo com os sons de mudança silenciados.</gray>"
-preview = "<gray>Ouvir som atual</gray>"
-selected = "<gray>Som selecionado</gray>"
-select = "<gray>Clica à esquerda para escolher. À direita para ouvir.</gray>"
-current = "<gray>Som atual: {sound}</gray>"
+custom-help = "<gray>Introduz uma chave de som do Minecraft ou de um pacote de recursos.</gray>"
+custom = "<gold>Chave de som personalizada</gold>"
+preview-help = "<gray>Ouve este som com o volume e o tom atuais do servidor. A pré-visualização funciona mesmo com os sons de mudança silenciados.</gray>"
+preview = "<gold>Ouvir o som atual</gold>"
+selected = "<green>Som selecionado</green>"
+select = "<gray>Clica com o botão esquerdo para usar. Clica com o botão direito para ouvir.</gray>"
+current = "<gray>Som atual: <white>{sound}</white></gray>"
 title = "<gradient:#634514:#2f523f>Som da mudança</gradient>"
 
 [sound.preset]
-bell = "<gray>Sino</gray>"
-experience = "<gray>Recolha de experiência</gray>"
-pling = "<gray>Nota aguda</gray>"
-chime = "<gray>Carrilhão</gray>"
-click = "<gray>Clique de botão</gray>"
+bell = "<gold>Sino</gold>"
+experience = "<gold>Recolha de experiência</gold>"
+pling = "<gold>Pling</gold>"
+chime = "<gold>Carrilhão</gold>"
+click = "<gold>Clique de botão</gold>"
 
 [world.menu]
 title = "<gradient:#634514:#2f523f>Mundos desativados</gradient>"
 help = "<gold>Mundos desativados</gold>"
 help-detail = "<gray>Clica num mundo para desativar ou ativar aí a mudança de modo de jogo. Os mundos são guardados pela chave de dimensão, como minecraft:the_nether.</gray>"
-folder = "<gray>Pasta do mundo: {folder}</gray>"
+folder = "<gray>Pasta do mundo: <white>{folder}</white></gray>"
 unloaded = "<gray>Não carregado neste servidor</gray>"
 disabled = "<red>Mudança desativada</red>"
 enabled = "<green>Mudança ativada</green>"
@@ -570,8 +580,8 @@ remove = "<gray>Clica para o remover da lista.</gray>"
 
 [gui.config.spectator.allow-unsafe-return]
 name = "Permitir regressos inseguros"
-description = "Regressa sem verificar o chão ou o espaço livre. Ativo por predefinição; desativa para exigir um destino seguro. Aplica-se também a sessões ativas."
+description = "Permitir regressos sem verificar o chão ou o espaço livre. Ativo por predefinição; desativa para exigir um destino seguro. Aplica-se também a sessões ativas."
 
 [gui.config.general.update-notifications]
 name = "Notificações de atualização"
-description = "Verificar versões no GitHub e avisar os jogadores autorizados através da notificação conjunta do Volmit. Não são instaladas atualizações."
+description = "Verificar versões no GitHub e notificar os jogadores autorizados através do aviso de atualização partilhado da Volmit. Não são instaladas atualizações."

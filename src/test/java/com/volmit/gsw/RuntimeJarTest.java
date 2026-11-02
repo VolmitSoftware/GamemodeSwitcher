@@ -13,6 +13,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.List;
 import java.util.Objects;
+import java.util.Optional;
 import java.util.logging.Logger;
 import java.util.stream.Stream;
 
@@ -78,9 +79,14 @@ final class RuntimeJarTest {
         Object service = serviceType.getConstructor(File.class, Logger.class)
                 .newInstance(temporaryDirectory.toFile(), Logger.getLogger("RuntimeJarTest"));
         serviceType.getMethod("initialize", String.class).invoke(service, "en_US");
+        assertThat((Optional<?>) serviceType.getMethod("sourceFailure").invoke(service)).isEmpty();
+        assertThat(serviceType.getMethod("sourceDescription").invoke(service))
+                .asString().startsWith("VolmitSoftware/GamemodeSwitcher@");
         try (Stream<Path> files = Files.list(temporaryDirectory.resolve("languages"))) {
-            assertThat(files.map(path -> path.getFileName().toString()).toList()).containsExactly("en_US.toml");
+            assertThat(files.map(path -> path.getFileName().toString()).toList())
+                    .containsExactlyInAnyOrder("en_US.toml", ".upstream");
         }
+        serviceType.getMethod("close").invoke(service);
     }
 
     @Test

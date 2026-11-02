@@ -113,6 +113,16 @@ class ConfigServiceTest {
     }
 
     @Test
+    void acceptsCustomLanguageIdsAndRejectsPaths() throws IOException {
+        assertThat(ConfigService.parse("[general]\nlanguage = \"pirate\"").language()).isEqualTo("pirate");
+        assertThat(ConfigService.parse("[general]\nlanguage = \"ja-JP\"").language()).isEqualTo("ja-JP");
+        assertThatThrownBy(() -> ConfigService.parse("[general]\nlanguage = \"../outside\""))
+                .isInstanceOf(IOException.class);
+        assertThatThrownBy(() -> ConfigService.parse("[general]\nlanguage = \"x\""))
+                .isInstanceOf(IOException.class);
+    }
+
+    @Test
     void disabledWorldsAreNormalizedDimensionKeysOrLegacyFolderNames() throws IOException {
         assertThat(ConfigService.parse("[restrictions]\ndisabled-worlds = [\" Minecraft:The_Nether \", \"iris:overworld/custom\", \"World_Nether\"]")
                 .disabledWorlds()).containsExactlyInAnyOrder("minecraft:the_nether", "iris:overworld/custom", "world_nether");
