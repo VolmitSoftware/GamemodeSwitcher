@@ -46,12 +46,12 @@ adventure = "SURVIVAL"
 [spectator]
 # The next two settings are captured when entering Spectator and apply to new sessions.
 # Remember the previous mode for triple-Sneak and /gsw return. Only GSW entries are tracked.
-restore-previous-mode = false
+restore-previous-mode = true
 # Return to the entry location before leaving a tracked Spectator session through GSW.
 # Blocked or unsafe destinations keep you in Spectator; retry with /gsw return.
 # If the entry world is no longer loaded, you leave Spectator where you are.
 # Sessions survive reconnects/restarts; death or another plugin's mode change ends the session.
-return-to-origin = false
+return-to-origin = true
 # Return even without solid ground or clear space, or outside the world border.
 # Set false to require a safe destination. Changes also apply to existing sessions.
 allow-unsafe-return = true

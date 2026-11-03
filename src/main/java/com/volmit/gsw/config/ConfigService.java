@@ -138,8 +138,8 @@ public final class ConfigService {
                     feedback(toml),
                     disabledWorlds, modes(toml, false), modes(toml, true),
                     GameMode.valueOf(toml.getString("gestures.spectator-exit", "CREATIVE").toUpperCase(Locale.ROOT)),
-                    toml.getBoolean("spectator.restore-previous-mode", false),
-                    toml.getBoolean("spectator.return-to-origin", false),
+                    toml.getBoolean("spectator.restore-previous-mode", true),
+                    toml.getBoolean("spectator.return-to-origin", true),
                     toml.getBoolean("spectator.allow-unsafe-return", true)
             );
         } catch (IllegalArgumentException | IllegalStateException | ClassCastException exception) {

@@ -76,7 +76,7 @@ public final class ConfigReloader implements AutoCloseable {
                 reload.run();
             }
             failed = false;
-        } catch (RuntimeException exception) {
+        } catch (RuntimeException | LinkageError exception) {
             if (!failed) {
                 plugin.getLogger().log(Level.SEVERE, "Could not watch GamemodeSwitcher configuration", exception);
                 failed = true;

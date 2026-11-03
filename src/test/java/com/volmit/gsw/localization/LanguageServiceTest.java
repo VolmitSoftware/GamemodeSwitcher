@@ -212,7 +212,6 @@ class LanguageServiceTest {
 
             assertThat(service.prepare("de_AT").selectionReady()).isTrue();
             assertThat(service.availableLocales()).contains("de_AT", "de_DE");
-            assertThat(service.localeDisplayName("de_AT")).isEqualTo("Österreichisch");
             assertThat(service.displayNames().displayName("de_AT")).isEqualTo("Österreichisch");
             assertThat(service.displayNames().displayName("de_DE")).isNull();
             assertThat(service.meta("de_AT").base()).contains("de_DE");
@@ -483,7 +482,6 @@ class LanguageServiceTest {
 
         assertThat(rendered).contains("\\<red>", "\\&c", "\\[FF0000]");
         assertThat(service.languageFile("JA_jp")).isEqualTo(service.languageFile("ja-JP"));
-        assertThat(service.availableLocale("ja_JP")).contains("ja-JP");
         assertThatThrownBy(() -> service.prepare("../outside")).isInstanceOf(IllegalArgumentException.class);
     }
 

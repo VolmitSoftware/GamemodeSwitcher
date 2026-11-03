@@ -30,7 +30,6 @@ import art.arcane.volmlib.util.localization.TextKey;
 import art.arcane.volmlib.util.localization.TextValue;
 import art.arcane.volmlib.util.localization.TomlLanguageEditor;
 import art.arcane.volmlib.util.localization.TomlLanguageParser;
-import art.arcane.volmlib.util.localization.VolmitLocales;
 import art.arcane.volmlib.util.plugin.ComponentMessenger;
 import art.arcane.volmlib.util.plugin.ComponentText;
 import net.kyori.adventure.text.minimessage.MiniMessage;
@@ -47,7 +46,6 @@ import java.nio.file.Path;
 import java.time.Duration;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Comparator;
 import java.util.HashSet;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
@@ -177,19 +175,6 @@ public final class LanguageService {
         PreparedLanguage prepared = createPrepared(requiredLocale, file, overlays, selectionReady);
         refreshAvailableLocales();
         return prepared;
-    }
-
-    public synchronized PreparedLanguage englishFallback(String locale) throws IOException {
-        String requiredLocale = canonicalLocale(locale);
-        directory.prepare();
-        ensureEnglish();
-        refreshAvailableLocales();
-        return new PreparedLanguage(
-                requiredLocale,
-                languageFile(requiredLocale),
-                LocalizationSnapshot.create(LocalizationCandidate.english(CATALOG, ENGLISH_PLURALS)),
-                requiredLocale.equalsIgnoreCase(CATALOG.englishLocale())
-        );
     }
 
     public void install(PreparedLanguage prepared) {
@@ -325,33 +310,7 @@ public final class LanguageService {
         return manifest != null && manifest.contains(locale);
     }
 
-    public synchronized List<EditableMessage> editableMessages(String locale) throws IOException {
-        PreparedLanguage prepared = prepare(locale);
-        if (!prepared.selectionReady()) {
-            throw new IOException("Language file is not installed: " + prepared.locale());
-        }
-        ArrayList<MessageKey> definitions = new ArrayList<>(CATALOG.keys());
-        definitions.sort(Comparator.comparing(MessageKey::id, String.CASE_INSENSITIVE_ORDER));
-        ArrayList<EditableMessage> messages = new ArrayList<>(definitions.size());
-        for (MessageKey definition : definitions) {
-            if (!(definition instanceof TextKey textKey)) {
-                throw new IOException("Language editor does not support key shape: " + definition.id());
-            }
-            MessageValue effectiveValue = prepared.snapshot().value(textKey);
-            if (!(effectiveValue instanceof TextValue textValue)) {
-                throw new IOException("Language editor resolved a non-text value: " + definition.id());
-            }
-            messages.add(new EditableMessage(
-                    definition.id(),
-                    textValue.template(),
-                    previewValue(prepared.snapshot(), definition, textValue.template()),
-                    textValue.placeholders()
-            ));
-        }
-        return List.copyOf(messages);
-    }
-
-    public PreparedLanguage updateMessage(String locale, String key, String value) throws IOException {
+    PreparedLanguage updateMessage(String locale, String key, String value) throws IOException {
         return commitLanguageUpdate(() -> {
             synchronized (this) {
                 return mutateMessage(locale, key, value);
@@ -445,34 +404,12 @@ public final class LanguageService {
         return languageDirectory;
     }
 
-    public boolean isLanguageFile(File candidate) {
-        return directory.isLanguageFile(candidate);
-    }
-
     public List<String> availableLocales() {
         return availableLocales;
     }
 
-    public String localeDisplayName(String locale) {
-        String normalized = locale == null ? "" : locale.trim();
-        LanguageMeta meta = metas.getOrDefault(normalized, LanguageMeta.empty());
-        return meta.name().or(() -> VolmitLocales.displayName(normalized)).orElse("Custom language");
-    }
-
     public LanguageMeta meta(String locale) {
         return metas.getOrDefault(locale == null ? "" : locale.trim(), LanguageMeta.empty());
-    }
-
-    public Optional<String> availableLocale(String requested) {
-        String normalized;
-        try {
-            normalized = LanguageDirectory.requireLocale(requested);
-        } catch (IllegalArgumentException exception) {
-            return Optional.empty();
-        }
-        return availableLocales.stream()
-                .filter(locale -> sameLocale(locale, normalized))
-                .findFirst();
     }
 
     public void close() {
@@ -1070,22 +1007,6 @@ public final class LanguageService {
         return output.toString();
     }
 
-    private String previewValue(LocalizationSnapshot snapshot, MessageKey definition, String template) {
-        MessageArgs.Builder arguments = MessageArgs.builder();
-        for (String placeholder : definition.placeholders()) {
-            if (placeholder.equals("prefix")) {
-                MessageValue prefixValue = snapshot.value(SwitcherMessages.PREFIX);
-                if (!(prefixValue instanceof TextValue prefixText)) {
-                    throw new IllegalStateException("Language prefix is not text");
-                }
-                arguments.trusted(placeholder, prefixText.template());
-            } else {
-                arguments.untrusted(placeholder, "[" + placeholder + "]");
-            }
-        }
-        return interpolate(template, arguments.build());
-    }
-
     private String escapeUntrusted(String value) {
         StringBuilder escaped = new StringBuilder(value.length() + 8);
         for (int index = 0; index < value.length(); index++) {
@@ -1096,17 +1017,6 @@ public final class LanguageService {
             escaped.append(current);
         }
         return MINI_MESSAGE.escapeTags(escaped.toString());
-    }
-
-    public record EditableMessage(
-            String id,
-            String effectiveValue,
-            String previewValue,
-            Set<String> placeholders
-    ) {
-        public EditableMessage {
-            placeholders = Set.copyOf(placeholders);
-        }
     }
 
     private record FileSource(boolean existed, byte[] bytes, String content) {

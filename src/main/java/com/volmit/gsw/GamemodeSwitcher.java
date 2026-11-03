@@ -283,12 +283,19 @@ public final class GamemodeSwitcher extends JavaPlugin {
     }
 
     private void hotReload() {
+        reloadAndNotify(true);
+    }
+
+    private void reloadAndNotify(boolean announceSuccess) {
         boolean success = reloadConfiguration();
         if (closing) {
             return;
         }
         if (success) {
             getLogger().info("Applied GamemodeSwitcher configuration and language file changes.");
+            if (!announceSuccess) {
+                return;
+            }
         }
         FoliaScheduler.runGlobal(this, () -> {
             for (Player player : getServer().getOnlinePlayers()) {
@@ -329,7 +336,7 @@ public final class GamemodeSwitcher extends JavaPlugin {
             return;
         }
         try {
-            reloadWorker.execute(this::hotReload);
+            reloadWorker.execute(() -> reloadAndNotify(false));
         } catch (RejectedExecutionException failure) {
             if (!closing) {
                 getLogger().log(Level.WARNING, "Could not apply installed GamemodeSwitcher language " + locale, failure);

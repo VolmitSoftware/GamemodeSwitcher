@@ -7,6 +7,7 @@ import art.arcane.volmlib.util.localization.MessageArgs;
 import art.arcane.volmlib.util.localization.TextKey;
 import art.arcane.volmlib.util.plugin.ComponentText;
 import com.volmit.gsw.GamemodeSwitcher;
+import com.volmit.gsw.SupportedRuntime;
 import com.volmit.gsw.config.RuntimeConfig;
 import com.volmit.gsw.localization.LanguageService;
 import com.volmit.gsw.localization.SwitcherMessages;
@@ -106,7 +107,7 @@ public final class SwitcherCommands {
             }
         }
         entries.add(statusEntry(sender, SwitcherMessages.STATUS_COMPATIBILITY,
-                MessageArgs.builder().untrusted("java", "25+").untrusted("minecraft", "26.1-26.3")
+                MessageArgs.builder().untrusted("java", SupportedRuntime.MINIMUM_JAVA + "+").untrusted("minecraft", SupportedRuntime.minecraftRange())
                         .untrusted("scheduler", plugin.schedulerName()).build()));
         if (!(sender instanceof Player)) {
             entries.add(statusEntry(sender, SwitcherMessages.GESTURE_HELP, MessageArgs.empty()));

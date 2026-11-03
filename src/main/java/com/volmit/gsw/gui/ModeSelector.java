@@ -96,7 +96,7 @@ public final class ModeSelector implements Listener, AutoCloseable {
                     if (holder.preferences) {
                         clickFeedback(player, holder, slot);
                     } else {
-                        clickOwned(player, slot);
+                        clickOwned(player, holder, slot);
                     }
                 }
                 return true;
@@ -135,10 +135,23 @@ public final class ModeSelector implements Listener, AutoCloseable {
         }
         Holder holder = new Holder(this, player.getUniqueId());
         holder.inventory = Bukkit.createInventory(holder, SIZE, text(player, SwitcherMessages.MENU_TITLE));
+        fillBackground(holder);
+        renderSelector(player, holder);
+        player.openInventory(holder.inventory);
+        if (BukkitInventoryViews.top(player.getOpenInventory()) == holder.inventory) {
+            openInventories.put(player.getUniqueId(), new BukkitInventoryShutdown.View(player, holder.inventory));
+            refreshLater(player, holder);
+        }
+    }
+
+    private void fillBackground(Holder holder) {
         ItemStack background = item(Material.BLACK_STAINED_GLASS_PANE, " ", List.of());
         for (int slot = 0; slot < SIZE; slot++) {
             holder.inventory.setItem(slot, background);
         }
+    }
+
+    private void renderSelector(Player player, Holder holder) {
         List<String> gestures = gestureLore(player);
         holder.inventory.setItem(STATUS_SLOT, item(Material.COMPASS,
                 text(player, SwitcherMessages.MENU_CURRENT, MessageArgs.builder()
@@ -157,38 +170,28 @@ public final class ModeSelector implements Listener, AutoCloseable {
                 List.of(text(player, SwitcherMessages.MENU_FEEDBACK_HELP))));
         holder.inventory.setItem(LANGUAGE_SLOT, item(Material.WRITABLE_BOOK, text(player, SwitcherMessages.MENU_LANGUAGE),
                 List.of(text(player, SwitcherMessages.MENU_LANGUAGE_HELP))));
-        if (player.hasPermission("gamemodeswitcher.config")) {
-            holder.inventory.setItem(CONFIG_SLOT, item(Material.COMPARATOR, text(player, SwitcherMessages.MENU_CONFIG),
-                    List.of(text(player, SwitcherMessages.MENU_CONFIG_HELP))));
-        }
+        holder.inventory.setItem(CONFIG_SLOT, player.hasPermission("gamemodeswitcher.config")
+                ? item(Material.COMPARATOR, text(player, SwitcherMessages.MENU_CONFIG), List.of(text(player, SwitcherMessages.MENU_CONFIG_HELP)))
+                : item(Material.BLACK_STAINED_GLASS_PANE, " ", List.of()));
         holder.inventory.setItem(CLOSE_SLOT, item(Material.BARRIER, text(player, SwitcherMessages.MENU_CLOSE), List.of()));
-        player.openInventory(holder.inventory);
-        if (BukkitInventoryViews.top(player.getOpenInventory()) == holder.inventory) {
-            openInventories.put(player.getUniqueId(), new BukkitInventoryShutdown.View(player, holder.inventory));
-            refreshLater(player, holder);
+    }
+
+    private void redrawIfOpen(Player player, Holder holder) {
+        if (!closed && BukkitInventoryViews.top(player.getOpenInventory()) == holder.inventory) {
+            renderSelector(player, holder);
         }
     }
 
-    private void clickOwned(Player player, int slot) {
+    private void clickOwned(Player player, Holder holder, int slot) {
         GameMode mode = MODES.get(slot);
         if (mode != null) {
-            Inventory inventory = BukkitInventoryViews.top(player.getOpenInventory());
             plugin.getSwitchService().switchMode(player, mode);
-            if (!closed && BukkitInventoryViews.top(player.getOpenInventory()) == inventory) {
-                openOwned(player);
-            }
+            redrawIfOpen(player, holder);
             return;
         }
         switch (slot) {
-            case TOGGLE_SLOT -> {
-                Inventory inventory = BukkitInventoryViews.top(player.getOpenInventory());
-                plugin.getSwitchService().toggle(player, !plugin.getSwitchService().enabled(player))
-                        .whenComplete((ignored, failure) -> FoliaScheduler.runEntity(plugin, player, () -> {
-                            if (!closed && BukkitInventoryViews.top(player.getOpenInventory()) == inventory) {
-                                openOwned(player);
-                            }
-                        }));
-            }
+            case TOGGLE_SLOT -> plugin.getSwitchService().toggle(player, !plugin.getSwitchService().enabled(player))
+                    .whenComplete((ignored, failure) -> FoliaScheduler.runEntity(plugin, player, () -> redrawIfOpen(player, holder)));
             case GESTURES_SLOT -> {
                 for (String line : plugin.getSwitchService().gestureHelp(player)) {
                     player.sendMessage(ComponentText.markup(line).legacy());
@@ -272,14 +275,7 @@ public final class ModeSelector implements Listener, AutoCloseable {
             if (holder.preferences) {
                 renderFeedback(player, holder);
             } else {
-                for (Map.Entry<Integer, GameMode> entry : MODES.entrySet()) {
-                    holder.inventory.setItem(entry.getKey(), modeItem(player, entry.getValue()));
-                }
-                List<String> gestures = gestureLore(player);
-                holder.inventory.setItem(STATUS_SLOT, item(Material.COMPASS,
-                        text(player, SwitcherMessages.MENU_CURRENT, MessageArgs.builder()
-                                .untrusted("mode", plugin.modeName(player, player.getGameMode())).build()), gestures));
-                holder.inventory.setItem(GESTURES_SLOT, item(Material.BOOK, text(player, SwitcherMessages.MENU_GESTURES), gestures));
+                renderSelector(player, holder);
             }
             refreshLater(player, holder);
         }, 10L);

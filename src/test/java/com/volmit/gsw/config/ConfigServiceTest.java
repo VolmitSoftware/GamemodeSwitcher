@@ -69,6 +69,17 @@ class ConfigServiceTest {
     }
 
     @Test
+    void spectatorSessionsRestoreModeAndLocationByDefault() throws IOException {
+        RuntimeConfig runtime = ConfigService.parse("[general]\nenabled = true");
+        assertThat(runtime.restorePreviousMode()).isTrue();
+        assertThat(runtime.returnToOrigin()).isTrue();
+        ConfigService service = new ConfigService(directory.toFile());
+        service.initialize();
+        assertThat(service.runtime().restorePreviousMode()).isTrue();
+        assertThat(service.runtime().returnToOrigin()).isTrue();
+    }
+
+    @Test
     void unsafeReturnDefaultsOnAndCanBeDisabledByHotReload() throws IOException {
         assertThat(ConfigService.parse("[spectator]\nreturn-to-origin = true").allowUnsafeReturn()).isTrue();
         ConfigService service = new ConfigService(directory.toFile());

@@ -3,6 +3,7 @@ package com.volmit.gsw.presentation;
 import art.arcane.volmlib.util.plugin.ComponentLog;
 import art.arcane.volmlib.util.plugin.SplashScreenSupport;
 import com.volmit.gsw.GamemodeSwitcher;
+import com.volmit.gsw.SupportedRuntime;
 import net.md_5.bungee.api.ChatColor;
 
 import java.util.logging.Level;
@@ -42,7 +43,7 @@ public final class SplashScreen {
                 gold + "GamemodeSwitcher" + text + ", Gestures and game modes",
                 text + "Version: " + mint + info.version(),
                 text + "By: " + mint + "VolmitSoftware (Arcane Arts)" + separator + mint + "VolmitSoftware.com",
-                text + "Server: " + mint + info.server() + separator + "MC Support: " + mint + "26.1-26.3",
+                text + "Server: " + mint + info.server() + separator + "MC Support: " + mint + SupportedRuntime.minecraftRange(),
                 text + "Java: " + mint + info.javaVersion() + separator + "Date: " + mint + info.date()
         };
         int width = 0;

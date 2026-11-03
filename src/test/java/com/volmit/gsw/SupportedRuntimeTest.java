@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -25,6 +26,14 @@ class SupportedRuntimeTest {
             assertTrue(failure.getMessage().contains(version));
         }
         assertThrows(IllegalStateException.class, () -> SupportedRuntime.requireSupported(null, 25));
+    }
+
+    @Test
+    void readsTheMinecraftRangeFromBuildMetadata() {
+        assertEquals("26.1-26.3", SupportedRuntime.minecraftRange());
+        IllegalStateException failure = assertThrows(IllegalStateException.class,
+                () -> SupportedRuntime.requireSupported("1.21.11", SupportedRuntime.MINIMUM_JAVA));
+        assertTrue(failure.getMessage().contains("26.1 through 26.3"));
     }
 
     @Test

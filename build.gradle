@@ -28,6 +28,14 @@ tasks.named('slimJar').get()
 group = 'com.volmit'
 version = '2.0.0'
 
+String minecraftRange = providers.gradleProperty('bukkitMinecraftRange').get()
+if (!(minecraftRange ==~ /\d+\.\d+-\d+\.\d+/)) {
+    throw new GradleException('bukkitMinecraftRange must look like 26.1-26.3')
+}
+TaskProvider<WriteProperties> buildMetadataTask = tasks.register('generateBuildMetadata', WriteProperties) {
+    destinationFile.set(layout.buildDirectory.file('generated/build-metadata/gamemodeswitcher-build.properties'))
+    property('minecraftRange', minecraftRange)
+}
 String languageSourceRepository = providers.gradleProperty('languageSourceRepository').orElse('VolmitSoftware/GamemodeSwitcher').get()
 String languageSourceBranch = providers.gradleProperty('languageSourceBranch').orElse(providers.provider {
     try {
@@ -151,6 +159,7 @@ tasks.named('processResources').configure {
     dependsOn(languageSourceManifestTask)
     exclude('languages/*.toml')
     from(languageSourceManifestTask)
+    from(buildMetadataTask)
     Map<String, String> pluginProperties = [name: rootProject.name, version: project.version.toString()]
     inputs.properties(pluginProperties)
     filesMatching('plugin.yml') { expand(pluginProperties) }
@@ -271,6 +280,17 @@ tasks.register('verifyJava25Artifact') {
         if (metadataCount != 1 || localeCount != 0) {
             throw new GradleException("Expected one plugin.yml and no bundled translations; found ${metadataCount} and ${localeCount}")
         }
+        new java.util.zip.ZipFile(artifact).withCloseable { java.util.zip.ZipFile archive ->
+            java.util.zip.ZipEntry metadataEntry = archive.getEntry('gamemodeswitcher-build.properties')
+            if (metadataEntry == null) {
+                throw new GradleException('Runtime artifact is missing gamemodeswitcher-build.properties')
+            }
+            Properties metadata = new Properties()
+            archive.getInputStream(metadataEntry).withCloseable { InputStream input -> metadata.load(input) }
+            if (metadata.getProperty('minecraftRange') != minecraftRange) {
+                throw new GradleException('Runtime Minecraft range does not match bukkitMinecraftRange')
+            }
+        }
         if (languageManifest == null) {
             throw new GradleException('Runtime artifact is missing gamemodeswitcher-language-source.properties')
         }
@@ -366,6 +386,7 @@ pluginPackaging {
                 'plugin.yml',
                 'com/volmit/gsw/GamemodeSwitcher.class',
                 'gamemodeswitcher-language-source.properties',
+                'gamemodeswitcher-build.properties',
                 'slimjar.dat',
                 'slimjar-resolutions.dat',
                 'com/volmit/gsw/libs/slimjar/app/builder/SpigotApplicationBuilder.class'
