@@ -387,7 +387,7 @@ cooldown = "{prefix}&eOdota &f{seconds}&r&e sekuntia ennen seuraavaa vaihtoa.&r"
 disabled = "{prefix}&ePelitilan vaihtaminen on poistettu käytöstä.&r"
 empty_hands = "{prefix}&eTyhjennä molemmat kädet käyttääksesi pelitilaeleitä.&r"
 no_permission = "{prefix}&cSinulla ei ole oikeutta käyttää tätä pelitilaa.&r"
-spectator_hint = "{prefix}&7Poistu katsojatilasta komennolla &f/gsw menu&r&7 tai &f/gsw set survival&r&7.&r"
+spectator_hint = "{prefix}&7Poistu katsojatilasta hiipimällä kolme kertaa tai komennolla &f/gsw menu&r&7 tai &f/gsw set survival&r&7.&r"
 world_blocked = "{prefix}&ePelitilaa ei voi vaihtaa maailmassa &f{world}&r&e.&r"
 
 [toggle]

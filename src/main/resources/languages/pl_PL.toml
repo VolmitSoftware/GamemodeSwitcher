@@ -386,7 +386,7 @@ cooldown = "{prefix}&ePoczekaj &f{seconds}&r&e s, zanim ponownie zmienisz tryb.&
 disabled = "{prefix}&eZmiana trybu gry jest wyłączona.&r"
 empty_hands = "{prefix}&eOpróżnij obie ręce, aby używać gestów zmiany trybu gry.&r"
 no_permission = "{prefix}&cNie masz uprawnień do używania tego trybu gry.&r"
-spectator_hint = "{prefix}&7Użyj &f/gsw menu&r&7 lub &f/gsw set survival&r&7, aby wyjść z trybu widza.&r"
+spectator_hint = "{prefix}&7Skradaj się trzy razy albo użyj &f/gsw menu&r&7 lub &f/gsw set survival&r&7, aby wyjść z trybu widza.&r"
 world_blocked = "{prefix}&eZmiana trybu gry jest niedostępna w świecie &f{world}&r&e.&r"
 
 [toggle]

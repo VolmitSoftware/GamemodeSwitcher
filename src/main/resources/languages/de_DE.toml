@@ -387,7 +387,7 @@ cooldown = "{prefix}&eWarte &f{seconds}&r&e Sekunden bis zum nächsten Wechsel.&
 disabled = "{prefix}&eDer Spielmoduswechsel ist deaktiviert.&r"
 empty_hands = "{prefix}&eLeere beide Hände, um Spielmodusgesten zu verwenden.&r"
 no_permission = "{prefix}&cDu hast keine Berechtigung, diesen Spielmodus zu verwenden.&r"
-spectator_hint = "{prefix}&7Verwende &f/gsw menu&r&7 oder &f/gsw set survival&r&7, um den Zuschauermodus zu verlassen.&r"
+spectator_hint = "{prefix}&7Schleiche dreimal oder verwende &f/gsw menu&r&7 oder &f/gsw set survival&r&7, um den Zuschauermodus zu verlassen.&r"
 world_blocked = "{prefix}&eDer Spielmoduswechsel ist in &f{world}&r&e nicht verfügbar.&r"
 
 [toggle]

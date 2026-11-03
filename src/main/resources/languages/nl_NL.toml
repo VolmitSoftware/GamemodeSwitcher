@@ -386,7 +386,7 @@ cooldown = "{prefix}&eWacht &f{seconds}&r&e seconden voordat je opnieuw wisselt.
 disabled = "{prefix}&eWisselen van spelmodus is uitgeschakeld.&r"
 empty_hands = "{prefix}&eMaak beide handen leeg om spelmodusgebaren te gebruiken.&r"
 no_permission = "{prefix}&cJe hebt geen toestemming om deze spelmodus te gebruiken.&r"
-spectator_hint = "{prefix}&7Gebruik &f/gsw menu&r&7 of &f/gsw set survival&r&7 om de toeschouwermodus te verlaten.&r"
+spectator_hint = "{prefix}&7Sluip drie keer of gebruik &f/gsw menu&r&7 of &f/gsw set survival&r&7 om de toeschouwermodus te verlaten.&r"
 world_blocked = "{prefix}&eWisselen van spelmodus is niet beschikbaar in &f{world}&r&e.&r"
 
 [toggle]

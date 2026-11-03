@@ -387,7 +387,7 @@ cooldown = "{prefix}&eAttendi &f{seconds}&r&e secondi prima di cambiare di nuovo
 disabled = "{prefix}&eIl cambio di modalità di gioco è disattivato.&r"
 empty_hands = "{prefix}&eSvuota entrambe le mani per usare i gesti della modalità di gioco.&r"
 no_permission = "{prefix}&cNon hai il permesso di usare questa modalità di gioco.&r"
-spectator_hint = "{prefix}&7Usa &f/gsw menu&r&7 o &f/gsw set survival&r&7 per uscire dalla modalità Spettatore.&r"
+spectator_hint = "{prefix}&7Accovacciati tre volte o usa &f/gsw menu&r&7 o &f/gsw set survival&r&7 per uscire dalla modalità Spettatore.&r"
 world_blocked = "{prefix}&eIl cambio di modalità di gioco non è disponibile in &f{world}&r&e.&r"
 
 [toggle]

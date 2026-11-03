@@ -38,7 +38,7 @@ public final class SwitcherMessages {
     public static final TextKey SWITCH_BLOCKED_WORLD = prefixed("switch.world_blocked", "&eGame mode switching is unavailable in &f{world}&r&e.&r");
     public static final TextKey SWITCH_COOLDOWN = prefixed("switch.cooldown", "&eWait &f{seconds}&r&e seconds before switching again.&r");
     public static final TextKey SWITCH_CANCELLED = prefixed("switch.cancelled", "&eAnother plugin prevented the game mode change.&r");
-    public static final TextKey SWITCH_SPECTATOR_HINT = prefixed("switch.spectator_hint", "&7Use &f/gsw menu&r&7 or &f/gsw set survival&r&7 to leave spectator mode.&r");
+    public static final TextKey SWITCH_SPECTATOR_HINT = prefixed("switch.spectator_hint", "&7Sneak three times, or use &f/gsw menu&r&7 or &f/gsw set survival&r&7, to leave spectator mode.&r");
     public static final TextKey SWITCH_EMPTY_HANDS = prefixed("switch.empty_hands", "&eEmpty both hands to use game mode gestures.&r");
     public static final TextKey SWITCH_ALREADY = prefixed("switch.already", "&7Your game mode is already &f{mode}&r&7.&r");
     public static final TextKey TOGGLE_ENABLED = prefixed("toggle.enabled", "&aGame mode gestures enabled.&r");

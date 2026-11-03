@@ -387,7 +387,7 @@ cooldown = "{prefix}&e再び切り替えるまで&f{seconds}&r&e秒待ってく�
 disabled = "{prefix}&eゲームモードの切り替えは無効です。&r"
 empty_hands = "{prefix}&eゲームモードのジェスチャーを使うには両手を空にしてください。&r"
 no_permission = "{prefix}&cこのゲームモードを使う権限がありません。&r"
-spectator_hint = "{prefix}&7スペクテイターモードを終了するには&f/gsw menu&r&7または&f/gsw set survival&r&7を使ってください。&r"
+spectator_hint = "{prefix}&7スペクテイターモードを終了するには、スニークを3回押すか、&f/gsw menu&r&7または&f/gsw set survival&r&7を使ってください。&r"
 world_blocked = "{prefix}&eゲームモードの切り替えは&f{world}&r&eでは利用できません。&r"
 
 [toggle]

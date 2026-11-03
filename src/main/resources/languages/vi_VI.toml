@@ -386,7 +386,7 @@ cooldown = "{prefix}&eChờ &f{seconds}&r&e giây trước khi đổi lại.&r"
 disabled = "{prefix}&eChức năng đổi chế độ chơi đang tắt.&r"
 empty_hands = "{prefix}&eĐể trống cả hai tay để dùng cử chỉ đổi chế độ chơi.&r"
 no_permission = "{prefix}&cBạn không có quyền dùng chế độ chơi đó.&r"
-spectator_hint = "{prefix}&7Dùng &f/gsw menu&r&7 hoặc &f/gsw set survival&r&7 để rời chế độ Khán giả.&r"
+spectator_hint = "{prefix}&7Nhấn Đi rón rén ba lần hoặc dùng &f/gsw menu&r&7 hay &f/gsw set survival&r&7 để rời chế độ Khán giả.&r"
 world_blocked = "{prefix}&eKhông thể đổi chế độ chơi trong &f{world}&r&e.&r"
 
 [toggle]

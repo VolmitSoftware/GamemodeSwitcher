@@ -387,7 +387,7 @@ cooldown = "{prefix}&eיש להמתין &f{seconds}&r&e שניות לפני הח
 disabled = "{prefix}&eהחלפת מצבי משחק מושבתת.&r"
 empty_hands = "{prefix}&eיש לרוקן את שתי הידיים כדי להשתמש במחוות מצב המשחק.&r"
 no_permission = "{prefix}&cאין לך הרשאה להשתמש במצב המשחק הזה.&r"
-spectator_hint = "{prefix}&7השתמשו ב-&f/gsw menu&r&7 או ב-&f/gsw set survival&r&7 כדי לצאת ממצב צופה.&r"
+spectator_hint = "{prefix}&7התגנבו שלוש פעמים או השתמשו ב-&f/gsw menu&r&7 או ב-&f/gsw set survival&r&7 כדי לצאת ממצב צופה.&r"
 world_blocked = "{prefix}&eהחלפת מצב משחק אינה זמינה ב-&f{world}&r&e.&r"
 
 [toggle]

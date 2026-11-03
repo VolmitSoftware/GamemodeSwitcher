@@ -386,7 +386,7 @@ cooldown = "{prefix}&eПодождите &f{seconds}&r&e сек. перед по
 disabled = "{prefix}&eСмена режима игры отключена.&r"
 empty_hands = "{prefix}&eОсвободите обе руки, чтобы использовать жесты смены режима.&r"
 no_permission = "{prefix}&cУ вас нет разрешения на использование этого режима игры.&r"
-spectator_hint = "{prefix}&7Используйте &f/gsw menu&r&7 или &f/gsw set survival&r&7, чтобы выйти из режима наблюдателя.&r"
+spectator_hint = "{prefix}&7Нажмите «Красться» три раза или используйте &f/gsw menu&r&7 либо &f/gsw set survival&r&7, чтобы выйти из режима наблюдателя.&r"
 world_blocked = "{prefix}&eСмена режима игры недоступна в мире &f{world}&r&e.&r"
 
 [toggle]

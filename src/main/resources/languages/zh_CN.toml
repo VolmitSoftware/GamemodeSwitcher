@@ -386,7 +386,7 @@ cooldown = "{prefix}&e请等待 &f{seconds}&r&e 秒后再切换。&r"
 disabled = "{prefix}&e游戏模式切换已禁用。&r"
 empty_hands = "{prefix}&e请清空双手后再使用游戏模式手势。&r"
 no_permission = "{prefix}&c你没有使用该游戏模式的权限。&r"
-spectator_hint = "{prefix}&7使用 &f/gsw menu&r&7 或 &f/gsw set survival&r&7 退出旁观模式。&r"
+spectator_hint = "{prefix}&7按三次潜行键，或使用 &f/gsw menu&r&7 或 &f/gsw set survival&r&7 退出旁观模式。&r"
 world_blocked = "{prefix}&e无法在 &f{world}&r&e 中切换游戏模式。&r"
 
 [toggle]

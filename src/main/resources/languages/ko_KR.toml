@@ -387,7 +387,7 @@ cooldown = "{prefix}&e다시 전환하려면 &f{seconds}&r&e초 기다리세요.
 disabled = "{prefix}&e게임 모드 전환이 비활성화되어 있습니다.&r"
 empty_hands = "{prefix}&e게임 모드 제스처를 사용하려면 양손을 비우세요.&r"
 no_permission = "{prefix}&c이 게임 모드를 사용할 권한이 없습니다.&r"
-spectator_hint = "{prefix}&7관전 모드에서 나가려면 &f/gsw menu&r&7 또는 &f/gsw set survival&r&7 명령어를 사용하세요.&r"
+spectator_hint = "{prefix}&7관전 모드에서 나가려면 웅크리기를 세 번 누르거나 &f/gsw menu&r&7 또는 &f/gsw set survival&r&7 명령어를 사용하세요.&r"
 world_blocked = "{prefix}&e게임 모드 전환은 &f{world}&r&e에서 사용할 수 없습니다.&r"
 
 [toggle]

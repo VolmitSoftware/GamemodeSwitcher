@@ -386,7 +386,7 @@ cooldown = "{prefix}&eYeniden değiştirmeden önce &f{seconds}&r&e saniye bekle
 disabled = "{prefix}&eOyun modu değiştirme devre dışı.&r"
 empty_hands = "{prefix}&eOyun modu hareketlerini kullanmak için iki elinizi de boşaltın.&r"
 no_permission = "{prefix}&cBu oyun modunu kullanma izniniz yok.&r"
-spectator_hint = "{prefix}&7Seyirci modundan çıkmak için &f/gsw menu&r&7 veya &f/gsw set survival&r&7 kullanın.&r"
+spectator_hint = "{prefix}&7Seyirci modundan çıkmak için üç kez eğilin ya da &f/gsw menu&r&7 veya &f/gsw set survival&r&7 kullanın.&r"
 world_blocked = "{prefix}&eOyun modu değiştirme &f{world}&r&e dünyasında kullanılamıyor.&r"
 
 [toggle]

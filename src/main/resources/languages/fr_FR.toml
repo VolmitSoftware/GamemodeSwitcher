@@ -387,7 +387,7 @@ cooldown = "{prefix}&eAttendez &f{seconds}&r&e secondes avant de changer à nouv
 disabled = "{prefix}&eLe changement de mode de jeu est désactivé.&r"
 empty_hands = "{prefix}&eVidez vos deux mains pour utiliser les gestes de mode de jeu.&r"
 no_permission = "{prefix}&cVous n’avez pas la permission d’utiliser ce mode de jeu.&r"
-spectator_hint = "{prefix}&7Utilisez &f/gsw menu&r&7 ou &f/gsw set survival&r&7 pour quitter le mode Spectateur.&r"
+spectator_hint = "{prefix}&7Accroupissez-vous trois fois ou utilisez &f/gsw menu&r&7 ou &f/gsw set survival&r&7 pour quitter le mode Spectateur.&r"
 world_blocked = "{prefix}&eLe changement de mode de jeu est indisponible dans &f{world}&r&e.&r"
 
 [toggle]

@@ -386,7 +386,7 @@ cooldown = "{prefix}&ePalaukite &f{seconds}&r&e sek., prieš keisdami dar kartą
 disabled = "{prefix}&eŽaidimo režimo keitimas išjungtas.&r"
 empty_hands = "{prefix}&eIštuštinkite abi rankas, kad galėtumėte naudoti žaidimo režimo gestus.&r"
 no_permission = "{prefix}&cNeturite leidimo naudoti šio žaidimo režimo.&r"
-spectator_hint = "{prefix}&7Naudokite &f/gsw menu&r&7 arba &f/gsw set survival&r&7, kad išeitumėte iš stebėtojo režimo.&r"
+spectator_hint = "{prefix}&7Tris kartus sėlinkite arba naudokite &f/gsw menu&r&7 ar &f/gsw set survival&r&7, kad išeitumėte iš stebėtojo režimo.&r"
 world_blocked = "{prefix}&eŽaidimo režimo keitimas nepasiekiamas pasaulyje &f{world}&r&e.&r"
 
 [toggle]
